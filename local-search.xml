@@ -4,12 +4,18 @@
   
   
   <entry>
-    <title>test</title>
-    <link href="/2024/09/06/test/"/>
-    <url>/2024/09/06/test/</url>
+    <title>2048实现秒过关</title>
+    <link href="/2024/09/06/2048/"/>
+    <url>/2024/09/06/2048/</url>
     
-    <content type="html"><![CDATA[<h1 id="发布第一篇文章"><a href="#发布第一篇文章" class="headerlink" title="发布第一篇文章"></a>发布第一篇文章</h1><p>111</p><p>2222</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="so分析"><a href="#so分析" class="headerlink" title="so分析"></a>so分析</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/041e24788116aad3e5b9d66d153c0597.png" alt="041e24788116aad3e5b9d66d153c0597"></p><p>hook其参数-得知</p><p>修改.</p><p>text:000A1CE8 01 32                         ADDS    R2, #1</p><p>text:000A1CE8 01 32                         ADDS    R2, #8</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5997fd65e2f23df2dedd500f805418d1.png" alt="5997fd65e2f23df2dedd500f805418d1"></p><p>text:000A1CE8 01 32                         ADDS    R2, #8</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b0c2eab99470f976c0cc393352fa1b15.png" alt="b0c2eab99470f976c0cc393352fa1b15"></p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240908230448204.png" alt="`image-20240908230448204`"></p><p>修改盒子初始值达到快速过关</p>]]></content>
     
+    
+    <categories>
+      
+      <category>逆向</category>
+      
+    </categories>
     
     
   </entry>
@@ -29,6 +35,19 @@
       <category>逆向</category>
       
     </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>test</title>
+    <link href="/2024/09/06/test/"/>
+    <url>/2024/09/06/test/</url>
+    
+    <content type="html"><![CDATA[<h1 id="发布第一篇文章"><a href="#发布第一篇文章" class="headerlink" title="发布第一篇文章"></a>发布第一篇文章</h1><p>111</p><p>2222</p>]]></content>
+    
     
     
   </entry>
