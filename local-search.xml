@@ -23,16 +23,16 @@
   
   
   <entry>
-    <title>游戏逆向思路cpp</title>
-    <link href="/2024/09/06/test2/"/>
-    <url>/2024/09/06/test2/</url>
+    <title>云岚到家1-4技术栈</title>
+    <link href="/2024/09/06/yunlan/"/>
+    <url>/2024/09/06/yunlan/</url>
     
-    <content type="html"><![CDATA[<h1 id="游戏逆向思路cpp"><a href="#游戏逆向思路cpp" class="headerlink" title="游戏逆向思路cpp"></a>游戏逆向思路cpp</h1><p>游戏引擎 :cocos2dx<br>逆向思路</p><p>libcocos2dcpp.so  libgame.so     &#x2F;data&#x2F;app-lib&#x2F;包名<br>1.字符串信息查找关键函数<br>2.send函数进行定位<br>3.hook hook函数修改参数-返回值-或者多次调用-或者返回-根据情况</p><p><img src="https://s2.loli.net/2024/09/07/yZxfF9IcLlMbUzW.png" alt="2024-09-07 222659.png"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="云岚到家-1-4"><a href="#云岚到家-1-4" class="headerlink" title="云岚到家 1-4"></a>云岚到家 1-4</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/%E4%BA%91%E5%B2%9A%E5%88%B0%E5%AE%B6.png" alt="云岚到家"></p><p>技术栈-</p><p>微信小程序登录流程</p><p>用户定位接口</p><p>SpringCache</p><p>Redis  </p><p>缓存穿透 缓存击穿 缓存雪崩 缓存不一致 -</p><p>门户优化</p><p>XXL-JOB使用 </p><p>具体这些框架原理后续我会剖析</p>]]></content>
     
     
     <categories>
       
-      <category>逆向</category>
+      <category>项目</category>
       
     </categories>
     
@@ -55,16 +55,16 @@
   
   
   <entry>
-    <title>云岚到家1-4技术栈</title>
-    <link href="/2024/09/06/yunlan/"/>
-    <url>/2024/09/06/yunlan/</url>
+    <title>游戏逆向思路cpp</title>
+    <link href="/2024/09/06/test2/"/>
+    <url>/2024/09/06/test2/</url>
     
-    <content type="html"><![CDATA[<h1 id="云岚到家-1-4"><a href="#云岚到家-1-4" class="headerlink" title="云岚到家 1-4"></a>云岚到家 1-4</h1><p><img src="G:\360MoveData\Users\nixg\Desktop\云岚到家\云岚到家.png" alt="云岚到家"></p><p>技术栈-</p><p>微信小程序登录流程</p><p>用户定位接口</p><p>SpringCache</p><p>Redis  </p><p>缓存穿透 缓存击穿 缓存雪崩 缓存不一致 -</p><p>门户优化</p><p>XXL-JOB使用 </p><p>具体这些框架原理后续我会剖析</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="游戏逆向思路cpp"><a href="#游戏逆向思路cpp" class="headerlink" title="游戏逆向思路cpp"></a>游戏逆向思路cpp</h1><p>游戏引擎 :cocos2dx<br>逆向思路</p><p>libcocos2dcpp.so  libgame.so     &#x2F;data&#x2F;app-lib&#x2F;包名<br>1.字符串信息查找关键函数<br>2.send函数进行定位<br>3.hook hook函数修改参数-返回值-或者多次调用-或者返回-根据情况</p><p><img src="https://s2.loli.net/2024/09/07/yZxfF9IcLlMbUzW.png" alt="2024-09-07 222659.png"></p>]]></content>
     
     
     <categories>
       
-      <category>项目</category>
+      <category>逆向</category>
       
     </categories>
     
