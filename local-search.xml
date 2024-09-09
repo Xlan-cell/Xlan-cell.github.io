@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>java基础笔记</title>
+    <link href="/2024/09/06/java%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86/"/>
+    <url>/2024/09/06/java%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h1 id="java基础笔记"><a href="#java基础笔记" class="headerlink" title="java基础笔记"></a>java基础笔记</h1><p>ps:很遗憾，由于第一次的笔记很短暂。并不怎么深入<br>后续会更新String流处理 包括多线程 线程共享 线程安全 等<br>还有网络编程-各类心跳处理机制-多线程服务器-</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/Java.png" alt="Java"><a href="https://raw.githubusercontent.com/Xlan-cell/tupian/master/Java.png">https://raw.githubusercontent.com/Xlan-cell/tupian/master/Java.png</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2048实现秒过关</title>
     <link href="/2024/09/06/2048/"/>
     <url>/2024/09/06/2048/</url>
@@ -23,6 +42,19 @@
   
   
   <entry>
+    <title>test</title>
+    <link href="/2024/09/06/test/"/>
+    <url>/2024/09/06/test/</url>
+    
+    <content type="html"><![CDATA[<h1 id="发布第一篇文章"><a href="#发布第一篇文章" class="headerlink" title="发布第一篇文章"></a>发布第一篇文章</h1><p>111</p><p>2222</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>云岚到家1-4技术栈</title>
     <link href="/2024/09/06/yunlan/"/>
     <url>/2024/09/06/yunlan/</url>
@@ -35,19 +67,6 @@
       <category>项目</category>
       
     </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>test</title>
-    <link href="/2024/09/06/test/"/>
-    <url>/2024/09/06/test/</url>
-    
-    <content type="html"><![CDATA[<h1 id="发布第一篇文章"><a href="#发布第一篇文章" class="headerlink" title="发布第一篇文章"></a>发布第一篇文章</h1><p>111</p><p>2222</p>]]></content>
-    
     
     
   </entry>
