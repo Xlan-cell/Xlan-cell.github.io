@@ -19,16 +19,16 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="title: 循环依赖解决author: John Doedate: 2024-09-06 20:22:30categories:  spring  1.了解循环依赖问题在 Spring 中，如果一个 bean 尝试将自身引用注入到自身中，通常会引发循环依赖。 首先搞清楚什么是循环依赖： 两个Bean，A依赖B，B依赖A就构成了循环依赖，如下图：  同样的道理，如果在A中注入A表示A依赖A，也就构">
+    <meta name="description" content="循环依赖解决1.了解循环依赖问题在 Spring 中，如果一个 bean 尝试将自身引用注入到自身中，通常会引发循环依赖。 首先搞清楚什么是循环依赖： 两个Bean，A依赖B，B依赖A就构成了循环依赖，如下图：  同样的道理，如果在A中注入A表示A依赖A，也就构成了循环依赖。 创建A实例–》初始化A–》注入B–》创建B实例–》初始化B–》注入A A-初始化-需要初始化完成bean-&gt;初始化B">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逆向狗">
-<meta property="og:url" content="http://example.com/2024/09/10/huanchun/index.html">
+<meta property="og:title" content="三级缓存解决循环依赖">
+<meta property="og:url" content="http://example.com/2024/09/06/huanchun/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="title: 循环依赖解决author: John Doedate: 2024-09-06 20:22:30categories:  spring  1.了解循环依赖问题在 Spring 中，如果一个 bean 尝试将自身引用注入到自身中，通常会引发循环依赖。 首先搞清楚什么是循环依赖： 两个Bean，A依赖B，B依赖A就构成了循环依赖，如下图：  同样的道理，如果在A中注入A表示A依赖A，也就构">
+<meta property="og:description" content="循环依赖解决1.了解循环依赖问题在 Spring 中，如果一个 bean 尝试将自身引用注入到自身中，通常会引发循环依赖。 首先搞清楚什么是循环依赖： 两个Bean，A依赖B，B依赖A就构成了循环依赖，如下图：  同样的道理，如果在A中注入A表示A依赖A，也就构成了循环依赖。 创建A实例–》初始化A–》注入B–》创建B实例–》初始化B–》注入A A-初始化-需要初始化完成bean-&gt;初始化B">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240606225332349.png">
-<meta property="article:published_time" content="2024-09-10T08:36:39.570Z">
-<meta property="article:modified_time" content="2024-09-10T08:39:47.972Z">
+<meta property="article:published_time" content="2024-09-06T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-09-10T08:41:53.680Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240606225332349.png">
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>逆向狗</title>
+  <title>三级缓存解决循环依赖 - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="三级缓存解决循环依赖"></span>
           
         </div>
 
@@ -219,8 +219,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-10 16:36" pubdate>
-          2024年9月10日 下午
+        <time datetime="2024-09-06 20:22" pubdate>
+          2024年9月6日 晚上
         </time>
       </span>
     
@@ -231,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          906 字
+          898 字
         
       </span>
     
@@ -279,16 +279,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">三级缓存解决循环依赖</h1>
             
             
               <div class="markdown-body">
                 
-                <p>title: 循环依赖解决<br>author: John Doe<br>date: 2024-09-06 20:22:30<br>categories:</p>
-<ul>
-<li>spring</li>
-</ul>
-<h6 id="1-了解循环依赖问题"><a href="#1-了解循环依赖问题" class="headerlink" title="1.了解循环依赖问题"></a>1.了解循环依赖问题</h6><p>在 Spring 中，如果一个 bean 尝试将自身引用注入到自身中，通常会引发循环依赖。</p>
+                <h1 id="循环依赖解决"><a href="#循环依赖解决" class="headerlink" title="循环依赖解决"></a>循环依赖解决</h1><h6 id="1-了解循环依赖问题"><a href="#1-了解循环依赖问题" class="headerlink" title="1.了解循环依赖问题"></a>1.了解循环依赖问题</h6><p>在 Spring 中，如果一个 bean 尝试将自身引用注入到自身中，通常会引发循环依赖。</p>
 <p>首先搞清楚什么是循环依赖：</p>
 <p>两个Bean，A依赖B，B依赖A就构成了循环依赖，如下图：</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240606225332349.png" srcset="/img/loading.gif" lazyload alt="image-20240606225332349"></p>
@@ -330,6 +326,27 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/spring/" class="category-chain-item">spring</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
 </div>
 
@@ -339,8 +356,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://example.com/2024/09/10/huanchun/</div>
+      <div>三级缓存解决循环依赖</div>
+      <div>http://example.com/2024/09/06/huanchun/</div>
     </div>
     <div class="license-meta">
       
@@ -352,7 +369,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月10日</div>
+          <div>2024年9月6日</div>
         </div>
       
       
@@ -384,12 +401,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2024/09/06/2048/" title="2048实现秒过关">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2048实现秒过关</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/06/2048/" title="2048实现秒过关">
-                        <span class="hidden-mobile">2048实现秒过关</span>
+                      <a href="/2024/09/06/test/" title="test">
+                        <span class="hidden-mobile">test</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

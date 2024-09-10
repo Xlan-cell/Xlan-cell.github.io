@@ -4,19 +4,6 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2024/09/10/huanchun/"/>
-    <url>/2024/09/10/huanchun/</url>
-    
-    <content type="html"><![CDATA[<p>title: 循环依赖解决<br>author: John Doe<br>date: 2024-09-06 20:22:30<br>categories:</p><ul><li>spring</li></ul><h6 id="1-了解循环依赖问题"><a href="#1-了解循环依赖问题" class="headerlink" title="1.了解循环依赖问题"></a>1.了解循环依赖问题</h6><p>在 Spring 中，如果一个 bean 尝试将自身引用注入到自身中，通常会引发循环依赖。</p><p>首先搞清楚什么是循环依赖：</p><p>两个Bean，A依赖B，B依赖A就构成了循环依赖，如下图：</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240606225332349.png" alt="image-20240606225332349"></p><p>同样的道理，如果在A中注入A表示A依赖A，也就构成了循环依赖。</p><p>创建A实例–》初始化A–》注入B–》创建B实例–》初始化B–》注入A</p><p>A-初始化-需要初始化完成bean-&gt;初始化B-&gt;b也要初始化其中的bean-》A-初始化-</p><p>卡入死循环</p><h6 id="2-避免循环依赖流程"><a href="#2-避免循环依赖流程" class="headerlink" title="2.避免循环依赖流程"></a>2.避免循环依赖流程</h6><p>针对循环依赖的问题Spring会上边的过程调整为下边的流程：</p><p>创建A实例– -》创建B实例–》在B中注入A—*<code>B的成员保存A的内存地址</code>*》B初始化—成员赋值了》在A中注入B–》A初始化。</p><p><strong>实例-内存地址</strong>       </p><p>A -&gt;注入B-&gt;初始化</p><p>B-&gt;A(地址)–{最后存储的就是A}-&gt;初始化</p><p>延迟了A的初始化只保留了地址</p><h6 id="3-三级缓存解决循环依赖"><a href="#3-三级缓存解决循环依赖" class="headerlink" title="3.三级缓存解决循环依赖"></a>3.三级缓存解决循环依赖</h6><p>Spring是如何做到呢？</p><p>Spring会延迟初始化，B需要注入A,此时Spring会先实例化A，把一个半成品A注入给B，延迟A的初始化。</p><p>具体的底层原理是Spring通过三级缓存实现：</p><p>1）<strong>singletonObjects缓存</strong>：这是 Spring 容器<strong>用来缓存完全初始化好的****单例</strong> <strong>bean 实例的缓存</strong>。当一个 bean 初始化完成后，它会被放入singletonObjects缓存中。这个缓存是单例 bean 的最终缓存，也是 BeanFactory 中保存 bean 的主要缓存。</p><p>2）<strong>earlySingletonObjects缓存</strong>：这个缓存是<strong>用来保存被实例化但还未完全初始化的 bean 的引用</strong>。当一个 bean 已经被实例化（但还未初始化）时，它会被放入earlySingletonObjects缓存中。</p><p>给空间了-但是类数据没有放入</p><p>3）<strong>singletonFactories缓存</strong>：这个缓存保存的是用于创建 bean 实例的 ObjectFactory，用于支持循环依赖的延迟初始化。当一个 bean 被实例化，但尚未完全初始化时，Spring 会在singletonFactories缓存中查找该 bean 的ObjectFactory。这个ObjectFactory会在需要时被调用来完成 bean 的初始化。</p><p>类工厂</p><p>Spring 通过这三级缓存的组合，来确保在循环依赖情况下，能够正常初始化 bean。当两个或多个 bean 之间存在循环依赖时，Spring  使用 singletonFactories 缓存来存储 bean 的提供者（ObjectFactory）。当一个 bean  在初始化过程中需要依赖另一个还未初始化的 bean 时，Spring 会调用相应的 ObjectFactory 来获取对应的 bean  实例，这样就实现了循环依赖的延迟初始化。一旦 bean 初始化完成，它就会被移动到singletonObjects缓存中。</p><p>举例：</p><p>创建A实例–》创建B实例–》在B中注入A–》B初始化—》在A中注入B–》A初始化。</p><p>创建A实例（半成品），在earlySingletonObjects放入A半成品。</p><p>创建B实例（半成品），在earlySingletonObjects放入B半成品。</p><p>在B中注入A，通过singletonFactories拿到A的对象工厂，通过对象工厂拿到A的半成品注入到B中。</p><p>B初始化完成，将B从earlySingletonObjects移动到singletonObjects<strong>。</strong></p><p>在A中注入B-，通过singletonFactories拿到B的对象工厂，通过对象工厂拿到B的成品注入到A中。</p><p>A初始化完成，将A从earlySingletonObjects移动到singletonObjects<strong>。</strong></p><p>A是一片空间-当初始化完成后-地址就有数据了</p><p>说来说去 就是个内存地址的问题</p><p>**构造参数注入</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>2048实现秒过关</title>
     <link href="/2024/09/06/2048/"/>
     <url>/2024/09/06/2048/</url>
@@ -36,6 +23,38 @@
   
   
   <entry>
+    <title>三级缓存解决循环依赖</title>
+    <link href="/2024/09/06/huanchun/"/>
+    <url>/2024/09/06/huanchun/</url>
+    
+    <content type="html"><![CDATA[<h1 id="循环依赖解决"><a href="#循环依赖解决" class="headerlink" title="循环依赖解决"></a>循环依赖解决</h1><h6 id="1-了解循环依赖问题"><a href="#1-了解循环依赖问题" class="headerlink" title="1.了解循环依赖问题"></a>1.了解循环依赖问题</h6><p>在 Spring 中，如果一个 bean 尝试将自身引用注入到自身中，通常会引发循环依赖。</p><p>首先搞清楚什么是循环依赖：</p><p>两个Bean，A依赖B，B依赖A就构成了循环依赖，如下图：</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240606225332349.png" alt="image-20240606225332349"></p><p>同样的道理，如果在A中注入A表示A依赖A，也就构成了循环依赖。</p><p>创建A实例–》初始化A–》注入B–》创建B实例–》初始化B–》注入A</p><p>A-初始化-需要初始化完成bean-&gt;初始化B-&gt;b也要初始化其中的bean-》A-初始化-</p><p>卡入死循环</p><h6 id="2-避免循环依赖流程"><a href="#2-避免循环依赖流程" class="headerlink" title="2.避免循环依赖流程"></a>2.避免循环依赖流程</h6><p>针对循环依赖的问题Spring会上边的过程调整为下边的流程：</p><p>创建A实例– -》创建B实例–》在B中注入A—*<code>B的成员保存A的内存地址</code>*》B初始化—成员赋值了》在A中注入B–》A初始化。</p><p><strong>实例-内存地址</strong>       </p><p>A -&gt;注入B-&gt;初始化</p><p>B-&gt;A(地址)–{最后存储的就是A}-&gt;初始化</p><p>延迟了A的初始化只保留了地址</p><h6 id="3-三级缓存解决循环依赖"><a href="#3-三级缓存解决循环依赖" class="headerlink" title="3.三级缓存解决循环依赖"></a>3.三级缓存解决循环依赖</h6><p>Spring是如何做到呢？</p><p>Spring会延迟初始化，B需要注入A,此时Spring会先实例化A，把一个半成品A注入给B，延迟A的初始化。</p><p>具体的底层原理是Spring通过三级缓存实现：</p><p>1）<strong>singletonObjects缓存</strong>：这是 Spring 容器<strong>用来缓存完全初始化好的****单例</strong> <strong>bean 实例的缓存</strong>。当一个 bean 初始化完成后，它会被放入singletonObjects缓存中。这个缓存是单例 bean 的最终缓存，也是 BeanFactory 中保存 bean 的主要缓存。</p><p>2）<strong>earlySingletonObjects缓存</strong>：这个缓存是<strong>用来保存被实例化但还未完全初始化的 bean 的引用</strong>。当一个 bean 已经被实例化（但还未初始化）时，它会被放入earlySingletonObjects缓存中。</p><p>给空间了-但是类数据没有放入</p><p>3）<strong>singletonFactories缓存</strong>：这个缓存保存的是用于创建 bean 实例的 ObjectFactory，用于支持循环依赖的延迟初始化。当一个 bean 被实例化，但尚未完全初始化时，Spring 会在singletonFactories缓存中查找该 bean 的ObjectFactory。这个ObjectFactory会在需要时被调用来完成 bean 的初始化。</p><p>类工厂</p><p>Spring 通过这三级缓存的组合，来确保在循环依赖情况下，能够正常初始化 bean。当两个或多个 bean 之间存在循环依赖时，Spring  使用 singletonFactories 缓存来存储 bean 的提供者（ObjectFactory）。当一个 bean  在初始化过程中需要依赖另一个还未初始化的 bean 时，Spring 会调用相应的 ObjectFactory 来获取对应的 bean  实例，这样就实现了循环依赖的延迟初始化。一旦 bean 初始化完成，它就会被移动到singletonObjects缓存中。</p><p>举例：</p><p>创建A实例–》创建B实例–》在B中注入A–》B初始化—》在A中注入B–》A初始化。</p><p>创建A实例（半成品），在earlySingletonObjects放入A半成品。</p><p>创建B实例（半成品），在earlySingletonObjects放入B半成品。</p><p>在B中注入A，通过singletonFactories拿到A的对象工厂，通过对象工厂拿到A的半成品注入到B中。</p><p>B初始化完成，将B从earlySingletonObjects移动到singletonObjects<strong>。</strong></p><p>在A中注入B-，通过singletonFactories拿到B的对象工厂，通过对象工厂拿到B的成品注入到A中。</p><p>A初始化完成，将A从earlySingletonObjects移动到singletonObjects<strong>。</strong></p><p>A是一片空间-当初始化完成后-地址就有数据了</p><p>说来说去 就是个内存地址的问题</p><p>**构造参数注入</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>spring</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>test</title>
+    <link href="/2024/09/06/test/"/>
+    <url>/2024/09/06/test/</url>
+    
+    <content type="html"><![CDATA[<h1 id="发布第一篇文章"><a href="#发布第一篇文章" class="headerlink" title="发布第一篇文章"></a>发布第一篇文章</h1><p>111</p><p>2222</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>java基础笔记</title>
     <link href="/2024/09/06/java%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86/"/>
     <url>/2024/09/06/java%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86/</url>
@@ -46,25 +65,6 @@
     <categories>
       
       <category>java</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>云岚到家1-4技术栈</title>
-    <link href="/2024/09/06/yunlan/"/>
-    <url>/2024/09/06/yunlan/</url>
-    
-    <content type="html"><![CDATA[<h1 id="云岚到家-1-4"><a href="#云岚到家-1-4" class="headerlink" title="云岚到家 1-4"></a>云岚到家 1-4</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/%E4%BA%91%E5%B2%9A%E5%88%B0%E5%AE%B6.png" alt="云岚到家"></p><p>技术栈-</p><p>微信小程序登录流程</p><p>用户定位接口</p><p>SpringCache</p><p>Redis  </p><p>缓存穿透 缓存击穿 缓存雪崩 缓存不一致 -</p><p>门户优化</p><p>XXL-JOB使用 </p><p>具体这些框架原理后续我会剖析</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>项目</category>
       
     </categories>
     
@@ -93,12 +93,18 @@
   
   
   <entry>
-    <title>test</title>
-    <link href="/2024/09/06/test/"/>
-    <url>/2024/09/06/test/</url>
+    <title>云岚到家1-4技术栈</title>
+    <link href="/2024/09/06/yunlan/"/>
+    <url>/2024/09/06/yunlan/</url>
     
-    <content type="html"><![CDATA[<h1 id="发布第一篇文章"><a href="#发布第一篇文章" class="headerlink" title="发布第一篇文章"></a>发布第一篇文章</h1><p>111</p><p>2222</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="云岚到家-1-4"><a href="#云岚到家-1-4" class="headerlink" title="云岚到家 1-4"></a>云岚到家 1-4</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/%E4%BA%91%E5%B2%9A%E5%88%B0%E5%AE%B6.png" alt="云岚到家"></p><p>技术栈-</p><p>微信小程序登录流程</p><p>用户定位接口</p><p>SpringCache</p><p>Redis  </p><p>缓存穿透 缓存击穿 缓存雪崩 缓存不一致 -</p><p>门户优化</p><p>XXL-JOB使用 </p><p>具体这些框架原理后续我会剖析</p>]]></content>
     
+    
+    <categories>
+      
+      <category>项目</category>
+      
+    </categories>
     
     
   </entry>
