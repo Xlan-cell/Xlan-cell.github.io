@@ -4,48 +4,16 @@
   
   
   <entry>
-    <title>三级缓存解决循环依赖</title>
-    <link href="/2024/09/06/huanchun/"/>
-    <url>/2024/09/06/huanchun/</url>
+    <title>maven笔记</title>
+    <link href="/2024/09/10/maven%E5%9F%BA%E7%A1%80/"/>
+    <url>/2024/09/10/maven%E5%9F%BA%E7%A1%80/</url>
     
-    <content type="html"><![CDATA[<h1 id="循环依赖解决"><a href="#循环依赖解决" class="headerlink" title="循环依赖解决"></a>循环依赖解决</h1><h6 id="1-了解循环依赖问题"><a href="#1-了解循环依赖问题" class="headerlink" title="1.了解循环依赖问题"></a>1.了解循环依赖问题</h6><p>在 Spring 中，如果一个 bean 尝试将自身引用注入到自身中，通常会引发循环依赖。</p><p>首先搞清楚什么是循环依赖：</p><p>两个Bean，A依赖B，B依赖A就构成了循环依赖，如下图：</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240606225332349.png" alt="image-20240606225332349"></p><p>同样的道理，如果在A中注入A表示A依赖A，也就构成了循环依赖。</p><p>创建A实例–》初始化A–》注入B–》创建B实例–》初始化B–》注入A</p><p>A-初始化-需要初始化完成bean-&gt;初始化B-&gt;b也要初始化其中的bean-》A-初始化-</p><p>卡入死循环</p><h6 id="2-避免循环依赖流程"><a href="#2-避免循环依赖流程" class="headerlink" title="2.避免循环依赖流程"></a>2.避免循环依赖流程</h6><p>针对循环依赖的问题Spring会上边的过程调整为下边的流程：</p><p>创建A实例– -》创建B实例–》在B中注入A—*<code>B的成员保存A的内存地址</code>*》B初始化—成员赋值了》在A中注入B–》A初始化。</p><p><strong>实例-内存地址</strong>       </p><p>A -&gt;注入B-&gt;初始化</p><p>B-&gt;A(地址)–{最后存储的就是A}-&gt;初始化</p><p>延迟了A的初始化只保留了地址</p><h6 id="3-三级缓存解决循环依赖"><a href="#3-三级缓存解决循环依赖" class="headerlink" title="3.三级缓存解决循环依赖"></a>3.三级缓存解决循环依赖</h6><p>Spring是如何做到呢？</p><p>Spring会延迟初始化，B需要注入A,此时Spring会先实例化A，把一个半成品A注入给B，延迟A的初始化。</p><p>具体的底层原理是Spring通过三级缓存实现：</p><blockquote><p>1）<strong>singletonObjects缓存</strong>：这是 Spring 容器<strong>用来缓存完全初始化好的****单例</strong> <strong>bean 实例的缓存</strong>。当一个 bean 初始化完成后，它会被放入singletonObjects缓存中。这个缓存是单例 bean 的最终缓存，也是 BeanFactory 中保存 bean 的主要缓存。</p><p>2）<strong>earlySingletonObjects缓存</strong>：这个缓存是<strong>用来保存被实例化但还未完全初始化的 bean 的引用</strong>。当一个 bean 已经被实例化（但还未初始化）时，它会被放入earlySingletonObjects缓存中。</p><p>给空间了-但是类数据没有放入</p><p>3）<strong>singletonFactories缓存</strong>：这个缓存保存的是用于创建 bean 实例的 ObjectFactory，用于支持循环依赖的延迟初始化。当一个 bean 被实例化，但尚未完全初始化时，Spring 会在singletonFactories缓存中查找该 bean 的ObjectFactory。这个ObjectFactory会在需要时被调用来完成 bean 的初始化。</p></blockquote><p>类工厂</p><p>Spring 通过这三级缓存的组合，来确保在循环依赖情况下，能够正常初始化 bean。当两个或多个 bean 之间存在循环依赖时，Spring  使用 singletonFactories 缓存来存储 bean 的提供者（ObjectFactory）。当一个 bean  在初始化过程中需要依赖另一个还未初始化的 bean 时，Spring 会调用相应的 ObjectFactory 来获取对应的 bean  实例，这样就实现了循环依赖的延迟初始化。一旦 bean 初始化完成，它就会被移动到singletonObjects缓存中。</p><p>举例：</p><p>创建A实例–》创建B实例–》在B中注入A–》B初始化—》在A中注入B–》A初始化。</p><p>创建A实例（半成品），在earlySingletonObjects放入A半成品。</p><p>创建B实例（半成品），在earlySingletonObjects放入B半成品。</p><p>在B中注入A，通过singletonFactories拿到A的对象工厂，通过对象工厂拿到A的半成品注入到B中。</p><p>B初始化完成，将B从earlySingletonObjects移动到singletonObjects<strong>。</strong></p><p>在A中注入B-，通过singletonFactories拿到B的对象工厂，通过对象工厂拿到B的成品注入到A中。</p><p>A初始化完成，将A从earlySingletonObjects移动到singletonObjects<strong>。</strong></p><p>A是一片空间-当初始化完成后-地址就有数据了</p><p>说来说去 就是个内存地址的问题</p><p>**构造参数注入</p><h6 id="4-构造循环依赖解决"><a href="#4-构造循环依赖解决" class="headerlink" title="4.构造循环依赖解决"></a>4.构造循环依赖解决</h6><p>虽然Spring可以解决上边通过成员变量注入引发的循环依赖问题，但是<strong>通过构造参数注入引发的循环依赖问题是会报错。</strong></p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e9464064bc6f0632ead497e183ca6d3a-1717687581273-4.png" alt="e9464064bc6f0632ead497e183ca6d3a"></p><p>因为创建C需要调用构造方法，而构造方法需要依赖D，此时C是无法实例化的</p><p>上边分析Spring解决循环依赖是通过延迟初始化，当出现循环依赖问题可以注入一个半成品</p><p><strong>但是如上半成品也无法生成</strong></p><p>如何解决这种通过构造参数注入导致的循环依赖问题呢？</p><p>可以在C或D的任意一方注入另一方的代理对象而不是注入原始对象，如下：</p><p>假设在C的构造方法中注入D的代理对象可以写为：</p><p>在构造参数前加@Lazy注解，表示注入D的代理对象。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">C</span><span class="hljs-params">(<span class="hljs-meta">@Lazy</span> D d)</span>&#123;<br>...<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <categories>
-      
-      <category>spring</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>test</title>
-    <link href="/2024/09/06/test/"/>
-    <url>/2024/09/06/test/</url>
-    
-    <content type="html"><![CDATA[<h1 id="发布第一篇文章"><a href="#发布第一篇文章" class="headerlink" title="发布第一篇文章"></a>发布第一篇文章</h1><p>111</p><p>2222</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>云岚到家1-4技术栈</title>
-    <link href="/2024/09/06/yunlan/"/>
-    <url>/2024/09/06/yunlan/</url>
-    
-    <content type="html"><![CDATA[<h1 id="云岚到家-1-4"><a href="#云岚到家-1-4" class="headerlink" title="云岚到家 1-4"></a>云岚到家 1-4</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/%E4%BA%91%E5%B2%9A%E5%88%B0%E5%AE%B6.png" alt="云岚到家"></p><p>技术栈-</p><p>微信小程序登录流程</p><p>用户定位接口</p><p>SpringCache</p><p>Redis  </p><p>缓存穿透 缓存击穿 缓存雪崩 缓存不一致 -</p><p>门户优化</p><p>XXL-JOB使用 </p><p>具体这些框架原理后续我会剖析</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="maven笔记"><a href="#maven笔记" class="headerlink" title="maven笔记"></a>maven笔记</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/Maven.png" alt="Maven"></p><h4 id="1-Maven入门"><a href="#1-Maven入门" class="headerlink" title="1.Maven入门"></a>1.Maven入门</h4><h6 id="1-maven是什么"><a href="#1-maven是什么" class="headerlink" title="1.maven是什么"></a>1.maven是什么</h6><p>maven是一个统一构建工具-帮助我们快速的导入jar包-同时通过pom对jar进行统一管理–maen还统一了目录结构</p><p>项目构建–依赖管理-统一开发结构</p><h6 id="2-maven仓库"><a href="#2-maven仓库" class="headerlink" title="2.maven仓库"></a>2.maven仓库</h6><p>云端存储jar包—同时本地-私服</p><h6 id="3-坐标"><a href="#3-坐标" class="headerlink" title="3.坐标"></a>3.坐标</h6><p>groupld-定义maven项目组织名称</p><p>artifactld–定义当前maven项目名称</p><p>version-定义当前版本号</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--httpClient的依赖 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.github.openfeign<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>feign-httpclient<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure><p>坐标作用-使用唯一表示-定位资源位置</p><h6 id="4-手动创建maven工程"><a href="#4-手动创建maven工程" class="headerlink" title="4.手动创建maven工程"></a>4.手动创建maven工程</h6><p>–省-就是用命令来创建</p><h4 id="2-依赖管理"><a href="#2-依赖管理" class="headerlink" title="2.依赖管理"></a>2.依赖管理</h4><h6 id="1-依赖配置"><a href="#1-依赖配置" class="headerlink" title="1.依赖配置"></a>1.依赖配置</h6><dependencies></dependency><dependency></dependencies><h6 id="2-依赖传递"><a href="#2-依赖传递" class="headerlink" title="2.依赖传递"></a>2.依赖传递</h6><p>直接依赖–再当前项目内直接通过pom建立依赖关系</p><p>间接依赖-一个依赖依赖于其他依赖–当前项目会都导入</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/88a5b650615c05bdb3b51bb6518a3044.png" alt="88a5b650615c05bdb3b51bb6518a3044"></p><h6 id="3-可选依赖"><a href="#3-可选依赖" class="headerlink" title="3.可选依赖"></a>3.可选依赖</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/69b032579ca283056eb5f2d056059bf4.png" alt="69b032579ca283056eb5f2d056059bf4"></p><h6 id="4-排查依赖"><a href="#4-排查依赖" class="headerlink" title="4.排查依赖"></a>4.排查依赖</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e2be3508cc74b63a6c7f32972fa4017e.png" alt="e2be3508cc74b63a6c7f32972fa4017e"></p><h6 id="5-依赖范围"><a href="#5-依赖范围" class="headerlink" title="5.依赖范围"></a>5.依赖范围</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/eaf5484e109c98583c4af32c8cc48353.png" alt="eaf5484e109c98583c4af32c8cc48353"></p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9e74890abdf3d3cbdd37154251a5c005.png" alt="9e74890abdf3d3cbdd37154251a5c005"></p><h4 id="3-生命周期"><a href="#3-生命周期" class="headerlink" title="3.生命周期"></a>3.生命周期</h4><p>快速生命周期-compile-test-compile-test-package-install</p><p>生命周期介绍</p><p>clean-清理工作</p><p>default0核心工作-如编译-测试打包-部署</p><p>site-产生报告-发布站点</p><hr><p>Clean生命周期</p><p>pre-clean-执行一些需要再clean之前完成的工作</p><p>clean-移除上一次构建生成的文件</p><p>post-clean-执行一些需要再clean之后立刻完成的工作</p><hr><p>default构建生命周期</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1c6053fbcc84183fbc8f1a7789cee3fb.png" alt="1c6053fbcc84183fbc8f1a7789cee3fb"></p><hr><p>site生命周期</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7037669c99ca8e172d0144f4de087264.png" alt="7037669c99ca8e172d0144f4de087264"></p><hr><p>default 介绍</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/69d200277cfe62e6d98340f0269f0bfe.png" alt="69d200277cfe62e6d98340f0269f0bfe"></p><p>又分为三大周期</p><h4 id="4-插件"><a href="#4-插件" class="headerlink" title="4.插件"></a>4.插件</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/455befffa49ca7d0354264bf3db7dd62.png" alt="455befffa49ca7d0354264bf3db7dd62"></p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d32a812fe29eddabf67bcda3cfbcae8b.png" alt="d32a812fe29eddabf67bcda3cfbcae8b"></p><h1 id="Maven-高级"><a href="#Maven-高级" class="headerlink" title="Maven-高级"></a>Maven-高级</h1><h4 id="1-分模块开发与设计"><a href="#1-分模块开发与设计" class="headerlink" title="1.分模块开发与设计"></a>1.分模块开发与设计</h4><p>将一个大型项目拆分为多个独立模块的开发方式。</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/8f0de39a2aea7bbe668e3574cef96944.png" alt="8f0de39a2aea7bbe668e3574cef96944"></p><p>如图 分模块开发就是将模块-导成架包–</p><p>例如-公司 -pojo包-导给你，你只需要导入pom即可使用</p><h4 id="2-聚合"><a href="#2-聚合" class="headerlink" title="2.聚合"></a>2.聚合</h4><p>将模块-聚合再一起构建</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/14b16e3b8bff7a90e90f6f6d42086115.png" alt="14b16e3b8bff7a90e90f6f6d42086115"></p><h4 id="3-继承"><a href="#3-继承" class="headerlink" title="3.继承"></a>3.继承</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b6f4069f69f02e626eba8d6941cd4394.png" alt="b6f4069f69f02e626eba8d6941cd4394"></p><p>继承依赖使用</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/62d9f5c074c0336ef3fcb5d36fd6546d.png" alt="62d9f5c074c0336ef3fcb5d36fd6546d"></p><p>继承资源</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f3225c0c79867bfb1e4f2abe6cf748d9.png" alt="f3225c0c79867bfb1e4f2abe6cf748d9"></p><p>继承聚合区别</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240414120838551.png" alt="image-20240414120838551"></p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 父模块的pom.xml --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.example<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br>xml<br><span class="hljs-comment">&lt;!-- 子模块的pom.xml --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.example<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br></code></pre></td></tr></table></figure><h4 id="4-属性"><a href="#4-属性" class="headerlink" title="4.属性"></a>4.属性</h4><p>属性最大的作用-配置-和版本管理</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b4c4f542e3165840110e15b9913de9dc.png" alt="b4c4f542e3165840110e15b9913de9dc"></p><p>1.自定义属性管理</p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/90eb8af64c4b02ba15ed77e0ac33fd16.png" alt="90eb8af64c4b02ba15ed77e0ac33fd16" style="zoom:75%;" /><h4 id="5-工厂版本"><a href="#5-工厂版本" class="headerlink" title="5.工厂版本"></a>5.工厂版本</h4><h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e1232256a286acb832c2975ad59ea8a1.png" alt="e1232256a286acb832c2975ad59ea8a1"></h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7d129e90eaca59df9ae2b62f7ab6ca55.png" alt="7d129e90eaca59df9ae2b62f7ab6ca55"></p><h4 id="6-资源配置"><a href="#6-资源配置" class="headerlink" title="6.资源配置"></a>6.资源配置</h4><h4 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9de34d5dbae1ebc7a72669952069638a.png" alt="9de34d5dbae1ebc7a72669952069638a"></h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5fc90c8dd4f839707b20624bdf4242c6.png" alt="5fc90c8dd4f839707b20624bdf4242c6"></p><h4 id="7-多环境开发配置"><a href="#7-多环境开发配置" class="headerlink" title="7.多环境开发配置"></a>7.多环境开发配置</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9c38f1922d021ec7c78c0c8ffbb0c0d5.png" alt="9c38f1922d021ec7c78c0c8ffbb0c0d5"></p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2eccbb8497a79d12ba5b7337f7a9d98f.png" alt="2eccbb8497a79d12ba5b7337f7a9d98f"></p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e8c84b9496ecb0a2922bc874f8019530.png" alt="e8c84b9496ecb0a2922bc874f8019530"></p><h4 id="8-跳过测试"><a href="#8-跳过测试" class="headerlink" title="8.跳过测试"></a>8.跳过测试</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d039b87b2aa7539c3a17519c5e509652.png" alt="d039b87b2aa7539c3a17519c5e509652"></p><h4 id="9-私服"><a href="#9-私服" class="headerlink" title="9.私服"></a>9.私服</h4><p>省</p>]]></content>
     
     
     <categories>
       
-      <category>项目</category>
+      <category>maven</category>
       
     </categories>
     
@@ -74,16 +42,16 @@
   
   
   <entry>
-    <title>游戏逆向思路cpp</title>
-    <link href="/2024/09/06/test2/"/>
-    <url>/2024/09/06/test2/</url>
+    <title>三级缓存解决循环依赖</title>
+    <link href="/2024/09/06/huanchun/"/>
+    <url>/2024/09/06/huanchun/</url>
     
-    <content type="html"><![CDATA[<h1 id="游戏逆向思路cpp"><a href="#游戏逆向思路cpp" class="headerlink" title="游戏逆向思路cpp"></a>游戏逆向思路cpp</h1><p>游戏引擎 :cocos2dx<br>逆向思路</p><p>libcocos2dcpp.so  libgame.so     &#x2F;data&#x2F;app-lib&#x2F;包名<br>1.字符串信息查找关键函数<br>2.send函数进行定位<br>3.hook hook函数修改参数-返回值-或者多次调用-或者返回-根据情况</p><p><img src="https://s2.loli.net/2024/09/07/yZxfF9IcLlMbUzW.png" alt="2024-09-07 222659.png"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="循环依赖解决"><a href="#循环依赖解决" class="headerlink" title="循环依赖解决"></a>循环依赖解决</h1><h6 id="1-了解循环依赖问题"><a href="#1-了解循环依赖问题" class="headerlink" title="1.了解循环依赖问题"></a>1.了解循环依赖问题</h6><p>在 Spring 中，如果一个 bean 尝试将自身引用注入到自身中，通常会引发循环依赖。</p><p>首先搞清楚什么是循环依赖：</p><p>两个Bean，A依赖B，B依赖A就构成了循环依赖，如下图：</p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240606225332349.png" alt="image-20240606225332349"></p><p>同样的道理，如果在A中注入A表示A依赖A，也就构成了循环依赖。</p><p>创建A实例–》初始化A–》注入B–》创建B实例–》初始化B–》注入A</p><p>A-初始化-需要初始化完成bean-&gt;初始化B-&gt;b也要初始化其中的bean-》A-初始化-</p><p>卡入死循环</p><h6 id="2-避免循环依赖流程"><a href="#2-避免循环依赖流程" class="headerlink" title="2.避免循环依赖流程"></a>2.避免循环依赖流程</h6><p>针对循环依赖的问题Spring会上边的过程调整为下边的流程：</p><p>创建A实例– -》创建B实例–》在B中注入A—*<code>B的成员保存A的内存地址</code>*》B初始化—成员赋值了》在A中注入B–》A初始化。</p><p><strong>实例-内存地址</strong>       </p><p>A -&gt;注入B-&gt;初始化</p><p>B-&gt;A(地址)–{最后存储的就是A}-&gt;初始化</p><p>延迟了A的初始化只保留了地址</p><h6 id="3-三级缓存解决循环依赖"><a href="#3-三级缓存解决循环依赖" class="headerlink" title="3.三级缓存解决循环依赖"></a>3.三级缓存解决循环依赖</h6><p>Spring是如何做到呢？</p><p>Spring会延迟初始化，B需要注入A,此时Spring会先实例化A，把一个半成品A注入给B，延迟A的初始化。</p><p>具体的底层原理是Spring通过三级缓存实现：</p><blockquote><p>1）<strong>singletonObjects缓存</strong>：这是 Spring 容器<strong>用来缓存完全初始化好的****单例</strong> <strong>bean 实例的缓存</strong>。当一个 bean 初始化完成后，它会被放入singletonObjects缓存中。这个缓存是单例 bean 的最终缓存，也是 BeanFactory 中保存 bean 的主要缓存。</p><p>2）<strong>earlySingletonObjects缓存</strong>：这个缓存是<strong>用来保存被实例化但还未完全初始化的 bean 的引用</strong>。当一个 bean 已经被实例化（但还未初始化）时，它会被放入earlySingletonObjects缓存中。</p><p>给空间了-但是类数据没有放入</p><p>3）<strong>singletonFactories缓存</strong>：这个缓存保存的是用于创建 bean 实例的 ObjectFactory，用于支持循环依赖的延迟初始化。当一个 bean 被实例化，但尚未完全初始化时，Spring 会在singletonFactories缓存中查找该 bean 的ObjectFactory。这个ObjectFactory会在需要时被调用来完成 bean 的初始化。</p></blockquote><p>类工厂</p><p>Spring 通过这三级缓存的组合，来确保在循环依赖情况下，能够正常初始化 bean。当两个或多个 bean 之间存在循环依赖时，Spring  使用 singletonFactories 缓存来存储 bean 的提供者（ObjectFactory）。当一个 bean  在初始化过程中需要依赖另一个还未初始化的 bean 时，Spring 会调用相应的 ObjectFactory 来获取对应的 bean  实例，这样就实现了循环依赖的延迟初始化。一旦 bean 初始化完成，它就会被移动到singletonObjects缓存中。</p><p>举例：</p><p>创建A实例–》创建B实例–》在B中注入A–》B初始化—》在A中注入B–》A初始化。</p><p>创建A实例（半成品），在earlySingletonObjects放入A半成品。</p><p>创建B实例（半成品），在earlySingletonObjects放入B半成品。</p><p>在B中注入A，通过singletonFactories拿到A的对象工厂，通过对象工厂拿到A的半成品注入到B中。</p><p>B初始化完成，将B从earlySingletonObjects移动到singletonObjects<strong>。</strong></p><p>在A中注入B-，通过singletonFactories拿到B的对象工厂，通过对象工厂拿到B的成品注入到A中。</p><p>A初始化完成，将A从earlySingletonObjects移动到singletonObjects<strong>。</strong></p><p>A是一片空间-当初始化完成后-地址就有数据了</p><p>说来说去 就是个内存地址的问题</p><p>**构造参数注入</p><h6 id="4-构造循环依赖解决"><a href="#4-构造循环依赖解决" class="headerlink" title="4.构造循环依赖解决"></a>4.构造循环依赖解决</h6><p>虽然Spring可以解决上边通过成员变量注入引发的循环依赖问题，但是<strong>通过构造参数注入引发的循环依赖问题是会报错。</strong></p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e9464064bc6f0632ead497e183ca6d3a-1717687581273-4.png" alt="e9464064bc6f0632ead497e183ca6d3a"></p><p>因为创建C需要调用构造方法，而构造方法需要依赖D，此时C是无法实例化的</p><p>上边分析Spring解决循环依赖是通过延迟初始化，当出现循环依赖问题可以注入一个半成品</p><p><strong>但是如上半成品也无法生成</strong></p><p>如何解决这种通过构造参数注入导致的循环依赖问题呢？</p><p>可以在C或D的任意一方注入另一方的代理对象而不是注入原始对象，如下：</p><p>假设在C的构造方法中注入D的代理对象可以写为：</p><p>在构造参数前加@Lazy注解，表示注入D的代理对象。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">C</span><span class="hljs-params">(<span class="hljs-meta">@Lazy</span> D d)</span>&#123;<br>...<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
       
-      <category>逆向</category>
+      <category>spring</category>
       
     </categories>
     
@@ -103,6 +71,57 @@
     <categories>
       
       <category>java</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>test</title>
+    <link href="/2024/09/06/test/"/>
+    <url>/2024/09/06/test/</url>
+    
+    <content type="html"><![CDATA[<h1 id="发布第一篇文章"><a href="#发布第一篇文章" class="headerlink" title="发布第一篇文章"></a>发布第一篇文章</h1><p>111</p><p>2222</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>游戏逆向思路cpp</title>
+    <link href="/2024/09/06/test2/"/>
+    <url>/2024/09/06/test2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="游戏逆向思路cpp"><a href="#游戏逆向思路cpp" class="headerlink" title="游戏逆向思路cpp"></a>游戏逆向思路cpp</h1><p>游戏引擎 :cocos2dx<br>逆向思路</p><p>libcocos2dcpp.so  libgame.so     &#x2F;data&#x2F;app-lib&#x2F;包名<br>1.字符串信息查找关键函数<br>2.send函数进行定位<br>3.hook hook函数修改参数-返回值-或者多次调用-或者返回-根据情况</p><p><img src="https://s2.loli.net/2024/09/07/yZxfF9IcLlMbUzW.png" alt="2024-09-07 222659.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>逆向</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>云岚到家1-4技术栈</title>
+    <link href="/2024/09/06/yunlan/"/>
+    <url>/2024/09/06/yunlan/</url>
+    
+    <content type="html"><![CDATA[<h1 id="云岚到家-1-4"><a href="#云岚到家-1-4" class="headerlink" title="云岚到家 1-4"></a>云岚到家 1-4</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/%E4%BA%91%E5%B2%9A%E5%88%B0%E5%AE%B6.png" alt="云岚到家"></p><p>技术栈-</p><p>微信小程序登录流程</p><p>用户定位接口</p><p>SpringCache</p><p>Redis  </p><p>缓存穿透 缓存击穿 缓存雪崩 缓存不一致 -</p><p>门户优化</p><p>XXL-JOB使用 </p><p>具体这些框架原理后续我会剖析</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>项目</category>
       
     </categories>
     

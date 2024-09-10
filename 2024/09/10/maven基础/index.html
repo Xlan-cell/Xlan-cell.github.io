@@ -1,0 +1,803 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="maven笔记 1.Maven入门1.maven是什么maven是一个统一构建工具-帮助我们快速的导入jar包-同时通过pom对jar进行统一管理–maen还统一了目录结构 项目构建–依赖管理-统一开发结构 2.maven仓库云端存储jar包—同时本地-私服 3.坐标groupld-定义maven项目组织名称 artifactld–定义当前maven项目名称 version-定义当前版本号 123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="maven笔记">
+<meta property="og:url" content="http://example.com/2024/09/10/maven%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="maven笔记 1.Maven入门1.maven是什么maven是一个统一构建工具-帮助我们快速的导入jar包-同时通过pom对jar进行统一管理–maen还统一了目录结构 项目构建–依赖管理-统一开发结构 2.maven仓库云端存储jar包—同时本地-私服 3.坐标groupld-定义maven项目组织名称 artifactld–定义当前maven项目名称 version-定义当前版本号 123">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/Maven.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/88a5b650615c05bdb3b51bb6518a3044.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/69b032579ca283056eb5f2d056059bf4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e2be3508cc74b63a6c7f32972fa4017e.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/eaf5484e109c98583c4af32c8cc48353.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9e74890abdf3d3cbdd37154251a5c005.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1c6053fbcc84183fbc8f1a7789cee3fb.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7037669c99ca8e172d0144f4de087264.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/69d200277cfe62e6d98340f0269f0bfe.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/455befffa49ca7d0354264bf3db7dd62.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d32a812fe29eddabf67bcda3cfbcae8b.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/8f0de39a2aea7bbe668e3574cef96944.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/14b16e3b8bff7a90e90f6f6d42086115.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b6f4069f69f02e626eba8d6941cd4394.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/62d9f5c074c0336ef3fcb5d36fd6546d.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f3225c0c79867bfb1e4f2abe6cf748d9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240414120838551.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b4c4f542e3165840110e15b9913de9dc.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/90eb8af64c4b02ba15ed77e0ac33fd16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e1232256a286acb832c2975ad59ea8a1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7d129e90eaca59df9ae2b62f7ab6ca55.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9de34d5dbae1ebc7a72669952069638a.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5fc90c8dd4f839707b20624bdf4242c6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9c38f1922d021ec7c78c0c8ffbb0c0d5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2eccbb8497a79d12ba5b7337f7a9d98f.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e8c84b9496ecb0a2922bc874f8019530.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d039b87b2aa7539c3a17519c5e509652.png">
+<meta property="article:published_time" content="2024-09-10T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-09-10T09:54:11.145Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/Maven.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>maven笔记 - 逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="maven笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-10 20:22" pubdate>
+          2024年9月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          601 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">maven笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="maven笔记"><a href="#maven笔记" class="headerlink" title="maven笔记"></a>maven笔记</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/Maven.png" srcset="/img/loading.gif" lazyload alt="Maven"></p>
+<h4 id="1-Maven入门"><a href="#1-Maven入门" class="headerlink" title="1.Maven入门"></a>1.Maven入门</h4><h6 id="1-maven是什么"><a href="#1-maven是什么" class="headerlink" title="1.maven是什么"></a>1.maven是什么</h6><p>maven是一个统一构建工具-帮助我们快速的导入jar包-同时通过pom对jar进行统一管理–maen还统一了目录结构</p>
+<p>项目构建–依赖管理-统一开发结构</p>
+<h6 id="2-maven仓库"><a href="#2-maven仓库" class="headerlink" title="2.maven仓库"></a>2.maven仓库</h6><p>云端存储jar包—同时本地-私服</p>
+<h6 id="3-坐标"><a href="#3-坐标" class="headerlink" title="3.坐标"></a>3.坐标</h6><p>groupld-定义maven项目组织名称</p>
+<p>artifactld–定义当前maven项目名称</p>
+<p>version-定义当前版本号</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--httpClient的依赖 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.github.openfeign<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>feign-httpclient<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>坐标作用-使用唯一表示-定位资源位置</p>
+<h6 id="4-手动创建maven工程"><a href="#4-手动创建maven工程" class="headerlink" title="4.手动创建maven工程"></a>4.手动创建maven工程</h6><p>–省-就是用命令来创建</p>
+<h4 id="2-依赖管理"><a href="#2-依赖管理" class="headerlink" title="2.依赖管理"></a>2.依赖管理</h4><h6 id="1-依赖配置"><a href="#1-依赖配置" class="headerlink" title="1.依赖配置"></a>1.依赖配置</h6><dependencies>
+
+</dependency>
+
+
+
+<dependency>
+
+</dependencies>
+
+<h6 id="2-依赖传递"><a href="#2-依赖传递" class="headerlink" title="2.依赖传递"></a>2.依赖传递</h6><p>直接依赖–再当前项目内直接通过pom建立依赖关系</p>
+<p>间接依赖-一个依赖依赖于其他依赖–当前项目会都导入</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/88a5b650615c05bdb3b51bb6518a3044.png" srcset="/img/loading.gif" lazyload alt="88a5b650615c05bdb3b51bb6518a3044"></p>
+<h6 id="3-可选依赖"><a href="#3-可选依赖" class="headerlink" title="3.可选依赖"></a>3.可选依赖</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/69b032579ca283056eb5f2d056059bf4.png" srcset="/img/loading.gif" lazyload alt="69b032579ca283056eb5f2d056059bf4"></p>
+<h6 id="4-排查依赖"><a href="#4-排查依赖" class="headerlink" title="4.排查依赖"></a>4.排查依赖</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e2be3508cc74b63a6c7f32972fa4017e.png" srcset="/img/loading.gif" lazyload alt="e2be3508cc74b63a6c7f32972fa4017e"></p>
+<h6 id="5-依赖范围"><a href="#5-依赖范围" class="headerlink" title="5.依赖范围"></a>5.依赖范围</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/eaf5484e109c98583c4af32c8cc48353.png" srcset="/img/loading.gif" lazyload alt="eaf5484e109c98583c4af32c8cc48353"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9e74890abdf3d3cbdd37154251a5c005.png" srcset="/img/loading.gif" lazyload alt="9e74890abdf3d3cbdd37154251a5c005"></p>
+<h4 id="3-生命周期"><a href="#3-生命周期" class="headerlink" title="3.生命周期"></a>3.生命周期</h4><p>快速生命周期-compile-test-compile-test-package-install</p>
+<p>生命周期介绍</p>
+<p>clean-清理工作</p>
+<p>default0核心工作-如编译-测试打包-部署</p>
+<p>site-产生报告-发布站点</p>
+<hr>
+<p>Clean生命周期</p>
+<p>pre-clean-执行一些需要再clean之前完成的工作</p>
+<p>clean-移除上一次构建生成的文件</p>
+<p>post-clean-执行一些需要再clean之后立刻完成的工作</p>
+<hr>
+<p>default构建生命周期</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1c6053fbcc84183fbc8f1a7789cee3fb.png" srcset="/img/loading.gif" lazyload alt="1c6053fbcc84183fbc8f1a7789cee3fb"></p>
+<hr>
+<p>site生命周期</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7037669c99ca8e172d0144f4de087264.png" srcset="/img/loading.gif" lazyload alt="7037669c99ca8e172d0144f4de087264"></p>
+<hr>
+<p>default 介绍</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/69d200277cfe62e6d98340f0269f0bfe.png" srcset="/img/loading.gif" lazyload alt="69d200277cfe62e6d98340f0269f0bfe"></p>
+<p>又分为三大周期</p>
+<h4 id="4-插件"><a href="#4-插件" class="headerlink" title="4.插件"></a>4.插件</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/455befffa49ca7d0354264bf3db7dd62.png" srcset="/img/loading.gif" lazyload alt="455befffa49ca7d0354264bf3db7dd62"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d32a812fe29eddabf67bcda3cfbcae8b.png" srcset="/img/loading.gif" lazyload alt="d32a812fe29eddabf67bcda3cfbcae8b"></p>
+<h1 id="Maven-高级"><a href="#Maven-高级" class="headerlink" title="Maven-高级"></a>Maven-高级</h1><h4 id="1-分模块开发与设计"><a href="#1-分模块开发与设计" class="headerlink" title="1.分模块开发与设计"></a>1.分模块开发与设计</h4><p>将一个大型项目拆分为多个独立模块的开发方式。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/8f0de39a2aea7bbe668e3574cef96944.png" srcset="/img/loading.gif" lazyload alt="8f0de39a2aea7bbe668e3574cef96944"></p>
+<p>如图 分模块开发就是将模块-导成架包–</p>
+<p>例如-公司 -pojo包-导给你，你只需要导入pom即可使用</p>
+<h4 id="2-聚合"><a href="#2-聚合" class="headerlink" title="2.聚合"></a>2.聚合</h4><p>将模块-聚合再一起构建</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/14b16e3b8bff7a90e90f6f6d42086115.png" srcset="/img/loading.gif" lazyload alt="14b16e3b8bff7a90e90f6f6d42086115"></p>
+<h4 id="3-继承"><a href="#3-继承" class="headerlink" title="3.继承"></a>3.继承</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b6f4069f69f02e626eba8d6941cd4394.png" srcset="/img/loading.gif" lazyload alt="b6f4069f69f02e626eba8d6941cd4394"></p>
+<p>继承依赖使用</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/62d9f5c074c0336ef3fcb5d36fd6546d.png" srcset="/img/loading.gif" lazyload alt="62d9f5c074c0336ef3fcb5d36fd6546d"></p>
+<p>继承资源</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f3225c0c79867bfb1e4f2abe6cf748d9.png" srcset="/img/loading.gif" lazyload alt="f3225c0c79867bfb1e4f2abe6cf748d9"></p>
+<p>继承聚合区别</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240414120838551.png" srcset="/img/loading.gif" lazyload alt="image-20240414120838551"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 父模块的pom.xml --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.example<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br>xml<br><span class="hljs-comment">&lt;!-- 子模块的pom.xml --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.example<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-属性"><a href="#4-属性" class="headerlink" title="4.属性"></a>4.属性</h4><p>属性最大的作用-配置-和版本管理</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b4c4f542e3165840110e15b9913de9dc.png" srcset="/img/loading.gif" lazyload alt="b4c4f542e3165840110e15b9913de9dc"></p>
+<p>1.自定义属性管理</p>
+<img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/90eb8af64c4b02ba15ed77e0ac33fd16.png" srcset="/img/loading.gif" lazyload alt="90eb8af64c4b02ba15ed77e0ac33fd16" style="zoom:75%;" />
+
+<h4 id="5-工厂版本"><a href="#5-工厂版本" class="headerlink" title="5.工厂版本"></a>5.工厂版本</h4><h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e1232256a286acb832c2975ad59ea8a1.png" srcset="/img/loading.gif" lazyload alt="e1232256a286acb832c2975ad59ea8a1"></h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7d129e90eaca59df9ae2b62f7ab6ca55.png" srcset="/img/loading.gif" lazyload alt="7d129e90eaca59df9ae2b62f7ab6ca55"></p>
+<h4 id="6-资源配置"><a href="#6-资源配置" class="headerlink" title="6.资源配置"></a>6.资源配置</h4><h4 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9de34d5dbae1ebc7a72669952069638a.png" srcset="/img/loading.gif" lazyload alt="9de34d5dbae1ebc7a72669952069638a"></h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5fc90c8dd4f839707b20624bdf4242c6.png" srcset="/img/loading.gif" lazyload alt="5fc90c8dd4f839707b20624bdf4242c6"></p>
+<h4 id="7-多环境开发配置"><a href="#7-多环境开发配置" class="headerlink" title="7.多环境开发配置"></a>7.多环境开发配置</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9c38f1922d021ec7c78c0c8ffbb0c0d5.png" srcset="/img/loading.gif" lazyload alt="9c38f1922d021ec7c78c0c8ffbb0c0d5"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2eccbb8497a79d12ba5b7337f7a9d98f.png" srcset="/img/loading.gif" lazyload alt="2eccbb8497a79d12ba5b7337f7a9d98f"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e8c84b9496ecb0a2922bc874f8019530.png" srcset="/img/loading.gif" lazyload alt="e8c84b9496ecb0a2922bc874f8019530"></p>
+<h4 id="8-跳过测试"><a href="#8-跳过测试" class="headerlink" title="8.跳过测试"></a>8.跳过测试</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d039b87b2aa7539c3a17519c5e509652.png" srcset="/img/loading.gif" lazyload alt="d039b87b2aa7539c3a17519c5e509652"></p>
+<h4 id="9-私服"><a href="#9-私服" class="headerlink" title="9.私服"></a>9.私服</h4><p>省</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/maven/" class="category-chain-item">maven</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>maven笔记</div>
+      <div>http://example.com/2024/09/10/maven基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/06/2048/" title="2048实现秒过关">
+                        <span class="hidden-mobile">2048实现秒过关</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
