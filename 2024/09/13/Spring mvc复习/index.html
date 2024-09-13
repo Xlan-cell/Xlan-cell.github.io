@@ -1,0 +1,1104 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Spring mvc复习 0.spring-springmvcSpring 和 Spring MVC 是两个相关但独立的框架，它们解决了不同的问题。简单来说，Spring 是一个通用的应用框架，而 Spring MVC 是一个基于 Spring 的 Web 框架，用于构建 Web 应用程序。  Spring 的主要作用：  依赖注入（Dependency Injection, DI）：Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring mvc">
+<meta property="og:url" content="http://example.com/2024/09/13/Spring%20mvc%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="Spring mvc复习 0.spring-springmvcSpring 和 Spring MVC 是两个相关但独立的框架，它们解决了不同的问题。简单来说，Spring 是一个通用的应用框架，而 Spring MVC 是一个基于 Spring 的 Web 框架，用于构建 Web 应用程序。  Spring 的主要作用：  依赖注入（Dependency Injection, DI）：Spring">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/SpringMvc.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/a20b723675912525bb7fa4b6861f2445.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/804db24f3395fe5d5940d26edfc3ea33.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/67f41aab7f091ea29d50d4b977866e31.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/48eb36fe246fbb47facf7e8f5eb31ff6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f924b648ab257fbefa08c871b796ebb5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1b0641d49bc4e25a589d46b048d0c712.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0ae8f28c7e68ec356172c7f4f322aabc.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d5fd3828d3099bff24bbf90834041bff.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/697f5240f2ca11734b8ddf804fa935bc.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/192cc0e58e4cc136b34168f56ccf355a.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/ab3b6686ddb4ec826f2990c1c925d36b.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240414172132046.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/a4c33d1fd830a4bf2508db2f6b98e836.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b59e8bf4c2fbcc6be6fc912192f6f2df.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/42419f57ee0003c58e6c059ba4fc1f58.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b3b21d20c96ae90d732ce3cac09d5f68.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2bb0878bbc88b02c0ce024647e49ec70.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/6241b3e5f0b6762d7a7166eac8e101ba.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4cc146a7a81d28def5a9f72534f22ad3.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/50fccfc54a1ef08467fab507b7fbce62.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4caa6002de9cae7bb61d1f4dc79fbf40.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d63b5afd7e7aaff800a0a7fa06a00c25.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/267baa636fd682717e63a956def32ec5.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4b425f5665648fd64d2371a8e70aa4b7.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c4698693771084332a51d147c5cdd2e7.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/95d7648e9ae71b1f8e4a5ccf424adb04.jpeg">
+<meta property="article:published_time" content="2024-09-13T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-09-13T04:37:21.427Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/SpringMvc.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Spring mvc - 逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Spring mvc"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-13 20:22" pubdate>
+          2024年9月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Spring mvc</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Spring-mvc复习"><a href="#Spring-mvc复习" class="headerlink" title="Spring mvc复习"></a>Spring mvc复习</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/SpringMvc.png" srcset="/img/loading.gif" lazyload alt="SpringMvc"></p>
+<h4 id="0-spring-springmvc"><a href="#0-spring-springmvc" class="headerlink" title="0.spring-springmvc"></a>0.spring-springmvc</h4><p>Spring 和 Spring MVC 是两个相关但独立的框架，它们解决了不同的问题。简单来说，<strong>Spring</strong> 是一个通用的应用框架，而 <strong>Spring MVC</strong> 是一个基于 Spring 的 Web 框架，用于构建 Web 应用程序。</p>
+<blockquote>
+<p><strong>Spring 的主要作用</strong>：</p>
+<ul>
+<li><strong>依赖注入（Dependency Injection, DI）</strong>：Spring 最主要的功能是依赖注入，它通过控制反转（Inversion of Control, IoC）容器来管理对象之间的依赖关系，使代码更加模块化和可测试。</li>
+<li><strong>面向切面编程（Aspect-Oriented Programming, AOP）</strong>：Spring 支持 AOP，允许在不修改原始代码的情况下添加额外的行为，例如日志记录、事务管理和安全检查。</li>
+<li><strong>数据访问集成</strong>：Spring 提供对多种数据访问技术（如 JDBC、JPA、Hibernate）的集成和支持，简化了与数据库的交互。</li>
+<li><strong>事务管理</strong>：Spring 提供了声明性事务管理，可以让开发者更轻松地管理事务。</li>
+<li><strong>其他支持</strong>：如邮件发送、消息队列集成、缓存等。</li>
+</ul>
+<p><strong>Spring MVC 的主要作用</strong>：</p>
+<ul>
+<li><strong>专门用于 Web 开发</strong>：Spring MVC 是 Spring 框架中用于构建 Web 应用的部分，它遵循 Model-View-Controller (MVC) 设计模式，帮助开发者更容易地构建基于 HTTP 协议的 Web 应用程序。</li>
+<li><strong>请求处理流程</strong>：Spring MVC 提供了一整套用于处理 HTTP 请求和响应的机制，例如 <code>DispatcherServlet</code> 作为前端控制器，将请求分发给适当的处理器（Controller）。</li>
+<li><strong>视图解析</strong>：Spring MVC 提供视图解析机制，将模型数据绑定到视图（例如 JSP、Thymeleaf、Freemarker 等）。</li>
+<li><strong>数据绑定与验证</strong>：提供了数据绑定功能，将请求参数绑定到 Java 对象，还支持数据验证和格式化。</li>
+<li><strong>国际化（I18n）支持</strong>：Spring MVC 提供了内置的国际化支持，方便开发多语言 Web 应用程序。</li>
+<li><strong>集成与扩展</strong>：与 Spring 生态系统中的其他模块（如 Spring Security、Spring Data 等）无缝集成。</li>
+</ul>
+</blockquote>
+<p>Spring 和 Spring MVC 的关系</p>
+<p>Spring MVC 是 Spring 框架中的一个模块，它依赖于 Spring 核心容器（Core Container）来工作。它利用了 Spring 的 IoC 和 AOP 功能来管理 Web 应用程序的组件（如控制器、服务、数据访问层等）。因此，Spring MVC 本质上是一个基于 Spring 的 Web 框架。</p>
+<h4 id="1-入门"><a href="#1-入门" class="headerlink" title="1.入门"></a>1.入门</h4><p>Spirngmvc-Servlet</p>
+<p>Controller-&gt;Springmvc 产物</p>
+<p>1.SpringMVC是一种表现层框架技术–</p>
+<p>SpringMVC用于进行表现层功能开发</p>
+<p>使用SpringMVC技术需要先导入SpringMVC坐标与Servlet坐标</p>
+<p>创建Springfmvc控制器类</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/a20b723675912525bb7fa4b6861f2445.png" srcset="/img/loading.gif" lazyload alt="a20b723675912525bb7fa4b6861f2445"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/804db24f3395fe5d5940d26edfc3ea33.png" srcset="/img/loading.gif" lazyload alt="804db24f3395fe5d5940d26edfc3ea33"></p>
+<p>springmvc0需要设定springmcv加载对应Bean</p>
+<h4 id="1-1-Springmvc配置"><a href="#1-1-Springmvc配置" class="headerlink" title="1.1 Springmvc配置"></a>1.1 Springmvc配置</h4><p><code>ServletContainersInitConfig</code> 类扩展了 <code>AbstractDispatcherServletInitializer</code>，这个类是 Spring MVC 提供的一个抽象类，用于快速初始化基于 Servlet 3.0 的 Web 容器（如 Tomcat）。它通过实现三个方法来配置 Spring 和 Spring MVC 的应用上下文以及 Servlet 的映射。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ServletContainersInitConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractDispatcherServletInitializer</span> &#123;<br>    <br>    <span class="hljs-comment">//加载springMVC配置 -第一个接口 创建Servlet容器时，加载SpringMVC对应的bean并放入</span><br>    <span class="hljs-keyword">protected</span> WebApplicationContext <span class="hljs-title function_">createServletApplicationContext</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//初始化WebApplicationContext对象</span><br>        <span class="hljs-type">AnnotationConfigWebApplicationContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AnnotationConfigWebApplicationContext</span>();<br>        <span class="hljs-comment">//加载指定配置类</span><br>        ctx.register(SpringMvcConfig.class);<br>        <span class="hljs-keyword">return</span> ctx;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>作用：</p>
+<ul>
+<li>创建和配置 Spring MVC 的应用上下文（<code>WebApplicationContext</code>）<ul>
+<li><code>WebApplicationContext</code> 是 Spring 中用于 Web 应用程序的应用上下文，它扩展了 <code>ApplicationContext</code>，提供了面向 Web 的额外功能。</li>
+</ul>
+</li>
+<li>在这个方法中：<ul>
+<li><strong>创建 <code>AnnotationConfigWebApplicationContext</code> 对象</strong>：这是一个基于注解配置的 <code>WebApplicationContext</code> 实现，能够扫描和加载配置类。</li>
+<li><strong>注册配置类</strong>：<code>ctx.register(SpringMvcConfig.class)</code>，将指定的配置类 <code>SpringMvcConfig</code> 注册到 <code>WebApplicationContext</code> 中，这样 Spring MVC 就可以根据这个配置类初始化它所需的 bean 和其他配置。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//设置Tomcat接收的请求哪些归SpringMVC处理</span><br><span class="hljs-comment">//getServletMappings()方法，设定SpringMVC对应的请求映射路径，设置为/表示拦截所有请求，任意请求都将转入到SpringMVC进行处理</span><br><br><span class="hljs-keyword">protected</span> String[] getServletMappings() &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;/&quot;</span>&#125;;<br>&#125;<br><br><span class="hljs-comment">//设置spring相关配置 如果创建Servlet容器时需要加载非SpringMVC对应的bean，使用当前方法进行，</span><br><span class="hljs-keyword">protected</span> WebApplicationContext <span class="hljs-title function_">createRootApplicationContext</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>注解</p>
+<blockquote>
+<p>Controller 设定SpringMVC的核心控制器bean</p>
+<p>@RequestMapping  设置当前控制器方法请求访问路径</p>
+<p>@ResponseBody  设置当前控制器方法响应内容为当前返回值，无需解析</p>
+</blockquote>
+<p>综上-我们要导入spirngmvc容器</p>
+<blockquote>
+<p>1.导入springmvc坐标 2.创建springmvc核心控制器bean 3.再配置类中进行指定加载4.配置tocat的路径哪些被springmvc管理</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/67f41aab7f091ea29d50d4b977866e31.png" srcset="/img/loading.gif" lazyload alt="67f41aab7f091ea29d50d4b977866e31"></p>
+<p>* </p>
+<h4 id="2-bean加载控制"><a href="#2-bean加载控制" class="headerlink" title="2.bean加载控制"></a>2.bean加载控制</h4><p>在 Spring 应用程序中，通常会有两种类型的配置：</p>
+<ol>
+<li><strong>Spring 容器配置</strong>：用于管理应用程序的核心业务逻辑组件，例如服务层（Service）、数据访问层（DAO）等。</li>
+<li><strong>Spring MVC 容器配置</strong>：用于管理 Web 层的组件，例如控制器（Controller）、视图解析器（View Resolver）等。</li>
+</ol>
+<p>当一个应用程序使用了 Spring 和 Spring MVC 时，通常会有两个 <code>ApplicationContext</code>：</p>
+<ul>
+<li><strong>根应用上下文（Root ApplicationContext）</strong>：由 Spring 容器管理，包含业务逻辑层的 bean（如 Service、DAO 等）。</li>
+<li><strong>Web 应用上下文（WebApplicationContext）</strong>：由 Spring MVC 容器管理，包含 Web 层的 bean（如 Controller、视图解析器等）。</li>
+</ul>
+<p>我们就需要避免加载</p>
+<p>springmvc-controller –mvc  bean</p>
+<p>业务层的service–注册为spirngbean的bean</p>
+<blockquote>
+<p><strong>将业务层的 bean（如 Service、DAO）注册到根应用上下文中</strong>，这些 bean 应该由 Spring 容器管理。</p>
+<p><strong>将 Web 层的 bean（如 Controller）注册到 Web 应用上下文中</strong>，这些 bean 应该由 Spring MVC 容器管理。</p>
+</blockquote>
+<p>1.因为功能不同，如何避免Spring错误的加载到SpringMVC的bean——加载Spring控制的bean的时候排除掉SpringMVC控制的bean</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/48eb36fe246fbb47facf7e8f5eb31ff6.png" srcset="/img/loading.gif" lazyload alt="48eb36fe246fbb47facf7e8f5eb31ff6"></p>
+<p>非常麻烦 –还需要分开加载</p>
+<p>案例、</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f924b648ab257fbefa08c871b796ebb5.png" srcset="/img/loading.gif" lazyload alt="f924b648ab257fbefa08c871b796ebb5"></p>
+<p>这里就排除加载了springmvc的bean- 我们需要在写一个配置类来导入spirngmvc的bena </p>
+<p>@Configuration<br>@ComponentScan(“com.itheima.controller”)—自动扫描<br>public class SpringMvcConfig {<br>}</p>
+<h4 id="3-springmvc容器的简化开发"><a href="#3-springmvc容器的简化开发" class="headerlink" title="3.springmvc容器的简化开发"></a>3.springmvc容器的简化开发</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1b0641d49bc4e25a589d46b048d0c712.png" srcset="/img/loading.gif" lazyload alt="1b0641d49bc4e25a589d46b048d0c712"></p>
+<h4 id="4-请求响应"><a href="#4-请求响应" class="headerlink" title="4.请求响应"></a>4.请求响应</h4><h6 id="1-请求映射路径"><a href="#1-请求映射路径" class="headerlink" title="1.请求映射路径"></a>1.请求映射路径</h6><p>@RequestMapping</p>
+<p>l设置当前控制器方法请求访问路径，如果设置在类上统一设置当前控制器方法请求访问路径前缀</p>
+<h6 id="2-请求传参"><a href="#2-请求传参" class="headerlink" title="2.请求传参"></a>2.请求传参</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0ae8f28c7e68ec356172c7f4f322aabc.png" srcset="/img/loading.gif" lazyload alt="0ae8f28c7e68ec356172c7f4f322aabc"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d5fd3828d3099bff24bbf90834041bff.png" srcset="/img/loading.gif" lazyload alt="d5fd3828d3099bff24bbf90834041bff"></p>
+<h3 id="2-请求传参-1"><a href="#2-请求传参-1" class="headerlink" title="2.请求传参"></a>2.请求传参</h3><h5 id="1-普通参数"><a href="#1-普通参数" class="headerlink" title="1.普通参数"></a>1.普通参数</h5><p>1.url地址传参，地址参数名与形参变量名相同，定义形参即可接收参数</p>
+<p>2.请求参数名与形参变量名不同，使用@RequestParam绑定参数关系</p>
+<p><strong>@RequestParam</strong>(“name”)String userName </p>
+<h6 id="2-pojo类型参数"><a href="#2-pojo类型参数" class="headerlink" title="2.pojo类型参数"></a>2.pojo类型参数</h6><p>POJO参数：请求参数名与形参对象属性名相同，定义POJO类型形参即可接收参数</p>
+<h6 id="3-嵌套pojo参数"><a href="#3-嵌套pojo参数" class="headerlink" title="3.嵌套pojo参数"></a>3.嵌套pojo参数</h6><p>请求参数名与形参对象属性名相同，按照对象层次结构关系即可接收嵌套POJO属性参数</p>
+<h6 id="4-数组类型"><a href="#4-数组类型" class="headerlink" title="4.数组类型"></a>4.数组类型</h6><p>数组参数：请求参数名与形参对象属性名相同且请求参数为多个，定义数组类型形参即可接收参数 String[] likes</p>
+<p>l</p>
+<h6 id="5-集合类型-RequestParam"><a href="#5-集合类型-RequestParam" class="headerlink" title="5.集合类型 RequestParam"></a>5.集合类型 RequestParam</h6><p>l集合保存普通参数：请求参数名与形参集合对象名相同且请求参数为多个，@RequestParam绑定参数关系</p>
+<p>@RequestParam List<String> likes</p>
+<h4 id="2-JSON"><a href="#2-JSON" class="headerlink" title="2.JSON"></a>2.JSON</h4><p>添加json数据转换相关坐标</p>
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-databind</artifactId>
+  <version>2.9.0</version>
+ </dependency>
+
+<p>开启自动转换json数据的支持</p>
+<p>@Configuration<br> @ComponentScan(“com.itheima.controller”)<br> <strong>@EnableWebMvc</strong>@EnableWebMvc注解功能强大，该注解整合了多个功能，此处仅使用其中一部分功能，即json数据进行自动类型转换<br> public class SpringMvcConfig {<br> }</p>
+<h6 id="1-json数组-RequestBody"><a href="#1-json数组-RequestBody" class="headerlink" title="1.json数组 @RequestBody"></a>1.json数组 @RequestBody</h6><p>将请求中请求体所包含的数据传递给请求参数，此注解一个处理器方法只能使用一次</p>
+<p>@RequestBody List<String> likes</p>
+<h6 id="2-json对象"><a href="#2-json对象" class="headerlink" title="2.json对象"></a>2.json对象</h6><p>json数据与形参对象属性名相同，定义POJO类型形参即可接收参数</p>
+<p>@RequestBody User user</p>
+<h6 id="3-json对象数组"><a href="#3-json对象数组" class="headerlink" title="3.json对象数组"></a>3.json对象数组</h6><p>json数组数据与集合泛型属性名相同，定义List类型形参即可接收参数</p>
+<p>@RequestBody List<User> list</p>
+<h6 id="0-区别"><a href="#0-区别" class="headerlink" title="0.区别"></a>0.区别</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/697f5240f2ca11734b8ddf804fa935bc.png" srcset="/img/loading.gif" lazyload alt="697f5240f2ca11734b8ddf804fa935bc"></p>
+<h6 id="3-日期传参"><a href="#3-日期传参" class="headerlink" title="3.日期传参"></a>3.日期传参</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/192cc0e58e4cc136b34168f56ccf355a.png" srcset="/img/loading.gif" lazyload alt="192cc0e58e4cc136b34168f56ccf355a"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/ab3b6686ddb4ec826f2990c1c925d36b.png" srcset="/img/loading.gif" lazyload alt="ab3b6686ddb4ec826f2990c1c925d36b"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240414172132046.png" srcset="/img/loading.gif" lazyload alt="image-20240414172132046"></p>
+<h4 id="3-响应传递"><a href="#3-响应传递" class="headerlink" title="3.响应传递"></a>3.响应传递</h4><h6 id="1-文本返回"><a href="#1-文本返回" class="headerlink" title="1.文本返回"></a>1.文本返回</h6><p>  @ResponseBody -不仅仅可以将JSON对应类-还能告诉编译器转的是文本,而不是文件</p>
+<h6 id="2-json返回"><a href="#2-json返回" class="headerlink" title="2.json返回"></a>2.json返回</h6><p>返回值为实体类对象，设置返回值为实体类类型，即可实现返回对应对象的json数据，需要依赖&#x3D;&#x3D;@ResponseBody&#x3D;&#x3D;注解和&#x3D;&#x3D;@EnableWebMvc&#x3D;&#x3D;注解</p>
+<h6 id="3-响应pojo集合"><a href="#3-响应pojo集合" class="headerlink" title="3.响应pojo集合"></a>3.响应pojo集合</h6><p>开对象-然后存进list集合中-返回list集合 默认返回的就是集合</p>
+<p> List<User> userList &#x3D; new ArrayList<User>();<br>        userList.add(user1);<br>        userList.add(user2);</p>
+<h6 id="ResponseBody"><a href="#ResponseBody" class="headerlink" title="@ResponseBody"></a>@ResponseBody</h6><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@ResponseBody</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>&#x3D;&#x3D;方法\类注解&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>SpringMVC控制器方法定义上方和控制类上</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>设置当前控制器返回值作为响应体,<br/>写在类上，该类的所有方法都有该注解功能</td>
+</tr>
+<tr>
+<td>相关属性</td>
+<td>pattern：指定日期时间格式字符串</td>
+</tr>
+</tbody></table>
+<p><strong>说明:</strong></p>
+<ul>
+<li>该注解可以写在类上或者方法上</li>
+<li>写在类上就是该类下的所有方法都有@ReponseBody功能</li>
+<li>当方法上有@ReponseBody注解后<ul>
+<li>方法的返回值为字符串，会将其作为文本内容直接响应给前端</li>
+<li>方法的返回值为对象，会将对象转换成JSON响应给前端</li>
+</ul>
+</li>
+</ul>
+<p>此处又使用到了类型转换，内部还是通过Converter接口的实现类完成的，所以Converter除了前面所说的功能外，它还可以实现:</p>
+<ul>
+<li>对象转Json数据(POJO -&gt; json)</li>
+<li>集合转Json数据(Collection -&gt; json)</li>
+</ul>
+<h4 id="Rest风格"><a href="#Rest风格" class="headerlink" title="Rest风格"></a>Rest风格</h4><h6 id="1-rest风格介绍"><a href="#1-rest风格介绍" class="headerlink" title="1.rest风格介绍"></a>1.rest风格介绍</h6><p>传统风格</p>
+<ul>
+<li><code>http://localhost/user/getById?id=1</code> 查询id为1的用户信息</li>
+<li><code>http://localhost/user/saveUser</code> 保存用户信息</li>
+</ul>
+<p>REST</p>
+<ul>
+<li><code>http://localhost/user/1</code> </li>
+<li><code>http://localhost/user</code></li>
+<li>根据路径 无法看出对应功能–具有隐私保护性</li>
+<li></li>
+</ul>
+<p>请求的方式比较多，但是比较常用的就4种，分别是<code>GET</code>,<code>POST</code>,<code>PUT</code>,<code>DELETE</code>。</p>
+<p>按照不同的请求方式代表不同的操作类型。</p>
+<ul>
+<li>发送GET请求是用来做查询</li>
+<li>发送POST请求是用来做新增</li>
+<li>发送PUT请求是用来做修改</li>
+<li>发送DELETE请求是用来做删除</li>
+<li></li>
+</ul>
+<p>上述行为是约定方式，约定不是规范，可以打破，所以称REST风格，而不是REST规范</p>
+<h6 id="2-路径传参-PathVariable"><a href="#2-路径传参-PathVariable" class="headerlink" title="2.路径传参 @PathVariable"></a>2.路径传参 @PathVariable</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//设置当前请求方法为DELETE，表示REST风格中的删除操作</span><br><span class="hljs-meta">@RequestMapping(value = &quot;/users/&#123;id&#125;/&#123;name&#125;&quot;,method = RequestMethod.DELETE)</span><br>   <span class="hljs-meta">@ResponseBody</span><br>   <span class="hljs-keyword">public</span> String <span class="hljs-title function_">delete</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> Integer id,<span class="hljs-meta">@PathVariable</span> String name)</span><br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@PathVariable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>&#x3D;&#x3D;形参注解&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>SpringMVC控制器方法形参定义前面</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>绑定路径参数与处理器方法形参间的关系，要求路径参数名与形参名一一对应</td>
+</tr>
+</tbody></table>
+<p>关于接收参数，我们学过三个注解<code>@RequestBody</code>、<code>@RequestParam</code>、<code>@PathVariable</code>,这三个注解之间的区别和应用分别是什么?</p>
+<ul>
+<li>区别<ul>
+<li>@RequestParam用于接收url地址传参或表单传参</li>
+<li>@RequestBody用于接收json数据</li>
+<li>@PathVariable用于接收路径参数，使用{参数名称}描述路径参数</li>
+</ul>
+</li>
+<li>应用<ul>
+<li>后期开发中，发送请求参数超过1个时，以json格式为主，@RequestBody应用较广</li>
+<li>如果发送非json格式数据，选用@RequestParam接收请求参数</li>
+<li>采用RESTful进行开发，当参数数量较少时，例如1个，可以采用@PathVariable接收请求路径变量，通常用于传递id值</li>
+</ul>
+</li>
+</ul>
+<h4 id="springmvc开发特性"><a href="#springmvc开发特性" class="headerlink" title="springmvc开发特性"></a>springmvc开发特性</h4><h6 id="1-知识点1：-RestController"><a href="#1-知识点1：-RestController" class="headerlink" title="1.知识点1：@RestController"></a>1.知识点1：@RestController</h6><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@RestController</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>&#x3D;&#x3D;类注解&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>基于SpringMVC的RESTful开发控制器类定义上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>设置当前控制器类为RESTful风格，<br/>等同于@Controller与@ResponseBody两个注解组合功能</td>
+</tr>
+</tbody></table>
+<h6 id="知识点2：-GetMapping-PostMapping-PutMapping-DeleteMapping"><a href="#知识点2：-GetMapping-PostMapping-PutMapping-DeleteMapping" class="headerlink" title="知识点2：@GetMapping @PostMapping @PutMapping @DeleteMapping"></a>知识点2：@GetMapping @PostMapping @PutMapping @DeleteMapping</h6><table>
+<thead>
+<tr>
+<th>名称</th>
+<th align="right">@GetMapping @PostMapping @PutMapping @DeleteMapping</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td align="right">&#x3D;&#x3D;方法注解&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>位置</td>
+<td align="right">基于SpringMVC的RESTful开发控制器方法定义上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td align="right">设置当前控制器方法请求访问路径与请求动作，每种对应一个请求动作，<br/>例如@GetMapping对应GET请求</td>
+</tr>
+<tr>
+<td>相关属性</td>
+<td align="right">value（默认）：请求访问路径</td>
+</tr>
+</tbody></table>
+<h4 id="Spring-mvc-异常处理机制"><a href="#Spring-mvc-异常处理机制" class="headerlink" title="Spring mvc 异常处理机制"></a>Spring mvc 异常处理机制</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/a4c33d1fd830a4bf2508db2f6b98e836.jpeg" srcset="/img/loading.gif" lazyload alt="a4c33d1fd830a4bf2508db2f6b98e836"></p>
+<p><code>@ControllerAdvice</code> 是一个全局异常处理注解，用于定义一个全局的异常处理类。这个类中的方法可以处理所有控制器中抛出的异常</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@ControllerAdvice</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GlobalExceptionHandler</span> &#123;<br><br>    <span class="hljs-meta">@ExceptionHandler</span>(<span class="hljs-title class_">Exception</span>.<span class="hljs-property">class</span>)<span class="hljs-comment">//异常捕获</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">ResponseEntity</span>&lt;<span class="hljs-title class_">String</span>&gt; <span class="hljs-title function_">handleAllExceptions</span>(<span class="hljs-params"><span class="hljs-title class_">Exception</span> ex</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResponseEntity</span>&lt;&gt;(<span class="hljs-string">&quot;Handled Exception: &quot;</span> + ex.<span class="hljs-title function_">getMessage</span>(), <span class="hljs-title class_">HttpStatus</span>.<span class="hljs-property">INTERNAL_SERVER_ERROR</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b59e8bf4c2fbcc6be6fc912192f6f2df.jpg" srcset="/img/loading.gif" lazyload alt="b59e8bf4c2fbcc6be6fc912192f6f2df"></p>
+<p><code>@ExceptionHandler</code> 是 Spring MVC 提供的一种注解，用于定义处理特定异常的方法。可以在控制器类中使用该注解来捕获和处理特定类型的异常。</p>
+<p>–增强类上指定-异常拦截器处理–基于AOP切面编程实现</p>
+<hr>
+<p>案例处理-如题 </p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/42419f57ee0003c58e6c059ba4fc1f58.jpeg" srcset="/img/loading.gif" lazyload alt="42419f57ee0003c58e6c059ba4fc1f58"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b3b21d20c96ae90d732ce3cac09d5f68.jpeg" srcset="/img/loading.gif" lazyload alt="b3b21d20c96ae90d732ce3cac09d5f68"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2bb0878bbc88b02c0ce024647e49ec70.jpeg" srcset="/img/loading.gif" lazyload alt="2bb0878bbc88b02c0ce024647e49ec70"></p>
+<p>自写异常-根据异常严重程度来进行对应的出来</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/6241b3e5f0b6762d7a7166eac8e101ba.jpeg" srcset="/img/loading.gif" lazyload alt="6241b3e5f0b6762d7a7166eac8e101ba"></p>
+<p>抛出异常</p>
+<p>拦截处理异常</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4cc146a7a81d28def5a9f72534f22ad3.jpeg" srcset="/img/loading.gif" lazyload alt="4cc146a7a81d28def5a9f72534f22ad3"></p>
+<h4 id="Springmvc-拦截器"><a href="#Springmvc-拦截器" class="headerlink" title="Springmvc -拦截器"></a>Springmvc -拦截器</h4><p> Spring MVC 中，拦截器（Interceptor）是一种用于对请求进行预处理和后处理的机制。拦截器类似于 Servlet 的过滤器（Filter），但提供了更灵活和强大的功能。它们可以用于权限检查、日志记录、性能监控等场景。</p>
+<hr>
+<p>Spring MVC 的拦截器基于 <code>HandlerInterceptor</code> 接口，它允许我们在处理 HTTP 请求的过程中插入自定义的逻辑。拦截器可以在以下三个阶段执行：</p>
+<ol>
+<li><strong>预处理阶段（preHandle）</strong>：在请求到达控制器之前执行。</li>
+<li><strong>后处理阶段（postHandle）</strong>：在请求被控制器处理之后，但在视图渲染之前执行。</li>
+<li><strong>完成后处理阶段（afterCompletion）</strong>：在整个请求完成之后执行，通常用于资源清理。</li>
+</ol>
+<h6 id="1-拦截器案例"><a href="#1-拦截器案例" class="headerlink" title="1.拦截器案例"></a>1.拦截器案例</h6><p>1.声明拦截器</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/50fccfc54a1ef08467fab507b7fbce62.jpeg" srcset="/img/loading.gif" lazyload alt="50fccfc54a1ef08467fab507b7fbce62"></p>
+<p>实现HandlerInt接口</p>
+<p>–</p>
+<blockquote>
+<p>在 Spring Boot 或 Spring MVC 的 Java 配置中，可以通过实现 <code>WebMvcConfigurer</code> 接口的 <code>addInterceptors</code> 方法来添加拦截器</p>
+</blockquote>
+<p>添加拦截器指定路径</p>
+<p>在 Spring Boot 或 Spring MVC 的 Java 配置中，可以通过实现 <code>WebMvcConfigurer</code> 接口的 <code>addInterceptors</code> 方法来添加拦截器</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WebConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">WebMvcConfigurer</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">addInterceptors</span>(<span class="hljs-params"><span class="hljs-title class_">InterceptorRegistry</span> registry</span>) &#123;<br>        <span class="hljs-comment">// 注册自定义的拦截器，并指定拦截路径</span><br>        registry.<span class="hljs-title function_">addInterceptor</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MyInterceptor</span>())<br>                .<span class="hljs-title function_">addPathPatterns</span>(<span class="hljs-string">&quot;/**&quot;</span>) <span class="hljs-comment">// 拦截所有请求</span><br>                .<span class="hljs-title function_">excludePathPatterns</span>(<span class="hljs-string">&quot;/login&quot;</span>, <span class="hljs-string">&quot;/error&quot;</span>); <span class="hljs-comment">// 排除某些路径不拦截</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><code>addInterceptors(InterceptorRegistry registry)</code>：添加拦截器的方法。</p>
+<p><code>addInterceptor(new MyInterceptor())</code>：注册自定义拦截器。</p>
+<p><code>addPathPatterns(&quot;/**&quot;)</code>：设置拦截器拦截的路径模式，例如，<code>/**</code> 表示拦截所有请求。</p>
+<p><code>excludePathPatterns(&quot;/login&quot;, &quot;/error&quot;)</code>：设置不需要拦截的路径模式，例如登录页和错误页。</p>
+<h6 id="2-拦截器流程"><a href="#2-拦截器流程" class="headerlink" title="2.拦截器流程"></a>2.拦截器流程</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4caa6002de9cae7bb61d1f4dc79fbf40.jpeg" srcset="/img/loading.gif" lazyload alt="4caa6002de9cae7bb61d1f4dc79fbf40"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d63b5afd7e7aaff800a0a7fa06a00c25.jpeg" srcset="/img/loading.gif" lazyload alt="d63b5afd7e7aaff800a0a7fa06a00c25"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/267baa636fd682717e63a956def32ec5.jpeg" srcset="/img/loading.gif" lazyload alt="267baa636fd682717e63a956def32ec5"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4b425f5665648fd64d2371a8e70aa4b7.jpeg" srcset="/img/loading.gif" lazyload alt="4b425f5665648fd64d2371a8e70aa4b7"></p>
+<h6 id="3-多拦截器"><a href="#3-多拦截器" class="headerlink" title="3.多拦截器"></a>3.多拦截器</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c4698693771084332a51d147c5cdd2e7.jpeg" srcset="/img/loading.gif" lazyload alt="c4698693771084332a51d147c5cdd2e7"></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WebConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">WebMvcConfigurer</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">addInterceptors</span>(<span class="hljs-params"><span class="hljs-title class_">InterceptorRegistry</span> registry</span>) &#123;<br>        <span class="hljs-comment">// 注册第一个拦截器，拦截所有路径</span><br>        registry.<span class="hljs-title function_">addInterceptor</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FirstInterceptor</span>())<br>                .<span class="hljs-title function_">addPathPatterns</span>(<span class="hljs-string">&quot;/**&quot;</span>);<br><br>        <span class="hljs-comment">// 注册第二个拦截器，拦截所有路径</span><br>        registry.<span class="hljs-title function_">addInterceptor</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">SecondInterceptor</span>())<br>                .<span class="hljs-title function_">addPathPatterns</span>(<span class="hljs-string">&quot;/**&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>addInterceptor()</code> 方法按顺序注册拦截器，Spring MVC 将按照注册顺序执行这些拦截器的 <code>preHandle()</code> 方法，<code>postHandle()</code> 和 <code>afterCompletion()</code> 方法则按相反顺序执行。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/95d7648e9ae71b1f8e4a5ccf424adb04.jpeg" srcset="/img/loading.gif" lazyload alt="95d7648e9ae71b1f8e4a5ccf424adb04"></p>
+<h6 id="4-基于AOP实现拦截器"><a href="#4-基于AOP实现拦截器" class="headerlink" title="4.基于AOP实现拦截器"></a>4.基于AOP实现拦截器</h6><p><strong>MVC 拦截器</strong>：基于 <code>HandlerInterceptor</code> 接口，可以在处理 HTTP 请求的生命周期的特定点执行代码。适用于 Web 层的请求预处理和后处理。</p>
+<p>使用 AOP 实现类似的拦截功能，可以在控制器方法执行前后插入一些通用的逻辑。使用 AOP 可以更灵活地选择何时何地应用这些逻辑。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-meta">@Aspect</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LoggingAspect</span> &#123;<br><br>   <br>    <span class="hljs-meta">@Pointcut(&quot;@annotation(customAnnotation)&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">annotatedMethod</span><span class="hljs-params">(CustomAnnotation customAnnotation)</span> &#123;&#125;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">   这个切入点表达式 `@annotation(customAnnotation)` 的作用是匹配所有被 `@CustomAnnotation` 注解标记的方法。</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">`@annotation(customAnnotation)` 是 AspectJ 提供的一个语法，用来匹配方法级别的注解。这里，`customAnnotation` 是一个参数，它表示目标方法上使用的 `@CustomAnnotation`。</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">同时`annotatedMethod` f方法的主要用处是可以在通知（Advice）方法中使用一个更清晰、易读的命名标识来引用切入点。*/</span><br><br>    <span class="hljs-comment">// 在控制器中的任何方法执行之前执行</span><br>    <span class="hljs-meta">@Before(&quot;annotatedMethod(customAnnotation)&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">beforeControllerMethod</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;在控制器方法执行之前执行的逻辑&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 在控制器方法执行之后执行</span><br>    <span class="hljs-meta">@After(&quot;annotatedMethod(customAnnotation)&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">afterControllerMethod</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;在控制器方法执行之后执行的逻辑&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 环绕通知，可以在方法执行前后都进行拦截</span><br>    <span class="hljs-meta">@Around(&quot;annotatedMethod(customAnnotation)&quot;)</span><br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">aroundControllerMethod</span><span class="hljs-params">(ProceedingJoinPoint joinPoint)</span> <span class="hljs-keyword">throws</span> Throwable &#123;<br>        System.out.println(<span class="hljs-string">&quot;在控制器方法执行之前执行的逻辑&quot;</span>);<br>        <span class="hljs-type">Object</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> joinPoint.proceed();  <span class="hljs-comment">// 执行目标方法</span><br>        System.out.println(<span class="hljs-string">&quot;在控制器方法执行之后执行的逻辑&quot;</span>);<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs scss">public <span class="hljs-keyword">@interface</span> CustomAnnotation &#123;<br>    String <span class="hljs-built_in">value</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="WebApplicationContext探究"><a href="#WebApplicationContext探究" class="headerlink" title="WebApplicationContext探究"></a>WebApplicationContext探究</h4><blockquote>
+<p><code>WebApplicationContext</code> 是一个容器类，它是 Spring 框架中专门用于 Web 应用程序的应用上下文（<code>ApplicationContext</code>）接口的扩展。</p>
+<h3 id="什么是-WebApplicationContext？"><a href="#什么是-WebApplicationContext？" class="headerlink" title="什么是 WebApplicationContext？"></a>什么是 <code>WebApplicationContext</code>？</h3><p><code>WebApplicationContext</code> 是 Spring 框架中的一个接口，它继承了 <code>ApplicationContext</code> 接口，并添加了特定于 Web 应用程序的功能。它提供了一些额外的方法和功能来处理 Web 应用程序的特定需求，例如管理与 Servlet、过滤器和监听器相关的 Web 组件。</p>
+<h3 id="WebApplicationContext-的特点"><a href="#WebApplicationContext-的特点" class="headerlink" title="WebApplicationContext 的特点"></a><code>WebApplicationContext</code> 的特点</h3><ol>
+<li><p>**扩展 <code>ApplicationContext</code>**：</p>
+<ul>
+<li><code>WebApplicationContext</code> 继承自 <code>ApplicationContext</code>，而 <code>ApplicationContext</code> 是 Spring 的核心容器接口，用于管理和配置应用程序中的 bean。<code>ApplicationContext</code> 提供了 Spring IoC 容器的基本功能，如依赖注入、事件发布、国际化支持等。</li>
+<li><code>WebApplicationContext</code> 是 <code>ApplicationContext</code> 的一个特化版本，增加了与 Web 环境相关的特性。</li>
+</ul>
+</li>
+<li><p><strong>面向 Web 应用程序</strong>：</p>
+<ul>
+<li><pre><code class="hljs">WebApplicationContext
+</code></pre>
+<p> 是为 Web 应用程序设计的，它能够处理 Web 相关的上下文信息，例如：</p>
+<ul>
+<li><strong>ServletContext</strong>：<code>WebApplicationContext</code> 可以访问 Servlet 容器的 <code>ServletContext</code>，这使它能够与 Servlet API 集成，并提供与 Web 容器的交互能力。</li>
+<li><strong>会话作用域和请求作用域</strong>：<code>WebApplicationContext</code> 支持 Web 特定的作用域（如会话作用域和请求作用域），这对于 Web 应用程序非常有用。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Web 应用程序的根上下文</strong>：</p>
+<ul>
+<li>在典型的 Spring Web 应用程序中，<code>WebApplicationContext</code> 通常是应用程序的根上下文（Root Context），它在 Web 应用程序启动时由 Spring 的前端控制器 <code>DispatcherServlet</code> 或 <code>ContextLoaderListener</code> 创建。</li>
+<li>它管理 Web 应用程序的所有 bean，包括控制器、服务层组件、数据访问层组件等。</li>
+</ul>
+</li>
+</ol>
+<h3 id="WebApplicationContext-的具体实现类"><a href="#WebApplicationContext-的具体实现类" class="headerlink" title="WebApplicationContext 的具体实现类"></a><code>WebApplicationContext</code> 的具体实现类</h3><p>在 Spring 中，<code>WebApplicationContext</code> 有多个实现类，其中最常用的是：</p>
+<ol>
+<li><p><code>XmlWebApplicationContext</code></p>
+<p>：</p>
+<ul>
+<li>基于 XML 配置文件的 <code>WebApplicationContext</code> 实现，它从指定的 XML 文件中加载 bean 定义。</li>
+</ul>
+</li>
+<li><p><code>AnnotationConfigWebApplicationContext</code></p>
+<p>：</p>
+<ul>
+<li>基于 Java 注解的 <code>WebApplicationContext</code> 实现，通常用于配置类（使用 <code>@Configuration</code> 注解的类）而非 XML 文件的方式进行 bean 定义的加载。</li>
+</ul>
+</li>
+<li><p><code>GenericWebApplicationContext</code></p>
+<p>：</p>
+<ul>
+<li>通用的 <code>WebApplicationContext</code> 实现，它既可以从 XML 文件加载配置，也可以使用注解或其他方式加载配置。</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>WebApplicationContext</code> 是一个面向 Web 的 Spring 容器类，它继承了 <code>ApplicationContext</code> 并扩展了与 Web 相关的功能。它能够管理 Web 应用程序的 bean，处理与 Web 环境相关的上下文信息，并与 Servlet 容器紧密集成。因此，<code>WebApplicationContext</code> 是 Spring Web 应用程序中非常重要的容器类。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/spring/" class="category-chain-item">spring</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Spring mvc</div>
+      <div>http://example.com/2024/09/13/Spring mvc复习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构概论 01">
+                        <span class="hidden-mobile">数据结构概论 01</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
