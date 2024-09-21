@@ -19,23 +19,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Springcloude-&gt;各类插件-&gt;java进阶(刷题) 云岚到家-&gt;java项目场景题目 数据结构(考试)-&gt;考试完-&gt;学习完 Mysql(考试+进阶)-&gt;考试完学习完">
+    <meta name="description" content="支付章节 退款1.退款需求 未支付退款  支付退款   退款接口退款流程-已支付退款实现技术方案取消未支付订单实现 1.手动退款  2.定时取消   取消派单中的订单 基础代码  异步线程退款  定时器扫描退款   状态机业务状态机 1.状态机概述  项目使用状态机 1.为什么要使用状态机  2.状态机使用类  3.状态机类代码  4.状态机表  状态机持久化表  状态机快照表     测试订单状">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最近的笔记方向">
-<meta property="og:url" content="http://example.com/2024/11/19/%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:title" content="云岚到家支付退款  状态机设计 03">
+<meta property="og:url" content="http://example.com/2024/09/21/%E4%BA%91%E5%B2%9A4/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="Springcloude-&gt;各类插件-&gt;java进阶(刷题) 云岚到家-&gt;java项目场景题目 数据结构(考试)-&gt;考试完-&gt;学习完 Mysql(考试+进阶)-&gt;考试完学习完">
+<meta property="og:description" content="支付章节 退款1.退款需求 未支付退款  支付退款   退款接口退款流程-已支付退款实现技术方案取消未支付订单实现 1.手动退款  2.定时取消   取消派单中的订单 基础代码  异步线程退款  定时器扫描退款   状态机业务状态机 1.状态机概述  项目使用状态机 1.为什么要使用状态机  2.状态机使用类  3.状态机类代码  4.状态机表  状态机持久化表  状态机快照表     测试订单状">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-19T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-19T14:02:03.910Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/%E6%94%AF%E4%BB%98%E7%AB%A0%E8%8A%82.png">
+<meta property="article:published_time" content="2024-09-21T04:14:59.356Z">
+<meta property="article:modified_time" content="2024-09-21T04:15:54.750Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/%E6%94%AF%E4%BB%98%E7%AB%A0%E8%8A%82.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>最近的笔记方向 - 逆向狗</title>
+  <title>云岚到家支付退款  状态机设计 03 - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="最近的笔记方向"></span>
+            <span id="subtitle" data-typed-text="云岚到家支付退款  状态机设计 03"></span>
           
         </div>
 
@@ -217,8 +219,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-19 20:22" pubdate>
-          2024年11月19日 晚上
+        <time datetime="2024-09-21 12:14" pubdate>
+          2024年9月21日 中午
         </time>
       </span>
     
@@ -229,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          50 字
+          212 字
         
       </span>
     
@@ -240,7 +242,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -277,16 +279,72 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">最近的笔记方向</h1>
+            <h1 id="seo-header">云岚到家支付退款  状态机设计 03</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Springcloude-&gt;各类插件-&gt;java进阶(刷题)</p>
-<p>云岚到家-&gt;java项目场景题目</p>
-<p>数据结构(考试)-&gt;考试完-&gt;学习完</p>
-<p>Mysql(考试+进阶)-&gt;考试完学习完</p>
-
+                <h1 id="支付章节"><a href="#支付章节" class="headerlink" title="支付章节"></a>支付章节</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/%E6%94%AF%E4%BB%98%E7%AB%A0%E8%8A%82.png" srcset="/img/loading.gif" lazyload alt="支付章节"></p>
+<h2 id="退款"><a href="#退款" class="headerlink" title="退款"></a>退款</h2><h3 id="1-退款需求"><a href="#1-退款需求" class="headerlink" title="1.退款需求"></a>1.退款需求</h3><ul>
+<li><p>未支付退款</p>
+</li>
+<li><p>支付退款</p>
+</li>
+</ul>
+<h3 id="退款接口"><a href="#退款接口" class="headerlink" title="退款接口"></a>退款接口</h3><h3 id="退款流程-已支付"><a href="#退款流程-已支付" class="headerlink" title="退款流程-已支付"></a>退款流程-已支付</h3><h3 id="退款实现技术方案"><a href="#退款实现技术方案" class="headerlink" title="退款实现技术方案"></a>退款实现技术方案</h3><h3 id="取消未支付订单实现"><a href="#取消未支付订单实现" class="headerlink" title="取消未支付订单实现"></a>取消未支付订单实现</h3><ul>
+<li><p>1.手动退款</p>
+</li>
+<li><p>2.定时取消</p>
+</li>
+</ul>
+<h3 id="取消派单中的订单"><a href="#取消派单中的订单" class="headerlink" title="取消派单中的订单"></a>取消派单中的订单</h3><ul>
+<li><p>基础代码</p>
+</li>
+<li><p>异步线程退款</p>
+</li>
+<li><p>定时器扫描退款</p>
+</li>
+</ul>
+<h2 id="状态机业务"><a href="#状态机业务" class="headerlink" title="状态机业务"></a>状态机业务</h2><h3 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h3><ul>
+<li>1.状态机概述</li>
+</ul>
+<h3 id="项目使用状态机"><a href="#项目使用状态机" class="headerlink" title="项目使用状态机"></a>项目使用状态机</h3><ul>
+<li><p>1.为什么要使用状态机</p>
+</li>
+<li><p>2.状态机使用类</p>
+</li>
+<li><p>3.状态机类代码</p>
+</li>
+<li><p>4.状态机表</p>
+<ul>
+<li><p>状态机持久化表</p>
+</li>
+<li><p>状态机快照表</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试订单状态机"><a href="#测试订单状态机" class="headerlink" title="测试订单状态机"></a>测试订单状态机</h3><ul>
+<li><p>状态机初始化</p>
+</li>
+<li><p>状态机状态变更</p>
+</li>
+</ul>
+<h3 id="状态机源码"><a href="#状态机源码" class="headerlink" title="状态机源码"></a>状态机源码</h3><ul>
+<li><p>启动代码start</p>
+</li>
+<li><p>状态变更changeStatus</p>
+</li>
+</ul>
+<h3 id="订单状态机"><a href="#订单状态机" class="headerlink" title="订单状态机"></a>订单状态机</h3><ul>
+<li><p>初始化状态机 下单</p>
+</li>
+<li><p>状态变更 事件 支付成功</p>
+</li>
+<li><p>编写动作bean</p>
+</li>
+</ul>
+<h3 id="取消状态机"><a href="#取消状态机" class="headerlink" title="取消状态机"></a>取消状态机</h3>
                 
               </div>
             
@@ -304,7 +362,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%9D%82%E8%A8%80/" class="category-chain-item">杂言</a>
+  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
   
   
 
@@ -324,8 +382,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>最近的笔记方向</div>
-      <div>http://example.com/2024/11/19/复习/</div>
+      <div>云岚到家支付退款  状态机设计 03</div>
+      <div>http://example.com/2024/09/21/云岚4/</div>
     </div>
     <div class="license-meta">
       
@@ -337,7 +395,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月19日</div>
+          <div>2024年9月21日</div>
         </div>
       
       
@@ -369,12 +427,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2024/09/21/Dr%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%BF%87%E6%BB%A4%E8%B8%A2%E5%87%BA/" title="Dr自动踢人">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Dr自动踢人</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/21/Dr%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%BF%87%E6%BB%A4%E8%B8%A2%E5%87%BA/" title="Dr自动踢人">
-                        <span class="hidden-mobile">Dr自动踢人</span>
+                      <a href="/2024/09/20/%E5%BE%AE%E6%9C%8D%E5%8A%A101/" title="微服务Spring Cloude">
+                        <span class="hidden-mobile">微服务Spring Cloude</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
