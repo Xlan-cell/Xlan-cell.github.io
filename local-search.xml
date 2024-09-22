@@ -23,19 +23,6 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2024/09/22/mysql/%E5%9F%BA%E7%A1%80/SQL%E5%85%A5%E9%97%A8(2)/"/>
-    <url>/2024/09/22/mysql/%E5%9F%BA%E7%A1%80/SQL%E5%85%A5%E9%97%A8(2)/</url>
-    
-    <content type="html"><![CDATA[<h1 id="Mysql常见函数使用-二"><a href="#Mysql常见函数使用-二" class="headerlink" title="Mysql常见函数使用(二)"></a>Mysql常见函数使用(二)</h1><h4 id="1-思维导图"><a href="#1-思维导图" class="headerlink" title="1.思维导图"></a>1.思维导图</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f83095441457603846914321ac6d2732.png" alt="在这里插入图片描述"></p><h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>和平转区半火封包</title>
     <link href="/2024/09/22/%E5%92%8C%E5%B9%B3ios%E8%BD%AC%E5%8C%BA%E5%8D%8A%E7%81%AB/"/>
     <url>/2024/09/22/%E5%92%8C%E5%B9%B3ios%E8%BD%AC%E5%8C%BA%E5%8D%8A%E7%81%AB/</url>
@@ -46,6 +33,25 @@
     <categories>
       
       <category>杂言</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Sql新手入门 02</title>
+    <link href="/2024/09/22/mysql/%E5%9F%BA%E7%A1%80/SQL%E5%85%A5%E9%97%A8(2)/"/>
+    <url>/2024/09/22/mysql/%E5%9F%BA%E7%A1%80/SQL%E5%85%A5%E9%97%A8(2)/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Mysql常见函数使用-二"><a href="#Mysql常见函数使用-二" class="headerlink" title="Mysql常见函数使用(二)"></a>Mysql常见函数使用(二)</h1><h4 id="1-思维导图"><a href="#1-思维导图" class="headerlink" title="1.思维导图"></a>1.思维导图</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f83095441457603846914321ac6d2732.png" alt="在这里插入图片描述"></p><h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>mysql</category>
       
     </categories>
     
