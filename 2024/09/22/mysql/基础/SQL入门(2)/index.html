@@ -38,8 +38,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/ef678e5b47e14a2c2e795cfe33c277d5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/49775a0ba7918f7e351015e047c8fa26.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d2a7ee93e7a0a2f9dbfc4b10ba44721a.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/acf531e80357c6afe3043efacc9b3b4c.png">
 <meta property="article:published_time" content="2024-09-22T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-23T04:30:55.485Z">
+<meta property="article:modified_time" content="2024-09-23T06:22:50.388Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f83095441457603846914321ac6d2732.png">
@@ -242,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.8k 字
         
       </span>
     
@@ -253,7 +254,7 @@
         
         
         
-          11 分钟
+          16 分钟
         
       </span>
     
@@ -347,6 +348,40 @@
 <h6 id="5-自链接"><a href="#5-自链接" class="headerlink" title="5.自链接"></a>5.自链接</h6><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># 查询员工 及其 所属领导的名字,如果员工没有领导, 也需要查询出来<br><span class="hljs-keyword">select</span> a.name <span class="hljs-string">&#x27;员工&#x27;</span>, b.name <span class="hljs-string">&#x27;领导&#x27;</span> <span class="hljs-keyword">from</span> emp a <span class="hljs-keyword">left join</span> emp b <span class="hljs-keyword">on</span> a.managerid = <br>b.id;<br><br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d2a7ee93e7a0a2f9dbfc4b10ba44721a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>6.联合查询</p>
+<ul>
+<li>注意事项<ul>
+<li>对于联合查询的多张表的<strong>字段列表必须保持一致</strong>，<strong>字段类型也需要保持一致</strong>，如果不一致将会报错。</li>
+<li><code>union all</code> 会将<strong>全部的数据直接合并</strong>在一起，<code>union</code> 会对合并之后的<strong>数据去重</strong>。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> salary &lt; <span class="hljs-number">5000</span><br><span class="hljs-keyword">union</span> <span class="hljs-keyword">all</span><br><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> age &gt; <span class="hljs-number">50</span>;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/acf531e80357c6afe3043efacc9b3b4c.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><code>union all</code>查询出来的结果，仅仅只对数据集进行简单的合并，查询结果中可能会存在重复数据项，使用<code>union</code>即可去除重复数据项。</p>
+<h4 id="6-子查询"><a href="#6-子查询" class="headerlink" title="6.子查询"></a>6.子查询</h4><h6 id="1-标量子查询"><a href="#1-标量子查询" class="headerlink" title="1.标量子查询"></a>1.标量子查询</h6><ul>
+<li>使用示例：查询 “销售部” 的所有员工信息</li>
+</ul>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># 拆分<span class="hljs-number">1</span>： 查询 &quot;销售部&quot; 部门ID，返回单个id值<br><span class="hljs-keyword">select</span> id <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;销售部&#x27;</span>;<br><br># 拆分<span class="hljs-number">2</span>：根据部门ID, 查询员工信息<br><span class="hljs-keyword">select</span> id <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = xxx;<br><br># 完整版<br> <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> dept_id = (<span class="hljs-keyword">select</span> id <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;销售部&#x27;</span>);<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="2-列子查询"><a href="#2-列子查询" class="headerlink" title="2.列子查询"></a>2.列子查询</h6><p>子查询返回的结果是<strong>一列</strong>（可以是多行）。常用的操作符：<code>IN 、NOT IN 、 ANY 、SOME 、 ALL</code></p>
+<ul>
+<li>使用示例：查询比 财务部 所有人工资都高的员工信息</li>
+</ul>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># 拆分<span class="hljs-number">1</span>: 查询财务部id<br><span class="hljs-keyword">select</span> id <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;财务部&#x27;</span>;<br><br># 拆分<span class="hljs-number">2</span>： 查询财务部员工工资<br><span class="hljs-keyword">select</span> salary <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> dept_id = 拆分<span class="hljs-number">1</span>;<br><span class="hljs-keyword">select</span> salary <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> dept_id = (<span class="hljs-keyword">select</span> id <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;财务部&#x27;</span>);<br><br>#  拆分<span class="hljs-number">3</span> ： 比 财务部 所有人工资都高的员工信息<br><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> salary &gt; <span class="hljs-keyword">all</span> (拆分<span class="hljs-number">2</span>);<br><br># 合并<br><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> salary &gt; <span class="hljs-keyword">all</span> ( <span class="hljs-keyword">select</span> salary <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> dept_id = <br>(<span class="hljs-keyword">select</span> id <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;财务部&#x27;</span>) );<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="3-行子查询"><a href="#3-行子查询" class="headerlink" title="3.行子查询"></a>3.行子查询</h6><ul>
+<li>使用示例：查询与 “张无忌” 的薪资及<strong>直属领导</strong>相同的员工信息 ;</li>
+</ul>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># 拆分<span class="hljs-number">1</span>：查询 &quot;张无忌&quot; 的薪资及直属领导<br><span class="hljs-keyword">select</span> salary, managerid <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;张无忌&#x27;</span>;<br><br># 拆分<span class="hljs-number">2</span>：查询与 &quot;张无忌&quot; 的薪资及直属领导相同的员工信息<br><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> (salary,managerid) = (xx,xx);<br><br># 合并<br><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> (salary,managerid) = (<span class="hljs-keyword">select</span> salary, managerid <span class="hljs-keyword">from</span> emp <br><span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;张无忌&#x27;</span>);<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="4-表子查询"><a href="#4-表子查询" class="headerlink" title="4. 表子查询"></a>4. 表子查询</h6><ul>
+<li>使用示例：查询与 “鹿杖客” , “宋远桥” 的职位和薪资相同的员工信息</li>
+</ul>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># 拆分<span class="hljs-number">1</span>：查询 &quot;鹿杖客&quot; , &quot;宋远桥&quot; 的职位和薪资<br><br><span class="hljs-keyword">select</span> job, salary <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;鹿杖客&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;宋远桥&#x27;</span>;<br><br># 拆分<span class="hljs-number">2</span>：查询与 &quot;鹿杖客&quot; , &quot;宋远桥&quot; 的职位和薪资相同的员工信息<br><br><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> (job,salary) <span class="hljs-keyword">in</span> ( xxx );<br><br> # 合并<br><br> <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> (job,salary) <span class="hljs-keyword">in</span> (<span class="hljs-keyword">select</span> job, salary <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;鹿杖客&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;宋远桥&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>多表查询业务能实现相关需求的SQL往往会很多, 写法也多种多样，总之，能满足我们的需求，查询出符合条件的记录即可~</p>
 
                 
               </div>
