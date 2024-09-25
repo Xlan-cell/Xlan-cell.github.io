@@ -19,28 +19,45 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="so分析 hook其参数-得知 修改. text:000A1CE8 01 32                         ADDS    R2, #1 text:000A1CE8 01 32                         ADDS    R2, #8  text:000A1CE8 01 32                         ADDS    R2, #8">
+    <meta name="description" content="树6.1.1 树的定义6.1.1.1树的概念树是一种非线性结构,它由节点和边组成。节点之间通过边连接.由n(n&gt;&#x3D;o)个节点的有限集。n&#x3D;0表示空树  n&gt;1时满足:1.有且只有一个根结点并在最顶层 2.其余结点分成互不相交的 M 个子集,每个子集又是一颗树。   案例  6.1.2 树的逻辑结构表示6.1.3  树的基本术语6.2  1234 探讨的是节点的度 节">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2048实现秒过关">
-<meta property="og:url" content="http://example.com/2024/09/06/2048/index.html">
+<meta property="og:title" content="数据结构-树和二叉树">
+<meta property="og:url" content="http://example.com/2024/09/28/data%20structure/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="so分析 hook其参数-得知 修改. text:000A1CE8 01 32                         ADDS    R2, #1 text:000A1CE8 01 32                         ADDS    R2, #8  text:000A1CE8 01 32                         ADDS    R2, #8">
+<meta property="og:description" content="树6.1.1 树的定义6.1.1.1树的概念树是一种非线性结构,它由节点和边组成。节点之间通过边连接.由n(n&gt;&#x3D;o)个节点的有限集。n&#x3D;0表示空树  n&gt;1时满足:1.有且只有一个根结点并在最顶层 2.其余结点分成互不相交的 M 个子集,每个子集又是一颗树。   案例  6.1.2 树的逻辑结构表示6.1.3  树的基本术语6.2  1234 探讨的是节点的度 节">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/041e24788116aad3e5b9d66d153c0597.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5997fd65e2f23df2dedd500f805418d1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b0c2eab99470f976c0cc393352fa1b15.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240908230448204.png">
-<meta property="article:published_time" content="2024-09-06T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-08T15:22:14.922Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/01ae4e3f3ab40d0d6ee722cca213d94f.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925214411226.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c7899e91cf258a2e5aeb58cf6a8abf39.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925214728851.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925215050252.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/6283648c2434efb19dab8c70ed2347bb.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7b0b909debd7b65958998b710e0b4bc2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b81c4239fcc6a1bd1ce83c3f1844d5be.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925221552376.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925221953903.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925222425649.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2a8c012d28887d403fce53fd6b0d2eb9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925215050252.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e0d9cb587ce9a54d3ffe777dfb242eb5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/302b2416bd1ef27490005e7e122998bd.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e99ab18983dc7dabb1b8967997daed09.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0d79d9d1aac810a3ec7802fe69b5fb16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0db38af72b0e41685ea731c78216f257.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e4784c0f99fccd18533be7f3af34cde5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925224029517.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925224041108.png">
+<meta property="article:published_time" content="2024-09-28T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-09-25T14:41:09.479Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/041e24788116aad3e5b9d66d153c0597.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/01ae4e3f3ab40d0d6ee722cca213d94f.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>2048实现秒过关 - 逆向狗</title>
+  <title>数据结构-树和二叉树 - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +223,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2048实现秒过关"></span>
+            <span id="subtitle" data-typed-text="数据结构-树和二叉树"></span>
           
         </div>
 
@@ -222,8 +239,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-06 20:22" pubdate>
-          2024年9月6日 晚上
+        <time datetime="2024-09-28 20:22" pubdate>
+          2024年9月28日 晚上
         </time>
       </span>
     
@@ -234,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          30 字
+          432 字
         
       </span>
     
@@ -245,7 +262,7 @@
         
         
         
-          1 分钟
+          4 分钟
         
       </span>
     
@@ -282,21 +299,53 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2048实现秒过关</h1>
+            <h1 id="seo-header">数据结构-树和二叉树</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="so分析"><a href="#so分析" class="headerlink" title="so分析"></a>so分析</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/041e24788116aad3e5b9d66d153c0597.png" srcset="/img/loading.gif" lazyload alt="041e24788116aad3e5b9d66d153c0597"></p>
-<p>hook其参数-得知</p>
-<p>修改.</p>
-<p>text:000A1CE8 01 32                         ADDS    R2, #1</p>
-<p>text:000A1CE8 01 32                         ADDS    R2, #8</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5997fd65e2f23df2dedd500f805418d1.png" srcset="/img/loading.gif" lazyload alt="5997fd65e2f23df2dedd500f805418d1"></p>
-<p>text:000A1CE8 01 32                         ADDS    R2, #8</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b0c2eab99470f976c0cc393352fa1b15.png" srcset="/img/loading.gif" lazyload alt="b0c2eab99470f976c0cc393352fa1b15"></p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240908230448204.png" srcset="/img/loading.gif" lazyload alt="`image-20240908230448204`"></p>
-<p>修改盒子初始值达到快速过关</p>
+                <h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h4 id="6-1-1-树的定义"><a href="#6-1-1-树的定义" class="headerlink" title="6.1.1 树的定义"></a>6.1.1 树的定义</h4><h5 id="6-1-1-1树的概念"><a href="#6-1-1-1树的概念" class="headerlink" title="6.1.1.1树的概念"></a>6.1.1.1树的概念</h5><p>树是一种非线性结构,它由节点和边组成。节点之间通过边连接.<br>由n(n&gt;&#x3D;o)个节点的有限集。n&#x3D;0表示空树</p>
+<p> n&gt;1时满足:<br><strong>1.有且只有一个根结点并在最顶层</strong></p>
+<p><strong>2.其余结点分成互不相交的 M 个子集,每个子集又是一颗树。</strong></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/01ae4e3f3ab40d0d6ee722cca213d94f.png" srcset="/img/loading.gif" lazyload alt="01ae4e3f3ab40d0d6ee722cca213d94f"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925214411226.png" srcset="/img/loading.gif" lazyload alt="image-20240925214411226"></p>
+<p>案例</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c7899e91cf258a2e5aeb58cf6a8abf39.png" srcset="/img/loading.gif" lazyload alt="c7899e91cf258a2e5aeb58cf6a8abf39"></p>
+<h5 id="6-1-2-树的逻辑结构表示"><a href="#6-1-2-树的逻辑结构表示" class="headerlink" title="6.1.2 树的逻辑结构表示"></a>6.1.2 树的逻辑结构表示</h5><h5 id="6-1-3-树的基本术语"><a href="#6-1-3-树的基本术语" class="headerlink" title="6.1.3  树的基本术语"></a><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925214728851.png" srcset="/img/loading.gif" lazyload alt="image-20240925214728851">6.1.3  树的基本术语</h5><p>6.2</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925215050252.png" srcset="/img/loading.gif" lazyload alt="image-20240925215050252"></p>
+<p>1234 探讨的是节点的度</p>
+<p>节点位置探讨  5 6-&gt;对套 </p>
+<p>抽象节点 7 -&gt;包括孩子和孙子</p>
+<p>8 _&gt;H E C A 只要能找到对应父节点就继续</p>
+<p>9  父节点下   同分支下-兄弟节点(节点层次相同 )</p>
+<p>10 树的高度</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/6283648c2434efb19dab8c70ed2347bb.png" srcset="/img/loading.gif" lazyload alt="6283648c2434efb19dab8c70ed2347bb"></p>
+<p>11 </p>
+<h6 id="6-1-4-树的性质"><a href="#6-1-4-树的性质" class="headerlink" title="6.1.4  树的性质"></a>6.1.4  树的性质</h6><h6 id="1-树的节点数"><a href="#1-树的节点数" class="headerlink" title="1.树的节点数"></a>1.树的节点数</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7b0b909debd7b65958998b710e0b4bc2.png" srcset="/img/loading.gif" lazyload alt="7b0b909debd7b65958998b710e0b4bc2"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b81c4239fcc6a1bd1ce83c3f1844d5be.png" srcset="/img/loading.gif" lazyload alt="b81c4239fcc6a1bd1ce83c3f1844d5be"></p>
+<p>节点数&#x3D;总度数(数线或者自己遍历)+1</p>
+<p>例如 A的度数 2 B  C1 G 1省  3+2+1+1+2+3&#x3D;12-再加上A-就是总度数</p>
+<h6 id="2-度为m的数第i层至多节点"><a href="#2-度为m的数第i层至多节点" class="headerlink" title="2.度为m的数第i层至多节点"></a>2.度为m的数第i层至多节点</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925221552376.png" srcset="/img/loading.gif" lazyload alt="image-20240925221552376"></p>
+<p>看不懂</p>
+<h6 id="3-高度为h-m次树至多有多少个节点"><a href="#3-高度为h-m次树至多有多少个节点" class="headerlink" title="3.高度为h  m次树至多有多少个节点"></a>3.高度为h  m次树至多有多少个节点</h6><p>例如高度4    -3次书</p>
+<p>“m 次树”指的是 <strong>每个节点的度最多为 m 的树</strong>，即每个节点最多可以有 m 个子节点。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925221953903.png" srcset="/img/loading.gif" lazyload alt="image-20240925221953903"></p>
+<p>3<em>3</em>3*3&#x3D;81-1&#x3D;80&#x2F;2&#x3D;40</p>
+<p>手算</p>
+<p>A(3)  9 -              9*3&#x3D;27 -27+9+1&#x3D;37+BCD &#x3D;40手算也能对上</p>
+<h5 id="6-1-5-树的基本运算"><a href="#6-1-5-树的基本运算" class="headerlink" title="6.1.5 树的基本运算"></a>6.1.5 树的基本运算</h5><h6 id="1-树的运算"><a href="#1-树的运算" class="headerlink" title="1.树的运算"></a>1.树的运算</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925222425649.png" srcset="/img/loading.gif" lazyload alt="image-20240925222425649"></p>
+<h6 id="2-树的遍历"><a href="#2-树的遍历" class="headerlink" title="2.树的遍历"></a>2.树的遍历</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2a8c012d28887d403fce53fd6b0d2eb9.png" srcset="/img/loading.gif" lazyload alt="2a8c012d28887d403fce53fd6b0d2eb9"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925215050252.png" srcset="/img/loading.gif" lazyload alt="image-20240925215050252"></p>
+<h5 id="6-1-6树的存储结构"><a href="#6-1-6树的存储结构" class="headerlink" title="6.1.6树的存储结构"></a>6.1.6树的存储结构</h5><p>计算机中-树存储着节点的值-还有节点与节点间的关系</p>
+<h6 id="1-双亲存储结构"><a href="#1-双亲存储结构" class="headerlink" title="1.双亲存储结构"></a>1.双亲存储结构</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e0d9cb587ce9a54d3ffe777dfb242eb5.png" srcset="/img/loading.gif" lazyload alt="e0d9cb587ce9a54d3ffe777dfb242eb5"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/302b2416bd1ef27490005e7e122998bd.png" srcset="/img/loading.gif" lazyload alt="302b2416bd1ef27490005e7e122998bd"></p>
+<h6 id="2-孩子链表存储结构"><a href="#2-孩子链表存储结构" class="headerlink" title="2.孩子链表存储结构"></a>2.孩子链表存储结构</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e99ab18983dc7dabb1b8967997daed09.png" srcset="/img/loading.gif" lazyload alt="e99ab18983dc7dabb1b8967997daed09"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0d79d9d1aac810a3ec7802fe69b5fb16.png" srcset="/img/loading.gif" lazyload alt="0d79d9d1aac810a3ec7802fe69b5fb16"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0db38af72b0e41685ea731c78216f257.png" srcset="/img/loading.gif" lazyload alt="0db38af72b0e41685ea731c78216f257"></p>
+<p>用空间换来部分算法遍历</p>
+<h6 id="3-孩子兄弟表示法"><a href="#3-孩子兄弟表示法" class="headerlink" title="3.孩子兄弟表示法"></a>3.孩子兄弟表示法</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e4784c0f99fccd18533be7f3af34cde5.png" srcset="/img/loading.gif" lazyload alt="e4784c0f99fccd18533be7f3af34cde5"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925224029517.png" srcset="/img/loading.gif" lazyload alt="image-20240925224029517"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240925224041108.png" srcset="/img/loading.gif" lazyload alt="image-20240925224041108"></p>
 
                 
               </div>
@@ -315,7 +364,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%80%86%E5%90%91/" class="category-chain-item">逆向</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
   
   
 
@@ -335,8 +384,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2048实现秒过关</div>
-      <div>http://example.com/2024/09/06/2048/</div>
+      <div>数据结构-树和二叉树</div>
+      <div>http://example.com/2024/09/28/data structure/树和二叉树/</div>
     </div>
     <div class="license-meta">
       
@@ -348,7 +397,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月6日</div>
+          <div>2024年9月28日</div>
         </div>
       
       
@@ -380,9 +429,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/10/nk/" title="Java基础题目">
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java基础题目</span>
+                        <span class="hidden-mobile">最近的笔记方向</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -390,8 +439,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/06/java%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86/" title="java基础笔记">
-                        <span class="hidden-mobile">java基础笔记</span>
+                      <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/sql%E6%89%A7%E8%A1%8C%E8%80%97%E6%97%B6/" title="mysql执行耗时">
+                        <span class="hidden-mobile">mysql执行耗时</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
