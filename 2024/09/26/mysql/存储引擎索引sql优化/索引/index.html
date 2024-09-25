@@ -33,8 +33,20 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/745eaf5e00b49b4f5eca1cf7a3564648.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/bb22fd01b4f7dc7d021a8025b3f2a61f.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9044380259b86c0ee14b88b788f79d28.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e77f250521e08c856951053745eedd5d.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/70cfc75173512170e116448195027897.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/be218c2cb18370a2148ac42f5ecaf63f.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/3dc203f7379ec6635da67947b7ba8725.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/918d8a2e9104654ba4d293844176d958.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9e499ff8da49c252b9207ccdda6f446e.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/775bba4e48859a02efba1dbba92e33fa.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c9ada929f8b5ffa035c8ad17445bdaa2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/49f94fe8830483f549d0192ecf46dde1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/85353abee403daebd3eb39c1e601a2c5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/cde495c86ccb9f2660001f19f45970e2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4e4ff3db963e37c8fbdb9220903ac42c.png">
 <meta property="article:published_time" content="2024-09-26T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-25T01:41:20.348Z">
+<meta property="article:modified_time" content="2024-09-25T04:26:52.601Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/3197b41c9ff3284f61e102fa83bbaa0f.png">
@@ -237,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          2.9k 字
         
       </span>
     
@@ -248,7 +260,7 @@
         
         
         
-          12 分钟
+          25 分钟
         
       </span>
     
@@ -426,7 +438,7 @@
 
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">explain<br>SELECT id<br>FROM <span class="hljs-keyword">orders_0</span><br><span class="hljs-keyword"></span>WHERE (<span class="hljs-keyword">orders_status </span>= <span class="hljs-number">0</span> <span class="hljs-keyword">AND </span>user_id = <span class="hljs-number">1716346406098296832</span> <span class="hljs-keyword">AND </span><span class="hljs-keyword">display </span>= <span class="hljs-number">1</span> <span class="hljs-keyword">and </span>sort_by&lt;<span class="hljs-number">1698924600022</span>)<br><span class="hljs-keyword">ORDER </span><span class="hljs-keyword">BY </span>sort_by DESC<br>LIMIT <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="索引失效情况"><a href="#索引失效情况" class="headerlink" title="索引失效情况"></a>索引失效情况</h4><h6 id="1-最左前缀法则"><a href="#1-最左前缀法则" class="headerlink" title="1.最左前缀法则"></a>1.最左前缀法则</h6><p>1.<strong>如果索引了多列（联合索引），要遵守最左前缀法则</strong>。</p>
+<h4 id="5-索引失效情况"><a href="#5-索引失效情况" class="headerlink" title="5.索引失效情况"></a>5.索引失效情况</h4><h6 id="1-最左前缀法则"><a href="#1-最左前缀法则" class="headerlink" title="1.最左前缀法则"></a>1.最左前缀法则</h6><p>1.<strong>如果索引了多列（联合索引），要遵守最左前缀法则</strong>。</p>
 <p>注：在where条件中索引最左列存在即可，在order by多字段排序中索引最左列必须为排序条件最左列。</p>
 <h6 id="2-范围查询"><a href="#2-范围查询" class="headerlink" title="2.范围查询"></a>2.范围查询</h6><p>联合索引中，出现范围查询<code>(&gt;,&lt;</code>)，<strong>范围查询右侧的列索引失效</strong></p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">explain</span> <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> profession = <span class="hljs-string">&#x27;软件工程&#x27;</span> <span class="hljs-keyword">and</span> age &gt; <span class="hljs-number">30</span> <span class="hljs-keyword">and</span> status = <span class="hljs-string">&#x27;0&#x27;</span>;<br></code></pre></td></tr></table></figure>
@@ -435,7 +447,97 @@
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/bb22fd01b4f7dc7d021a8025b3f2a61f.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <p><strong>值得注意的是</strong>：当范围查询使用<code>&gt;=</code> 或 <code>&lt;=</code> 时，则不会产生影响。 因此，在业务允许的情况下，进行范围查询时，为了避免索引失效，我们可以使用类似于 <code>&gt;=</code> 或 <code>&lt;=</code> 这类的范围查询，代替使用<code>&gt;</code> 或 <code>&lt;</code>。</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9044380259b86c0ee14b88b788f79d28.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<h6 id="3-索引列运算"><a href="#3-索引列运算" class="headerlink" title="3.索引列运算"></a>3.索引列运算</h6>
+<h6 id="3-索引列运算"><a href="#3-索引列运算" class="headerlink" title="3.索引列运算"></a>3.索引列运算</h6><p>当我们在索引列上进行运算操作， 索引也将失效。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">explain</span>  <span class="hljs-keyword">select</span>  *  <span class="hljs-keyword">from</span>  <span class="hljs-keyword">user</span>  <span class="hljs-keyword">where</span>  substring(phone,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>) = <span class="hljs-string">&#x27;15&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e77f250521e08c856951053745eedd5d.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="4-字符串不加引号"><a href="#4-字符串不加引号" class="headerlink" title="4.字符串不加引号"></a>4.<strong>字符串不加引号</strong></h6><p>当我们对添加索引的字符串类型字段进行操作时，如果<strong>字符串不加引号</strong>，对于查询结果，没什么影响，但是数据库存在隐式类型转换，<strong>索引将失效</strong>。</p>
+<ul>
+<li>例如 phone 为 varchar类型字段</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/70cfc75173512170e116448195027897.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="5-模糊查询"><a href="#5-模糊查询" class="headerlink" title="5.模糊查询"></a>5.模糊查询</h6><p>如果仅仅是<strong>尾部模糊匹配，索引不会失效</strong>。如果是<strong>头部模糊匹配，索引失效</strong></p>
+<ul>
+<li>我们发现，在like模糊查询中，在关键字后面加%，索引可以生效。而如果在关键字 前面加了%，索引将会失效</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/be218c2cb18370a2148ac42f5ecaf63f.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="6-or连接条件"><a href="#6-or连接条件" class="headerlink" title="6.or连接条件"></a>6.or连接条件</h6><p>用or分割开的条件， <strong>如果or前的条件中的列有索引，而后面的列中没有索引，那么涉及的索引都不会被用到</strong></p>
+<ul>
+<li>例如我们先删除age字段上的联合索引，再进行or连接查询</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/3dc203f7379ec6635da67947b7ba8725.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>我们发现当or连接的条件，左右两侧字段都有索引时，索引才会生效~</p>
+<h6 id="7-数据分布影响-索引使用情况"><a href="#7-数据分布影响-索引使用情况" class="headerlink" title="7.数据分布影响-索引使用情况"></a>7.数据分布影响-索引使用情况</h6><p>如果MySQL评估使用索引比全表扫描更慢，则不使用索引。</p>
+<ul>
+<li>例如，下面使用相同的SQL语句，只是传入的字段值不同，最终的执行计划也完全不一样</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/918d8a2e9104654ba4d293844176d958.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>这是因为MySQL在查询时，会评估使用索引的效率与走全表扫描的效率，如果走全表扫描更快，则放弃索引，走全表扫描。 因为索引是用来索引少量数据的，如果通过索引查询返回大批量的数据，则还不如走全表扫描来的快，此时索引就会失效。</p>
+<h4 id="6-索引使用优化"><a href="#6-索引使用优化" class="headerlink" title="6.索引使用优化"></a>6.索引使用优化</h4><h6 id="1-SQL提示"><a href="#1-SQL提示" class="headerlink" title="1.SQL提示"></a>1.SQL提示</h6><blockquote>
+<p>当我们的字段存在多个索引时，MySQL会进行评估自动选择一个索引进行使用。我们也可以<strong>借助于SQL提示指定MySQL使用哪个索引</strong>。</p>
+</blockquote>
+<ul>
+<li><code>use index</code> ：建议MySQL使用哪一个索引完成此次查询（仅仅是建议，mysql内部还会再次进行评估，即或许不会遵从建议）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">explain <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> 表名 use index(索引名) <span class="hljs-keyword">where</span> 查询条件....;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9e499ff8da49c252b9207ccdda6f446e.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ul>
+<li><p><code>force index</code> ： 强制使用索引</p>
+</li>
+<li><p><code>ignore index</code> ：忽略指定的索引</p>
+</li>
+</ul>
+<h6 id="2-覆盖索引-聚集索引-介绍"><a href="#2-覆盖索引-聚集索引-介绍" class="headerlink" title="2.覆盖索引 聚集索引 介绍"></a>2.覆盖索引 聚集索引 介绍</h6><p>在需求允许的情况下，尽量使用覆盖索引（查询使用了索引，并且需要返回的列，在该索引中已经全部能够找到），减少<code>select *</code>的使用。</p>
+<p>创建索引-防止回表查询  执行器返回</p>
+<table>
+<thead>
+<tr>
+<th>Extra</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Using where; Using Index</td>
+<td>查找使用了索引，但是需要的数据都在索引列中能找到，所以不需 要回表查询数据</td>
+</tr>
+<tr>
+<td>Using index condition</td>
+<td>查找使用了索引，但是需要回表查询数据</td>
+</tr>
+</tbody></table>
+<p>聚集索引查询</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/775bba4e48859a02efba1dbba92e33fa.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>覆盖索引</p>
+<ul>
+<li>根据name字段查询，查询二级索引，但是由于查询返回在字段为 id，name，在name的二级索 引中，这两个值都是可以直接获取到的，因为覆盖索引，所以不需要回表查询，性能高。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c9ada929f8b5ffa035c8ad17445bdaa2.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>回表查询</p>
+<p>多查询一个gender字段，由于在name的二级索引中，不包含gender，所以，需要两次索引扫描，也就是需要回表查询，性能相 对较差一点。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/49f94fe8830483f549d0192ecf46dde1.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="3-前缀索引"><a href="#3-前缀索引" class="headerlink" title="3.前缀索引"></a>3.前缀索引</h6><p>当字段类型为字符串（varchar，text，longtext等）时，有时候这些字段值会非常大（例如一段很长的文本），如果直接对此建立索引，这会让索引变得很大，查询时，浪费大量的磁盘IO， 影响查询效率。此时可以只将字符串的一部分前缀，建立索引，这样可以大大节约索引空间，从而提高索引效率。</p>
+<p>create index 索引名 on 表名(字段名(索引长度)) ;</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/85353abee403daebd3eb39c1e601a2c5.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>有时候我们难以确定应该创建多长的索引，这时可以根据索引的选择性来决定。选择性是指<strong>不重复的索引值（基数）和数据表的记录总数的比值， 索引选择性越高则查询效率越高</strong>， 唯一索引的选择性是1，这是最好的索引选择性，性能也是最好的。</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">-- 可以直接计算比值<br><span class="hljs-keyword">select</span>  count(<span class="hljs-keyword">distinct</span> 字段名) / count<span class="hljs-comment">(*) from 表名;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">-- 也可以使用函数截取部分数据进行计算</span><br><span class="hljs-comment"> select  count(distinct substring(字段名,开始位置,结束位置)) / count(*)</span> <span class="hljs-keyword">from</span> 表名<span class="hljs-punctuation">;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/cde495c86ccb9f2660001f19f45970e2.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>前缀索引的查询流程</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4e4ff3db963e37c8fbdb9220903ac42c.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ul>
+<li>对于类似身份证号、微信小程序openId这些，其长度比较长，但是其前几位区分度并不大，很显然不能直接创建前缀索引，于此，我们可以在数据库中对其倒序存储，再计算索引选择性创建合适长度的索引</li>
+</ul>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> openId <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> openId=reverse(<span class="hljs-string">&#x27;xxxxxx&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="7-索引设计原则"><a href="#7-索引设计原则" class="headerlink" title="7.索引设计原则"></a>7.索引设计原则</h4><p>针对于数据量较大，且查询比较频繁的表建立索引</p>
+<p>。<br>针对于常作为查询条件（where）、排序（order by）、分组（group by）操作的字段建立索引。</p>
+<p>尽量选择区分度高的列作为索引，尽量建立唯一索引，区分度越高，使用索引的效率越高。</p>
+<p>如果是字符串类型的字段，字段的长度较长，可以针对于字段的特点，建立前缀索引。</p>
+<p>在复合业务场景的情况下，尽量使用联合索引，减少单列索引，查询时，联合索引很多时候可以覆盖索引，节省存储空间， 避免回表，提高查询效率。</p>
+<p>要控制索引的数量，索引并不是多多益善，索引越多，维护索引结构的代价也就越大，会影响增删改的效率。</p>
+<p>如果索引列不能存储NULL值，请在创建表时使用NOT NULL约束它。当优化器知道每列是否包含 NULL值时，它可以更好地确定哪个索引最有效地用于查询</p>
+
                 
               </div>
             
@@ -518,9 +620,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/sql%E6%89%A7%E8%A1%8C%E8%80%97%E6%97%B6/" title="mysql执行耗时">
+                      <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" title="Mysql 存储引擎">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">mysql执行耗时</span>
+                        <span class="hidden-mobile">Mysql 存储引擎</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
