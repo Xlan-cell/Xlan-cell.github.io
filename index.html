@@ -445,6 +445,60 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/09/27/mysql/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" target="_self">
+          Mysql 存储过程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/27/mysql/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" target="_self">
+        <div>
+          存储过程 存储过程的基本操作 (1-2)1.了解存储过程存储过程是事先经过编译并存储在数据库中的一段 SQL 语句的集合，调用存储过程可以简化应用开发人员的工作，可以减少数据在数据库和应用服务器之间的传输，提高数据处理的效率。 存储过程相当于数据库 SQL 语言层面的代码封装与重用。   可以把某一业务SQL封装在存储过程中，需要用到的时候直接调用即可。类似于其他语言的函数(方法)，在使用存储过程
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-27 20:22" pubdate>
+              2024-09-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/sql%E6%89%A7%E8%A1%8C%E8%80%97%E6%97%B6/" target="_self">
           mysql执行耗时
         </a>
@@ -615,7 +669,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/09/24/mysql/%E4%BA%8B%E5%8A%A1%E8%A7%86%E5%9B%BE/%E8%A7%86%E5%9B%BE/" target="_self">
         <div>
-          视图 1.视图创建 2.操作数据视图也是一张表，我们可以像操作正常表一样操作视图。  3. 修改视图  方式二   检查选项由于视图是虚拟存在的表，我们对视图的操作都会反应到基表当中， 假设我们对视图表插入不符合视图where条件的数据，那么这条数据只会存在于基表当中，而我们在视图表无法获悉，这岂不是插入了一条无效数据？  1 CASCADED级联2. LOCAL本地4.视图更新
+          视图 1.视图创建 2.操作数据视图也是一张表，我们可以像操作正常表一样操作视图。  3. 修改视图  方式二   检查选项由于视图是虚拟存在的表，我们对视图的操作都会反应到基表当中， 假设我们对视图表插入不符合视图where条件的数据，那么这条数据只会存在于基表当中，而我们在视图表无法获悉，这岂不是插入了一条无效数据？  1 CASCADED级联假设v2视图是基于v1视图的，如果在v2视图创建的
         </div>
       </a>
 
@@ -694,60 +748,6 @@
       <span class="category-chain">
         
   <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/09/24/mysql/%E4%BA%8B%E5%8A%A1%E8%A7%86%E5%9B%BE/%E4%BA%8B%E5%8A%A1/" target="_self">
-          mysql-事务详解
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/24/mysql/%E4%BA%8B%E5%8A%A1%E8%A7%86%E5%9B%BE/%E4%BA%8B%E5%8A%A1/" target="_self">
-        <div>
-          事务实现MySQL 事务的实现主要依赖于以下几个核心组件和机制：  InnoDB存储引擎：MySQL事务通常是由InnoDB存储引擎支持的。InnoDB提供了事务的核心功能，如ACID（原子性、一致性、隔离性、持久性）属性。  ​    2.Redo Log（重做日志）：为了确保事务的持久性（Durability），InnoDB使用了Redo Log。在事务提交时，MySQL会将事务的修改记录写
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-24 20:22" pubdate>
-              2024-09-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
   
   
 

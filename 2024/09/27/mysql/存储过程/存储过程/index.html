@@ -19,34 +19,30 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="视图 1.视图创建 2.操作数据视图也是一张表，我们可以像操作正常表一样操作视图。  3. 修改视图  方式二   检查选项由于视图是虚拟存在的表，我们对视图的操作都会反应到基表当中， 假设我们对视图表插入不符合视图where条件的数据，那么这条数据只会存在于基表当中，而我们在视图表无法获悉，这岂不是插入了一条无效数据？  1 CASCADED级联假设v2视图是基于v1视图的，如果在v2视图创建的">
+    <meta name="description" content="存储过程 存储过程的基本操作 (1-2)1.了解存储过程存储过程是事先经过编译并存储在数据库中的一段 SQL 语句的集合，调用存储过程可以简化应用开发人员的工作，可以减少数据在数据库和应用服务器之间的传输，提高数据处理的效率。 存储过程相当于数据库 SQL 语言层面的代码封装与重用。   可以把某一业务SQL封装在存储过程中，需要用到的时候直接调用即可。类似于其他语言的函数(方法)，在使用存储过程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql-视图详解">
-<meta property="og:url" content="http://example.com/2024/09/24/mysql/%E4%BA%8B%E5%8A%A1%E8%A7%86%E5%9B%BE/%E8%A7%86%E5%9B%BE/index.html">
+<meta property="og:title" content="Mysql 存储过程">
+<meta property="og:url" content="http://example.com/2024/09/27/mysql/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="视图 1.视图创建 2.操作数据视图也是一张表，我们可以像操作正常表一样操作视图。  3. 修改视图  方式二   检查选项由于视图是虚拟存在的表，我们对视图的操作都会反应到基表当中， 假设我们对视图表插入不符合视图where条件的数据，那么这条数据只会存在于基表当中，而我们在视图表无法获悉，这岂不是插入了一条无效数据？  1 CASCADED级联假设v2视图是基于v1视图的，如果在v2视图创建的">
+<meta property="og:description" content="存储过程 存储过程的基本操作 (1-2)1.了解存储过程存储过程是事先经过编译并存储在数据库中的一段 SQL 语句的集合，调用存储过程可以简化应用开发人员的工作，可以减少数据在数据库和应用服务器之间的传输，提高数据处理的效率。 存储过程相当于数据库 SQL 语言层面的代码封装与重用。   可以把某一业务SQL封装在存储过程中，需要用到的时候直接调用即可。类似于其他语言的函数(方法)，在使用存储过程">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9e38cef8b1142a5e6cdecd852b8e0e64.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4adba23c36c21d29f7333ed1ca00b7b3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/411a3256cd81babd17c4ab734204a1c8.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1ca8bd5536cdcd2976a90d59018ebeb5.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9ad91dcd17d274ee645377d602307cc4.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/859a6bc41a2feb3335f82e2140f0460b.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2ccfaf862ac5d565e8a314d7e3d9b929.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d8c8e73ecf50f96a59d1b336079c38f3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/ee38d82249fb9ec346bbe6c3759d4922.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/cd39677ac7b14f045bc036a0340d2fd7.png">
-<meta property="article:published_time" content="2024-09-24T13:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-27T07:30:31.187Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d5fc934f5c3f21ae0bf0e11fa1da2997.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/81a4dc8fae84dad88df4b91f4819f541.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e9a127dff3080aec7ceae81b655ef24f.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/62d1ca8ad004f80a5f8f8347a08c7d33.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/98ceb5f33e3cfe4c02c460f5596a89bf.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/96b316f5e54279aa36ec0ad964538a76.png">
+<meta property="article:published_time" content="2024-09-27T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-09-27T08:16:14.127Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9e38cef8b1142a5e6cdecd852b8e0e64.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d5fc934f5c3f21ae0bf0e11fa1da2997.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>mysql-视图详解 - 逆向狗</title>
+  <title>Mysql 存储过程 - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +208,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="mysql-视图详解"></span>
+            <span id="subtitle" data-typed-text="Mysql 存储过程"></span>
           
         </div>
 
@@ -228,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-24 21:22" pubdate>
-          2024年9月24日 晚上
+        <time datetime="2024-09-27 20:22" pubdate>
+          2024年9月27日 晚上
         </time>
       </span>
     
@@ -240,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          379 字
+          666 字
         
       </span>
     
@@ -251,7 +247,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -288,38 +284,45 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">mysql-视图详解</h1>
+            <h1 id="seo-header">Mysql 存储过程</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9e38cef8b1142a5e6cdecd852b8e0e64.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h6 id="1-视图创建"><a href="#1-视图创建" class="headerlink" title="1.视图创建"></a>1.视图创建</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4adba23c36c21d29f7333ed1ca00b7b3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<h6 id="2-操作数据"><a href="#2-操作数据" class="headerlink" title="2.操作数据"></a>2.操作数据</h6><p>视图也是一张表，我们可以像操作正常表一样操作视图。</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/411a3256cd81babd17c4ab734204a1c8.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<h6 id="3-修改视图"><a href="#3-修改视图" class="headerlink" title="3. 修改视图"></a>3. 修改视图</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1ca8bd5536cdcd2976a90d59018ebeb5.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+                <h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d5fc934f5c3f21ae0bf0e11fa1da2997.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="存储过程的基本操作-1-2"><a href="#存储过程的基本操作-1-2" class="headerlink" title="存储过程的基本操作 (1-2)"></a>存储过程的基本操作 (1-2)</h4><h6 id="1-了解存储过程"><a href="#1-了解存储过程" class="headerlink" title="1.了解存储过程"></a>1.了解存储过程</h6><p>存储过程是<strong>事先经过编译并存储在数据库中的一段 SQL 语句的集合</strong>，调用存储过程可以简化应用开发人员的工作，<strong>可以减少数据在数据库和应用服务器之间的传输</strong>，提高数据处理的效率。 存储过程相当于数据库 SQL 语言层面的代码封装与重用。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/81a4dc8fae84dad88df4b91f4819f541.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p>可以把某一业务SQL封装在存储过程中，需要用到的时候直接调用即可。<br>类似于其他语言的函数(方法)，在使用存储过程中，可以传递参数，也可以接收返回值。<br>减少客户端与数据库的网络交互，提高执行效率，如果涉及到多条SQL执行，每执行一次都是一次网络传输。 而如果封装在存储过程中，我们只需要网络交互一次可能就可以了。</p>
+</blockquote>
+<h6 id="2-存储过程创建注意事项"><a href="#2-存储过程创建注意事项" class="headerlink" title="2.存储过程创建注意事项"></a>2.存储过程创建注意事项</h6><p>分号错误</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e9a127dff3080aec7ceae81b655ef24f.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>通过关键字 <code>delimiter</code><strong>重新指定SQL语句的结束符</strong>,</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/62d1ca8ad004f80a5f8f8347a08c7d33.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="进阶使用"><a href="#进阶使用" class="headerlink" title="进阶使用"></a>进阶使用</h4><h5 id="1-变量探究"><a href="#1-变量探究" class="headerlink" title="1.变量探究"></a>1.变量探究</h5><p>系统变量</p>
+<p>系统变量 是MySQL服务器提供，属于服务器层面，其中又分为全局变量、会话变量</p>
+<ul>
+<li>全局变量(<code>GLOBAL</code>): 设置后针对于所有的会话生效</li>
+<li>会话变量(<code>SESSION</code>): 只对当前会话生效，在另外一个会话窗口就不生效了</li>
+<li>mysql服务<strong>重新启动之后，所设置的全局参数会失效</strong>，要想不失效，可以在 <code>/etc/my.cnf</code> 中配置</li>
+<li><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/98ceb5f33e3cfe4c02c460f5596a89bf.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+</ul>
+<p>用户自定义变量</p>
+<p>用户根据需要自己定义的变量，可以不提前声明直接使用（返回null），在用的时候直接用 “<code>@变量名</code>” 就可以。其作用域为当前连接。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 赋值时，可以使用 = ，也可以使用 := </span><br><span class="hljs-keyword">SET</span> <span class="hljs-variable">@var_name</span> <span class="hljs-operator">=</span> expr [, <span class="hljs-variable">@var_name</span> <span class="hljs-operator">=</span> expr] ... ; <br><span class="hljs-keyword">SET</span> <span class="hljs-variable">@var_name</span> :<span class="hljs-operator">=</span> expr [, <span class="hljs-variable">@var_name</span> :<span class="hljs-operator">=</span> expr] ... ;<br><br><span class="hljs-comment">-- ===使用示例===</span><br><span class="hljs-keyword">set</span> <span class="hljs-variable">@test1</span> :<span class="hljs-operator">=</span> <span class="hljs-number">111</span>  <span class="hljs-comment">-- 可为单个变量声明赋值</span><br><span class="hljs-keyword">set</span> <span class="hljs-variable">@test2</span> :<span class="hljs-operator">=</span> <span class="hljs-number">222</span>,<span class="hljs-variable">@test3</span><span class="hljs-operator">=</span><span class="hljs-number">333</span>  <span class="hljs-comment">-- 可为多个变量声明赋值</span><br><br></code></pre></td></tr></table></figure>
+
 <ul>
 <li>方式二</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9ad91dcd17d274ee645377d602307cc4.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<h4 id="检查选项"><a href="#检查选项" class="headerlink" title="检查选项"></a>检查选项</h4><p>由于视图是虚拟存在的表，<strong>我们对视图的操作都会反应到基表当中</strong>，</p>
-<p>假设我们对视图表插入<strong>不符合视图where条件的数据</strong>，那么这条数据只会存在于基表当中，而<strong>我们在视图表无法获悉</strong>，这岂不是插入了一条无效数据？</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/859a6bc41a2feb3335f82e2140f0460b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<h6 id="1-CASCADED级联"><a href="#1-CASCADED级联" class="headerlink" title="1 CASCADED级联"></a>1 CASCADED级联</h6><p>假设v2视图是基于v1视图的，如果在v2视图创建的时候指定了检查选项为 <code>cascaded</code>，v1视图 创建时未指定检查选项（如果指定了则继续检查上一级，以此往复）。 则在对v2进行操作执行检查时，不仅会检查v2，还会级联检查v2的关联视图v1，如果不满足条件则无法进行相关操作。</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2ccfaf862ac5d565e8a314d7e3d9b929.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d8c8e73ecf50f96a59d1b336079c38f3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<ul>
-<li><code>u2</code>插入成功</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/ee38d82249fb9ec346bbe6c3759d4922.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<ul>
-<li><code>u1</code>插入情况</li>
-<li><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/cd39677ac7b14f045bc036a0340d2fd7.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
-</ul>
-<h6 id="2-LOCAL本地"><a href="#2-LOCAL本地" class="headerlink" title="2. LOCAL本地"></a>2. LOCAL本地</h6><h4 id="4-视图更新"><a href="#4-视图更新" class="headerlink" title="4.视图更新"></a>4.视图更新</h4><p>要使视图可更新，视图中的行与基础表中的行之间必须存在一对一的关系。如果视图包含以下任何一 项，则该视图不可更新：</p>
-<p>聚合函数或窗口函数（SUM()、 MIN()、 MAX()、 COUNT()等）<br>DISTINCT<br>GROUP BY<br>HAVING<br>UNION 或者 UNION ALL<br>例如我们创建视图时使用了聚合函数，破坏了一对一关系</p>
-<p>create view stu_v_count as select count(*) from student;<br>1<br>如果我们对这个视图进行更新或插入的，将会报错。</p>
-<p>insert into stu_v_count values(10);<br>1</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-variable">@var_name</span> :<span class="hljs-operator">=</span> expr  [, <span class="hljs-variable">@var_name</span> :<span class="hljs-operator">=</span> expr] ... <br><br><span class="hljs-keyword">SELECT</span> 字段名 <span class="hljs-keyword">INTO</span> <span class="hljs-variable">@var_name</span> <span class="hljs-keyword">FROM</span> 表名;<br><br><span class="hljs-comment">-- ===使用示例===</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-variable">@test4</span> :<span class="hljs-operator">=</span> <span class="hljs-number">444</span><br><span class="hljs-keyword">SELECT</span> age <span class="hljs-keyword">INTO</span> <span class="hljs-variable">@test5</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span><span class="hljs-number">1</span>; <span class="hljs-comment">-- 需确保结果为一个</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<p>局部变量</p>
+<p>定义在局部生效的变量，访问之前，需要先使用<code>DECLARE</code>声明。<strong>可用作存储过程内的局部变量和输入参数</strong>，局部变量的<strong>范围是在其内声明的</strong><code>BEGIN ... END</code>块。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">procedure</span> 存储过程名称 ([ 参数列表 ])<br><span class="hljs-keyword">begin</span><br>    <span class="hljs-keyword">declare</span> 变量名 变量类型 [<span class="hljs-keyword">DEFAULT</span> ... ];<br>    <span class="hljs-comment">-- ....</span><br>    <span class="hljs-comment">-- SQL语句</span><br><span class="hljs-keyword">end</span>;<br><br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">-- 方式一</span><br><span class="hljs-comment">SET 变量名 = 值 ;</span><br><span class="hljs-comment">-- 方式二</span><br><span class="hljs-comment">SET 变量名 := 值 ;</span><br><span class="hljs-comment">-- 方式三</span><br><span class="hljs-comment">SELECT 字段名 INTO 变量名  FROM  表名 ... ;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/96b316f5e54279aa36ec0ad964538a76.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 
                 
               </div>
@@ -358,8 +361,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>mysql-视图详解</div>
-      <div>http://example.com/2024/09/24/mysql/事务视图/视图/</div>
+      <div>Mysql 存储过程</div>
+      <div>http://example.com/2024/09/27/mysql/存储过程/存储过程/</div>
     </div>
     <div class="license-meta">
       
@@ -371,7 +374,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月24日</div>
+          <div>2024年9月27日</div>
         </div>
       
       
@@ -403,9 +406,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E7%B4%A2%E5%BC%95/" title="Mysql 索引">
+                      <a href="/2024/09/27/mysql/sql%E4%BC%98%E5%8C%96/sql%E4%BC%98%E5%8C%96/" title="Mysql SQL优化">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Mysql 索引</span>
+                        <span class="hidden-mobile">Mysql SQL优化</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -413,8 +416,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/24/data%20structure/%E5%8F%97%E9%99%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E6%A0%88%E9%98%9F%E5%88%97/" title="数据结构-线性表-限性表-栈-队列">
-                        <span class="hidden-mobile">数据结构-线性表-限性表-栈-队列</span>
+                      <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/sql%E6%89%A7%E8%A1%8C%E8%80%97%E6%97%B6/" title="mysql执行耗时">
+                        <span class="hidden-mobile">mysql执行耗时</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
