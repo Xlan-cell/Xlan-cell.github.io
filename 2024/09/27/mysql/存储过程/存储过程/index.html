@@ -32,8 +32,15 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/62d1ca8ad004f80a5f8f8347a08c7d33.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/98ceb5f33e3cfe4c02c460f5596a89bf.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/96b316f5e54279aa36ec0ad964538a76.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d5d5d48d883f0e8825d02b19912dd7e1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/fdc98bb98a69ca12802b8b0190543fff.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/161abeed68a1f50b90748a3a4309ba00.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/11400f1726eebe19759860b613c2b24d.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4ed019020ad2479cbafa0a9df7c7ed93.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/6ead8aebc1af0bee4df72f6d0230fd86.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/368d80234ab3ce11f8a7d64050292c65.png">
 <meta property="article:published_time" content="2024-09-27T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-27T08:16:14.127Z">
+<meta property="article:modified_time" content="2024-09-28T03:56:42.742Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d5fc934f5c3f21ae0bf0e11fa1da2997.png">
@@ -236,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          666 字
+          1.8k 字
         
       </span>
     
@@ -247,7 +254,7 @@
         
         
         
-          6 分钟
+          16 分钟
         
       </span>
     
@@ -323,6 +330,102 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">procedure</span> 存储过程名称 ([ 参数列表 ])<br><span class="hljs-keyword">begin</span><br>    <span class="hljs-keyword">declare</span> 变量名 变量类型 [<span class="hljs-keyword">DEFAULT</span> ... ];<br>    <span class="hljs-comment">-- ....</span><br>    <span class="hljs-comment">-- SQL语句</span><br><span class="hljs-keyword">end</span>;<br><br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">-- 方式一</span><br><span class="hljs-comment">SET 变量名 = 值 ;</span><br><span class="hljs-comment">-- 方式二</span><br><span class="hljs-comment">SET 变量名 := 值 ;</span><br><span class="hljs-comment">-- 方式三</span><br><span class="hljs-comment">SELECT 字段名 INTO 变量名  FROM  表名 ... ;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/96b316f5e54279aa36ec0ad964538a76.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="2-if判断"><a href="#2-if判断" class="headerlink" title="2.if判断"></a>2.if判断</h5><p>根据定义的分数score变量，判定当前分数对应的分数等级。 score &gt;&#x3D; 85分，等级为优秀。 score &gt;&#x3D; 60分 且 score &lt; 85分，等级为及格。 score &lt; 60分，等级为不及格。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建存储过程</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">procedure</span> p3()<br> <span class="hljs-keyword">begin</span><br> 	<span class="hljs-comment">-- 定义变量</span><br>    <span class="hljs-keyword">declare</span> score <span class="hljs-type">int</span> <span class="hljs-keyword">default</span> <span class="hljs-number">58</span>;<br>    <span class="hljs-keyword">declare</span> <span class="hljs-keyword">result</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">10</span>);<br>    <span class="hljs-comment">-- if判断</span><br>    if score <span class="hljs-operator">&gt;=</span> <span class="hljs-number">85</span> <span class="hljs-keyword">then</span><br>        <span class="hljs-keyword">set</span> <span class="hljs-keyword">result</span> :<span class="hljs-operator">=</span> <span class="hljs-string">&#x27;优秀&#x27;</span>;<br>    elseif score <span class="hljs-operator">&gt;=</span> <span class="hljs-number">60</span> <span class="hljs-keyword">then</span><br>        <span class="hljs-keyword">set</span> <span class="hljs-keyword">result</span> :<span class="hljs-operator">=</span> <span class="hljs-string">&#x27;及格&#x27;</span>;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">set</span> <span class="hljs-keyword">result</span> :<span class="hljs-operator">=</span> <span class="hljs-string">&#x27;不及格&#x27;</span>;<br>    <span class="hljs-keyword">end</span> if;<br>    <span class="hljs-comment">-- 查看参数值</span><br>    <span class="hljs-keyword">select</span> <span class="hljs-keyword">result</span>;<br> <span class="hljs-keyword">end</span>;<br> <span class="hljs-comment">-- 调用存储过程</span><br> <span class="hljs-keyword">call</span> p3();<br><br></code></pre></td></tr></table></figure>
+
+<h5 id="3-参数"><a href="#3-参数" class="headerlink" title="3.参数"></a>3.参数</h5><p>参数的类型，主要分为以下三种：IN、OUT、INOUT。 具体的含义如下：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>IN</code></td>
+<td>表示输入参数，也就是调用时需要传入值</td>
+</tr>
+<tr>
+<td><code>OUT</code></td>
+<td>表示输出参数，也就是该参数可以作为返回值</td>
+</tr>
+<tr>
+<td><code>INOUT</code></td>
+<td>既可以作为输入参数，也可以作为输出参数</td>
+</tr>
+</tbody></table>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">-- 创建存储过程<br>-- <span class="hljs-keyword">in</span> score int 表示需要传入一个整数型的参数<br>-- <span class="hljs-keyword">out</span> <span class="hljs-keyword">result</span> varchar(<span class="hljs-number">10</span>) 表示返回一个varchar(<span class="hljs-number">10</span>)的字符串参数<br><span class="hljs-keyword">create</span> <span class="hljs-keyword">procedure</span> <span class="hljs-title function_">p4</span><span class="hljs-params">(<span class="hljs-keyword">in</span> score int, <span class="hljs-keyword">out</span> <span class="hljs-keyword">result</span> varchar(10)</span>)<br> <span class="hljs-title function_">begin</span><br>    <span class="hljs-title function_">if</span> <span class="hljs-title function_">score</span> &gt;= 85 <span class="hljs-title function_">then</span><br>        <span class="hljs-title function_">set</span> <span class="hljs-title function_">result</span> := <span class="hljs-string">&#x27;优秀&#x27;</span><span class="hljs-punctuation">;</span><br>    elseif score &gt;= <span class="hljs-number">60</span> <span class="hljs-keyword">then</span><br> <span class="hljs-keyword">set</span> <span class="hljs-keyword">result</span> := <span class="hljs-string">&#x27;及格&#x27;</span><span class="hljs-punctuation">;</span><br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">set</span> <span class="hljs-keyword">result</span> := <span class="hljs-string">&#x27;不及格&#x27;</span><span class="hljs-punctuation">;</span><br>    <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span><span class="hljs-punctuation">;</span><br> <span class="hljs-keyword">end</span><span class="hljs-punctuation">;</span><br> <br>-- 定义用户变量 @<span class="hljs-keyword">result</span>来接收返回的数据, 用户变量可以不用声明<br>-- 调用存储过程 <br>call p4(<span class="hljs-number">18</span>, @<span class="hljs-keyword">result</span>)<span class="hljs-punctuation">;</span><br>-- 查看变量值<br><span class="hljs-keyword">select</span> @<span class="hljs-keyword">result</span><span class="hljs-punctuation">;</span><br><br></code></pre></td></tr></table></figure>
+
+<h5 id="4-case-流程控制"><a href="#4-case-流程控制" class="headerlink" title="4.case 流程控制"></a>4.case 流程控制</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d5d5d48d883f0e8825d02b19912dd7e1.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="5-循环"><a href="#5-循环" class="headerlink" title="5. 循环"></a>5. 循环</h5><h6 id="1-while"><a href="#1-while" class="headerlink" title="1.while"></a>1.while</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/fdc98bb98a69ca12802b8b0190543fff.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="2-repeat"><a href="#2-repeat" class="headerlink" title="2.repeat"></a>2.repeat</h6><p>与while类似，repeat也是有条件的循环控制语句, 当满足until声明的条件的时候，则退出循环 。具体语法为：</p>
+<p><code>先执行一次</code>逻辑，然后判定<strong>UNTIL</strong>条件是否满足，如果满足，则退出。如果不满足，则继续下一次循环</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/161abeed68a1f50b90748a3a4309ba00.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="3-loop"><a href="#3-loop" class="headerlink" title="3.loop"></a>3.loop</h6><p>LOOP 也可以用来实现循环，如果不在SQL逻辑中增加退出循环的条件，可以用其来实现简单的死循环。 LOOP可以配合一下两个语句使用：</p>
+<ul>
+<li><code>LEAVE</code> ：配合循环使用，退出循环。</li>
+<li><code>ITERATE</code>：必须用在循环中，作用是跳过当前循环剩下的语句，直接进入下一次循环。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/11400f1726eebe19759860b613c2b24d.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>区别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>while</code></td>
+<td><strong>先判定条件</strong>，如果条件为true，则执行逻辑，否则不执行逻辑。</td>
+</tr>
+<tr>
+<td><code>repeat</code></td>
+<td><strong>先执行一次逻辑</strong>，然后判定UNTIL条件是否满足，如果满足，则退出。如果不满足，则继续下一次循环</td>
+</tr>
+<tr>
+<td><code>loop</code></td>
+<td>可以配合两个语句实现：死循环，退出循环，跳过剩余语句执行下一轮循环</td>
+</tr>
+</tbody></table>
+<h6 id="4-游标"><a href="#4-游标" class="headerlink" title="4.游标"></a>4.游标</h6><p>我们的变量只能存储单个查询结果<strong>，而游标（CURSOR）是用来存储查询结果集的数据类型</strong> , 在存储过程和函数中可以使用游标对结果集进行循环的处理。</p>
+<ul>
+<li>声明游标</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DECLARE</span> 游标名称 <span class="hljs-keyword">CURSOR</span> <span class="hljs-keyword">FOR</span> 查询语句;<br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>打开游标</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">OPEN</span> 游标名称;<br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>获取游标记录</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">FETCH</span> 游标名称 <span class="hljs-keyword">INTO</span> 变量 [,变量 ];<br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭游标</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CLOSE</span> 游标名称;<br></code></pre></td></tr></table></figure>
+
+<p>使用示例：根据传入的参数uage，来查询用户表tb_user中，所有的用户年龄小于等于uage的用户姓名 （name）和专业（profession），并将用户的姓名和专业插入到所创建的一张新表 (id,name,profession)中</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4ed019020ad2479cbafa0a9df7c7ed93.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>在我们调用上述存储过程的过程中，由于while循环中并没有退出条件，当游标的数据集获取完毕之后，再次获取数据，就会报错，从而终止了程序的执行。但是此时，user_pro表结构及其数据都已经插入成功了。 要想解决这个问题，就需要通过MySQL中提供的 条件处理程序 Handler 来解决</p>
+<h6 id="5-条件处理程序"><a href="#5-条件处理程序" class="headerlink" title="5. 条件处理程序"></a>5. 条件处理程序</h6><p>条件处理程序（Handler）可以用来定义在流程控制结构执行过程中遇到问题时相应的处理步骤。</p>
+<p>语法<br>DECLARE handler_action HANDLER FOR condition_value [,condition_value] …   statement;<br>1<br>handler_action 的取值：</p>
+<p>CONTINUE: 继续执行当前程序<br>EXIT: 终止执行当前程序<br>condition_value 的取值：</p>
+<p>SQLSTATE sqlstate_value: 状态码，如 02000<br>SQLWARNING: 所有以01开头的SQLSTATE代码的简写<br>NOT FOUND: 所有以02开头的SQLSTATE代码的简写<br>SQLEXCEPTION: 所有没有被SQLWARNING 或 NOT FOUND捕获的SQLSTATE代码的简写<br>我们来处理完善一下上一个案例所遇到的问题~</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/6ead8aebc1af0bee4df72f6d0230fd86.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="6-存储函数"><a href="#6-存储函数" class="headerlink" title="6.存储函数"></a>6.存储函数</h4><p>存储函数<strong>是有返回值的存储过程</strong>，存储函数的参数只能是<code>in</code>类型的。具体语法如下：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ada">CREATE  <span class="hljs-keyword">FUNCTION</span>   <span class="hljs-title">存储函数名称</span> ([ 参数列表 ])<br>RETURNS  type  [characteristic ...]<br>BEGIN<br>	<span class="hljs-comment">-- SQL语句</span><br>	<span class="hljs-keyword">RETURN</span> <span class="hljs-type">...</span>;<br><span class="hljs-keyword">END</span> ;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>DETERMINISTIC</code>：相同类型的输入参数总是产生相同类型的结果</li>
+<li><code>NO SQL</code> ：不包含 SQL 语句。</li>
+<li><code>READS SQL DATA</code>：包含读取数据的语句，但不包含写入数据的语句。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/368d80234ab3ce11f8a7d64050292c65.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>注意：在mysql8.0版本中<code>binlog</code>默认是开启的，一旦开启了，mysql就要求在定义存储过程时，需要指定 characteristic特性</p>
 
                 
               </div>
