@@ -19,26 +19,29 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="存储引擎 MyISAM是MySQL早期的默认存储引擎。它不支持事务，不支持外键，不支持行锁，但是它支持表锁，而且访问速度很快。 1.体系结构  连接层：负责处理客户端连接请求，包括本地sock通信和基于TCP&#x2F;IP的客户端&#x2F;服务端通信，支持线程池和SSL安全连接。该层负责认证、授权及安全性检查。 服务层：执行SQL接口、查询缓存、SQL解析与优化，处理跨存储引擎功能，如函数、过">
+    <meta name="description" content="触发器 1.执行器作用 2.相关语法1.创建 触发器中的SQL语句不能出现 SELECT * FROM TABLE 形式的查询 ，因为其会返回一个结果集 ，使用时会抛出错误Not allowed to return a result set from a trigger，可以使用SELECT INTO 为变量设置值。 在使用插入&#x2F;更新触发器时，由于MySQL的写锁，无法在触发器内再次定义">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql 存储引擎">
-<meta property="og:url" content="http://example.com/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/index.html">
+<meta property="og:title" content="Mysql SQL优化">
+<meta property="og:url" content="http://example.com/2024/09/29/mysql/%E8%A7%A6%E5%8F%91%E5%99%A8/%E8%A7%A6%E5%8F%91%E5%99%A8/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="存储引擎 MyISAM是MySQL早期的默认存储引擎。它不支持事务，不支持外键，不支持行锁，但是它支持表锁，而且访问速度很快。 1.体系结构  连接层：负责处理客户端连接请求，包括本地sock通信和基于TCP&#x2F;IP的客户端&#x2F;服务端通信，支持线程池和SSL安全连接。该层负责认证、授权及安全性检查。 服务层：执行SQL接口、查询缓存、SQL解析与优化，处理跨存储引擎功能，如函数、过">
+<meta property="og:description" content="触发器 1.执行器作用 2.相关语法1.创建 触发器中的SQL语句不能出现 SELECT * FROM TABLE 形式的查询 ，因为其会返回一个结果集 ，使用时会抛出错误Not allowed to return a result set from a trigger，可以使用SELECT INTO 为变量设置值。 在使用插入&#x2F;更新触发器时，由于MySQL的写锁，无法在触发器内再次定义">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2d0e1a405212168834553b0697afe31a.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5a3eb5c08370e63227fbfcdb8c84e7a1.png">
-<meta property="article:published_time" content="2024-09-26T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-25T01:41:21.699Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/435040c5d3ab07529ec0571e4230e04e.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/bf6d4998e717364090e0b0f5abb38402.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1d2b49b223780af1529a2f070a97a3fa.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0614efb1acbf4eae7fc2e356225ad288.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d339d141f23a9fe9c3f35a0364ad19e3.png">
+<meta property="article:published_time" content="2024-09-29T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-09-29T07:55:20.967Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2d0e1a405212168834553b0697afe31a.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/435040c5d3ab07529ec0571e4230e04e.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Mysql 存储引擎 - 逆向狗</title>
+  <title>Mysql SQL优化 - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Mysql 存储引擎"></span>
+            <span id="subtitle" data-typed-text="Mysql SQL优化"></span>
           
         </div>
 
@@ -220,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-26 20:22" pubdate>
-          2024年9月26日 晚上
+        <time datetime="2024-09-29 20:22" pubdate>
+          2024年9月29日 晚上
         </time>
       </span>
     
@@ -232,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          246 字
+          557 字
         
       </span>
     
@@ -243,7 +246,7 @@
         
         
         
-          3 分钟
+          5 分钟
         
       </span>
     
@@ -280,21 +283,27 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Mysql 存储引擎</h1>
+            <h1 id="seo-header">Mysql SQL优化</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2d0e1a405212168834553b0697afe31a.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><code>MyISAM</code>是MySQL早期的默认存储引擎。它不支持事务，不支持外键，不支持行锁，但是它支持表锁，而且<strong>访问速度很快</strong>。</p>
-<h6 id="1-体系结构"><a href="#1-体系结构" class="headerlink" title="1.体系结构"></a>1.体系结构</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5a3eb5c08370e63227fbfcdb8c84e7a1.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<blockquote>
-<p>连接层：负责处理客户端连接请求，包括本地sock通信和基于TCP&#x2F;IP的客户端&#x2F;服务端通信，支持线程池和SSL安全连接。该层负责认证、授权及安全性检查。</p>
-<p>服务层：执行SQL接口、查询缓存、SQL解析与优化，处理跨存储引擎功能，如函数、过程等，负责查询解析与优化。</p>
-<p>存储引擎层：负责数据的存储与提取，通过API与服务器通信，支持多种存储引擎，索引结构随引擎不同。</p>
-<p>数据存储层：将数据（如日志、索引）存储到文件系统，管理与存储引擎的交互。</p>
-<p>MySQL的架构灵活，插件式存储引擎适应多种业务场景。————————————————</p>
-</blockquote>
+                <h1 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/435040c5d3ab07529ec0571e4230e04e.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="1-执行器作用"><a href="#1-执行器作用" class="headerlink" title="1.执行器作用"></a>1.执行器作用</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/bf6d4998e717364090e0b0f5abb38402.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="2-相关语法"><a href="#2-相关语法" class="headerlink" title="2.相关语法"></a>2.相关语法</h5><h6 id="1-创建"><a href="#1-创建" class="headerlink" title="1.创建"></a>1.创建</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1d2b49b223780af1529a2f070a97a3fa.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>触发器中的SQL语句不能出现 SELECT * FROM TABLE 形式的查询 ，因为其会返回一个结果集 ，使用时会抛出错误Not allowed to return a result set from a trigger，可以使用SELECT INTO 为变量设置值。</p>
+<p><strong>在使用插入&#x2F;更新触发器时，由于MySQL的写锁，无法在触发器内再次定义对当前表的更新或插入SQL语句。</strong></p>
+<h6 id="2-查看"><a href="#2-查看" class="headerlink" title="2.查看"></a>2.查看</h6><h6 id="3-删除"><a href="#3-删除" class="headerlink" title="3.删除"></a>3.删除</h6><h5 id="日志记录添加"><a href="#日志记录添加" class="headerlink" title="日志记录添加"></a>日志记录添加</h5><p>使用触发器可以快捷的记录表数据变更日志。接下来我们通过触发器记录 user 表的数据变更日志，将变更日志插入到日志表user_logs中, 包含增加, 修改 , 删除，学习三种触发器的使用。</p>
+<p>使用方法</p>
+<h6 id="1-创建表-日志记录表"><a href="#1-创建表-日志记录表" class="headerlink" title="1.创建表+日志记录表"></a>1.创建表+日志记录表</h6><h6 id="2-创建insert触发器"><a href="#2-创建insert触发器" class="headerlink" title="2.创建insert触发器"></a>2.创建insert触发器</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">trigger</span> user_insert_trigger<br><span class="hljs-comment">-- 每次在user表执行完插入操作之后触发</span><br>after <span class="hljs-keyword">insert</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">each</span> <span class="hljs-type">row</span><br><span class="hljs-keyword">begin</span><br><span class="hljs-comment">-- 在日志表插入操作日志</span><br><span class="hljs-comment">-- 通过 new 可以获得新插入的数据行记录</span><br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> user_logs(id, operation, operate_time, operate_id, operate_params) <br><span class="hljs-keyword">VALUES</span><br>(<span class="hljs-keyword">null</span>, <span class="hljs-string">&#x27;insert&#x27;</span>, now(), new.id, concat(<span class="hljs-string">&#x27;插入的数据内容为: id=&#x27;</span>,new.id,<span class="hljs-string">&#x27;,name=&#x27;</span>,new.name, <span class="hljs-string">&#x27;, phone=&#x27;</span>,NEW.phone, <span class="hljs-string">&#x27;, email=&#x27;</span>, NEW.email, <span class="hljs-string">&#x27;, profession=&#x27;</span>, NEW.profession));<br><span class="hljs-keyword">end</span>;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0614efb1acbf4eae7fc2e356225ad288.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="3-update"><a href="#3-update" class="headerlink" title="3.update"></a>3.update</h6><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">trigger</span> user_update_trigger<br><span class="hljs-comment">-- 每次在user表执行完更新操作之后触发</span><br><span class="hljs-keyword">after</span> <span class="hljs-keyword">update</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">each</span> <span class="hljs-keyword">row</span><br><span class="hljs-keyword">begin</span><br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> user_logs(id, operation, operate_time, operate_id, operate_params) <br><span class="hljs-keyword">VALUES</span><br><span class="hljs-comment">-- 在日志表插入操作日志</span><br><span class="hljs-comment">-- 通过 new 可以获得修改之后的数据行记录</span><br><span class="hljs-comment">-- 通过 old 可以获得修改之前的数据行记录</span><br>(<span class="hljs-keyword">null</span>, <span class="hljs-string">&#x27;update&#x27;</span>, now(), <span class="hljs-built_in">new</span>.id,concat(<span class="hljs-string">&#x27;更新之前的数据: id=&#x27;</span>,<span class="hljs-built_in">old</span>.id,<span class="hljs-string">&#x27;,name=&#x27;</span>,<span class="hljs-built_in">old</span>.name, <span class="hljs-string">&#x27;, phone=&#x27;</span>, <br><span class="hljs-built_in">old</span>.phone, <span class="hljs-string">&#x27;, email=&#x27;</span>, <span class="hljs-built_in">old</span>.email, <span class="hljs-string">&#x27;, profession=&#x27;</span>, <span class="hljs-built_in">old</span>.profession,<span class="hljs-string">&#x27; | 更新之后的数据: id=&#x27;</span>,<span class="hljs-built_in">new</span>.id,<span class="hljs-string">&#x27;,name=&#x27;</span>,<span class="hljs-built_in">new</span>.name, <span class="hljs-string">&#x27;, phone=&#x27;</span>, <span class="hljs-built_in">NEW</span>.phone, <span class="hljs-string">&#x27;, email=&#x27;</span>, <span class="hljs-built_in">NEW</span>.email, <span class="hljs-string">&#x27;, profession=&#x27;</span>, <span class="hljs-built_in">NEW</span>.profession));<br><span class="hljs-keyword">end</span>;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="4-delete型触发器"><a href="#4-delete型触发器" class="headerlink" title="4.delete型触发器"></a>4.delete型触发器</h6><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">trigger</span> user_delete_trigger<br><span class="hljs-comment">-- 每次在user表执行完删除操作之后触发</span><br><span class="hljs-keyword">after</span> <span class="hljs-keyword">delete</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">each</span> <span class="hljs-keyword">row</span><br><span class="hljs-keyword">begin</span><br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> user_logs(id, operation, operate_time, operate_id, operate_params) <br><span class="hljs-keyword">VALUES</span><br><span class="hljs-comment">-- 在日志表插入操作日志</span><br><span class="hljs-comment">-- 通过 old 可以获得已经删除的数据行记录</span><br>(<span class="hljs-keyword">null</span>, <span class="hljs-string">&#x27;delete&#x27;</span>, now(), <span class="hljs-built_in">old</span>.id,concat(<span class="hljs-string">&#x27;删除之前的数据: id=&#x27;</span>,<span class="hljs-built_in">old</span>.id,<span class="hljs-string">&#x27;,name=&#x27;</span>,<span class="hljs-built_in">old</span>.name, <span class="hljs-string">&#x27;, phone=&#x27;</span>, <span class="hljs-built_in">old</span>.phone, <span class="hljs-string">&#x27;, email=&#x27;</span>, <span class="hljs-built_in">old</span>.email, <span class="hljs-string">&#x27;, profession=&#x27;</span>, <span class="hljs-built_in">old</span>.profession));<br> <span class="hljs-keyword">end</span>;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d339d141f23a9fe9c3f35a0364ad19e3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>作用:自带一个快照记录-不需要spring我们写框架</p>
 
                 
               </div>
@@ -333,8 +342,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Mysql 存储引擎</div>
-      <div>http://example.com/2024/09/26/mysql/存储引擎索引sql优化/存储引擎/</div>
+      <div>Mysql SQL优化</div>
+      <div>http://example.com/2024/09/29/mysql/触发器/触发器/</div>
     </div>
     <div class="license-meta">
       
@@ -346,7 +355,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月26日</div>
+          <div>2024年9月29日</div>
         </div>
       
       
@@ -378,9 +387,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/sql%E6%89%A7%E8%A1%8C%E8%80%97%E6%97%B6/" title="mysql执行耗时">
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">mysql执行耗时</span>
+                        <span class="hidden-mobile">最近的笔记方向</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -388,8 +397,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E7%B4%A2%E5%BC%95/" title="Mysql 索引">
-                        <span class="hidden-mobile">Mysql 索引</span>
+                      <a href="/2024/09/28/yunlan/%E4%BA%91%E5%B2%9A%E7%A7%92%E6%9D%80%E6%8A%A2%E8%B4%AD/%E7%A7%92%E6%9D%80%E6%8A%A2%E8%B4%AD/" title="云岚到家秒杀抢购">
+                        <span class="hidden-mobile">云岚到家秒杀抢购</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

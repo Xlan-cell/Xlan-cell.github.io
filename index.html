@@ -283,6 +283,60 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/09/29/mysql/%E8%A7%A6%E5%8F%91%E5%99%A8/%E8%A7%A6%E5%8F%91%E5%99%A8/" target="_self">
+          Mysql SQL优化
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/29/mysql/%E8%A7%A6%E5%8F%91%E5%99%A8/%E8%A7%A6%E5%8F%91%E5%99%A8/" target="_self">
+        <div>
+          触发器 1.执行器作用 2.相关语法1.创建 触发器中的SQL语句不能出现 SELECT * FROM TABLE 形式的查询 ，因为其会返回一个结果集 ，使用时会抛出错误Not allowed to return a result set from a trigger，可以使用SELECT INTO 为变量设置值。 在使用插入&#x2F;更新触发器时，由于MySQL的写锁，无法在触发器内再次定义
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-29 20:22" pubdate>
+              2024-09-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/09/28/yunlan/%E4%BA%91%E5%B2%9A%E7%A7%92%E6%9D%80%E6%8A%A2%E8%B4%AD/%E7%A7%92%E6%9D%80%E6%8A%A2%E8%B4%AD/" target="_self">
           云岚到家秒杀抢购
         </a>
@@ -379,39 +433,6 @@
 </span>
 
           </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/09/28/mysql/%E8%A7%A6%E5%8F%91%E5%99%A8/%E8%A7%A6%E5%8F%91%E5%99%A8/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/28/mysql/%E8%A7%A6%E5%8F%91%E5%99%A8/%E8%A7%A6%E5%8F%91%E5%99%A8/" target="_self">
-        <div>
-          触发器
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-28 12:38" pubdate>
-              2024-09-28
-            </time>
-          </div>
-        
         
         
       </div>
@@ -586,15 +607,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E7%B4%A2%E5%BC%95/" target="_self">
-          Mysql 索引
+        <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
+          Mysql 存储引擎
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E7%B4%A2%E5%BC%95/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
         <div>
-          索引 0.引用数据库除了存储数据之外，还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据， 当我们在查找数据的时候，就可以在这些数据结构上实现高级查找算法，快速查找到我们想要的数据，这种数据结构就是索引。    优势 劣势    提高数据检索的效率，降低数据库的IO成本 索引列也是要占用空间的   通过索引列对数据进行排序，降低数据排序的成本，降低CPU的消耗。 索引大大提
+          存储引擎 MyISAM是MySQL早期的默认存储引擎。它不支持事务，不支持外键，不支持行锁，但是它支持表锁，而且访问速度很快。 1.体系结构  连接层：负责处理客户端连接请求，包括本地sock通信和基于TCP&#x2F;IP的客户端&#x2F;服务端通信，支持线程池和SSL安全连接。该层负责认证、授权及安全性检查。 服务层：执行SQL接口、查询缓存、SQL解析与优化，处理跨存储引擎功能，如函数、过
         </div>
       </a>
 
@@ -640,15 +661,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
-          Mysql 存储引擎
+        <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E7%B4%A2%E5%BC%95/" target="_self">
+          Mysql 索引
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E7%B4%A2%E5%BC%95/" target="_self">
         <div>
-          存储引擎 MyISAM是MySQL早期的默认存储引擎。它不支持事务，不支持外键，不支持行锁，但是它支持表锁，而且访问速度很快。 1.体系结构  连接层：负责处理客户端连接请求，包括本地sock通信和基于TCP&#x2F;IP的客户端&#x2F;服务端通信，支持线程池和SSL安全连接。该层负责认证、授权及安全性检查。 服务层：执行SQL接口、查询缓存、SQL解析与优化，处理跨存储引擎功能，如函数、过
+          索引 0.引用数据库除了存储数据之外，还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据， 当我们在查找数据的时候，就可以在这些数据结构上实现高级查找算法，快速查找到我们想要的数据，这种数据结构就是索引。    优势 劣势    提高数据检索的效率，降低数据库的IO成本 索引列也是要占用空间的   通过索引列对数据进行排序，降低数据排序的成本，降低CPU的消耗。 索引大大提
         </div>
       </a>
 
