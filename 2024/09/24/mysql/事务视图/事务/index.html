@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/30c55ef7b7688240c3ef12043d093524.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c5f1b25ebb4c14d48080d1f0f5c2701b.png">
 <meta property="article:published_time" content="2024-09-24T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-24T09:11:37.217Z">
+<meta property="article:modified_time" content="2024-09-30T02:54:24.800Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/6e6181b34accccf653ace905a69d8652.png">
@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.7k 字
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          22 分钟
+          23 分钟
         
       </span>
     
@@ -353,13 +353,14 @@
 <li><strong>脏读</strong>：× 不会出现，事务只能读取已经提交的数据，避免了读取未提交的数据。</li>
 <li><strong>不可重复读</strong>：√ 仍然会出现，因为在一个事务中多次读取同一条记录时，其他事务可以修改并提交该记录，导致前后读取结果不同。</li>
 <li><strong>幻读</strong>：√ 仍然会出现，因为其他事务可以插入或删除符合查询条件的新记录，导致数据集的变化。</li>
+<li>在 RC 级别下，事务每次读取数据时都会获取当前最新的已提交数据的快照。也就是说，当事务在执行两次相同的查询时，如果在这两次查询之间有其他事务提交了新的数据变更，查询结果可能不同。</li>
 </ul>
 <p><strong>如何解决脏读</strong>：通过<strong>只允许读取已提交的数据</strong>，避免了脏读问题。换句话说，事务只能看到其他事务已经提交的结果，而不是中途修改的未提交数据。</p>
 </blockquote>
 <h6 id="3-Repeatable-Read（可重复读，MySQL默认隔离级别）"><a href="#3-Repeatable-Read（可重复读，MySQL默认隔离级别）" class="headerlink" title="3. Repeatable Read（可重复读，MySQL默认隔离级别）"></a>3. <strong>Repeatable Read（可重复读，MySQL默认隔离级别）</strong></h6><blockquote>
 <ul>
 <li><strong>脏读</strong>：× 不会出现，事务只能看到已经提交的修改。</li>
-<li><strong>不可重复读</strong>：× 不会出现，事务在其生命周期内使用一致性视图（Snapshot），即使其他事务修改并提交了数据，本事务多次读取同一条记录时，仍然会看到初始读取时的数据。<ul>
+<li><strong>不可重复读</strong>：× 不会出现，事务在其生命周期内使用一致性视图（Snapshot），即使其他事务修改并提交了数据，本事务多次读取同一条记录时，仍然会看到初始读取时的数据。—在 RR 级别下，事务在第一次读取数据时，会生成一个一致性读快照（快照的时间点是事务开始时或第一次读取时）。<ul>
 <li><strong><strong><strong>一致性视图（Snapshot）：当事务在 <code>Repeatable Read</code> 隔离级别下启动时，MySQL 会创建一个快照（Snapshot）。事务中所有的 <code>SELECT</code> 语句都会从这个快照中读取数据，而不会受到其他事务在该事务执行过程中对数据库所做的更改影响。</strong></strong></strong></li>
 </ul>
 </li>
@@ -386,7 +387,7 @@
 </ul>
 <p><strong>如何解决所有问题</strong>：</p>
 <ul>
-<li>在串行化隔离级别下，事务是<strong>串行执行</strong>的，仿佛事务是一个接一个顺序完成的，不存在并发问题。MySQL通过<strong>加锁机制</strong>保证这一点。每次读取数据时都会加锁，任何其他事务在该事务执行过程中都无法对相关数据进行修改或插入，确保了没有数据的并发修改或插入，从根本上防止了脏读、不可重复读和幻读。</li>
+<li>在串行化隔离级别下，事务是<strong>串行执行</strong>的，仿佛事务是一个接一个顺序完成的，不存在并发问题。MySQL通过<strong>加锁机制</strong> <strong>元数据锁（meta data lock）</strong>保证这一点。每次读取数据时都会加锁，任何其他事务在该事务执行过程中都无法对相关数据进行修改或插入，确保了没有数据的并发修改或插入，从根本上防止了脏读、不可重复读和幻读。</li>
 </ul>
 <p><strong>代价</strong>：由于串行化隔离级别会对所有相关数据加锁，因此并发性能大大降低，所有事务必须一个接一个地执行，无法同时进行并发操作。因此，这种隔离级别通常只在对数据一致性要求极高的场景中使用，且性能开销较大。</p>
 </blockquote>
