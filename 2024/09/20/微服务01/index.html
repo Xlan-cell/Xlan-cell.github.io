@@ -19,12 +19,12 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="微服务01 总结-微服务01 远程调用 RestTemplate-&gt;nacos-&gt;OpenFeign-&gt; 微服务02  GetWay网关-&gt;nacos进阶 微服务3 微服务保护-&gt;Sentinel-&gt;微服务事务 微服务了解1.微服务和单体服务区别单体架构-项目的文件都在同一个工程中开发-项目部署简单但是团队协作不好分工系统发布效率低系统可用性差-无分布式效果-导">
+    <meta name="description" content="微服务01 2024 10 1 更新 微服务事务的场景 cap-   ca   cp原则      Seata的模式   总结-微服务01 远程调用 RestTemplate-&gt;nacos-&gt;OpenFeign-&gt; 微服务02  GetWay网关-&gt;nacos进阶 微服务3 微服务保护-&gt;Sentinel-&gt;微服务事务 微服务了解1.微服务和单体服务区别单体架构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务Spring Cloude">
 <meta property="og:url" content="http://example.com/2024/09/20/%E5%BE%AE%E6%9C%8D%E5%8A%A101/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="微服务01 总结-微服务01 远程调用 RestTemplate-&gt;nacos-&gt;OpenFeign-&gt; 微服务02  GetWay网关-&gt;nacos进阶 微服务3 微服务保护-&gt;Sentinel-&gt;微服务事务 微服务了解1.微服务和单体服务区别单体架构-项目的文件都在同一个工程中开发-项目部署简单但是团队协作不好分工系统发布效率低系统可用性差-无分布式效果-导">
+<meta property="og:description" content="微服务01 2024 10 1 更新 微服务事务的场景 cap-   ca   cp原则      Seata的模式   总结-微服务01 远程调用 RestTemplate-&gt;nacos-&gt;OpenFeign-&gt; 微服务02  GetWay网关-&gt;nacos进阶 微服务3 微服务保护-&gt;Sentinel-&gt;微服务事务 微服务了解1.微服务和单体服务区别单体架构">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/da4945c334b905363d17af697d049ab0.png">
@@ -101,6 +101,13 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b8be56aab96f78ab8cc6280a940b9654.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c41d54b8f48ef781a5719d594365b351.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7186f713c807cd96f4f0736cfdf33eb9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001165833626.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001165844052.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001165924978.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001165947190.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001170026148.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001170311395.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001170352060.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0c45f4302dfe6ec401b7166531e8d0ee.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/13bdfa580099aaad3e6b5b6b3a658b23.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/954d7d66dc6aede16d41e72775d344aa_720.png">
@@ -120,7 +127,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0c8c093537f83c8d013dc24d35de1ca5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e527cdc2f3f935ead60411649086b841.png">
 <meta property="article:published_time" content="2024-09-20T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-22T03:37:07.245Z">
+<meta property="article:modified_time" content="2024-10-01T09:05:28.704Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1.png">
@@ -323,7 +330,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.8k 字
+          6.4k 字
         
       </span>
     
@@ -334,7 +341,7 @@
         
         
         
-          49 分钟
+          54 分钟
         
       </span>
     
@@ -376,7 +383,10 @@
             
               <div class="markdown-body">
                 
-                <h1 id="微服务01"><a href="#微服务01" class="headerlink" title="微服务01"></a>微服务01</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+                <h1 id="微服务01"><a href="#微服务01" class="headerlink" title="微服务01"></a>微服务01</h1><blockquote>
+<p>2024 10 1 更新 微服务事务的场景 cap-   ca   cp原则      Seata的模式</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1.png" srcset="/img/loading.gif" lazyload alt="1"></p>
 <p>总结-<br>微服务01</p>
 <p>远程调用 RestTemplate-&gt;nacos-&gt;OpenFeign-&gt;</p>
 <p>微服务02  GetWay网关-&gt;nacos进阶</p>
@@ -698,7 +708,29 @@
 </ul>
 </li>
 </ul>
-<h4 id="2-Seata"><a href="#2-Seata" class="headerlink" title="2.Seata"></a>2.Seata</h4><h6 id="1-Seata了解"><a href="#1-Seata了解" class="headerlink" title="1.Seata了解"></a>1.Seata了解</h6><p>分布式事务-<strong>各个单个事务直接无法感应对方的失败或者成功</strong><br>事务协调者，与多个分支事务通信，检测每个分支事务的执行状态，保证全局事务下的每一个分支事务同时成功或失败即可。大多数的分布式事务框架都是基于这个理论来实现的。<br><strong>回调检查-或者建立通信协议</strong></p>
+<h6 id="2-分布式事务场景"><a href="#2-分布式事务场景" class="headerlink" title="2.分布式事务场景"></a>2.分布式事务场景</h6><p>1,.单服务请求多数据库完成一次事务</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001165833626.png" srcset="/img/loading.gif" lazyload alt="image-20241001165833626"></p>
+<p>2.多服务请求单数据库完成一次事务</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001165844052.png" srcset="/img/loading.gif" lazyload alt="image-20241001165844052"></p>
+<p>1、跨服务完成一次事务</p>
+<p>2、跨数据源完成一次事务</p>
+<h6 id="3-Cap原则"><a href="#3-Cap原则" class="headerlink" title="3.Cap原则"></a>3.Cap原则</h6><p>CAP是 Consistency、Availability、Partition tolerance三个词语的缩写，分别表示一致性、可用性、分区容忍性。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001165924978.png" srcset="/img/loading.gif" lazyload alt="image-20241001165924978"></p>
+<p>C<strong>一致性:</strong> 向系统写一个新数据再次读取到的也一定是这个新数据。拿上图举例，请求订单服务下单，订单服务请求库存服务扣减库存，只要下单成功则库存扣减成功。</p>
+<p><strong>A可用性：</strong>任何时间都可以访问订单服务和库存服务，系统保证可用。</p>
+<p>p<strong>分区容忍性：</strong>也叫分区容错性，分布式系统在部署时服务器可能部署在不同的网络分区，比如上图中订单服务在北京，库存服务在上海，由于处于不同的网络分区如果网络通信异常就会导致节点 之间无法通信，当出现由于网络问题导致节点 之间无法通信，此时仍然是对外提供服务的这叫做满足分区容忍性。</p>
+<p><strong>CAP理论要强调在<strong><strong>分布式</strong></strong>系统中C、A、P这三点不能全部满足。</strong></p>
+<h6 id="4-CP"><a href="#4-CP" class="headerlink" title="4.CP"></a>4.CP</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001165947190.png" srcset="/img/loading.gif" lazyload alt="image-20241001165947190"></p>
+<h6 id="5-Ap"><a href="#5-Ap" class="headerlink" title="5.Ap"></a>5.Ap</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001170026148.png" srcset="/img/loading.gif" lazyload alt="image-20241001170026148"></p>
+<h6 id="6-实际场景"><a href="#6-实际场景" class="headerlink" title="6.实际场景"></a>6.实际场景</h6><p>满足CP的要求：</p>
+<p><strong>创建订单和优惠券核销要么都成功要么都失败，不能存在一个成功一个失败</strong>，如果要实现CP需要在下单和核销优惠券操作前进行一次预操作，如果预操作成功将优惠券锁定避免在执行事务期间优惠券被其它订单使用。</p>
+<p>满足AP的要求：</p>
+<p><strong>创建订单和优惠券核销要么都成功要么都失败，可以暂时存在一个成功一个失败，最终要保证数据的一致性</strong>，如果要实现AP，不需要提前锁定资源，在执行事务期间有一个失败则么另一个操作回滚即可，最终实现数据一致性。</p>
+<p>基于上边的分析，实现CP更麻烦，实现AP同样满足的需求，本项目优惠券核销操作实现AP。</p>
+<p>实现方案</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001170311395.png" srcset="/img/loading.gif" lazyload alt="image-20241001170311395"></p>
+<h4 id="2-Seata"><a href="#2-Seata" class="headerlink" title="2.Seata"></a>2.Seata</h4><h6 id="0-seata模式"><a href="#0-seata模式" class="headerlink" title="0.seata模式"></a>0.seata模式</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241001170352060.png" srcset="/img/loading.gif" lazyload alt="image-20241001170352060"></p>
+<h6 id="1-Seata了解"><a href="#1-Seata了解" class="headerlink" title="1.Seata了解"></a>1.Seata了解</h6><p>分布式事务-<strong>各个单个事务直接无法感应对方的失败或者成功</strong><br>事务协调者，与多个分支事务通信，检测每个分支事务的执行状态，保证全局事务下的每一个分支事务同时成功或失败即可。大多数的分布式事务框架都是基于这个理论来实现的。<br><strong>回调检查-或者建立通信协议</strong></p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0c45f4302dfe6ec401b7166531e8d0ee.png" srcset="/img/loading.gif" lazyload alt="0c45f4302dfe6ec401b7166531e8d0ee"></p>
 <h6 id="2-Seata部署"><a href="#2-Seata部署" class="headerlink" title="2.Seata部署"></a>2.Seata部署</h6><p>部署TC-DOCKER<br>1.<br><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/13bdfa580099aaad3e6b5b6b3a658b23.png" srcset="/img/loading.gif" lazyload alt="img"><br>2.<br><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/954d7d66dc6aede16d41e72775d344aa_720.png" srcset="/img/loading.gif" lazyload alt="img"><br>3.<br><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/47128070412f9199c201de643d226dfe.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <hr>

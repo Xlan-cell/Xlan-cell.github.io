@@ -229,6 +229,222 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/09/27/mysql/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" target="_self">
+          Mysql 存储过程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/27/mysql/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" target="_self">
+        <div>
+          存储过程 存储过程的基本操作 (1-2)1.了解存储过程存储过程是事先经过编译并存储在数据库中的一段 SQL 语句的集合，调用存储过程可以简化应用开发人员的工作，可以减少数据在数据库和应用服务器之间的传输，提高数据处理的效率。 存储过程相当于数据库 SQL 语言层面的代码封装与重用。   可以把某一业务SQL封装在存储过程中，需要用到的时候直接调用即可。类似于其他语言的函数(方法)，在使用存储过程
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-27 20:22" pubdate>
+              2024-09-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/sql%E6%89%A7%E8%A1%8C%E8%80%97%E6%97%B6/" target="_self">
+          mysql执行耗时
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/sql%E6%89%A7%E8%A1%8C%E8%80%97%E6%97%B6/" target="_self">
+        <div>
+          mysql执行耗时 1.sql执行频率  模糊匹配    ，我们可以查看到当前数据库到底是以查询为主，还是以增删改为主，从而为数据库优化提供参考依据。 如果是以查询为主，那么就要考虑对数据库的索引进行优化了。 2.慢日志开启 慢查询日志记录了执行时间超过指定参数（long_query_time，单位：秒，默认10秒）的所有 SQL语句的日志。 MySQL的慢查询日志默认没有开启，需要我们手动的开启
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-26 20:22" pubdate>
+              2024-09-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
+          Mysql 存储引擎
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
+        <div>
+          存储引擎 MyISAM是MySQL早期的默认存储引擎。它不支持事务，不支持外键，不支持行锁，但是它支持表锁，而且访问速度很快。 1.体系结构  连接层：负责处理客户端连接请求，包括本地sock通信和基于TCP&#x2F;IP的客户端&#x2F;服务端通信，支持线程池和SSL安全连接。该层负责认证、授权及安全性检查。 服务层：执行SQL接口、查询缓存、SQL解析与优化，处理跨存储引擎功能，如函数、过
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-26 20:22" pubdate>
+              2024-09-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E7%B4%A2%E5%BC%95/" target="_self">
+          Mysql 索引
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E7%B4%A2%E5%BC%95/" target="_self">
+        <div>
+          索引 0.引用数据库除了存储数据之外，还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据， 当我们在查找数据的时候，就可以在这些数据结构上实现高级查找算法，快速查找到我们想要的数据，这种数据结构就是索引。    优势 劣势    提高数据检索的效率，降低数据库的IO成本 索引列也是要占用空间的   通过索引列对数据进行排序，降低数据排序的成本，降低CPU的消耗。 索引大大提
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-26 20:22" pubdate>
+              2024-09-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/09/24/mysql/%E4%BA%8B%E5%8A%A1%E8%A7%86%E5%9B%BE/%E8%A7%86%E5%9B%BE/" target="_self">
           mysql-视图详解
         </a>
@@ -499,60 +715,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/09/22/mysql/%E5%9F%BA%E7%A1%80/SQL%E5%85%A5%E9%97%A8(%E4%B8%80)/" target="_self">
-          Sql新手入门 01
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/22/mysql/%E5%9F%BA%E7%A1%80/SQL%E5%85%A5%E9%97%A8(%E4%B8%80)/" target="_self">
-        <div>
-          Sql新手入门 01前言本篇大部分内容来自csdn  https://blog.csdn.net/m0_66570338/article/details/131730913 我对此进行修改-     0.Sql分类SQL语句，根据其功能，主要分为四类：DDL、DML、DQL、DCL。 分类	全称	说明DDL	Data Definition Language	数据定义语言，用来定义数据库对象(数据库
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-22 20:22" pubdate>
-              2024-09-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/2024/09/22/mysql/%E5%9F%BA%E7%A1%80/SQL%E5%85%A5%E9%97%A8(2)/" target="_self">
           Sql新手入门 02
         </a>
@@ -601,173 +763,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/09/21/Dr%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%BF%87%E6%BB%A4%E8%B8%A2%E5%87%BA/" target="_self">
-          Dr自动踢人
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/21/Dr%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%BF%87%E6%BB%A4%E8%B8%A2%E5%87%BA/" target="_self">
-        <div>
-          ps:由于校园网经常有人用，对此写了个白名单踢人爬虫。外加循环登录，和一个加密参数v
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-21 20:22" pubdate>
-              2024-09-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%88%AC%E8%99%AB/" class="category-chain-item">爬虫</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/09/21/%E4%BA%91%E5%B2%9A4/" target="_self">
-          云岚到家支付退款  状态机设计 03
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/21/%E4%BA%91%E5%B2%9A4/" target="_self">
-        <div>
-          支付章节 退款1.退款需求 未支付退款  支付退款   退款接口退款流程-已支付退款实现技术方案取消未支付订单实现 1.手动退款  2.定时取消   取消派单中的订单 基础代码  异步线程退款  定时器扫描退款   状态机业务状态机 1.状态机概述  项目使用状态机 1.为什么要使用状态机  2.状态机使用类  3.状态机类代码  4.状态机表  状态机持久化表  状态机快照表     测试订单状
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-21 12:14" pubdate>
-              2024-09-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/09/20/%E5%BE%AE%E6%9C%8D%E5%8A%A101/" target="_self">
-          微服务Spring Cloude
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/20/%E5%BE%AE%E6%9C%8D%E5%8A%A101/" target="_self">
-        <div>
-          微服务01 总结-微服务01 远程调用 RestTemplate-&gt;nacos-&gt;OpenFeign-&gt; 微服务02  GetWay网关-&gt;nacos进阶 微服务3 微服务保护-&gt;Sentinel-&gt;微服务事务 微服务了解1.微服务和单体服务区别单体架构-项目的文件都在同一个工程中开发-项目部署简单但是团队协作不好分工系统发布效率低系统可用性差-无分布式效果-导
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-20 20:22" pubdate>
-              2024-09-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/spring/" class="category-chain-item">spring</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
