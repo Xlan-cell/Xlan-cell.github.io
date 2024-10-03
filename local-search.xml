@@ -8,7 +8,7 @@
     <link href="/2024/11/19/%E5%A4%8D%E4%B9%A0/"/>
     <url>/2024/11/19/%E5%A4%8D%E4%B9%A0/</url>
     
-    <content type="html"><![CDATA[<p>Springcloude-&gt;各类插件-&gt;java进阶(刷题)</p><p>云岚到家-&gt;java项目场景题目</p><p>数据结构(考试)-&gt;考试完-&gt;学习完</p><p>Mysql(考试+进阶)-&gt;考试完学习完</p>]]></content>
+    <content type="html"><![CDATA[<p><strong>java项目场景题目(完成各类中间件的学习+java进阶学习</strong>)</p><p><strong>数据结构(考试)-&gt;考试完-&gt;学习完</strong></p><p><strong>mysql 刷题</strong></p>]]></content>
     
     
     <categories>
@@ -33,6 +33,25 @@
     <categories>
       
       <category>云岚到家</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>实战 登录注册</title>
+    <link href="/2024/10/03/case/%E7%99%BB%E5%BD%95%E6%A1%88%E4%BE%8B/"/>
+    <url>/2024/10/03/case/%E7%99%BB%E5%BD%95%E6%A1%88%E4%BE%8B/</url>
+    
+    <content type="html"><![CDATA[<p>ps</p><p>01案例，不想想太多，简简单单上个手</p><p>设计思路-</p><p>数据库 id 账号 密码</p><p>逻辑 -判断账号密码-给与seioon-拦截器进行判断</p><p>技术方案-</p><p>redis+SpringCache</p><p>MQ+Canal-同步数据库 </p><p>xxl-job预热缓存</p><p>调优方案</p><p>jvm-</p><p>查看堆-gc时间-查看高并发下运行时间</p><p>ps:</p><p>01案例-只需要搭建起查看时间，不需要进行各类jvm调优</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>后端实战</category>
       
     </categories>
     
