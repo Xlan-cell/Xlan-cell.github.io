@@ -19,26 +19,45 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="mysql范式在关系型数据库中，关于数据表设计的基本原则、规则就称为范式，英文名称为Normal Form，简称NF。可以理解为，一张数据表的设计结构需要满足的某种设计标准的级别。要想设计一个结构合理的关系型数据库，必须满足一定的范式 目前关系型数据库有六种常见范式，按照范式级别，从低到高分别是：第一范式（1NF）、第二范式 （2NF）、第三范式（3NF）、巴斯-科德范式（BCNF）、第四范式(4">
+    <meta name="description" content="图图的定义 a b c d e f组成顶点集边集-链接顶点的边组成 图的规则-图的每个边必须有顶点     图-的边集可以是空 图的逻辑结果应用 图的性质无向图和有向图  有向图  尾 -&gt;没有箭头头-&gt;有箭头 A-&gt;c  A弧尾  C弧头   简单图多重图 只探讨简单图   多重 不许自己加自己好友-不许重复加好友 顶点的度 入度 出度 有向图计算 顶点度的计算  顶点-顶点的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql范式">
-<meta property="og:url" content="http://example.com/2024/10/01/mysql/%E8%8C%83%E5%BC%8F/%E8%8C%83%E5%BC%8F/index.html">
+<meta property="og:title" content="数据结构-图">
+<meta property="og:url" content="http://example.com/2024/10/04/data%20structure/%E5%9B%BE/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="mysql范式在关系型数据库中，关于数据表设计的基本原则、规则就称为范式，英文名称为Normal Form，简称NF。可以理解为，一张数据表的设计结构需要满足的某种设计标准的级别。要想设计一个结构合理的关系型数据库，必须满足一定的范式 目前关系型数据库有六种常见范式，按照范式级别，从低到高分别是：第一范式（1NF）、第二范式 （2NF）、第三范式（3NF）、巴斯-科德范式（BCNF）、第四范式(4">
+<meta property="og:description" content="图图的定义 a b c d e f组成顶点集边集-链接顶点的边组成 图的规则-图的每个边必须有顶点     图-的边集可以是空 图的逻辑结果应用 图的性质无向图和有向图  有向图  尾 -&gt;没有箭头头-&gt;有箭头 A-&gt;c  A弧尾  C弧头   简单图多重图 只探讨简单图   多重 不许自己加自己好友-不许重复加好友 顶点的度 入度 出度 有向图计算 顶点度的计算  顶点-顶点的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/66b5891b241d191286f6db87f4c593df.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e7b20dde77ec3710676394c37916274d.png">
-<meta property="article:published_time" content="2024-10-01T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-01T09:23:10.936Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/19214be3c45d09940407b8c6322f29e1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b7a8db0b939dd4da7949904e9effd2ab.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/540e70ba6ea8f4383bae1be2ab0253d1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/aea691c9c97d85a4569c92a3e01d3caa.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e768e87564a1f0ffaf46241def8f8d16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/558e406be0fb79e8913871d97c993196.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/620e418d6d60ef2a8ebcd7e928bb085a.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0ff73d6e358747263936168f878ca4d8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/af418af68cb716958a4790c6c147e495.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4c63b0b865be3241750e2c81432d88ce.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/3aa2a0d6462a243daa747c659b6d0288.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/90ec4308e2c4d454e66104654a2112e9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/eb3c96e46ff13c39547c95fd3b39e191.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/bc517c509e931b20b768753113386775.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/419915ab238d666e8193aa36ebe5a5bc.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/55a99d194510bcdc954d45b3e11e0e4e.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241004150018957.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/75c56e5e5386e8aaa102ff6c307e59bb.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/687bc9622ce00d325b200fa7b814477b.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241004150427522.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c8afcc69e98643f7293b908edadaaabe.svg">
+<meta property="article:published_time" content="2024-10-04T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-10-04T07:11:58.802Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/66b5891b241d191286f6db87f4c593df.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/19214be3c45d09940407b8c6322f29e1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>mysql范式 - 逆向狗</title>
+  <title>数据结构-图 - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +223,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="mysql范式"></span>
+            <span id="subtitle" data-typed-text="数据结构-图"></span>
           
         </div>
 
@@ -220,8 +239,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-01 20:22" pubdate>
-          2024年10月1日 晚上
+        <time datetime="2024-10-04 20:22" pubdate>
+          2024年10月4日 晚上
         </time>
       </span>
     
@@ -232,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          192 字
+          207 字
         
       </span>
     
@@ -280,16 +299,63 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">mysql范式</h1>
+            <h1 id="seo-header">数据结构-图</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="mysql范式"><a href="#mysql范式" class="headerlink" title="mysql范式"></a>mysql范式</h1><p><strong>在关系型数据库中，关于数据表设计的基本原则、规则就称为范式</strong>，英文名称为<code>Normal Form</code>，简称<code>NF</code>。可以理解为，<strong>一张数据表的设计结构需要满足的某种设计标准的级别</strong>。要想设计一个结构合理的关系型数据库，必须满足一定的范式</p>
-<p>目前关系型数据库有六种常见范式，按照范式级别，从<strong>低到高</strong>分别是：<strong>第一范式</strong>（<code>1NF</code>）、<strong>第二范式</strong> （<code>2NF</code>）、<strong>第三范式</strong>（<code>3NF</code>）、<strong>巴斯-科德范式</strong>（<code>BCNF</code>）、<strong>第四范式</strong>(<code>4NF</code>）和<strong>第五范式</strong>（<code>5NF</code>，又称完美范式）。</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/66b5891b241d191286f6db87f4c593df.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e7b20dde77ec3710676394c37916274d.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<p>ps:类似于架构师了解-能提升项目的运行速度-对表字段处理，工作很难处理</p>
+                <h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h4 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/19214be3c45d09940407b8c6322f29e1.png" srcset="/img/loading.gif" lazyload alt="19214be3c45d09940407b8c6322f29e1"></p>
+<p>a b c d e f组成顶点集<br>边集-链接顶点的边组成</p>
+<p>图的规则-图的每个边必须有顶点</p>
+<img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b7a8db0b939dd4da7949904e9effd2ab.png" srcset="/img/loading.gif" lazyload alt="b7a8db0b939dd4da7949904e9effd2ab" style="zoom: 50%;" />
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/540e70ba6ea8f4383bae1be2ab0253d1.png" srcset="/img/loading.gif" lazyload alt="540e70ba6ea8f4383bae1be2ab0253d1"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/aea691c9c97d85a4569c92a3e01d3caa.png" srcset="/img/loading.gif" lazyload alt="aea691c9c97d85a4569c92a3e01d3caa"></p>
+<p>图-的边集可以是空</p>
+<h4 id="图的逻辑结果应用"><a href="#图的逻辑结果应用" class="headerlink" title="图的逻辑结果应用"></a>图的逻辑结果应用</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e768e87564a1f0ffaf46241def8f8d16.png" srcset="/img/loading.gif" lazyload alt="e768e87564a1f0ffaf46241def8f8d16"></p>
+<h4 id="图的性质"><a href="#图的性质" class="headerlink" title="图的性质"></a>图的性质</h4><h5 id="无向图和有向图"><a href="#无向图和有向图" class="headerlink" title="无向图和有向图"></a>无向图和有向图</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/558e406be0fb79e8913871d97c993196.png" srcset="/img/loading.gif" lazyload alt="558e406be0fb79e8913871d97c993196"></p>
+<p><strong><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/620e418d6d60ef2a8ebcd7e928bb085a.png" srcset="/img/loading.gif" lazyload alt="620e418d6d60ef2a8ebcd7e928bb085a" style="zoom:50%;" /></strong></p>
+<p>有向图</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0ff73d6e358747263936168f878ca4d8.png" srcset="/img/loading.gif" lazyload alt="0ff73d6e358747263936168f878ca4d8"></p>
+<p>尾 -&gt;没有箭头<br>头-&gt;有箭头</p>
+<p>A-&gt;c  A弧尾  C弧头</p>
+<img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/af418af68cb716958a4790c6c147e495.png" srcset="/img/loading.gif" lazyload alt="af418af68cb716958a4790c6c147e495" style="zoom:50%;" />
+
+<h5 id="简单图多重图"><a href="#简单图多重图" class="headerlink" title="简单图多重图"></a>简单图多重图</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4c63b0b865be3241750e2c81432d88ce.png" srcset="/img/loading.gif" lazyload alt="4c63b0b865be3241750e2c81432d88ce"></p>
+<p>只探讨简单图</p>
+<img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/3aa2a0d6462a243daa747c659b6d0288.png" srcset="/img/loading.gif" lazyload alt="3aa2a0d6462a243daa747c659b6d0288" style="zoom:33%;" />
+
+<p>多重 不许自己加自己好友-不许重复加好友</p>
+<h5 id="顶点的度-入度-出度"><a href="#顶点的度-入度-出度" class="headerlink" title="顶点的度 入度 出度"></a>顶点的度 入度 出度</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/90ec4308e2c4d454e66104654a2112e9.png" srcset="/img/loading.gif" lazyload alt="90ec4308e2c4d454e66104654a2112e9"></p>
+<p>有向图计算 顶点度的计算</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/eb3c96e46ff13c39547c95fd3b39e191.png" srcset="/img/loading.gif" lazyload alt="eb3c96e46ff13c39547c95fd3b39e191"></p>
+<h5 id="顶点-顶点的关系描述"><a href="#顶点-顶点的关系描述" class="headerlink" title="顶点-顶点的关系描述 ***"></a>顶点-顶点的关系描述 ***</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/bc517c509e931b20b768753113386775.png" srcset="/img/loading.gif" lazyload alt="bc517c509e931b20b768753113386775"></p>
+<hr>
+<hr>
+<hr>
+<hr>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/419915ab238d666e8193aa36ebe5a5bc.png" srcset="/img/loading.gif" lazyload alt="419915ab238d666e8193aa36ebe5a5bc"></p>
+<p>不是简单路径情况-a b a b d  ab都重复出现了</p>
+<hr>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/55a99d194510bcdc954d45b3e11e0e4e.png" srcset="/img/loading.gif" lazyload alt="55a99d194510bcdc954d45b3e11e0e4e"></p>
+<p>例如 无向图 F A-无穷   A-B 就是最短路径</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241004150018957.png" srcset="/img/loading.gif" lazyload alt="image-20241004150018957"></p>
+<h5 id="连通图-强连通图"><a href="#连通图-强连通图" class="headerlink" title="连通图 强连通图"></a>连通图 强连通图</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/75c56e5e5386e8aaa102ff6c307e59bb.png" srcset="/img/loading.gif" lazyload alt="75c56e5e5386e8aaa102ff6c307e59bb"></p>
+<h6 id="考点"><a href="#考点" class="headerlink" title="考点**"></a>考点**</h6><p>连通图考点</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/687bc9622ce00d325b200fa7b814477b.png" srcset="/img/loading.gif" lazyload alt="687bc9622ce00d325b200fa7b814477b"></p>
+<p>n-1性质</p>
+<img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241004150427522.png" srcset="/img/loading.gif" lazyload alt="image-20241004150427499" style="zoom:33%;" />
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c8afcc69e98643f7293b908edadaaabe.svg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>感叹号表示阶乘</p>
+<p>5!&#x3D;5×4×3×2×1&#x3D;120</p>
+<p>4&#x3D;24</p>
+<p>4</p>
+<p>6边</p>
 
                 
               </div>
@@ -308,7 +374,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
   
   
 
@@ -328,8 +394,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>mysql范式</div>
-      <div>http://example.com/2024/10/01/mysql/范式/范式/</div>
+      <div>数据结构-图</div>
+      <div>http://example.com/2024/10/04/data structure/图/</div>
     </div>
     <div class="license-meta">
       
@@ -341,7 +407,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年10月1日</div>
+          <div>2024年10月4日</div>
         </div>
       
       
@@ -373,9 +439,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/01/mysql/mysql%E7%AE%A1%E7%90%86/mysql%E7%AE%A1%E7%90%86/" title="Mysql 管理">
+                      <a href="/2024/10/09/yunlan/%E4%BA%91%E5%B2%9A%E5%88%B0%E5%AE%B6%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" title="云岚到家思维导图">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Mysql 管理</span>
+                        <span class="hidden-mobile">云岚到家思维导图</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -383,8 +449,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/01/mysql/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/Explain%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" title="Mysql 执行计划">
-                        <span class="hidden-mobile">Mysql 执行计划</span>
+                      <a href="/2024/10/04/Middleware/knife4i/knife4i/" title="knife4i">
+                        <span class="hidden-mobile">knife4i</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
