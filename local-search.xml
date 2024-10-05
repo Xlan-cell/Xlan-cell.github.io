@@ -42,25 +42,6 @@
   
   
   <entry>
-    <title>xxl-job</title>
-    <link href="/2024/10/05/Middleware/xxl-job/xxl-job/"/>
-    <url>/2024/10/05/Middleware/xxl-job/xxl-job/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    <categories>
-      
-      <category>中间件</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Redis</title>
     <link href="/2024/10/05/Middleware/redis/Redis/"/>
     <url>/2024/10/05/Middleware/redis/Redis/</url>
@@ -80,12 +61,18 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2024/10/05/case/login/"/>
-    <url>/2024/10/05/case/login/</url>
+    <title>xxl-job</title>
+    <link href="/2024/10/05/Middleware/xxl-job/xxl-job/"/>
+    <url>/2024/10/05/Middleware/xxl-job/xxl-job/</url>
     
-    <content type="html"><![CDATA[<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Login Page</title>    <style>        body {            font-family: Arial, sans-serif;            background-color: #f0f0f0;            display: flex;            justify-content: center;            align-items: center;            height: 100vh;            margin: 0;        }        .login-container {            background-color: white;            padding: 20px;            border-radius: 8px;            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);            width: 300px;        }        .login-container h2 {            text-align: center;            margin-bottom: 20px;        }        .login-container input {            width: 100%;            padding: 10px;            margin-bottom: 15px;            border: 1px solid #ccc;            border-radius: 4px;        }        .login-container button {            width: 100%;            padding: 10px;            background-color: #4CAF50;            color: white;            border: none;            border-radius: 4px;            cursor: pointer;        }        .login-container button:hover {            background-color: #45a049;        }    </style></head><body>    <div class="login-container">        <h2>Login</h2>        <input type="text" id="account" placeholder="Enter User ID" required>        <input type="password" id="password" placeholder="Enter Password" required>        <button onclick="login()">Login</button>    </div>    <script>function login() {    var account = document.getElementById("account").value;    var password = document.getElementById("password").value;    if (!account || !password) {        alert("Please fill in both fields.");        return;    }    // 构造请求URL，使用URL参数传递数据    var url = `http://localhost:8080/api/login?account=${encodeURIComponent(account)}&password=${encodeURIComponent(password)}`;    // 发送GET请求到后端API    fetch(url, {        method: "GET",        headers: {            "Content-Type": "application/json"        }    })    .then(response => response.json())    .then(result => {        if (result.success) {            alert("Login successful!");        } else {            alert("Login failed: " + result.message);        }    })    .catch(error => {        console.error("Error:", error);        alert("An error occurred during login.");    });}    </script></body></html>]]></content>
+    <content type="html"><![CDATA[]]></content>
     
+    
+    <categories>
+      
+      <category>中间件</category>
+      
+    </categories>
     
     
   </entry>
@@ -113,8 +100,8 @@
   
   <entry>
     <title>登录令牌探究(cookie)</title>
-    <link href="/2024/10/04/skill/Jwtcookieseiion%20/"/>
-    <url>/2024/10/04/skill/Jwtcookieseiion%20/</url>
+    <link href="/2024/10/04/skill/Jwtcookieseiion/"/>
+    <url>/2024/10/04/skill/Jwtcookieseiion/</url>
     
     <content type="html"><![CDATA[<h1 id="登录令牌探究-cookie"><a href="#登录令牌探究-cookie" class="headerlink" title="登录令牌探究(cookie)"></a>登录令牌探究(cookie)</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2db9fbc3e04de8bcf5bbd95f05261d8c.png" alt="2db9fbc3e04de8bcf5bbd95f05261d8c"></p><h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><p><strong>定义</strong>：Session 是服务器端用于保存用户会话状态的数据结构。在用户登录时，服务器为其创建一个 Session，并生成一个唯一的 Session ID 来标识该会话。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">   <span class="hljs-type">HttpSession</span> <span class="hljs-variable">session</span> <span class="hljs-operator">=</span> req.getSession();<br>            session.setAttribute(<span class="hljs-string">&quot;session_account&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>);<br>服务器<br></code></pre></td></tr></table></figure><p>客户端拿到的是一段令牌-后续传递到服务端-服务端会解密-</p><p><strong>存储位置</strong>：<strong>服务器端</strong>。服务器保存每个用户的 Session 数据，客户端通过 <strong>Session ID</strong> 与服务器通信。</p><p><strong>特点</strong>：</p><ul><li><strong>有状态</strong>：服务器必须存储 Session 数据，因此这种方式需要服务器管理用户的会话信息。</li><li><strong>Session ID 传递</strong>：<strong>服务器在用户登录时生成 Session ID 并发送给客户端，客户端通常通过 Cookie 来存储 Session ID，并在每次请求时自动发送给服务器。</strong></li><li><strong>安全性</strong>：由于 Session ID 存储在 Cookie 中，结合 Cookie 的安全设置（如 <code>HttpOnly</code>、<code>Secure</code>）可以提升安全性，但 Session 本身依赖服务器存储和管理。</li><li><strong>应用场景</strong>：传统 Web 应用中会话管理最常用的方式，尤其适合需要维护状态的应用。</li></ul><h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p><strong>定义</strong>：Cookie 是存储在客户端的小型数据文件，通常由服务器生成，用于在客户端和服务器之间传递信息，最常用于保存会话信息、用户偏好等。</p><p><strong>存储位置</strong>：客户端（浏览器）中，客户端每次发起请求时会自动将与请求域相关的 Cookie 发送给服务器。</p><p><strong>会话管理</strong>：Cookie 可以存储用户的 Session ID 等信息，用于维持用户的会话状态。</p><p><strong>大小限制</strong>：单个 Cookie 的大小通常限制为 4KB。</p><p><strong>安全性</strong>：Cookie 可以设置 <code>HttpOnly</code>（防止客户端 JavaScript 访问）、<code>Secure</code>（仅通过 HTTPS 传输）等安全属性。</p><p><strong>自动发送</strong>：浏览器会在每次请求时自动携带 Cookie，无需客户端手动干预。</p><p><strong>应用场景</strong>：主要用于会话管理和状态维护，常用于 Web 应用的用户登录状态保持。</p><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">if</span> (Objects.<span class="hljs-built_in">nonNull</span>(r.<span class="hljs-built_in">getData</span>())) &#123;<br>         Cookie cookie = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Cookie</span>(<span class="hljs-string">&quot;username&quot;</span>, (<span class="hljs-type">String</span>) r.<span class="hljs-built_in">getData</span>());<br>         resp.<span class="hljs-built_in">addCookie</span>(cookie);<br>     &#125;<br></code></pre></td></tr></table></figure><h4 id="session再探究"><a href="#session再探究" class="headerlink" title="session再探究"></a>session再探究</h4><p><strong>工作流程</strong></p><p>当用户登录应用时，服务器为该用户创建一个 Session 并生成一个唯一的 <strong>Session ID</strong>。</p><p><strong>Session ID</strong> 通常是一个随机生成的字符串，用于唯一标识该用户的会话。</p><p>服务器将 <strong>Session ID</strong> 和会话数据（如用户信息、权限等）存储在服务器的内存或数据库中。</p><p>服务器通过 HTTP 响应将 <strong>Session ID</strong> 发送给客户端，客户端通常会将这个 <strong>Session ID</strong> 保存在 <strong>Cookie</strong> 中。</p><p>在随后的每个请求中，客户端会将 <strong>Session ID</strong> 通过 Cookie 自动发送给服务器。</p><p>服务器接收到请求时，通过查询存储的 Session ID 来获取对应的会话数据，从而确定用户的身份。</p><p><strong>session数据查找</strong></p><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241004234535358.png" alt="image-20241004234535358"></p><p><strong>接收请求</strong>：客户端通过 Cookie 发送 <strong>Session ID</strong> 给服务器。</p><p><strong>查询服务器存储</strong>：服务器在内部的 Session 存储中查找该 <strong>Session ID</strong> 是否存在。</p><p><strong>获取会话数据</strong>：如果找到匹配的 Session ID，服务器会返回对应的会话数据（如用户身份、权限等）。</p><p><strong>处理请求</strong>：服务器根据会话数据执行相应的操作。</p><p>会话劫持问题</p><p><strong>如果另一个人获得了有效的 Session ID</strong>，他确实可以伪装成该用户登录到系统。因为 Session ID 本质上是唯一标识用户会话的凭证，获得 Session ID 的人可以在没有输入用户名和密码的情况下发送请求，服务器会认为他们是合法的用户。这种攻击通常被称为 <strong>Session Hijacking（会话劫持）</strong>。</p>]]></content>
     
@@ -169,11 +156,11 @@
   
   
   <entry>
-    <title>Mysql Er模型</title>
-    <link href="/2024/10/01/mysql/Er%E6%A8%A1%E5%9E%8B/Er%E6%A8%A1%E5%9E%8B/"/>
-    <url>/2024/10/01/mysql/Er%E6%A8%A1%E5%9E%8B/Er%E6%A8%A1%E5%9E%8B/</url>
+    <title>Mysql 管理</title>
+    <link href="/2024/10/01/mysql/mysql%E7%AE%A1%E7%90%86/mysql%E7%AE%A1%E7%90%86/"/>
+    <url>/2024/10/01/mysql/mysql%E7%AE%A1%E7%90%86/mysql%E7%AE%A1%E7%90%86/</url>
     
-    <content type="html"><![CDATA[<h1 id="Mysql-Er模型"><a href="#Mysql-Er模型" class="headerlink" title="Mysql Er模型"></a>Mysql Er模型</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/3d798c7ab8d7dfd55a274fcc0edaa1ae.png" alt="在这里插入图片描述"></p><p>ps:未了解</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Mysql管理"><a href="#Mysql管理" class="headerlink" title="Mysql管理"></a>Mysql管理</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/50e52325f000ebef03b8c0a9d406bd67.png" alt="在这里插入图片描述"></p><p>ps:不过脑子看了一遍。</p>]]></content>
     
     
     <categories>
@@ -188,11 +175,11 @@
   
   
   <entry>
-    <title>Mysql 管理</title>
-    <link href="/2024/10/01/mysql/mysql%E7%AE%A1%E7%90%86/mysql%E7%AE%A1%E7%90%86/"/>
-    <url>/2024/10/01/mysql/mysql%E7%AE%A1%E7%90%86/mysql%E7%AE%A1%E7%90%86/</url>
+    <title>Mysql Er模型</title>
+    <link href="/2024/10/01/mysql/Er%E6%A8%A1%E5%9E%8B/Er%E6%A8%A1%E5%9E%8B/"/>
+    <url>/2024/10/01/mysql/Er%E6%A8%A1%E5%9E%8B/Er%E6%A8%A1%E5%9E%8B/</url>
     
-    <content type="html"><![CDATA[<h1 id="Mysql管理"><a href="#Mysql管理" class="headerlink" title="Mysql管理"></a>Mysql管理</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/50e52325f000ebef03b8c0a9d406bd67.png" alt="在这里插入图片描述"></p><p>ps:不过脑子看了一遍。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Mysql-Er模型"><a href="#Mysql-Er模型" class="headerlink" title="Mysql Er模型"></a>Mysql Er模型</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/3d798c7ab8d7dfd55a274fcc0edaa1ae.png" alt="在这里插入图片描述"></p><p>ps:未了解</p>]]></content>
     
     
     <categories>
