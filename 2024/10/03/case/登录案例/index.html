@@ -19,18 +19,18 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ps 01案例，不想想太多，简简单单上个手 设计思路- 数据库 id 账号 密码 逻辑 -判断账号密码-给与seioon-拦截器进行判断 技术方案- redis+&#x2F;&#x2F; SpringCache下一个项目再使用 MQ+Canal-同步数据库  xxl-job预热缓存&#x2F;&#x2F; cookie 加密登录逻辑  调优方案 jvm- 查看堆-gc时间-查看高并发下运行时间 p">
+    <meta name="description" content="ps 优惠卷发布平台1.提供登录注册登录注册采用redis缓存 减缓mysql压力2.登录验证采用cookie 对ID进行aes加密，拦截器解密3.异常捕获未知异常—全部补获—发送邮箱提醒开发者4.优惠卷定时发布采用xll—job5.优惠券发布mysql redis各一份6.抢优惠卷7.优惠卷同步8.使用优惠券9.优惠券展示 01案例，不想想太多，简简单单上个手 设计思路- 数据库 id 账号 密">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实战 登录注册抢卷">
+<meta property="og:title" content="优惠卷发布平台">
 <meta property="og:url" content="http://example.com/2024/10/03/case/%E7%99%BB%E5%BD%95%E6%A1%88%E4%BE%8B/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="ps 01案例，不想想太多，简简单单上个手 设计思路- 数据库 id 账号 密码 逻辑 -判断账号密码-给与seioon-拦截器进行判断 技术方案- redis+&#x2F;&#x2F; SpringCache下一个项目再使用 MQ+Canal-同步数据库  xxl-job预热缓存&#x2F;&#x2F; cookie 加密登录逻辑  调优方案 jvm- 查看堆-gc时间-查看高并发下运行时间 p">
+<meta property="og:description" content="ps 优惠卷发布平台1.提供登录注册登录注册采用redis缓存 减缓mysql压力2.登录验证采用cookie 对ID进行aes加密，拦截器解密3.异常捕获未知异常—全部补获—发送邮箱提醒开发者4.优惠卷定时发布采用xll—job5.优惠券发布mysql redis各一份6.抢优惠卷7.优惠卷同步8.使用优惠券9.优惠券展示 01案例，不想想太多，简简单单上个手 设计思路- 数据库 id 账号 密">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c8e2f1f67aa728ad3b18a0916b36c25b.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241005111703478.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f360eea2a393757063c2caf95fe55ecc.png">
 <meta property="article:published_time" content="2024-10-03T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-05T07:09:37.721Z">
+<meta property="article:modified_time" content="2024-10-05T10:27:41.639Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c8e2f1f67aa728ad3b18a0916b36c25b.png">
@@ -39,7 +39,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>实战 登录注册抢卷 - 逆向狗</title>
+  <title>优惠卷发布平台 - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="实战 登录注册抢卷"></span>
+            <span id="subtitle" data-typed-text="优惠卷发布平台"></span>
           
         </div>
 
@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.8k 字
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          17 分钟
+          24 分钟
         
       </span>
     
@@ -281,12 +281,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">实战 登录注册抢卷</h1>
+            <h1 id="seo-header">优惠卷发布平台</h1>
             
             
               <div class="markdown-body">
                 
                 <p>ps</p>
+<p>优惠卷发布平台<br>1.提供登录注册<br>登录注册采用redis缓存 减缓mysql压力<br>2.登录验证<br>采用cookie 对ID进行aes加密，拦截器解密<br>3.异常捕获<br>未知异常—全部补获—发送邮箱提醒开发者<br>4.优惠卷定时发布<br>采用xll—job<br>5.优惠券发布<br>mysql redis各一份<br>6.抢优惠卷<br>7.优惠卷同步<br>8.使用优惠券<br>9.优惠券展示</p>
 <p>01案例，不想想太多，简简单单上个手</p>
 <p>设计思路-</p>
 <p>数据库 id 账号 密码</p>
@@ -390,10 +391,31 @@
 
 
 <h4 id="抢卷逻辑"><a href="#抢卷逻辑" class="headerlink" title="抢卷逻辑"></a>抢卷逻辑</h4><p>&#x2F;&#x2F;&#x2F;&#x2F;判断请求参数</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-meta">@Service</span><br>public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CouponRedemptionServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl&lt;CouponRedemptionMapper</span>, <span class="hljs-title">CouponRedemption&gt;</span> <span class="hljs-title">implements</span> <span class="hljs-title">ICouponRedemptionService</span> </span>&#123;<br><span class="hljs-meta">@Autowired</span><br>    <span class="hljs-type">RedisTemplate</span> redisTemplate;<br>    <span class="hljs-meta">@Override</span><br>    public <span class="hljs-type">R</span> qiangjuan(<span class="hljs-type">CouponRedemption</span> coupon) &#123;<br>        <span class="hljs-type">String</span> userId = (<span class="hljs-type">String</span>) <span class="hljs-type">RequestContextHolder</span>.getRequestAttributes().getAttribute(<span class="hljs-string">&quot;userId&quot;</span>, <span class="hljs-type">RequestAttributes</span>.<span class="hljs-type">SCOPE_REQUEST</span>);<br>        <span class="hljs-keyword">if</span> (coupon.getUserId() == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-type">R</span>.error(<span class="hljs-string">&quot;用户id不能为空&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (coupon.getCouponId() == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-type">R</span>.error(<span class="hljs-string">&quot;活动查询失败&quot;</span>);<br>        &#125;<br>        <span class="hljs-comment">//查询活动是否开始</span><br>        <span class="hljs-type">ValueOperations</span> valueOperations = redisTemplate.opsForValue();<br>        <span class="hljs-type">Object</span> o = valueOperations.get(<span class="hljs-string">&quot;coupon&quot;</span> + coupon.getCouponId());<br>        <span class="hljs-type">Coupon</span> coupon2 = <span class="hljs-keyword">new</span> <span class="hljs-type">Coupon</span>();<br>        coupon2 = (<span class="hljs-type">Coupon</span>) o;<br>        <span class="hljs-keyword">if</span> (coupon2.getStatus() == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-type">R</span>.error(<span class="hljs-string">&quot;活动未开始&quot;</span>);<br>        &#125;<br>        <span class="hljs-type">LocalDateTime</span> now = <span class="hljs-type">LocalDateTime</span>.now();<br>        <span class="hljs-keyword">if</span> (now.isBefore(coupon2.getStartTime())) &#123;<br>            <span class="hljs-type">System</span>.out.println(<span class="hljs-string">&quot;活动尚未开始&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (now.isAfter(coupon2.getEndTime())) &#123;<br>            <span class="hljs-type">System</span>.out.println(<span class="hljs-string">&quot;活动已结束&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (coupon2.getTotalStock() &lt;= <span class="hljs-number">0</span>)<br>        &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-type">R</span>.error(<span class="hljs-string">&quot;库存不足&quot;</span>);<br>        &#125;<br>        <span class="hljs-comment">//开始抢卷</span><br>        <br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
 <p>&#x2F;&#x2F;&#x2F;执行抢卷脚本</p>
+<p>eval执行lua脚本-redistempplate替换 MULTL开始redis的事务</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs lua">lua脚本<br><span class="hljs-comment">--抢卷</span><br><span class="hljs-comment">--队列-抢卷成功队列 -设计库存-修改库存表的可用库存</span><br><span class="hljs-comment">--优惠卷是否抢过</span><br><span class="hljs-keyword">local</span> couponNum=redis.call(<span class="hljs-string">&quot;HGET&quot;</span>,KEYS[<span class="hljs-number">3</span>],ARGV[<span class="hljs-number">2</span>])<br><span class="hljs-comment">-- hget 获取不到数据返回false而不是nil</span><br><span class="hljs-keyword">if</span> couponNum ~= <span class="hljs-literal">false</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">tonumber</span>(couponNum) &gt;= <span class="hljs-number">1</span><br><span class="hljs-keyword">then</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;-1&quot;</span>;<br><span class="hljs-keyword">end</span><br><span class="hljs-comment">--库存是否充足</span><br><span class="hljs-keyword">local</span> stockNum=redis.call(<span class="hljs-string">&quot;HGET&quot;</span>,KEYS[<span class="hljs-number">1</span>],ARGV[<span class="hljs-number">1</span>])<br><span class="hljs-keyword">if</span> stockNum ~=  <span class="hljs-literal">false</span> <span class="hljs-keyword">or</span>  <span class="hljs-built_in">tonumber</span>(stockNum) &lt; <span class="hljs-number">1</span><br><span class="hljs-keyword">then</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;-2&quot;</span>;<br><span class="hljs-keyword">end</span><br><span class="hljs-comment">--减库存</span><br><span class="hljs-comment">--写入抢卷成功队列</span><br><br></code></pre></td></tr></table></figure>
+
 <p>&#x2F;&#x2F;&#x2F;返回抢卷结果</p>
+<p>-1： 限领一张</p>
+<p>-2： 已抢光</p>
+<p>-3： 写入抢券成功队列失败，返回给用户为：抢券失败</p>
+<p>-4：  已抢光</p>
+<p>-5： 写入抢券同步队列失败，返回给用户为：抢券失败</p>
 <hr>
 <p>&#x2F;&#x2F;&#x2F;线程池xxl-job进行抢卷结果同步</p>
+<h4 id="崩溃一天"><a href="#崩溃一天" class="headerlink" title="崩溃一天"></a>崩溃一天</h4><p>做redis-给redis加了个序列化器-导致后续代码一直获取redis失败</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">CouponRedemptionServiceImpl</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span> <span class="hljs-type">ServiceImpl</span></span>&lt;<span class="hljs-title">CouponRedemptionMapper</span>, <span class="hljs-title">CouponRedemption</span>&gt; <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">ICouponRedemptionService</span></span> </span>&#123;<br><span class="hljs-meta">@Autowired</span><br>    RedisTemplate redisTemplate;<br><span class="hljs-comment">///@Resource(name = &quot;Lua_test01&quot;)</span><br>   <span class="hljs-comment">/// DefaultRedisScript&lt;Integer&gt; seizeCouponScript;</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> R qiangjuan(CouponRedemption coupon) &#123;<br>        <span class="hljs-keyword">String</span> userId = (<span class="hljs-keyword">String</span>) RequestContextHolder.getRequestAttributes().getAttribute(<span class="hljs-string">&quot;userId&quot;</span>, RequestAttributes.SCOPE_REQUEST);<br>        <span class="hljs-keyword">if</span> (userId == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> R.error(<span class="hljs-string">&quot;用户id不能为空&quot;</span>);<br>        &#125;<br>        coupon.setUserId(userId);<br>        <span class="hljs-keyword">if</span> (coupon.getCouponId() == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> R.error(<span class="hljs-string">&quot;活动查询失败&quot;</span>);<br>        &#125;<br>        <span class="hljs-comment">//查询活动是否开始</span><br>        <span class="hljs-comment">//  redisTemplate.opsForValue().set(&quot;coupon&quot;+coupon.getCouponCode().toString(), coupon);</span><br>        Object o= redisTemplate.opsForValue().<span class="hljs-keyword">get</span>(<span class="hljs-string">&quot;coupon&quot;</span>+coupon.getCouponId().toString());<br>       <span class="hljs-keyword">if</span>(o==<span class="hljs-literal">null</span>)<br>       &#123;<br>           <span class="hljs-keyword">return</span> R.error(<span class="hljs-string">&quot;活动查询失败&quot;</span>);<br>       &#125;<br>        Coupon coupon2 = <span class="hljs-keyword">new</span><span class="hljs-type"></span> Coupon();<br>        coupon2 = (Coupon) o;<br>        <span class="hljs-keyword">if</span> (coupon2.getStatus() == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> R.error(<span class="hljs-string">&quot;活动未开始&quot;</span>);<br>        &#125;<br>        LocalDateTime now = LocalDateTime.now();<br>        <span class="hljs-keyword">if</span> (now.isBefore(coupon2.getStartTime())) &#123;<br>            System.out.println(<span class="hljs-string">&quot;活动尚未开始&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (now.isAfter(coupon2.getEndTime())) &#123;<br>            System.out.println(<span class="hljs-string">&quot;活动已结束&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (coupon2.getTotalStock() &lt;= <span class="hljs-number">0</span>)<br>        &#123;<br>            <span class="hljs-keyword">return</span> R.error(<span class="hljs-string">&quot;库存不足&quot;</span>);<br>        &#125;<br>        <span class="hljs-comment">// 同步队列redisKey</span><br><br>        <span class="hljs-comment">// 资源库存redisKey</span><br>        int index = (int) (UUID.randomUUID().hashCode() % <span class="hljs-number">10</span>);<br>        <span class="hljs-keyword">String</span> resourceStockRedisKey = <span class="hljs-keyword">String</span>.format(<span class="hljs-string">&quot;coupon%s&quot;</span>, index);<br>        <span class="hljs-keyword">String</span> couponSeizeSyncRedisKey = <span class="hljs-keyword">String</span>.format(<span class="hljs-string">&quot;COUPON_SEIZE_SYNC_QUEUE_NAME%s&quot;</span>, index);<br>        <span class="hljs-comment">// 抢券成功列表</span><br>        <span class="hljs-keyword">String</span> couponSeizeListRedisKey = <span class="hljs-keyword">String</span>.format(<span class="hljs-string">&quot;COUPON_SEIZE%s%s&quot;</span>,coupon.getCouponId(), index);<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        List&lt;String&gt; list=new ArrayList&lt;&gt;();</span><br><span class="hljs-comment">        list.add(couponSeizeSyncRedisKey);// 同步队列redisKey</span><br><span class="hljs-comment">        list.add(resourceStockRedisKey); // 资源库存redisKey</span><br><span class="hljs-comment">        list.add(couponSeizeListRedisKey); // 抢券成功列表</span><br><span class="hljs-comment">        用户id</span><br><span class="hljs-comment">        优惠卷id</span><br><span class="hljs-comment">         */</span><br>        List&lt;<span class="hljs-keyword">String</span>&gt; list=<span class="hljs-keyword">new</span><span class="hljs-type"></span> ArrayList&lt;&gt;();<br>        list.add(couponSeizeSyncRedisKey);<span class="hljs-comment">// 同步队列redisKey</span><br>        list.add(resourceStockRedisKey); <span class="hljs-comment">// 资源库存redisKey</span><br>        list.add(couponSeizeListRedisKey); <span class="hljs-comment">// 抢券成功列表</span><br><br>        <span class="hljs-comment">//开始抢卷</span><br>        <span class="hljs-comment">//  Object execute=redisTemplate.execute(seizeCouponScript,list,userId,coupon.getCouponId());</span><br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
 <p>10&#x2F;5 内容</p>
 <h4 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h4><p><a target="_blank" rel="noopener" href="https://gitee.com/laomaodu/anli01">https://gitee.com/laomaodu/anli01</a></p>
 
@@ -434,7 +456,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>实战 登录注册抢卷</div>
+      <div>优惠卷发布平台</div>
       <div>http://example.com/2024/10/03/case/登录案例/</div>
     </div>
     <div class="license-meta">
