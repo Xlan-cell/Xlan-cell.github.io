@@ -19,22 +19,36 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Redisredis认识Redis 是一个开源（BSD 许可）的，内存 中的数据结构存储系统，它可以用作 数据库、缓存和消息中间件。     内存数据库，速度快，也支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis不仅仅支持简单的 key-value 类型的数据，同时还提供 list，set，zset，hash 等多种数据结构的存储。 Redis支持数据">
+    <meta name="description" content="Redisredis认识 Redis 是一个开源（BSD 许可）的，内存 中的数据结构存储系统，它可以用作 数据库、缓存和消息中间件。     内存数据库，速度快，也支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis不仅仅支持简单的 key-value 类型的数据，同时还提供 list，set，zset，hash 等多种数据结构的存储。 Redis支持数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis">
 <meta property="og:url" content="http://example.com/2024/10/05/Middleware/redis/Redis/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="Redisredis认识Redis 是一个开源（BSD 许可）的，内存 中的数据结构存储系统，它可以用作 数据库、缓存和消息中间件。     内存数据库，速度快，也支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis不仅仅支持简单的 key-value 类型的数据，同时还提供 list，set，zset，hash 等多种数据结构的存储。 Redis支持数据">
+<meta property="og:description" content="Redisredis认识 Redis 是一个开源（BSD 许可）的，内存 中的数据结构存储系统，它可以用作 数据库、缓存和消息中间件。     内存数据库，速度快，也支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis不仅仅支持简单的 key-value 类型的数据，同时还提供 list，set，zset，hash 等多种数据结构的存储。 Redis支持数">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007223906853.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007224006260.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/008eGmZEly1gphaysn7lbj30fw04pt8m.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241005152410795.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/008eGmZEgy1gphbh2tslvj31ku0qidvt.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241005153226509.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007223535709.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7468e1fc2e0e15018ebbd9c9677284e7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007224145594.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/008i3skNly1gt27ltgn9zj60l60fvgng02.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007224925550.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007224956276.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007230658977.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007230740088.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007230801582.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007230853382.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007231258473.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007231347023.png">
 <meta property="article:published_time" content="2024-10-05T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-05T07:47:28.768Z">
+<meta property="article:modified_time" content="2024-10-07T15:19:11.266Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/008eGmZEly1gphaysn7lbj30fw04pt8m.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007223906853.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -234,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.5k 字
+          6.3k 字
         
       </span>
     
@@ -245,7 +259,7 @@
         
         
         
-          29 分钟
+          53 分钟
         
       </span>
     
@@ -287,7 +301,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h4 id="redis认识"><a href="#redis认识" class="headerlink" title="redis认识"></a>redis认识</h4><p>Redis 是一个开源（BSD 许可）的，<strong>内存</strong> 中的数据结构存储系统，它可以用作 <strong>数据库、缓存和消息中间件</strong>。 </p>
+                <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h4 id="redis认识"><a href="#redis认识" class="headerlink" title="redis认识"></a>redis认识</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007223906853.png" srcset="/img/loading.gif" lazyload alt="image-20241007223906853"></p>
+<p>Redis 是一个开源（BSD 许可）的，<strong>内存</strong> 中的数据结构存储系统，它可以用作 <strong>数据库、缓存和消息中间件</strong>。 </p>
 <hr>
 <blockquote>
 <ul>
@@ -310,6 +325,7 @@
 <p><strong>CPU 消耗</strong></p>
 </blockquote>
 <h4 id="redis数据类型"><a href="#redis数据类型" class="headerlink" title="redis数据类型"></a>redis数据类型</h4><p>基本数据结构包含：字符串（strings）、 散列（hashes）、 列表（lists）、 集合（sets）、 有序集合（sorted sets）五种。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007224006260.png" srcset="/img/loading.gif" lazyload alt="image-20241007224006260"></p>
 <h5 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h5><p>Redis 的字符串是一个由字节组成的序列，跟 Java 里面的 <strong>ArrayList</strong> 有点类似，<strong>采用预分配冗余空间的方式来减少内存的频繁分配</strong></p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/008eGmZEly1gphaysn7lbj30fw04pt8m.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>实际分配的空间 <code>capacity</code> 一般要高于实际字符串长度 len。</p>
@@ -435,30 +451,199 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> RedisTemplate&lt;Object, Object&gt; <span class="hljs-title function_">redisTemplate</span><span class="hljs-params">(RedisConnectionFactory redisConnectionFactory)</span> &#123;<br>        <br>        RedisTemplate&lt;Object, Object&gt; redisTemplate = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RedisTemplate</span>&lt;&gt;();<br>        redisTemplate.setConnectionFactory(redisConnectionFactory);<br><br>        <span class="hljs-comment">// 使用 Jackson2JsonRedisSerialize 替换默认序列化</span><br>        <span class="hljs-type">Jackson2JsonRedisSerializer</span> <span class="hljs-variable">jackson2JsonRedisSerializer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Jackson2JsonRedisSerializer</span>(Object.class);<br>        <span class="hljs-type">ObjectMapper</span> <span class="hljs-variable">objectMapper</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectMapper</span>();<br>        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);<br>        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);<br><br>        <span class="hljs-comment">// 设置 key 和 value 的序列化规则</span><br>        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);<br>        redisTemplate.setKeySerializer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StringRedisSerializer</span>());<br>        redisTemplate.setHashKeySerializer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StringRedisSerializer</span>());<br>        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);<br>        redisTemplate.afterPropertiesSet();<br>        <span class="hljs-keyword">return</span> redisTemplate;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
-<h6 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest(classes = &#123;RedisSpringbootApplication.class&#125;)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RedisSpringbootApplicationTests</span> &#123;<br><br>    <span class="hljs-comment">// 注入模板对象</span><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> RedisTemplate redisTemplate;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testRedis</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(redisTemplate.getConnectionFactory().getConnection().ping());<br>        <span class="hljs-comment">// 获取 Redis 操作对象</span><br>        <span class="hljs-type">ValueOperations</span> <span class="hljs-variable">valueOperations</span> <span class="hljs-operator">=</span> redisTemplate.opsForValue();<br>        <span class="hljs-comment">// 插入数据</span><br>        valueOperations.set(<span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;hedon&quot;</span>);<br>        <span class="hljs-comment">// 获取数据</span><br>        <span class="hljs-type">Object</span> <span class="hljs-variable">username</span> <span class="hljs-operator">=</span> valueOperations.get(<span class="hljs-string">&quot;username&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;username = &quot;</span> + username);<br>    &#125;<br><br></code></pre></td></tr></table></figure>
+<h6 id="4-代码"><a href="#4-代码" class="headerlink" title="4.代码"></a>4.代码</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest(classes = &#123;RedisSpringbootApplication.class&#125;)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RedisSpringbootApplicationTests</span> &#123;<br><br>    <span class="hljs-comment">// 注入模板对象</span><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> RedisTemplate redisTemplate;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testRedis</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(redisTemplate.getConnectionFactory().getConnection().ping());<br>        <span class="hljs-comment">// 获取 Redis 操作对象</span><br>        redisTemplate.opsForValue().set(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> redisTemplate.opsForValue().get(<span class="hljs-string">&quot;key&quot;</span>);<br><br>        redisTemplate.opsForHash().put(<span class="hljs-string">&quot;hashKey&quot;</span>, <span class="hljs-string">&quot;field&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">hashValue</span> <span class="hljs-operator">=</span> (String) redisTemplate.opsForHash().get(<span class="hljs-string">&quot;hashKey&quot;</span>, <span class="hljs-string">&quot;field&quot;</span>);<br><br>        redisTemplate.opsForList().leftPush(<span class="hljs-string">&quot;listKey&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">listValue</span> <span class="hljs-operator">=</span> redisTemplate.opsForList().rightPop(<span class="hljs-string">&quot;listKey&quot;</span>);<br><br>        redisTemplate.opsForSet().add(<span class="hljs-string">&quot;setKey&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);<br><span class="hljs-type">Boolean</span> <span class="hljs-variable">isMember</span> <span class="hljs-operator">=</span> redisTemplate.opsForSet().isMember(<span class="hljs-string">&quot;setKey&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);<br><br>        redisTemplate.opsForZSet().add(<span class="hljs-string">&quot;zsetKey&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>, <span class="hljs-number">1.0</span>);<br>Set&lt;String&gt; zSetValues = redisTemplate.opsForZSet().range(<span class="hljs-string">&quot;zsetKey&quot;</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">1</span>);<br><br>        <br>        <br>        <br><br>    &#125;<br><br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <h3 id="RedisTemplate-的工作原理"><a href="#RedisTemplate-的工作原理" class="headerlink" title="RedisTemplate 的工作原理"></a><code>RedisTemplate</code> 的工作原理</h3><p>当你使用 <code>RedisTemplate</code> 时，具体的操作大致可以分为以下几步：</p>
 <ol>
 <li><strong>获取 Redis 连接</strong>：通过 <code>RedisConnectionFactory</code> 获取 Redis 的连接。</li>
 <li><strong>序列化键&#x2F;值</strong>：使用配置的序列化器将键和值序列化为 Redis 可以识别的格式（如字符串或二进制数据）。</li>
-<li><strong>执行 Redis 命令</strong>：通过底层的 Redis 客户端库（如 Jedis 或 Lettuce）向 Redis 服务器发送命令。</li>
+<li><strong>执行 Redis 命令</strong>：通过底层的 Redis 客户端库（如 <strong>Jedis</strong> 或 <strong>Lettuce</strong>）向 Redis 服务器发送命令。</li>
 <li><strong>反序列化返回数据</strong>：Redis 返回的结果通过反序列化器转换回 Java 对象供应用使用。</li>
 </ol>
 </blockquote>
 <blockquote>
 <ul>
 <li><pre><code class="hljs">RedisTemplate
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs clean"><br>   本质上依赖于底层的 Redis 客户端库，与 Redis 服务器进行通信。Spring Data Redis 支持多个 Redis 客户端，例如：<br><br>  - **Jedis**：一个常用的 Redis Java 客户端，适用于传统阻塞式操作。<br>  - **Lettuce**：一个支持异步和同步通信的非阻塞 Redis 客户端，默认用于 Spring Data Redis。<br><br>当我们使用 `RedisTemplate` 进行操作时，它会调用 Redis 客户端库的 API 来与 Redis 服务器通信。<br><br>###### <span class="hljs-number">5.</span>reids配合日期配置<br><br><span class="hljs-number">1.</span>redis配置<br><br></code></pre></td></tr></table></figure>
+@Configuration
+public class RedisConfig&lt;V&gt; &#123;
 </code></pre>
-<p> 本质上依赖于底层的 Redis 客户端库，与 Redis 服务器进行通信。Spring Data Redis 支持多个 Redis 客户端，例如：</p>
-<ul>
-<li><strong>Jedis</strong>：一个常用的 Redis Java 客户端，适用于传统阻塞式操作。</li>
-<li><strong>Lettuce</strong>：一个支持异步和同步通信的非阻塞 Redis 客户端，默认用于 Spring Data Redis。</li>
-</ul>
 </li>
 </ul>
-<p>当我们使用 <code>RedisTemplate</code> 进行操作时，它会调用 Redis 客户端库的 API 来与 Redis 服务器通信。</p>
 </blockquote>
+<pre><code class="hljs">@Autowired
+private RedisProperties redisProperties;
+
+@Bean
+public LettuceConnectionFactory connectionFactory() &#123;
+    RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
+    config.setHostName(redisProperties.getHost());
+    config.setPort(redisProperties.getPort());
+    return new LettuceConnectionFactory(config);
+&#125;
+@Bean
+public RedisTemplate&lt;String, V&gt; redisTemplate(RedisConnectionFactory factory) &#123;
+    RedisTemplate&lt;String, V&gt; template = new RedisTemplate&lt;&gt;();
+    template.setConnectionFactory(factory);
+    // 设置key的序列化方式
+    template.setKeySerializer(RedisSerializer.string());
+    // 设置value的序列化方式
+    template.setValueSerializer(RedisSerializer.json());
+    // 设置hash的key的序列化方式
+    template.setHashKeySerializer(RedisSerializer.string());
+    // 设置hash的value的序列化方式
+    template.setHashValueSerializer(RedisSerializer.json());
+    template.afterPropertiesSet();
+    return template;
+&#125;
+</code></pre>
+<p>}</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><br><span class="hljs-number">2.</span>类<br><br>```java<br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@EqualsAndHashCode(callSuper = false)</span><br><span class="hljs-meta">@Accessors(chain = true)</span><br><span class="hljs-meta">@TableName(<span class="hljs-string">&quot;coupon&quot;</span>)</span><br><span class="hljs-meta">@ApiModel(value=<span class="hljs-string">&quot;Coupon对象&quot;</span>, description=<span class="hljs-string">&quot;&quot;</span>)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Coupon</span> <span class="hljs-title">implements</span> <span class="hljs-title">Serializable</span> &#123;<br>    <span class="hljs-keyword">private</span> static <span class="hljs-keyword">final</span> long serialVersionUID = <span class="hljs-number">1L</span>;<br>    <span class="hljs-meta">@TableId(value = <span class="hljs-string">&quot;id&quot;</span>, type = IdType.AUTO)</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">Long</span> id;<br><br>    <span class="hljs-meta">@TableField(<span class="hljs-string">&quot;start_time&quot;</span>)</span><br>    <span class="hljs-meta">@JsonFormat(pattern = <span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>, timezone = <span class="hljs-string">&quot;GMT+8&quot;</span>)</span><br>    <span class="hljs-meta">@DateTimeFormat(pattern = <span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>)</span><br>    <span class="hljs-keyword">private</span> Date  startTime;<br><br>    <span class="hljs-meta">@TableField(<span class="hljs-string">&quot;end_time&quot;</span>)</span><br>    <span class="hljs-meta">@JsonFormat(pattern = <span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>, timezone = <span class="hljs-string">&quot;GMT+8&quot;</span>)</span><br>    <span class="hljs-meta">@DateTimeFormat(pattern = <span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>)</span><br>    <span class="hljs-keyword">private</span> Date endTime;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><h6 id="1-缓存方式选择"><a href="#1-缓存方式选择" class="headerlink" title="1.缓存方式选择"></a>1.缓存方式选择</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007223535709.png" srcset="/img/loading.gif" lazyload alt="image-20241007223535709"></p>
+<p>字符串-需要序列化适合小数据-拿取需要取出所有字符串-大数据麻烦</p>
+<p>哈希-拿去根据key拿去-不需要序列化-适合大数据</p>
+<h6 id="2-数据类型支持缓存"><a href="#2-数据类型支持缓存" class="headerlink" title="2.数据类型支持缓存"></a>2.数据类型支持缓存</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/7468e1fc2e0e15018ebbd9c9677284e7.png" srcset="/img/loading.gif" lazyload alt="7468e1fc2e0e15018ebbd9c9677284e7"></p>
+<h5 id="缓存异常解决"><a href="#缓存异常解决" class="headerlink" title="缓存异常解决"></a>缓存异常解决</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007224145594.png" srcset="/img/loading.gif" lazyload alt="image-20241007224145594"></p>
+<h6 id="1-缓存击穿"><a href="#1-缓存击穿" class="headerlink" title="1.缓存击穿"></a>1.缓存击穿</h6><p>缓存击穿是指缓存中没有但数据库中有的数据<strong>（一般是缓存时间到期）</strong>，这时由于并发用户特别多，同时读缓存没读到数据，又同时去数据库去取数据，引起数据库压力瞬间增大，造成过大压力。</p>
+<ol>
+<li><p>设置热点数据永远不过期。</p>
+</li>
+<li><p>设置随机过期时间-不会一下子大家一下到期</p>
+</li>
+<li><p><strong>读mysql数据库-加互斥锁</strong></p>
+<blockquote>
+<p>理论上如果能根据 key 值加锁就更好了，就是线程 A 从数据库取 key1 的数据并不妨碍线程 B 取 key2 的数据， –优化方向</p>
+<p><strong>—-要做好降级处理哦</strong></p>
+</blockquote>
+<p><strong>4.提前缓存预热-每天预热多少条数据-使用游标</strong></p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/008i3skNly1gt27ltgn9zj60l60fvgng02.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h6 id="2-缓存穿透"><a href="#2-缓存穿透" class="headerlink" title="2.缓存穿透"></a>2.缓存穿透</h6><blockquote>
+<p>当查询缓存是无此 key 对应的值，后去数据库查询，数据库有值时存入缓存无值时返回无此值，但再一次查此 key 是还是一样的结果，但大量的访问此 key 是对数据库会造成更大的压力。</p>
+</blockquote>
+<p>缓存空值-第一次查mysql后无数据-设置较低有效期(防止对方进行攻击-不建议)</p>
+<p><strong>布隆过滤器</strong></p>
+<ul>
+<li><p>当客户端进行查询时，先经过布隆过滤器，判断要查询的数据 key 是否在布隆数组当中，如果可能存在，则查询数据库，如果不可能存在，则返回空。</p>
+</li>
+<li><blockquote>
+<p>布隆过滤器（Bloom Filter）是一种数据结构，用于快速判断一个元素是否属于一个集合中。</p>
+<p>它使用多个Hash函数将一个元素映射成一个位阵列（Bit array）中的一个点，将Bit array理解为一个二进制数组，数组元素是0或1。</p>
+<p>当一个元素加入集合时，通过N个散列函数将这个元素映射到一个Bit array中的N个点，把它们设置为1。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007224925550.png" srcset="/img/loading.gif" lazyload alt="image-20241007224925550"></p>
+<blockquote>
+<p>检索某个元素时再通过这N个散列函数对这个元素进行映射，根据映射找到具体位置的元素，如果这些位置有任何一个0，则该元素一定不存在，如果都是1很可能存在误判。</p>
+<p>**哈希函数的基本特性：</p>
+<p>同一个数使用同一个哈希函数计算哈希值，其哈希值总是一样的。</p>
+<p>对不同的数用相同的哈希函数计算哈希值，其哈希值可能一样，这称为哈希冲突。</p>
+<p>哈希函数通常是单向的不可逆的，即从哈希值不能逆向推导出原始输入。这使得哈希函数适用于加密和安全应用。</p>
+<p>为什么存在哈希误判</p>
+<p>主要原因是哈希冲突。布隆过滤器使用多个哈希函数将输入的元素映射到位数组中的多个位置，当多个不同的元素通过不同的哈希函数映射到相同的位数组位置时就发生了哈希冲突。</p>
+<p>由于哈希函数的有限性，不同的元素可能会映射到相同的位置上，这种情况下即使元素不在布隆过滤器中可能产生误判，即布隆过滤器判断元素在集合中。</p>
+<p><strong>如何降低误判率？</strong></p>
+<p>增加Bit array空间，减少哈希冲突，优化散列函数，使用更多的散列函数。</p>
+</blockquote>
+<hr>
+<p>使用</p>
+<p>将要查询的元素通过N个散列函数提前全部映射到Bit array中，比如：查询服务信息，需要将全部服务的id提前映射到Bit array中，当去查询元素是否在数据库存在时从布隆过滤器查询即可，如果哈希函数返回0则表示肯定不存在。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007224956276.png" srcset="/img/loading.gif" lazyload alt="image-20241007224956276"></p>
+<blockquote>
+<p>布隆过滤器的优点是：二进制数组占用空间少，插入和查询效率高效。</p>
+<p>缺点是存在误判率，并且删除困难，因为同一个位置由于哈希冲突可能存在多个元素，删除某个元素可能删除了其它元素。</p>
+<p>使用场景</p>
+<p>1、海量数据去重，比如URL去重，搜索引擎爬虫抓取网页，使用布隆过滤器可以快速判定一个URL是否已经被爬取过，避免重复爬取。</p>
+<p>2、垃圾邮件过滤：使用布隆过滤器可以用于快速判断一个邮件地址是否是垃圾邮件发送者，对于海量的邮件地址，布隆过滤器可以提供高效的判定。</p>
+<p>3、安全领域：在网络安全中，布隆过滤器可以用于检查一个输入值是否在黑名单中，用于快速拦截一些潜在的恶意请求。</p>
+<p>4、避免缓存穿透：通过布隆过滤器判断是否不存在，如果不存在则直接返回。</p>
+</blockquote>
+<p>实现</p>
+<p>使用redit的bitmap位图结构实现。</p>
+<p>使用redisson实现。</p>
+<p>使用google的Guava库实现。</p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs sas">void test1()<br> &#123;<br>     BloomFilter&lt;String&gt; bloomFilter = BloomFilter.<span class="hljs-keyword">create</span>(Funnels.stringFunnel(Charset.defaultCharset()), 1000, 0.01);<br><br>     // 添加元素到布隆过滤器<br>     bloomFilter.<span class="hljs-meta">put</span>(<span class="hljs-string">&quot;example1&quot;</span>);<br>     bloomFilter.<span class="hljs-meta">put</span>(<span class="hljs-string">&quot;example2&quot;</span>);<br>     bloomFilter.<span class="hljs-meta">put</span>(<span class="hljs-string">&quot;example3&quot;</span>);<br><br>     // 测试元素是否在布隆过滤器中<br>     System.<span class="hljs-keyword">out</span>.printl<span class="hljs-meta">n</span>(bloomFilter.mightContai<span class="hljs-meta">n</span>(<span class="hljs-string">&quot;example1&quot;</span>)); // true<br>     System.<span class="hljs-keyword">out</span>.printl<span class="hljs-meta">n</span>(bloomFilter.mightContai<span class="hljs-meta">n</span>(<span class="hljs-string">&quot;example4&quot;</span>)); // false<br> &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="3-缓存雪崩"><a href="#3-缓存雪崩" class="headerlink" title="3.缓存雪崩"></a>3.缓存雪崩</h6><p>缓存雪崩是缓存中大量key失效后当高并发到来时导致大量请求到数据库，瞬间耗尽数据库资源，导致数据库无法使用。</p>
+<p>比如对某信息设置缓存过期时间为30分钟，在大量请求同时查询该类信息时，此时就会有大量的同类信息存在相同的过期时间，一旦失效将同时失效，造成雪崩问题。</p>
+<p>   1.雪崩后关闭外网服务，对数据库 <strong>预热缓存</strong> 再开启外网服务。</p>
+<ol>
+<li><strong>将缓存的 key 的到期时间设置为不同个的时间，避免同一个时间段大规模的缓存失效。</strong></li>
+<li>将缓存备份。</li>
+<li><strong>如果缓存数据库是分布式部署，将热点数据均匀分布在不同搞得缓存数据库中。</strong></li>
+<li><strong>设置热点数据永远不过期。</strong></li>
+</ol>
+<h6 id="4-缓存淘汰"><a href="#4-缓存淘汰" class="headerlink" title="4.缓存淘汰"></a>4.缓存淘汰</h6><p>Redis 的最大缓存、主键失效、淘汰机制等参数都是通过 <code>redis.conf</code> 配置文件来配置的。</p>
+<p>通过设置最大缓存-还有淘汰机制-减少无效数据</p>
+<h5 id="缓存不一致问题"><a href="#缓存不一致问题" class="headerlink" title="缓存不一致问题"></a>缓存不一致问题</h5><h6 id="1-缓存不一致问题"><a href="#1-缓存不一致问题" class="headerlink" title="1.缓存不一致问题"></a>1.缓存不一致问题</h6><p>缓存不一致问题是指当发生数据变更后该数据在数据库和缓存中是不一致的，此时查询缓存得到的并不是与数据库一致的数据。</p>
+<p>写数据库和写缓存导致不一致称为<strong>双写不一致</strong>，比如：先更新数据库成功了，更新缓存时失败了，最终导致不一致。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007230658977.png" srcset="/img/loading.gif" lazyload alt="image-20241007230658977"></p>
+<p>CPU划分时间片</p>
+<p>线程1 写数据库-写完 key 123</p>
+<p>此时cpu划分时间片到线程2</p>
+<p>线程2-写数据-写完-写redis写完 key 456</p>
+<p>线程1继续执行-直接替换redis缓存 导致缓存不一致问题-key123</p>
+<p>先缓存后数据 照样线程安全问题</p>
+<p>数据库 key456</p>
+<p>redis key123</p>
+<h6 id="解决方案-1-分布式锁"><a href="#解决方案-1-分布式锁" class="headerlink" title="解决方案-1.分布式锁"></a>解决方案-1.分布式锁</h6><p>将缓存-和数据库操作 同时上锁</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007230740088.png" srcset="/img/loading.gif" lazyload alt="image-20241007230740088"></p>
+<p>线程1申请分布式锁，拿到锁。此时其它线程无法获取同一把锁。</p>
+<p>线程1写数据库，写缓存，操作完成释放锁。</p>
+<p>线程2申请分布锁成功，写数据库，写缓存。</p>
+<p>对双写的操作每个线程顺序执行。</p>
+<p>对操作异常问题仍需要解决：写数据库成功写缓存失败了，数据库需要回滚，此时就需要使用分布式事务组件。</p>
+<p><strong>使用<strong><strong>分布式锁</strong></strong>解决双写一致性不仅性能低下，复杂度增加。</strong></p>
+<h6 id="2-延迟双删"><a href="#2-延迟双删" class="headerlink" title="2.延迟双删"></a>2.延迟双删</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007230801582.png" srcset="/img/loading.gif" lazyload alt="image-20241007230801582"></p>
+<p><strong>主从复制还没完成-线程2就去读了-导致读了旧数据</strong>-只要不更新-后面的人都读旧数据-出错</p>
+<h6 id="3-最终一致"><a href="#3-最终一致" class="headerlink" title="3.最终一致"></a>3.最终一致</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007230853382.png" srcset="/img/loading.gif" lazyload alt="image-20241007230853382"></p>
+<blockquote>
+<p>延迟多长时间呢？</p>
+<p>延迟主数据向从数据库同步的时间间隔，如果延迟时间设置不合理也会导致数据不一致。</p>
+<p>—定时器删除缓存最好—</p>
+<p>也许有人还能查询到旧数据-</p>
+<p>只要过了删除时间</p>
+<p>有人再去查-那么就能保证肯定拿到的新缓存数据</p>
+</blockquote>
+<h6 id="4-Canal-Mq方案"><a href="#4-Canal-Mq方案" class="headerlink" title="4.Canal Mq方案"></a>4.Canal Mq方案</h6><p>延迟双删的目的也是为了保证最终一致性，即允许缓存短暂不一致，最终保证一致性。</p>
+<p>保证最终一致性的方案有很多，比如：通过MQ、Canal、定时任务都可以实现。</p>
+<p>Canal是一个数据同步工具，读取MySQL的binlog日志拿到更新的数据，再通过MQ发送给异步同步程序，最终由异步同步程序写到redis。<strong>此方案适用于对数据实时性有一定要求的场景。</strong></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007231258473.png" srcset="/img/loading.gif" lazyload alt="image-20241007231258473"></p>
+<p>线程1写数据库</p>
+<p><strong>canal读取binlog日志，将数据变化日志写入mq</strong></p>
+<p>同步程序监听mq接收到数据变化的消息</p>
+<p>同步程序解析消息内容写入redis，写入redis成功正常消费完成，消息从mq删除。</p>
+<h6 id="5-定时器解决"><a href="#5-定时器解决" class="headerlink" title="5.定时器解决"></a>5.定时器解决</h6><p>专门启动一个数据同步任务定时读取数据同步到redis，此方式适用于对数据实时性要求不强更新不频繁的数据。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241007231347023.png" srcset="/img/loading.gif" lazyload alt="image-20241007231347023"></p>
+<p>从思路来看-定时器和Canal差不多 但是别人更节省cpu资源</p>
+<h4 id="Redis使用场景"><a href="#Redis使用场景" class="headerlink" title="Redis使用场景"></a>Redis使用场景</h4><h6 id="1-缓存优化"><a href="#1-缓存优化" class="headerlink" title="1.缓存优化"></a>1.缓存优化</h6><p>最基础的使用-需要考虑缓存异常解决场景-还有缓存不一致情况</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/laomaodu/anli01">https://gitee.com/laomaodu/anli01</a> </p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/laomaodu/kaqi-pan">https://gitee.com/laomaodu/kaqi-pan</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/yun-lan-arrives-home/jzo2o-customer">https://gitee.com/yun-lan-arrives-home/jzo2o-customer</a></p>
+</blockquote>
+<h6 id="2-延迟任务-消息队列"><a href="#2-延迟任务-消息队列" class="headerlink" title="2.延迟任务-消息队列"></a>2.延迟任务-消息队列</h6><blockquote>
+<p>黑马头条中-延迟文字的发布-后续会自写项目-现在先空着</p>
+</blockquote>
+<h6 id="3-秒杀抢购"><a href="#3-秒杀抢购" class="headerlink" title="3.秒杀抢购"></a>3.秒杀抢购</h6><blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/laomaodu/anli01">https://gitee.com/laomaodu/anli01</a>   非常经典的一个秒杀抢购</p>
+</blockquote>
+<h6 id="4-实时统计"><a href="#4-实时统计" class="headerlink" title="4.实时统计"></a>4.实时统计</h6><blockquote>
+<p>新项目会写</p>
+</blockquote>
+<h6 id="5-限流处理"><a href="#5-限流处理" class="headerlink" title="5.限流处理"></a>5.限流处理</h6><blockquote>
+<p>新项目会写</p>
+</blockquote>
+<h6 id="6-排行榜"><a href="#6-排行榜" class="headerlink" title="6.排行榜"></a>6.排行榜</h6><blockquote>
+<p>新项目会写</p>
+</blockquote>
+<h6 id="7-会话管理"><a href="#7-会话管理" class="headerlink" title="7.会话管理"></a>7.会话管理</h6><h4 id="Redis优化"><a href="#Redis优化" class="headerlink" title="Redis优化"></a>Redis优化</h4><p>空着-如果12月份无实习就继续学习</p>
 
                 
               </div>
@@ -552,8 +737,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/05/Middleware/redis/redis(2)%E7%BC%93%E5%AD%98/" title="Redis(2)缓存">
-                        <span class="hidden-mobile">Redis(2)缓存</span>
+                      <a href="/2024/10/05/Middleware/xxl-job/xxl-job/" title="xxl-job">
+                        <span class="hidden-mobile">xxl-job</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
