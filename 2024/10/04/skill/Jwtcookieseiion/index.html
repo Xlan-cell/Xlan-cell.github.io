@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2db9fbc3e04de8bcf5bbd95f05261d8c.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241004234535358.png">
 <meta property="article:published_time" content="2024-10-04T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-05T03:28:24.062Z">
+<meta property="article:modified_time" content="2024-10-09T06:27:30.427Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2db9fbc3e04de8bcf5bbd95f05261d8c.png">
@@ -232,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          927 字
+          990 字
         
       </span>
     
@@ -243,7 +243,7 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -324,6 +324,10 @@
 <p><strong>处理请求</strong>：服务器根据会话数据执行相应的操作。</p>
 <p>会话劫持问题</p>
 <p><strong>如果另一个人获得了有效的 Session ID</strong>，他确实可以伪装成该用户登录到系统。因为 Session ID 本质上是唯一标识用户会话的凭证，获得 Session ID 的人可以在没有输入用户名和密码的情况下发送请求，服务器会认为他们是合法的用户。这种攻击通常被称为 <strong>Session Hijacking（会话劫持）</strong>。</p>
+<p>当服务器重启后session就失效-可以考虑redis实现</p>
+<blockquote>
+<p>IDEA 关闭服务器后，Session 会失效。但你可以通过使用外部存储（如 Redis、数据库）或配置服务器的持久化机制，来保留 Session 数据</p>
+</blockquote>
 
                 
               </div>
