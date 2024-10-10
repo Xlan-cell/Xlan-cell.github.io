@@ -1,0 +1,916 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MQ mq分类 RabbitMQ1.场景调用OpenFeign-&gt;同步调用 很多情况下-我们需要异步调用-也就是需要一个信息通知  同步通讯：就如同打视频电话，双方的交互都是实时的。因此同一时刻你只能跟一个人打视频电话。 异步通讯：就如同发微信聊天，双方的交互不是实时的，你不需要立刻给对方回应。因此你可以多线操作，同时跟多人聊天。    如图-交易服务-扣减肯定是同步的-其余的都能异步慢慢来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RabbitMQ">
+<meta property="og:url" content="http://example.com/2024/10/10/Middleware/mq/mq/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="MQ mq分类 RabbitMQ1.场景调用OpenFeign-&gt;同步调用 很多情况下-我们需要异步调用-也就是需要一个信息通知  同步通讯：就如同打视频电话，双方的交互都是实时的。因此同一时刻你只能跟一个人打视频电话。 异步通讯：就如同发微信聊天，双方的交互不是实时的，你不需要立刻给对方回应。因此你可以多线操作，同时跟多人聊天。    如图-交易服务-扣减肯定是同步的-其余的都能异步慢慢来">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010135925459.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010140032274.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010140454685.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010140721494.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/af7344458d741a8e46b618fc52ce4764.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010141905396.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143105352.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143112502.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143209622.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143227992.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143247886.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143255742.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143313747.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143321459.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143330783.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143336766.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143341174.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143345830.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143351227.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143956995.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144017012.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144027987.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144038058.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144048066.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144107380.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144116699.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144302415.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144317208.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144416247.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144840710.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144856402.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144908307.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144925223.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144938501.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144945331.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010145009012.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010145714091.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010145721692.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010145744426.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010145806105.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150034420.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150043852.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150059789.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150106900.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150639595.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150720379.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151117702.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151128494.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151150384.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151215150.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151221231.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151235030.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151239718.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151313511.png">
+<meta property="article:published_time" content="2024-10-10T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-10-10T07:14:00.018Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010135925459.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>RabbitMQ - 逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RabbitMQ"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-10 20:22" pubdate>
+          2024年10月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">RabbitMQ</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010135925459.png" srcset="/img/loading.gif" lazyload alt="image-20241010135925459"></p>
+<h4 id="mq分类"><a href="#mq分类" class="headerlink" title="mq分类"></a>mq分类</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010140032274.png" srcset="/img/loading.gif" lazyload alt="image-20241010140032274"></p>
+<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><h4 id="1-场景调用"><a href="#1-场景调用" class="headerlink" title="1.场景调用"></a>1.场景调用</h4><p>OpenFeign-&gt;同步调用</p>
+<p>很多情况下-我们需要异步调用-也就是需要一个信息通知</p>
+<ul>
+<li>同步通讯：就如同打视频电话，双方的交互都是实时的。因此同一时刻你只能跟一个人打视频电话。</li>
+<li>异步通讯：就如同发微信聊天，双方的交互不是实时的，你不需要立刻给对方回应。因此你可以多线操作，同时跟多人聊天。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010140454685.png" srcset="/img/loading.gif" lazyload alt="image-20241010140454685"></p>
+<blockquote>
+<p>如图-交易服务-扣减肯定是同步的-其余的都能异步慢慢来处理</p>
+<p>由于我们是基于OpenFeign调用交易服务、通知服务。当交易服务、通知服务出现故障时，整个事务都会回滚，交易失败。<br>这其实就是同步调用的级联失败问题。</p>
+<p>但是大家思考一下，我们假设用户余额充足，扣款已经成功，此时我们应该确保支付流水单更新为已支付，确保交易成功。毕竟收到手里的钱没道理再退回去吧。</p>
+<p>因此，这里不能因为短信通知、更新订单状态失败而回滚整个事务。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010140721494.png" srcset="/img/loading.gif" lazyload alt="image-20241010140721494"></p>
+<blockquote>
+<p>异步调用<br>发送者<br>信息代理<br>信息接收者-&gt;多久读一次信息列表</p>
+</blockquote>
+<p>异步优点<br>1.解藕<br>2.性能高<br>3.业务扩展强<br>4.避免级联失败</p>
+<p>缺点<br>1.依赖MQ服务器</p>
+<h4 id="2-环境搭建"><a href="#2-环境搭建" class="headerlink" title="2.环境搭建"></a>2.环境搭建</h4><p><a target="_blank" rel="noopener" href="https://github.com/heibaiying/Full-Stack-Notes/blob/master/notes/installation/RabbitMQ%E5%8D%95%E6%9C%BA%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md">https://github.com/heibaiying/Full-Stack-Notes/blob/master/notes/installation/RabbitMQ%E5%8D%95%E6%9C%BA%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md</a></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/af7344458d741a8e46b618fc52ce4764.png" srcset="/img/loading.gif" lazyload alt="af7344458d741a8e46b618fc52ce4764"></p>
+<h4 id="3-控制台操作"><a href="#3-控制台操作" class="headerlink" title="3.控制台操作"></a>3.控制台操作</h4><p>可以看到在安装命令中有两个映射的端口：</p>
+<ul>
+<li>15672*：RabbitMQ提供的管理控制台的端口</li>
+<li>5672*：RabbitMQ的消息发送处理接口</li>
+</ul>
+<p>rabbitmq架构</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010141905396.png" srcset="/img/loading.gif" lazyload alt="image-20241010141905396"></p>
+<p>生产者<br><strong>publisher</strong>：生产者，也就是发送消息的一方</p>
+<p><strong>consumer</strong>：消费者，也就是消费消息的一方</p>
+<p><strong>queue</strong>：队列，存储消息。生产者投递的消息会暂存在消息队列中，等待消费者处理</p>
+<p><strong>exchange</strong>：交换机，负责消息路由。生产者发送的消息由交换机决定投递到哪个队列。</p>
+<p><strong>virtual host</strong>：虚拟主机，起到数据隔离的作用。每个虚拟主机相互独立，有各自的exchange、queue</p>
+<h5 id="1-交换机控制台操作"><a href="#1-交换机控制台操作" class="headerlink" title="1.交换机控制台操作"></a>1.交换机控制台操作</h5><p>将信息传递到队列</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143105352.png" srcset="/img/loading.gif" lazyload alt="image-20241010143105352"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143112502.png" srcset="/img/loading.gif" lazyload alt="c"></p>
+<p>发送信息。无消费者</p>
+<p>交换机没有存储信息能力</p>
+<h5 id="2-queues-队列"><a href="#2-queues-队列" class="headerlink" title="2.queues 队列"></a>2.queues 队列</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143209622.png" srcset="/img/loading.gif" lazyload alt="image-20241010143209622"></p>
+<p>添加队列</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143227992.png" srcset="/img/loading.gif" lazyload alt="image-20241010143227992"></p>
+<p>再以相同的方式，创建一个队列，名字为hello.queue2</p>
+<p>我们继续发送信息。信息还是丢失。队列没有信息</p>
+<p>队列和交换机需要相互绑定</p>
+<p>绑定关系-交换机内绑定</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143247886.png" srcset="/img/loading.gif" lazyload alt="image-20241010143247886"></p>
+<p>我们绑定了2个队列-那么会自动负载均衡-选择发送一个队列</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143255742.png" srcset="/img/loading.gif" lazyload alt="image-20241010143255742"></p>
+<h5 id="3-数据隔离"><a href="#3-数据隔离" class="headerlink" title="3.数据隔离"></a>3.数据隔离</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143313747.png" srcset="/img/loading.gif" lazyload alt="image-20241010143313747"></p>
+<p>Name 用户名<br>Tags 权限<br>Can access virtual host 可以访问的数据区域</p>
+<p>一个小公司基本就一个MQ集群–这个mq供多个项目使用</p>
+<p>virtual host的隔离特性，将不同项目隔离。一般会做两件事情：</p>
+<ul>
+<li>给每个项目创建独立的运维账号，将管理权限分离。</li>
+<li>给每个项目创建不同的virtual host，将每个项目的数据隔离</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143321459.png" srcset="/img/loading.gif" lazyload alt="image-20241010143321459"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143330783.png" srcset="/img/loading.gif" lazyload alt="image-20241010143330783"></p>
+<p>数据区域-登录hmall账号</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143336766.png" srcset="/img/loading.gif" lazyload alt="image-20241010143336766"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143341174.png" srcset="/img/loading.gif" lazyload alt="image-20241010143341174"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143345830.png" srcset="/img/loading.gif" lazyload alt="image-20241010143345830"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143351227.png" srcset="/img/loading.gif" lazyload alt="image-20241010143351227"></p>
+<p>如图</p>
+<p>1.创建隔离 创建账号 账号内给予空间<br>回admin～换空间 查看队列</p>
+<h4 id="4-spring集成RabbitMQ"><a href="#4-spring集成RabbitMQ" class="headerlink" title="4.spring集成RabbitMQ"></a>4.spring集成RabbitMQ</h4><h5 id="1-spring-amqp"><a href="#1-spring-amqp" class="headerlink" title="1.spring amqp"></a>1.spring amqp</h5><p>abbitmq-&gt;基于amqo协议收发信息</p>
+<p>Spring的官方基于RabbitMQ提供了一套消息收发的模板工具<br><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-amqp">https://spring.io/projects/spring-amqp</a></p>
+<p>SpringAMQP提供了三个功能：</p>
+<ul>
+<li><strong>自动声明队列、交换机及其绑定关系</strong></li>
+<li><strong>基于注解的监听器模式，异步接收消息</strong></li>
+<li><strong>封装了RabbitTemplate工具，用于发送消息</strong></li>
+</ul>
+<h5 id="2-案例入门"><a href="#2-案例入门" class="headerlink" title="2.案例入门"></a>2.案例入门</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010143956995.png" srcset="/img/loading.gif" lazyload alt="image-20241010143956995"></p>
+<p>生产者发布信息到队列-消费者消费过程</p>
+<h6 id="1-添加队列"><a href="#1-添加队列" class="headerlink" title="1.添加队列"></a>1.添加队列</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144017012.png" srcset="/img/loading.gif" lazyload alt="image-20241010144017012"></p>
+<h6 id="2-信息发送"><a href="#2-信息发送" class="headerlink" title="2.信息发送"></a>2.信息发送</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144027987.png" srcset="/img/loading.gif" lazyload alt="image-20241010144027987"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144038058.png" srcset="/img/loading.gif" lazyload alt="image-20241010144038058"></p>
+<h6 id="3-消费者定义"><a href="#3-消费者定义" class="headerlink" title="3.消费者定义"></a>3.消费者定义</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144048066.png" srcset="/img/loading.gif" lazyload alt="image-20241010144048066"></p>
+<h6 id="4-WorkQueues"><a href="#4-WorkQueues" class="headerlink" title="4.WorkQueues"></a>4.WorkQueues</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144107380.png" srcset="/img/loading.gif" lazyload alt="image-20241010144107380"></p>
+<p>mq的负载均衡<br>优点-多消费者读取一个队列-加快信息读取-<br>发送50个消息</p>
+<p>代码如上-带默认的负载均衡是-</p>
+<ul>
+<li>费者1很快完成了自己的25条消息</li>
+<li>消费者2却在缓慢的处理自己的25条消息。</li>
+</ul>
+<p>默认的负载均衡就是评分信息-没有考虑到消费者处理信息的快慢问题-</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144116699.png" srcset="/img/loading.gif" lazyload alt="image-20241010144116699"></p>
+<p>消费者1处理速度较快，所以处理了更多的消息；消费者2处理速度较慢，只处理了6条消息。而最终总的执行耗时也在1秒左右，大大提升。</p>
+<ul>
+<li>多个消费者绑定到一个队列，同一条消息只会被一个消费者处理</li>
+<li>通过设置prefetch来控制消费者预取的消息数量</li>
+</ul>
+<h4 id="5-交换机类型"><a href="#5-交换机类型" class="headerlink" title="5.交换机类型"></a>5.交换机类型</h4><p>Fanout：广播，将消息交给所有绑定到交换机的队列。我们最早在控制台使用的正是Fanout交换机</p>
+<p>Direct：订阅，基于RoutingKey（路由key）发送给订阅了消息的队列</p>
+<p>Topic：通配符订阅，与Direct类似，只不过RoutingKey可以使用通配符</p>
+<p>Headers：头匹配，基于MQ的消息头匹配，用的较少。</p>
+<h6 id="Fanout"><a href="#Fanout" class="headerlink" title="Fanout"></a>Fanout</h6><p>把信息发送给绑定该交换机的所有队列</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144302415.png" srcset="/img/loading.gif" lazyload alt="image-20241010144302415"></p>
+<p>信息-全发送</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144317208.png" srcset="/img/loading.gif" lazyload alt="image-20241010144317208"></p>
+<p>该交换机默认就有</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144416247.png" srcset="/img/loading.gif" lazyload alt="image-20241010144416247"></p>
+<p>接受信息</p>
+<p>每个消费者都收到了信息–</p>
+<h6 id="Direct"><a href="#Direct" class="headerlink" title="Direct"></a>Direct</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144840710.png" srcset="/img/loading.gif" lazyload alt="image-20241010144840710"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144856402.png" srcset="/img/loading.gif" lazyload alt="image-20241010144856402"></p>
+<p>队列</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144908307.png" srcset="/img/loading.gif" lazyload alt="image-20241010144908307"></p>
+<p>最终</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144925223.png" srcset="/img/loading.gif" lazyload alt="image-20241010144925223"></p>
+<p>信息接收-<br>信息发送</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144938501.png" srcset="/img/loading.gif" lazyload alt="image-20241010144938501"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010144945331.png" srcset="/img/loading.gif" lazyload alt="image-20241010144945331"></p>
+<p>信息携带key-到交换机-</p>
+<p>交换机根据绑定的队列key-选择给哪个队列</p>
+<h6 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010145009012.png" srcset="/img/loading.gif" lazyload alt="image-20241010145009012"></p>
+<p>案例</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010145714091.png" srcset="/img/loading.gif" lazyload alt="image-20241010145714091"></p>
+<p>中国新闻和其他新闻</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010145721692.png" srcset="/img/loading.gif" lazyload alt="image-20241010145721692"></p>
+<p>信息发送</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010145744426.png" srcset="/img/loading.gif" lazyload alt="image-20241010145744426"></p>
+<p>信息接收</p>
+<p>交换机根据绑定的通配符-来选择要发送的队列-&gt;队列再发送给下消费者</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010145806105.png" srcset="/img/loading.gif" lazyload alt="image-20241010145806105"></p>
+<p><strong>RabbitMQ控制台来创建队列、交换机。</strong><br><strong>实际开发时，队列和交换机是程序员定义的，将来项目上线，又要交给运维去创建。那么程序员就需要把程序中运行的所有队列和交换机都写下来，交给运维。</strong></p>
+<p><strong>做法是由程序启动时检查队列和交换机是否存在，如果不存在自动创建。</strong></p>
+<h4 id="6-Spring-Amqp"><a href="#6-Spring-Amqp" class="headerlink" title="6.Spring Amqp"></a>6.Spring Amqp</h4><h6 id="1-注解开发"><a href="#1-注解开发" class="headerlink" title="1.注解开发"></a>1.注解开发</h6><p>SpringAMQP提供了一个Queue类，用来创建队列</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150034420.png" srcset="/img/loading.gif" lazyload alt="image-20241010150034420"></p>
+<p>创建交换机</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150043852.png" srcset="/img/loading.gif" lazyload alt="image-20241010150043852"></p>
+<p>我们可以自己创建队列和交换机，不过SpringAMQP还提供了ExchangeBuilder来简化这个过程：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150059789.png" srcset="/img/loading.gif" lazyload alt="image-20241010150059789"></p>
+<p><strong>而在绑定队列和交换机时，则需要使用BindingBuilder来创建Binding对象：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150106900.png" srcset="/img/loading.gif" lazyload alt="image-20241010150106900"></p>
+<h5 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h5><h6 id="1-fanout"><a href="#1-fanout" class="headerlink" title="1.fanout"></a>1.fanout</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150639595.png" srcset="/img/loading.gif" lazyload alt="image-20241010150639595"></p>
+<h6 id="2-direct-注解"><a href="#2-direct-注解" class="headerlink" title="2.direct 注解"></a>2.direct 注解</h6><p>direct模式由于要绑定多个KEY，会非常麻烦，每一个Key都要编写一个binding：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010150720379.png" srcset="/img/loading.gif" lazyload alt="image-20241010150720379"></p>
+<p>基于Bean声明交换机还是非常复杂的-注解方式</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151117702.png" srcset="/img/loading.gif" lazyload alt="image-20241010151117702"></p>
+<p>注解-<br>1.参数1-bindings-@Queuebinding(value-exchange)–声明对应和交换机类型</p>
+<p>key</p>
+<h6 id="3-topic"><a href="#3-topic" class="headerlink" title="3.topic"></a>3.topic</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151128494.png" srcset="/img/loading.gif" lazyload alt="image-20241010151128494"></p>
+<h4 id="信息转换器"><a href="#信息转换器" class="headerlink" title="信息转换器"></a>信息转换器</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151150384.png" srcset="/img/loading.gif" lazyload alt="image-20241010151150384"></p>
+<p>也就是你的信息-是经过java序列化为字节发送-后续在反序列化 </p>
+<p>序列化-&gt;配置JSON转换器</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151215150.png" srcset="/img/loading.gif" lazyload alt="image-20241010151215150"></p>
+<p>配置信息转化器</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151221231.png" srcset="/img/loading.gif" lazyload alt="image-20241010151221231"></p>
+<p>后续</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151235030.png" srcset="/img/loading.gif" lazyload alt="image-20241010151235030"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151239718.png" srcset="/img/loading.gif" lazyload alt="image-20241010151239718"></p>
+<h4 id="信息获取"><a href="#信息获取" class="headerlink" title="信息获取"></a>信息获取</h4><p>微服务到微服务-&gt;Feing的拦截器实现的</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010151313511.png" srcset="/img/loading.gif" lazyload alt="image-20241010151313511"></p>
+<p>加再消息头-拦截器获取-&gt;再加入线程处理器</p>
+<p>这样就不需要每个信息都加入登录信息了</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>RabbitMQ</div>
+      <div>http://example.com/2024/10/10/Middleware/mq/mq/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/10/Middleware/Canal/canal/" title="Canal">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Canal</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/09/data%20structure/%E4%B8%B2/" title="串">
+                        <span class="hidden-mobile">串</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
