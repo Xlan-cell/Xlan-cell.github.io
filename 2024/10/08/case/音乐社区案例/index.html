@@ -19,17 +19,17 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="音乐社区 全民歌推荐例子仿 全民k歌或者热门帖子排行榜默认功能1.大数据推荐—根据浏览或者说音乐播放—点赞—评价进行-kafka+redis计算分值2.音乐播放—只有真正播放才加浏览量 –没技术3.附近音乐搜索-es 或者redis–Canal-Elasticsearch-mq同步方案4.发布音乐-隐私音乐-没啥好说的-定时上传-mq死信方案 5.音乐上传-上传服务-采用MQ实现异步上传-考虑mq">
+    <meta name="description" content="音乐社区 全民歌推荐例子仿 全民k歌或者热门帖子排行榜默认功能1.大数据推荐—根据浏览或者说音乐播放—点赞—评价进行-kafka+redis计算分值2.音乐播放—只有真正播放才加浏览量 –没技术3.附近音乐搜索-es 或者redis–Canal-Elasticsearch-mq同步方案4.发布音乐-隐私音乐-没啥好说的-定时上传-mq死信方案 5.音乐上传-上传服务- 修改为异步上传 5.音乐详情">
 <meta property="og:type" content="article">
 <meta property="og:title" content="音乐社区">
 <meta property="og:url" content="http://example.com/2024/10/08/case/%E9%9F%B3%E4%B9%90%E7%A4%BE%E5%8C%BA%E6%A1%88%E4%BE%8B/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="音乐社区 全民歌推荐例子仿 全民k歌或者热门帖子排行榜默认功能1.大数据推荐—根据浏览或者说音乐播放—点赞—评价进行-kafka+redis计算分值2.音乐播放—只有真正播放才加浏览量 –没技术3.附近音乐搜索-es 或者redis–Canal-Elasticsearch-mq同步方案4.发布音乐-隐私音乐-没啥好说的-定时上传-mq死信方案 5.音乐上传-上传服务-采用MQ实现异步上传-考虑mq">
+<meta property="og:description" content="音乐社区 全民歌推荐例子仿 全民k歌或者热门帖子排行榜默认功能1.大数据推荐—根据浏览或者说音乐播放—点赞—评价进行-kafka+redis计算分值2.音乐播放—只有真正播放才加浏览量 –没技术3.附近音乐搜索-es 或者redis–Canal-Elasticsearch-mq同步方案4.发布音乐-隐私音乐-没啥好说的-定时上传-mq死信方案 5.音乐上传-上传服务- 修改为异步上传 5.音乐详情">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2467f0e53f38841879af044ac1de22e6.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9ed90b1e765b215e73e770b53299f3e0.png">
 <meta property="article:published_time" content="2024-10-08T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-11T03:09:23.614Z">
+<meta property="article:modified_time" content="2024-10-11T07:06:08.563Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2467f0e53f38841879af044ac1de22e6.png">
@@ -232,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          2k 字
         
       </span>
     
@@ -243,7 +243,7 @@
         
         
         
-          15 分钟
+          17 分钟
         
       </span>
     
@@ -287,11 +287,13 @@
                 
                 <h1 id="音乐社区"><a href="#音乐社区" class="headerlink" title="音乐社区"></a>音乐社区</h1><blockquote>
 <p>全民歌推荐例子<br>仿 全民k歌或者热门帖子排行榜<br>默认功能<br>1.大数据推荐—根据浏览或者说音乐播放—点赞—评价进行-kafka+redis计算分值<br>2.音乐播放—只有真正播放才加浏览量 –没技术<br>3.附近音乐搜索-es 或者redis–Canal-Elasticsearch-mq同步方案<br>4.发布音乐-隐私音乐-没啥好说的-定时上传-mq死信方案</p>
-<p>5.音乐上传-上传服务-采用MQ实现异步上传-考虑mq的各种问题</p>
+<p>5.音乐上传-上传服务- 修改为异步上传</p>
 <p>5.音乐详情页 -freemarker</p>
 <p>6.后台音乐每日统计EastExcel+minIo-xxl-job自动上传excel到minlo</p>
+<p>7.音乐首页-由大数据推荐</p>
 </blockquote>
 <p>不能太复杂-能想到的就现在这些功能了</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>配环境崩溃了-直接卸载虚拟机了-一下所有技术栈默认环境配好</p>
 <h4 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h4><h6 id="1-用户表"><a href="#1-用户表" class="headerlink" title="1.用户表"></a>1.用户表</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2467f0e53f38841879af044ac1de22e6.png" srcset="/img/loading.gif" lazyload alt="2467f0e53f38841879af044ac1de22e6"></p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">mysql&gt;  <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">user</span>( userid <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">primary key</span>, username <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">UNIQUE</span>, <span class="hljs-keyword">password</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>);<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.04</span> sec)<br></code></pre></td></tr></table></figure>
 
@@ -378,6 +380,36 @@
 <p><strong>ps:关于上传优化</strong></p>
 <p><strong>我们可以提前生成uuid-然后直接异步-注意就不需要阻塞的等待上传了，就可以异步线程池了</strong></p>
 <h4 id="10-11"><a href="#10-11" class="headerlink" title="10&#x2F;11"></a>10&#x2F;11</h4><p>代码要大改了——</p>
+<h4 id="上传修改"><a href="#上传修改" class="headerlink" title="上传修改"></a>上传修改</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">修正上传-改为异步多线程上传<br>具体看gitee<br></code></pre></td></tr></table></figure>
+
+<h4 id="计算音乐热点"><a href="#计算音乐热点" class="headerlink" title="计算音乐热点"></a>计算音乐热点</h4><p>幻想时刻-kafka的环境已经搭建好了 直接使用即可</p>
+<p>生产者-聚合-消费者</p>
+<p>xxl-job-&gt;发送到redis</p>
+<p>分时间切块</p>
+<p>权重设计</p>
+<p>浏览&#x3D;1  点赞&#x3D;5 评论&#x3D;3</p>
+<p>用户浏览点赞评论-&gt;生产者(有时间间隔-一般是多个浏览)-&gt;发送到聚合-&gt;进行分割好后-&gt;</p>
+<p>音乐id -浏览人数  </p>
+<p>点赞id -点赞人数</p>
+<p>总权重-或者单独权重</p>
+<p>{</p>
+<p>总权重-简单-后续只需要相加</p>
+<p>分批次-消费者还要进行处理</p>
+<p>}</p>
+<p>选择总权重</p>
+<p>…………………</p>
+<p>-&gt;发送给消费者</p>
+<p>消费者拿到数据-&gt;计算权重聚合-&gt;推荐热点分值增加</p>
+<blockquote>
+<p>使用 Redis 的 <code>ZSET（有序集合）</code> 数据结构，其中音乐的 <code>ID</code> 作为成员，分值作为排序权重。</p>
+</blockquote>
+<blockquote>
+<p><code>ZRANGE</code> 或 <code>ZREVRANGE</code> 命令按分值排序后获取音乐列表</p>
+</blockquote>
+<blockquote>
+<p>获取到这些音乐 <code>ID</code> 后，通过批量查询的方式从 Elasticsearch 中获取对应的音乐详细信息</p>
+<p>还实现了附加查询</p>
+</blockquote>
 
                 
               </div>
