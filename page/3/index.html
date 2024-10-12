@@ -229,6 +229,60 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/09/30/mysql/%E9%94%81/%E9%94%81/" target="_self">
+          mysql-锁
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/30/mysql/%E9%94%81/%E9%94%81/" target="_self">
+        <div>
+          锁 1.全局锁演示   全局锁缺点  如果在主库上备份，那么在备份期间都不能执行更新，在此期间非查询业务无法正常执行。 如果在从库上备份，那么在备份期间从库不能执行主库同步过来的二进制日志（binlog），会导致主从延迟。  2.表锁演示共享锁  独占锁   3.元数据锁元数据锁（meta data lock），简写MDL。其加锁过程是系统自动控制的，无需显式调用，在访问一张表的时候会自动加上。M
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-30 21:22" pubdate>
+              2024-09-30
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/09/29/mysql/%E8%A7%A6%E5%8F%91%E5%99%A8/%E8%A7%A6%E5%8F%91%E5%99%A8/" target="_self">
           Mysql 触发器
         </a>
@@ -694,60 +748,6 @@
       <span class="category-chain">
         
   <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/09/24/mysql/%E4%BA%8B%E5%8A%A1%E8%A7%86%E5%9B%BE/%E4%BA%8B%E5%8A%A1/" target="_self">
-          mysql-事务详解
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/24/mysql/%E4%BA%8B%E5%8A%A1%E8%A7%86%E5%9B%BE/%E4%BA%8B%E5%8A%A1/" target="_self">
-        <div>
-          事务实现MySQL 事务的实现主要依赖于以下几个核心组件和机制：  InnoDB存储引擎：MySQL事务通常是由InnoDB存储引擎支持的。InnoDB提供了事务的核心功能，如ACID（原子性、一致性、隔离性、持久性）属性。  ​    2.Redo Log（重做日志）：为了确保事务的持久性（Durability），InnoDB使用了Redo Log。在事务提交时，MySQL会将事务的修改记录写
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-24 20:22" pubdate>
-              2024-09-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
   
   
 

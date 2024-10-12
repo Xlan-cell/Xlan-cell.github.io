@@ -1,0 +1,973 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ElasticSearch官方文档 https:&#x2F;&#x2F;www.elastic.co  es介绍 1.ElasticSearchElasticSearch 是一个基于分布式搜索引擎的开源项目，主要用于全文搜索、结构化搜索以及分析。它在大数据场景下有广泛应用，特别是在需要处理复杂查询和数据检索的环境中。 elasticsearch是elastic stack的核心，负责存储、搜索、分析数据。 elast">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElasticSearch">
+<meta property="og:url" content="http://example.com/2024/10/12/Middleware/Elasticsearch/ElasticSearch/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="ElasticSearch官方文档 https:&#x2F;&#x2F;www.elastic.co  es介绍 1.ElasticSearchElasticSearch 是一个基于分布式搜索引擎的开源项目，主要用于全文搜索、结构化搜索以及分析。它在大数据场景下有广泛应用，特别是在需要处理复杂查询和数据检索的环境中。 elasticsearch是elastic stack的核心，负责存储、搜索、分析数据。 elast">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e3be99393eb52f2b6559211f1b012807.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171722024-1222796164.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241012140649009.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171741388-1990334679.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171751933-576636800.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171803916-704919285.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241012142500383.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171811564-2114810461.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171817377-1198317744.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/a929874a1d2e29f822ec386084f46463.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171831042-1395359270.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171842180-458017634.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171848067-1760891955.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171852468-457961443.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171858509-678638964.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2729274/202302/2729274-20230205171931639-1168552613.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171956796-973760726.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172005673-1129389907.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172011932-1622225700.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241012151307336.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241012151443910.png">
+<meta property="article:published_time" content="2024-10-12T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-10-12T07:16:05.640Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e3be99393eb52f2b6559211f1b012807.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ElasticSearch - 逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ElasticSearch"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-12 20:22" pubdate>
+          2024年10月12日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ElasticSearch</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h1><p>官方文档 <a target="_blank" rel="noopener" href="https://www.elastic.co/">https://www.elastic.co</a></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e3be99393eb52f2b6559211f1b012807.png" srcset="/img/loading.gif" lazyload alt="e3be99393eb52f2b6559211f1b012807"></p>
+<h4 id="es介绍"><a href="#es介绍" class="headerlink" title="es介绍"></a>es介绍</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171722024-1222796164.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h6 id="1-ElasticSearch"><a href="#1-ElasticSearch" class="headerlink" title="1.ElasticSearch"></a>1.ElasticSearch</h6><p>ElasticSearch 是一个基于分布式搜索引擎的开源项目，主要用于<strong>全文搜索、结构化搜索以及分析</strong>。它在大数据场景下有广泛应用，特别是在需要处理复杂查询和数据检索的环境中。</p>
+<p>elasticsearch是elastic stack的核心，负责存储、搜索、分析数据。</p>
+<p>elasticsearch底层是基于<strong>lucene</strong>来实现的。</p>
+<h6 id="2-elastic-stack（ELK）"><a href="#2-elastic-stack（ELK）" class="headerlink" title="2.elastic stack（ELK）"></a>2.elastic stack（ELK）</h6><ul>
+<li>是以elasticsearch为核心的技术栈，包括beats、Logstash、kibana、elasticsearch</li>
+</ul>
+<h6 id="3-Lucene"><a href="#3-Lucene" class="headerlink" title="3.Lucene"></a>3.Lucene</h6><ul>
+<li>是Apache的开源搜索引擎类库，提供了搜索引擎的核心API</li>
+</ul>
+<h6 id="4-Elk技术"><a href="#4-Elk技术" class="headerlink" title="4.Elk技术"></a>4.Elk技术</h6><p>elasticsearch结合kibana、Logstash、Beats，也就是<strong>elastic stack</strong>（ELK）。被广泛应用在日志数据分析、实时监控等领域：</p>
+<h4 id="es概念"><a href="#es概念" class="headerlink" title="es概念"></a>es概念</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241012140649009.png" srcset="/img/loading.gif" lazyload alt="image-20241012140649009"></p>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><h5 id="正向索引"><a href="#正向索引" class="headerlink" title="正向索引"></a>正向索引</h5><p>那么什么是正向索引呢？例如给下表（tb_goods）中的id创建索引：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171741388-1990334679.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>如果是根据id查询，那么直接走索引，查询速度非常快。</p>
+<p>但如果是基于title做模糊查询，只能是逐行扫描数据，逐行扫描，也就是全表扫描，随着数据量增加，其查询效率也会越来越低。当数据量达到数百万时，就是一场灾难。</p>
+<h5 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h5><blockquote>
+<p>倒排索引中有两个非常重要的概念：</p>
+<ul>
+<li><strong>文档</strong>（<code>Document</code>）：用来搜索的数据，其中的<strong>每一条数据就是一个文档</strong>。一个商品信息，mysql的一行记录</li>
+<li><strong>词条</strong>（<code>Term</code>）：<strong>对文档数据或用户搜索数据，利用某种算法分词，得到的具备含义的词语就是词条。</strong>例如：我是中国人，就可以分为：我、是、中国人、中国、国人这样的几个词条</li>
+</ul>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171751933-576636800.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>对title这一行的文档进行分词-</p>
+<p>倒排索引的<strong>搜索流程</strong>如下（以搜索”华为手机”为例）：</p>
+<p>1）用户输入条件<code>&quot;华为手机&quot;</code>进行搜索。</p>
+<p>2）对用户输入内容<strong>分词</strong>，得到词条：<code>华为</code>、<code>手机</code>。</p>
+<p>3）拿着词条在倒排索引中查找，可以得到包含词条的文档id：1、2、3。</p>
+<p>4）拿着文档id到正向索引中查找具体文档。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171803916-704919285.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>虽然要先查询倒排索引，再查询倒排索引，但是无论是词条、还是文档id都建立了索引，查询速度非常快！<strong>无需全表扫描。</strong></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241012142500383.png" srcset="/img/loading.gif" lazyload alt="image-20241012142500383"></p>
+<p>一个字段-一个词条-非聚集索引和正向索引蛮像的</p>
+<h5 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h5><p>概念区别：</p>
+<ul>
+<li><strong>正向索引</strong>是最传统的，根据id索引的方式。但根据词条查询时，必须先逐条获取每个文档，然后判断文档中是否包含所需要的词条，是<strong>根据文档找词条的过程</strong>。</li>
+<li>而<strong>倒排索引</strong>则相反，是先找到用户要搜索的词条，根据词条得到保护词条的文档的id，然后根据id获取文档。是<strong>根据词条找文档的过程</strong>。</li>
+</ul>
+<p>优缺点：</p>
+<p><strong>正向索引</strong>：</p>
+<ul>
+<li>优点：<ul>
+<li><strong>可以给多个字段创建索引</strong></li>
+<li><strong>根据索引字段搜索、排序速度非常快</strong></li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>根据非索引字段，或者索引字段中的部分词条查找时，只能<strong>全表扫描。</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>倒排索引</strong>：</p>
+<ul>
+<li>优点：<ul>
+<li><strong>根据词条搜索、模糊搜索时，速度非常快</strong></li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li><strong>只能给词条创建索引，而不是字段</strong></li>
+<li>无法根据字段做排序</li>
+</ul>
+</li>
+</ul>
+<h3 id="Es数据概念"><a href="#Es数据概念" class="headerlink" title="Es数据概念"></a>Es数据概念</h3><h5 id="1-文档和字段"><a href="#1-文档和字段" class="headerlink" title="1.文档和字段"></a>1.文档和字段</h5><blockquote>
+<p>一个文档就像数据库里的一条数据，字段就像数据库里的列</p>
+</blockquote>
+<p>elasticsearch是面向<strong>文档（Document）</strong>存储的，可以是<strong>数据库中的一条商品数据</strong>，一个订单信息。文档数据会被序列化为json格式后存储在elasticsearch中：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171811564-2114810461.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h5 id="2-索引和隐射"><a href="#2-索引和隐射" class="headerlink" title="2.索引和隐射"></a>2.索引和隐射</h5><blockquote>
+<p>索引就像数据库里的表，映射就像数据库中定义的表结构</p>
+</blockquote>
+<p><strong>索引（Index）</strong>，就是相同类型的文档的集合【<strong>类似mysql中的表</strong>】</p>
+<p>例如：</p>
+<ul>
+<li>所有用户文档，就可以组织在一起，称为用户的索引；</li>
+<li>所有商品的文档，可以组织在一起，称为商品的索引；</li>
+<li>所有订单的文档，可以组织在一起，称为订单的索引；</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171817377-1198317744.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>因此，我们可以把索引当做是数据库中的表。</p>
+<p>数据库的表会有约束信息，用来定义表的结构、字段的名称、类型等信息。因此，索引库中就有<strong>映射（mapping）</strong>，是索引中文档的字段约束信息，类似表的结构约束。</p>
+<h5 id="3-mysql和es"><a href="#3-mysql和es" class="headerlink" title="3.mysql和es"></a>3.mysql和es</h5><p>各自长处：</p>
+<ul>
+<li><p>Mysql：擅长事务类型操作，可以确保数据的安全和一致性</p>
+</li>
+<li><p>Elasticsearch：擅长海量数据的搜索、分析、计算</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/a929874a1d2e29f822ec386084f46463.png" srcset="/img/loading.gif" lazyload alt="a929874a1d2e29f822ec386084f46463"></p>
+</li>
+</ul>
+<h3 id="es安装"><a href="#es安装" class="headerlink" title="es安装"></a>es安装</h3><h5 id="1-安装es、kibana、分词器"><a href="#1-安装es、kibana、分词器" class="headerlink" title="1.安装es、kibana、分词器"></a>1.安装es、kibana、分词器</h5><blockquote>
+<p>分词器的作用是什么？</p>
+<ul>
+<li><strong>创建倒排索引时对文档分词</strong></li>
+<li><strong>用户搜索时，对输入的内容分词</strong></li>
+</ul>
+<p><strong>IK分词器有几种模式？</strong></p>
+<ul>
+<li>ik_smart：智能切分，粗粒度</li>
+<li>ik_max_word：最细切分，细粒度</li>
+</ul>
+<p>IK分词器如何拓展词条？如何停用词条？</p>
+<ul>
+<li>利用config目录的IkAnalyzer.cfg.xml文件添加拓展词典和停用词典</li>
+<li>在词典中添加拓展词条或者停用词条</li>
+</ul>
+</blockquote>
+<h5 id="2-部署es"><a href="#2-部署es" class="headerlink" title="2.部署es"></a>2.部署es</h5><p>因为我们还需要部署kibana容器，因此需要让es和kibana容器互联。这里先创建一个网络：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">docker network create es-<span class="hljs-built_in">net</span><br></code></pre></td></tr></table></figure>
+
+<p>加载镜像</p>
+<blockquote>
+<p>这里我们采用elasticsearch的7.12.1版本的镜像，这个镜像体积非常大，接近1G。不建议大家自己pull。</p>
+<p>课前资料提供了镜像的tar包：</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171831042-1395359270.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>大家将其上传到虚拟机中，然后运行命令加载即可：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 导入数据</span><br>docker load -i es.tar<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：同理还有<code>kibana</code>的tar包也需要这样做。</strong></p>
+<p>运行docker命令，部署单点es：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -d \<br>	--name es \<br>    -e <span class="hljs-string">&quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot;</span> \<br>    -e <span class="hljs-string">&quot;discovery.type=single-node&quot;</span> \<br>    -v es-data:/usr/share/elasticsearch/data \<br>    -v es-plugins:/usr/share/elasticsearch/plugins \<br>    --privileged \<br>    --network es-net \<br>    -p 9200:9200 \<br>    -p 9300:9300 \<br>elasticsearch:7.12.1<br></code></pre></td></tr></table></figure>
+
+<p>命令解释：</p>
+<ul>
+<li><code>-e &quot;cluster.name=es-docker-cluster&quot;</code>：设置集群名称</li>
+<li><code>-e &quot;http.host=0.0.0.0&quot;</code>：监听的地址，可以外网访问</li>
+<li><code>-e &quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot;</code>：内存大小</li>
+<li><code>-e &quot;discovery.type=single-node&quot;</code>：非集群模式</li>
+<li><code>-v es-data:/usr/share/elasticsearch/data</code>：挂载逻辑卷，绑定es的数据目录</li>
+<li><code>-v es-logs:/usr/share/elasticsearch/logs</code>：挂载逻辑卷，绑定es的日志目录</li>
+<li><code>-v es-plugins:/usr/share/elasticsearch/plugins</code>：挂载逻辑卷，绑定es的插件目录</li>
+<li><code>--privileged</code>：授予逻辑卷访问权</li>
+<li><code>--network es-net</code> ：加入一个名为es-net的网络中</li>
+<li><code>-p 9200:9200</code>：端口映射配置</li>
+</ul>
+<p>在浏览器中输入：<a target="_blank" rel="noopener" href="http://192.168.194.131/:9200">http://192.168.194.131/:9200</a> 即可看到elasticsearch的响应结果：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171842180-458017634.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h5 id="3-部署kibana"><a href="#3-部署kibana" class="headerlink" title="3.部署kibana"></a>3.部署kibana</h5><p>kibana可以给我们提供一个elasticsearch的可视化界面，便于我们学习。</p>
+<p><strong>创建网络后，导入kibana压缩包，然后创建并启动相应容器。【和前面部署单点es一样做法】</strong></p>
+<p>再运行docker命令，部署kibana</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -d \<br>--name kibana \<br>-e ELASTICSEARCH_HOSTS=http://es:9200 \<br>--network=es-net \<br>-p 5601:5601  \<br>kibana:7.12.1<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>--network es-net</code> ：加入一个名为es-net的网络中，与elasticsearch在同一个网络中</li>
+<li><code>-e ELASTICSEARCH_HOSTS=http://es:9200&quot;</code>：设置elasticsearch的地址，因为kibana已经与elasticsearch在一个网络，因此可以用容器名直接访问elasticsearch</li>
+<li><code>-p 5601:5601</code>：端口映射配置</li>
+</ul>
+<p>kibana启动一般比较慢，需要多等待一会，可以通过命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker logs -f kibana<br></code></pre></td></tr></table></figure>
+
+<p>查看运行日志，当查看到下面的日志，说明成功：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171848067-1760891955.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171852468-457961443.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>kibana左侧中提供了一个DevTools界面：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171858509-678638964.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>这个界面中可以编写DSL来操作elasticsearch。并且对DSL语句有自动补全功能。</p>
+<h5 id="4-安装IK分词器"><a href="#4-安装IK分词器" class="headerlink" title="4.安装IK分词器"></a>4.安装IK分词器</h5><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment"># 进入容器内部</span><br>docker exec -it elasticsearch <span class="hljs-regexp">/bin/</span>bash<br><br><span class="hljs-comment"># 在线下载并安装</span><br>.<span class="hljs-regexp">/bin/</span>elasticsearch-plugin  install https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/medcl/</span>elasticsearch-analysis-ik<span class="hljs-regexp">/releases/</span>download<span class="hljs-regexp">/v7.12.1/</span>elasticsearch-analysis-ik-<span class="hljs-number">7.12</span>.<span class="hljs-number">1</span>.zip<br><br><span class="hljs-comment">#退出</span><br><span class="hljs-keyword">exit</span><br><span class="hljs-comment">#重启容器</span><br>docker restart elasticsearch<br><br></code></pre></td></tr></table></figure>
+
+<p>.离线安装ik插件</p>
+<p>安装插件需要知道elasticsearch的plugins目录位置，而我们用了数据卷挂载，因此需要查看elasticsearch的数据卷目录，通过下面命令查看:</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">docker <span class="hljs-keyword">volume</span><span class="language-bash"> inspect es-plugins</span><br></code></pre></td></tr></table></figure>
+
+<p>显示结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;CreatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-05-06T10:06:34+08:00&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;Driver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;local&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;Labels&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;Mountpoint&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/var/lib/docker/volumes/es-plugins/_data&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;Name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;es-plugins&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;Options&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;Scope&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;local&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<p>说明plugins目录被挂载到了：<code>/var/lib/docker/volumes/es-plugins/_data</code>这个目录中。</p>
+<p><strong>解压缩分词器安装包</strong></p>
+<p> 下面我们需要把课前资料中的ik分词器解压缩，重命名为ik</p>
+<p><img src="https://img2023.cnblogs.com/blog/2729274/202302/2729274-20230205171931639-1168552613.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h6 id="3）上传到es容器的插件数据卷中"><a href="#3）上传到es容器的插件数据卷中" class="headerlink" title="3）上传到es容器的插件数据卷中"></a><strong>3）上传到es容器的插件数据卷中</strong></h6><p>也就是<code>/var/lib/docker/volumes/es-plugins/_data</code>：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205171956796-973760726.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><strong>重启容器</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"> 4、重启容器<br>docker restart es<br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看es日志</span><br>docker logs -f es<br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="5-测试"><a href="#5-测试" class="headerlink" title="5.测试"></a>5.测试</h6><p>IK分词器包含两种模式：</p>
+<ul>
+<li><code>ik_smart</code>：最少切分</li>
+<li><code>ik_max_word</code>：最细切分</li>
+</ul>
+<p>在kibana的Dev tools中输入以下代码：</p>
+<p>”analyzer“ 就是选择分词器模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">GET /_analyze<br>&#123;<br>  <span class="hljs-string">&quot;analyzer&quot;</span>: <span class="hljs-string">&quot;ik_max_word&quot;</span>,<br>  <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;黑马程序员学习java太棒了&quot;</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs ada">&#123;<br>  <span class="hljs-string">&quot;tokens&quot;</span> : [<br>    &#123;<br>      <span class="hljs-string">&quot;token&quot;</span> : &quot;黑马&quot;,<br>      <span class="hljs-string">&quot;start_offset&quot;</span> : 0,<br>      <span class="hljs-string">&quot;end_offset&quot;</span> : 2,<br>      <span class="hljs-string">&quot;type&quot;</span> : &quot;<span class="hljs-type">CN_WORD</span><span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>position<span class="hljs-string">&quot; : 0</span><br><span class="hljs-string">    &#125;,</span><br><span class="hljs-string">    &#123;</span><br><span class="hljs-string">      &quot;</span>token<span class="hljs-string">&quot; : &quot;</span>程序员<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>start_offset<span class="hljs-string">&quot; : 2,</span><br><span class="hljs-string">      &quot;</span>end_offset<span class="hljs-string">&quot; : 5,</span><br><span class="hljs-string">      &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>CN_WORD<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>position<span class="hljs-string">&quot; : 1</span><br><span class="hljs-string">    &#125;,</span><br><span class="hljs-string">    &#123;</span><br><span class="hljs-string">      &quot;</span>token<span class="hljs-string">&quot; : &quot;</span>程序<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>start_offset<span class="hljs-string">&quot; : 2,</span><br><span class="hljs-string">      &quot;</span>end_offset<span class="hljs-string">&quot; : 4,</span><br><span class="hljs-string">      &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>CN_WORD<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>position<span class="hljs-string">&quot; : 2</span><br><span class="hljs-string">    &#125;,</span><br><span class="hljs-string">    &#123;</span><br><span class="hljs-string">      &quot;</span>token<span class="hljs-string">&quot; : &quot;</span>员<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>start_offset<span class="hljs-string">&quot; : 4,</span><br><span class="hljs-string">      &quot;</span>end_offset<span class="hljs-string">&quot; : 5,</span><br><span class="hljs-string">      &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>CN_CHAR<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>position<span class="hljs-string">&quot; : 3</span><br><span class="hljs-string">    &#125;,</span><br><span class="hljs-string">    &#123;</span><br><span class="hljs-string">      &quot;</span>token<span class="hljs-string">&quot; : &quot;</span>学习<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>start_offset<span class="hljs-string">&quot; : 5,</span><br><span class="hljs-string">      &quot;</span>end_offset<span class="hljs-string">&quot; : 7,</span><br><span class="hljs-string">      &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>CN_WORD<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>position<span class="hljs-string">&quot; : 4</span><br><span class="hljs-string">    &#125;,</span><br><span class="hljs-string">    &#123;</span><br><span class="hljs-string">      &quot;</span>token<span class="hljs-string">&quot; : &quot;</span>java<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>start_offset<span class="hljs-string">&quot; : 7,</span><br><span class="hljs-string">      &quot;</span>end_offset<span class="hljs-string">&quot; : 11,</span><br><span class="hljs-string">      &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>ENGLISH<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>position<span class="hljs-string">&quot; : 5</span><br><span class="hljs-string">    &#125;,</span><br><span class="hljs-string">    &#123;</span><br><span class="hljs-string">      &quot;</span>token<span class="hljs-string">&quot; : &quot;</span>太棒了<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>start_offset<span class="hljs-string">&quot; : 11,</span><br><span class="hljs-string">      &quot;</span>end_offset<span class="hljs-string">&quot; : 14,</span><br><span class="hljs-string">      &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>CN_WORD<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>position<span class="hljs-string">&quot; : 6</span><br><span class="hljs-string">    &#125;,</span><br><span class="hljs-string">    &#123;</span><br><span class="hljs-string">      &quot;</span>token<span class="hljs-string">&quot; : &quot;</span>太棒<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>start_offset<span class="hljs-string">&quot; : 11,</span><br><span class="hljs-string">      &quot;</span>end_offset<span class="hljs-string">&quot; : 13,</span><br><span class="hljs-string">      &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>CN_WORD<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>position<span class="hljs-string">&quot; : 7</span><br><span class="hljs-string">    &#125;,</span><br><span class="hljs-string">    &#123;</span><br><span class="hljs-string">      &quot;</span>token<span class="hljs-string">&quot; : &quot;</span>了<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>start_offset<span class="hljs-string">&quot; : 13,</span><br><span class="hljs-string">      &quot;</span>end_offset<span class="hljs-string">&quot; : 14,</span><br><span class="hljs-string">      &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>CN_CHAR<span class="hljs-string">&quot;,</span><br><span class="hljs-string">      &quot;</span>position<span class="hljs-string">&quot; : 8</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  ]</span><br><span class="hljs-string">&#125;</span><br><span class="hljs-string"></span><br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="6-扩展词词典"><a href="#6-扩展词词典" class="headerlink" title="6.扩展词词典"></a>6.扩展词词典</h6><p>随着互联网的发展，“造词运动”也越发的频繁。出现了很多新的词语，在原有的词汇列表中并不存在。比如：“奥力给”，“白嫖” 等。</p>
+<p>所以我们的词汇也需要不断的更新，IK分词器提供了扩展词汇的功能。</p>
+<p>）打开IK分词器config目录：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172005673-1129389907.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在IKAnalyzer.cfg.xml配置文件内容添加：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">properties</span> <span class="hljs-keyword">SYSTEM</span> <span class="hljs-string">&quot;http://java.sun.com/dtd/properties.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">comment</span>&gt;</span>IK Analyzer 扩展配置<span class="hljs-tag">&lt;/<span class="hljs-name">comment</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--用户可以在这里配置自己的扩展字典 *** 添加扩展词典--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;ext_dict&quot;</span>&gt;</span>ext.dic<span class="hljs-tag">&lt;/<span class="hljs-name">entry</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>新建一个 ext.dic，可以参考config目录下复制一个配置文件进行修改</p>
+<p>白嫖 奥力给</p>
+<p>重启elasticsearch</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">docker</span> restart es <span class="hljs-comment"># 查看 日志 docker logs -f elasticsearch</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172011932-1622225700.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>日志中已经成功加载ext.dic配置文件</p>
+<p>测试效果：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /_analyze<br>&#123;<br>  <span class="hljs-string">&quot;analyzer&quot;</span>: <span class="hljs-string">&quot;ik_max_word&quot;</span>,<br>  <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;传智播客Java就业超过90%,奥力给！&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意当前文件的编码必须是 UTF-8 格式，严禁使用Windows记事本编辑</p>
+<h6 id="7-停用词词典"><a href="#7-停用词词典" class="headerlink" title="7.停用词词典"></a>7.停用词词典</h6><p>在互联网项目中，在网络间传输的速度很快，所以很多语言是不允许在网络上传递的，如：关于宗教、政治等敏感词语，那么我们在搜索时也应该忽略当前词汇。</p>
+<p>IK分词器也提供了强大的停用词功能，让我们在索引时就直接忽略当前的停用词汇表中的内容。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">properties</span> <span class="hljs-keyword">SYSTEM</span> <span class="hljs-string">&quot;http://java.sun.com/dtd/properties.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">comment</span>&gt;</span>IK Analyzer 扩展配置<span class="hljs-tag">&lt;/<span class="hljs-name">comment</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--用户可以在这里配置自己的扩展字典--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;ext_dict&quot;</span>&gt;</span>ext.dic<span class="hljs-tag">&lt;/<span class="hljs-name">entry</span>&gt;</span><br>         <span class="hljs-comment">&lt;!--用户可以在这里配置自己的扩展停止词字典  *** 添加停用词词典--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;ext_stopwords&quot;</span>&gt;</span>stopword.dic<span class="hljs-tag">&lt;/<span class="hljs-name">entry</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>在 stopword.dic 添加停用词</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">大帅逼<br></code></pre></td></tr></table></figure>
+
+<p>重启elasticsearch</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /_analyze &#123;  <span class="hljs-string">&quot;analyzer&quot;</span>: <span class="hljs-string">&quot;ik_max_word&quot;</span>,  <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;我是真的会谢Java就业率超过95%,大帅逼都点赞白嫖,奥力给！&quot;</span> &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="索引库-表-操作"><a href="#索引库-表-操作" class="headerlink" title="索引库(表)操作"></a>索引库(表)操作</h3><h5 id="1-Mapping映射属性"><a href="#1-Mapping映射属性" class="headerlink" title="1. Mapping映射属性"></a>1. Mapping映射属性</h5><blockquote>
+<p>索引库就类似数据库表，mapping映射就类似表的结构。</p>
+<p>我们要向es中存储数据，必须先创建“库”和“表”。</p>
+</blockquote>
+<p>mapping是对索引库中文档的约束，常见的mapping属性包括：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241012151307336.png" srcset="/img/loading.gif" lazyload alt="image-20241012151307336"></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">21</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;weight&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">52.1</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;isMarried&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;info&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;真相只有一个！&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;email&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;zy@itcast.cn&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;score&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">99.1</span><span class="hljs-punctuation">,</span> <span class="hljs-number">99.5</span><span class="hljs-punctuation">,</span> <span class="hljs-number">98.9</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;firstName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;柯&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;lastName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;南&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241012151443910.png" srcset="/img/loading.gif" lazyload alt="image-20241012151443910"></p>
+<h5 id="2-索引库的CRUD"><a href="#2-索引库的CRUD" class="headerlink" title="2. 索引库的CRUD"></a>2. 索引库的CRUD</h5><blockquote>
+<p>CRUD简单描述：</p>
+<ul>
+<li>创建索引库：PUT &#x2F;索引库名</li>
+<li>查询索引库：GET &#x2F;索引库名</li>
+<li>删除索引库：DELETE &#x2F;索引库名</li>
+<li>修改索引库（添加字段）：PUT &#x2F;索引库名&#x2F;_mapping</li>
+</ul>
+<p>这里统一使用Kibana编写DSL的方式来演示。</p>
+</blockquote>
+<h3 id="文档操作"><a href="#文档操作" class="headerlink" title="文档操作"></a>文档操作</h3><h5 id="1-文档的CRUD"><a href="#1-文档的CRUD" class="headerlink" title="1. 文档的CRUD"></a>1. 文档的CRUD</h5><h5 id="RestAPI"><a href="#RestAPI" class="headerlink" title="RestAPI"></a>RestAPI</h5>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ElasticSearch</div>
+      <div>http://example.com/2024/10/12/Middleware/Elasticsearch/ElasticSearch/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">最近的笔记方向</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/11/Middleware/kafka/kafkaStream/Kafka%20Stream/" title="kafka Stream">
+                        <span class="hidden-mobile">kafka Stream</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
