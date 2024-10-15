@@ -47,8 +47,19 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172011932-1622225700.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241012151307336.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241012151443910.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172052120-910375955.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172058746-892146016.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172105015-1483849739.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172124085-626335563.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172128097-289087887.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172138463-1252488196.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172220573-1990074801.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172227358-759338253.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172259030-1988634807.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2729274/202302/2729274-20230205172309780-381577770.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172320621-611636092.png">
 <meta property="article:published_time" content="2024-10-12T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-12T07:16:05.640Z">
+<meta property="article:modified_time" content="2024-10-15T03:28:57.237Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e3be99393eb52f2b6559211f1b012807.png">
@@ -251,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          7.3k 字
         
       </span>
     
@@ -262,7 +273,7 @@
         
         
         
-          27 分钟
+          61 分钟
         
       </span>
     
@@ -533,7 +544,7 @@
 
 
 <h3 id="索引库-表-操作"><a href="#索引库-表-操作" class="headerlink" title="索引库(表)操作"></a>索引库(表)操作</h3><h5 id="1-Mapping映射属性"><a href="#1-Mapping映射属性" class="headerlink" title="1. Mapping映射属性"></a>1. Mapping映射属性</h5><blockquote>
-<p>索引库就类似数据库表，mapping映射就类似表的结构。</p>
+<p><strong>索引库就类似数据库表</strong>，<strong>mapping映射就类似表的结构。</strong></p>
 <p>我们要向es中存储数据，必须先创建“库”和“表”。</p>
 </blockquote>
 <p>mapping是对索引库中文档的约束，常见的mapping属性包括：</p>
@@ -553,7 +564,304 @@
 </ul>
 <p>这里统一使用Kibana编写DSL的方式来演示。</p>
 </blockquote>
-<h3 id="文档操作"><a href="#文档操作" class="headerlink" title="文档操作"></a>文档操作</h3><h5 id="1-文档的CRUD"><a href="#1-文档的CRUD" class="headerlink" title="1. 文档的CRUD"></a>1. 文档的CRUD</h5><h5 id="RestAPI"><a href="#RestAPI" class="headerlink" title="RestAPI"></a>RestAPI</h5>
+<h3 id="文档操作"><a href="#文档操作" class="headerlink" title="文档操作"></a>文档操作</h3><h5 id="1-文档的CRUD"><a href="#1-文档的CRUD" class="headerlink" title="1. 文档的CRUD"></a>1. 文档的CRUD</h5><h6 id="1-新增文档"><a href="#1-新增文档" class="headerlink" title="1.新增文档"></a>1.新增文档</h6><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">POST /索引库名<span class="hljs-string">/_doc/</span>文档id<br>&#123;<br>    <span class="hljs-string">&quot;字段1&quot;</span>: <span class="hljs-string">&quot;值1&quot;</span>,<br>    <span class="hljs-string">&quot;字段2&quot;</span>: <span class="hljs-string">&quot;值2&quot;</span>,<br>    <span class="hljs-string">&quot;字段3&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;子属性1&quot;</span>: <span class="hljs-string">&quot;值3&quot;</span>,<br>        <span class="hljs-string">&quot;子属性2&quot;</span>: <span class="hljs-string">&quot;值4&quot;</span><br>    &#125;,<br>    <span class="hljs-string">//</span> <span class="hljs-string">...</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql">POST <span class="hljs-operator">/</span>heima<span class="hljs-operator">/</span>_doc<span class="hljs-operator">/</span><span class="hljs-number">1</span>#索引库<br>&#123;<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-comment">/**mapping映射</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">    &quot;info&quot;: &quot;真相只有一个！&quot;,</span><br><span class="hljs-comment">    &quot;email&quot;: &quot;zy@itcast.cn&quot;,</span><br><span class="hljs-comment">    &quot;name&quot;: &#123;</span><br><span class="hljs-comment">        &quot;firstName&quot;: &quot;柯&quot;,</span><br><span class="hljs-comment">        &quot;lastName&quot;: &quot;南&quot;</span><br><span class="hljs-comment">    &#125;</span><br><span class="hljs-comment">&#125;</span><br><span class="hljs-comment"></span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172052120-910375955.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<blockquote>
+<p>在名为 <code>heima</code> 的索引库中创建或更新一条文档，其 ID 为 <code>1</code>。其中，<code>/_doc/1</code> 表示该文档的 ID 是 <code>1</code>，文档内容则包含一些个人信息</p>
+<p>如果索引库中不存在 ID 为 <code>1</code> 的文档，它会新建该文档；如果存在，则会更新该文档。</p>
+<p>数据存储在名为 <code>heima</code> 的索引库中。索引库相当于数据库中的表。</p>
+<p>Elasticsearch 自动为字段生成映射（<code>mapping</code>），它会根据字段的内容自动推断字段的类型。比如：</p>
+<ul>
+<li><code>&quot;info&quot;</code> 和 <code>&quot;email&quot;</code> 会被映射为字符串类型（<code>text</code> 或 <code>keyword</code>）。</li>
+<li><code>&quot;name&quot;</code> 作为一个嵌套对象，会被识别为对象类型，<code>firstName</code> 和 <code>lastName</code> 可能也会被映射为字符串类型。</li>
+</ul>
+</blockquote>
+<h6 id="2-查询文档"><a href="#2-查询文档" class="headerlink" title="2.查询文档"></a>2.查询文档</h6><p>根据rest风格，新增是post，查询应该是get，不过查询一般都需要条件，这里我们把文档id带上。</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sqf"><span class="hljs-built_in">GET</span> /&#123;索引库名称&#125;/<span class="hljs-variable">_doc</span>/&#123;id&#125;<br><span class="hljs-comment">//批量查询：查询该索引库下的全部文档</span><br><span class="hljs-built_in">GET</span> /&#123;索引库名称&#125;/<span class="hljs-variable">_search</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /heima/_doc/1<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172058746-892146016.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h6 id="3-删除文档"><a href="#3-删除文档" class="headerlink" title="3.删除文档"></a>3.删除文档</h6><p>删除使用DELETE请求，同样，需要根据id进行删除：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">DELETE</span> <span class="hljs-regexp">/&#123;索引库名&#125;/</span>_doc/id值<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 根据id删除数据</span><br><span class="hljs-attribute">DELETE</span> /heima/_doc/<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172105015-1483849739.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h6 id="4-修改文档"><a href="#4-修改文档" class="headerlink" title="4.修改文档"></a>4.修改文档</h6><p>修改有两种方式：</p>
+<ul>
+<li>全量修改：直接覆盖原来的文档</li>
+<li>增量修改：修改文档中的部分字段</li>
+</ul>
+<blockquote>
+<p>全量修改</p>
+</blockquote>
+<p>全量修改是覆盖原来的文档，其本质是：</p>
+<ul>
+<li>根据指定的id删除文档</li>
+<li>新增一个相同id的文档</li>
+</ul>
+<p><strong>注意</strong>：<strong>如果根据id删除时，id不存在，第二步的新增也会执行，也就从修改变成了新增操作了。</strong></p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">PUT /&#123;索引库名&#125;<span class="hljs-string">/_doc/</span>文档id<br>&#123;<br>    <span class="hljs-string">&quot;字段1&quot;</span>: <span class="hljs-string">&quot;值1&quot;</span>,<br>    <span class="hljs-string">&quot;字段2&quot;</span>: <span class="hljs-string">&quot;值2&quot;</span>,<br>    <span class="hljs-string">//</span> <span class="hljs-string">...</span> 略<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs awk">PUT <span class="hljs-regexp">/heima/</span>_doc/<span class="hljs-number">1</span><br>&#123;<br>    <span class="hljs-string">&quot;info&quot;</span>: <span class="hljs-string">&quot;黑马程序员高级Java讲师&quot;</span>,<br>    <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;zy@itcast.cn&quot;</span>,<br>    <span class="hljs-string">&quot;name&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;firstName&quot;</span>: <span class="hljs-string">&quot;云&quot;</span>,<br>        <span class="hljs-string">&quot;lastName&quot;</span>: <span class="hljs-string">&quot;赵&quot;</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>增量修改</p>
+</blockquote>
+<p>增量修改是只修改指定id匹配的文档中的部分字段。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">POST /&#123;索引库名&#125;/_update/文档<span class="hljs-built_in">id</span><br>&#123;<br>    <span class="hljs-string">&quot;doc&quot;</span>: &#123;<br>         <span class="hljs-string">&quot;字段名&quot;</span>: <span class="hljs-string">&quot;新的值&quot;</span>,<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk">POST <span class="hljs-regexp">/heima/</span>_update/<span class="hljs-number">1</span><br>&#123;<br>  <span class="hljs-string">&quot;doc&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;ZhaoYun@itcast.cn&quot;</span><br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h3 id="RestAPI"><a href="#RestAPI" class="headerlink" title="RestAPI"></a>RestAPI</h3><blockquote>
+<p>ES官方提供了各种不同语言的客户端，用来操作ES。这些客户端的本质就是组装DSL语句，通过http请求发送给ES。官方文档地址：<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/client/index.html">https://www.elastic.co/guide/en/elasticsearch/client/index.html</a></p>
+<p>其中的Java Rest Client又包括两种：</p>
+<ul>
+<li>Java Low Level Rest Client</li>
+<li>Java High Level Rest Client</li>
+</ul>
+</blockquote>
+<p>我们使用的是Java <strong>HighLevel</strong> Rest Client客户端API</p>
+<h5 id="1-Api操作索引库"><a href="#1-Api操作索引库" class="headerlink" title="1.Api操作索引库"></a>1.Api操作索引库</h5><blockquote>
+<p>JavaRestClient操作elasticsearch的流程基本类似。核心是<strong>client.indices()方法来获取索引库的操作对象。</strong></p>
+<p>索引库操作的基本步骤：【可以根据发送请求那步的第一个参数，发过来判断需要创建什么XXXXRequest】</p>
+<ul>
+<li>初始化RestHighLevelClient</li>
+<li>创建XxxIndexRequest。XXX是Create、Get、Delete</li>
+<li>准备DSL（ Create时需要，其它是无参）</li>
+<li>发送请求。调用RestHighLevelClient#indices().<strong>xxx()方法</strong>，xxx是create、exists、delete</li>
+</ul>
+</blockquote>
+<h5 id="2-Mapping映射分析"><a href="#2-Mapping映射分析" class="headerlink" title="2.Mapping映射分析"></a>2.Mapping映射分析</h5><blockquote>
+<p><strong>根据MySQL数据库表结构（建表语句），去写索引库结构JSON。表和索引库一一对应</strong></p>
+<p><strong>注意</strong>：地理坐标、组合字段。<strong>索引库里的地理坐标是一个字段：<code>坐标：维度,精度</code></strong> 。copy_<strong>to组合字段作用是供用户查询（输入关键字可以查询多个字段）</strong></p>
+</blockquote>
+<blockquote>
+<p>创建索引库，最关键的是mapping映射，而mapping映射要考虑的信息包括：</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">字段名<br>字段数据类型<br>是否参与搜索 *<br>是否需要分词 *<br>如果分词，分词器是什么？ *<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs">字段名、字段数据类型，可以参考数据表结构的名称和类型<br>是否参与搜索要分析业务来判断，例如图片地址，就无需参与搜索<br>是否分词呢要看内容，内容如果是一个整体就无需分词，反之则要分词<br>分词器，我们可以统一使用ik_max_word<br></code></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java">PUT /hotel  <span class="hljs-comment">//索引名字</span><br>&#123;<br>  <span class="hljs-string">&quot;mappings&quot;</span>: &#123; <span class="hljs-comment">//开始映射</span><br>    <span class="hljs-string">&quot;properties&quot;</span>: &#123;<span class="hljs-comment">//映射集体</span><br>      <span class="hljs-string">&quot;id&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;keyword&quot;</span><span class="hljs-comment">//唯一标识符，用于精确搜索</span><br>      &#125;,<br>      <span class="hljs-string">&quot;name&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;text&quot;</span>,<br>        <span class="hljs-string">&quot;analyzer&quot;</span>: <span class="hljs-string">&quot;ik_max_word&quot;</span>,<span class="hljs-comment">//分词</span><br>        <span class="hljs-string">&quot;copy_to&quot;</span>: <span class="hljs-string">&quot;all&quot;</span><span class="hljs-comment">//将值复制带all字段-方便综合搜索</span><br>      &#125;,<br>      <span class="hljs-string">&quot;address&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;keyword&quot;</span>,<br>        <span class="hljs-string">&quot;index&quot;</span>: <span class="hljs-literal">false</span><span class="hljs-comment">//不创建索引</span><br>      &#125;,<br>      <span class="hljs-string">&quot;price&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span><br>      &#125;,<br>      <span class="hljs-string">&quot;score&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span><br>      &#125;,<br>      <span class="hljs-string">&quot;brand&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;keyword&quot;</span>,<span class="hljs-comment">//唯一标识符，用于精确搜索</span><br>        <span class="hljs-string">&quot;copy_to&quot;</span>: <span class="hljs-string">&quot;all&quot;</span><span class="hljs-comment">//将值复制带all字段-方便综合搜索</span><br>      &#125;,<br>      <span class="hljs-string">&quot;city&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;keyword&quot;</span>,<span class="hljs-comment">///唯一标识符，用于精确搜索</span><br>        <span class="hljs-string">&quot;copy_to&quot;</span>: <span class="hljs-string">&quot;all&quot;</span><span class="hljs-comment">//将值复制带all字段-方便综合搜索</span><br>      &#125;,<br>      <span class="hljs-string">&quot;starName&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;keyword&quot;</span><span class="hljs-comment">///唯一标识符，用于精确搜索</span><br>      &#125;,<br>      <span class="hljs-string">&quot;business&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;keyword&quot;</span><span class="hljs-comment">///唯一标识符，用于精确搜索</span><br>      &#125;,<br>      <span class="hljs-string">&quot;location&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;geo_point&quot;</span><span class="hljs-comment">//地理坐标类型</span><br>      &#125;,<br>      <span class="hljs-string">&quot;pic&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;keyword&quot;</span>, <span class="hljs-comment">///唯一标识符，用于精确搜索</span><br>        <span class="hljs-string">&quot;index&quot;</span>: <span class="hljs-literal">false</span><br>      &#125;,<br>      <span class="hljs-string">&quot;all&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;text&quot;</span>,<br>        <span class="hljs-string">&quot;analyzer&quot;</span>: <span class="hljs-string">&quot;ik_max_word&quot;</span><span class="hljs-comment">//总体分词</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>几个特殊字段说明：</p>
+<ul>
+<li>location：地理坐标，里面包含精度、纬度</li>
+<li>all：一个组合字段，其目的是将多字段的值 利用copy_to合并，提供给用户搜索</li>
+</ul>
+<p><strong>地理坐标说明：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172124085-626335563.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>copy_to说明：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172128097-289087887.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h5 id="3-初始化RestClient"><a href="#3-初始化RestClient" class="headerlink" title="3.初始化RestClient"></a>3.初始化RestClient</h5><blockquote>
+<p>在elasticsearch提供的API中，与elasticsearch一切交互都封装在一个名为RestHighLevelClient的类中，必须先完成这个对象的初始化，建立与elasticsearch的连接。</p>
+</blockquote>
+<p>导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml">引入es的RestHighLevelClient依赖：<br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.elasticsearch.client<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>elasticsearch-rest-high-level-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>因为SpringBoot默认的ES版本是7.6.2，所以我们需要覆盖默认的ES版本：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-section">&lt;properties&gt;</span><br>    <span class="hljs-section">&lt;java.version&gt;</span><span class="hljs-attribute">1</span>.<span class="hljs-number">8</span>&lt;/java.version&gt;<br>    <span class="hljs-section">&lt;elasticsearch.version&gt;</span><span class="hljs-attribute">7</span>.<span class="hljs-number">12</span>.<span class="hljs-number">1</span>&lt;/elasticsearch.version&gt;<br><span class="hljs-section">&lt;/properties&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>初始化RestHighLevelClient：这里一般在启动类或者配置类里注入该Bean，用于告诉Java 访问ES的ip地址</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_">RestHighLevelClient</span> <span class="hljs-title function_">client</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RestHighLevelClient</span>(<span class="hljs-title class_">RestClient</span>.<span class="hljs-title function_">builder</span>(<br>        <span class="hljs-title class_">HttpHost</span>.<span class="hljs-title function_">create</span>(<span class="hljs-string">&quot;http://192.168.150.101:9200&quot;</span>)<br>	));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里为了单元测试方便，我们创建一个测试类HotelIndexTest，然后将初始化的代码编写在**@BeforeEach**方法中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HotelIndexTest</span> &#123;<br>    <span class="hljs-keyword">private</span> RestHighLevelClient client;<br><br>    <span class="hljs-meta">@BeforeEach</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">setUp</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">this</span>.client = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RestHighLevelClient</span>(RestClient.builder(<br>                HttpHost.create(<span class="hljs-string">&quot;http://192.168.150.101:9200&quot;</span>)<br>        ));<br>    &#125;<br><br>    <span class="hljs-meta">@AfterEach</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">tearDown</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-built_in">this</span>.client.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="4-Spring-索引库-Crud"><a href="#4-Spring-索引库-Crud" class="headerlink" title="4.Spring  索引库 Crud"></a>4.Spring  索引库 Crud</h5><h6 id="1-创建索引库"><a href="#1-创建索引库" class="headerlink" title="1.创建索引库"></a>1.创建索引库</h6><blockquote>
+<p>代码分为三步：</p>
+<ul>
+<li>1）创建Request对象。因为是创建索引库的操作，因此Request是CreateIndexRequest。</li>
+<li>2）添加请求参数，其实就是DSL的JSON参数部分。因为json字符串很长，这里是定义了静态字符串常量MAPPING_TEMPLATE，让代码看起来更加优雅。</li>
+<li>3）发送请求，client.indices()方法的返回值是IndicesClient类型，封装了所有与索引库操作有关的方法。</li>
+</ul>
+</blockquote>
+<p>创建索引库的API如下：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172138463-1252488196.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在hotel-demo的cn.itcast.hotel.constants包下，创建一个类，定义mapping映射的JSON字符串常量：</p>
+<p>HotelConstants –MAPPING_TEMPLATE</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">package</span> cn.itcast.hotel.constants;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HotelConstants</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-type">MAPPING_TEMPLATE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;  <span class="hljs-subst">\&quot;</span>mappings<span class="hljs-subst">\&quot;</span>: &#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;    <span class="hljs-subst">\&quot;</span>properties<span class="hljs-subst">\&quot;</span>: &#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>id<span class="hljs-subst">\&quot;</span>: &#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>keyword<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>name<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>text<span class="hljs-subst">\&quot;</span>,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>analyzer<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>ik_max_word<span class="hljs-subst">\&quot;</span>,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>copy_to<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>all<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>address<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>keyword<span class="hljs-subst">\&quot;</span>,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>index<span class="hljs-subst">\&quot;</span>: false<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>price<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>integer<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>score<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>integer<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>brand<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>keyword<span class="hljs-subst">\&quot;</span>,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>copy_to<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>all<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>city<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>keyword<span class="hljs-subst">\&quot;</span>,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>copy_to<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>all<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>starName<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>keyword<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>business<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>keyword<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>location<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>geo_point<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>pic<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>keyword<span class="hljs-subst">\&quot;</span>,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>index<span class="hljs-subst">\&quot;</span>: false<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      <span class="hljs-subst">\&quot;</span>all<span class="hljs-subst">\&quot;</span>:&#123;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>type<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>text<span class="hljs-subst">\&quot;</span>,<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;        <span class="hljs-subst">\&quot;</span>analyzer<span class="hljs-subst">\&quot;</span>: <span class="hljs-subst">\&quot;</span>ik_max_word<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;      &#125;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;    &#125;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;  &#125;<span class="hljs-subst">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;&#125;&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在hotel-demo中的HotelIndexTest测试类中，编写单元测试，实现创建索引：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">createHotelIndex</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-comment">// 1.创建Request对象</span><br>    <span class="hljs-type">CreateIndexRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateIndexRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>);<br>    <span class="hljs-comment">// 2.准备请求的参数：DSL语句</span><br>    request.source(MAPPING_TEMPLATE, XContentType.JSON);<br>    <span class="hljs-comment">// 3.发送请求</span><br>    client.indices().create(request, RequestOptions.DEFAULT);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="2-删除索引库"><a href="#2-删除索引库" class="headerlink" title="2.删除索引库"></a>2.删除索引库</h6><p>三步走：</p>
+<ul>
+<li>1）创建Request对象。这次是DeleteIndexRequest对象</li>
+<li>2）准备参数。这里是无参</li>
+<li>3）发送请求。改用delete方法</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">DELETE /hotel<br></code></pre></td></tr></table></figure>
+
+<p>在hotel-demo中的HotelIndexTest测试类中，编写单元测试，实现删除索引：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">testDeleteHotelIndex</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-comment">// 1.创建Request对象</span><br>    <span class="hljs-type">DeleteIndexRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DeleteIndexRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>);<br>    <span class="hljs-comment">// 2.发送请求</span><br>    client.indices().delete(request, RequestOptions.DEFAULT);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="3-查询索引库"><a href="#3-查询索引库" class="headerlink" title="3. 查询索引库"></a>3. 查询索引库</h6><p>三步走：</p>
+<ul>
+<li>1）创建Request对象。这次是GetIndexRequest对象</li>
+<li>2）准备参数。这里是无参</li>
+<li>3）发送请求。改用exists方法</li>
+</ul>
+<p>判断索引库是否存在，本质就是查询，对应的DSL是：</p>
+<p>GET &#x2F;hotel</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs arduino">@<span class="hljs-function">Test</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">testExistsHotelIndex</span><span class="hljs-params">()</span> throws IOException </span>&#123;<br>    <span class="hljs-comment">// 1.创建Request对象</span><br>    GetIndexRequest request = <span class="hljs-keyword">new</span> <span class="hljs-built_in">GetIndexRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>);<br>    <span class="hljs-comment">// 2.发送请求</span><br>    <span class="hljs-type">boolean</span> exists = client.<span class="hljs-built_in">indices</span>().<span class="hljs-built_in">exists</span>(request, RequestOptions.<span class="hljs-literal">DEFAULT</span>);<br>    <span class="hljs-comment">// 3.输出</span><br>    System.err.<span class="hljs-built_in">println</span>(exists ? <span class="hljs-string">&quot;索引库已经存在！&quot;</span> : <span class="hljs-string">&quot;索引库不存在！&quot;</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="API操作文档"><a href="#API操作文档" class="headerlink" title="API操作文档"></a>API操作文档</h3><blockquote>
+<p>这里更多的是先读取Mysql中的数据，然后再存进ES中。</p>
+<p>文档操作的基本步骤：【可以根据发送请求那步的第一个参数，发过来判断需要创建什么XXXXRequest】</p>
+<ul>
+<li>初始化RestHighLevelClient</li>
+<li>创建XxxRequest。XXX是Index、Get、Update、Delete、Bulk</li>
+<li>准备参数（Index、Update、Bulk时需要）</li>
+<li>发送请求。调用RestHighLevelClient#.xxx()方法，xxx是index、get、update、delete、bulk</li>
+<li>解析结果（Get时需要）</li>
+</ul>
+</blockquote>
+<h5 id="文档CRUD"><a href="#文档CRUD" class="headerlink" title="文档CRUD"></a>文档CRUD</h5><h6 id="1-批量导入文档"><a href="#1-批量导入文档" class="headerlink" title="1.批量导入文档"></a>1.批量导入文档</h6><p>三步走：</p>
+<ul>
+<li>1）创建Request对象。这里是BulkRequest</li>
+<li>2）准备参数。批处理的参数，就是其它Request对象，这里就是多个IndexRequest</li>
+<li>3）发起请求。这里是批处理，调用的方法为client.bulk()方法</li>
+</ul>
+<p>案例需求：利用BulkRequest批量将数据库数据导入到索引库中。</p>
+<blockquote>
+<p>步骤如下：</p>
+<ul>
+<li>利用mybatis-plus查询酒店数据</li>
+<li>将查询到的酒店数据（Hotel）转换为文档类型数据（HotelDoc）</li>
+<li>利用JavaRestClient中的BulkRequest批处理，实现批量新增文档</li>
+</ul>
+</blockquote>
+<p><strong>语法说明：</strong></p>
+<p>批量处理BulkRequest，其本质就是<strong>将多个普通的CRUD请求组合在一起发送</strong>。</p>
+<p>其中提供了一个add方法，用来添加其他请求：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172220573-1990074801.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>可以看到，能添加的请求包括：</p>
+<ul>
+<li>IndexRequest，也就是新增</li>
+<li>UpdateRequest，也就是修改</li>
+<li>DeleteRequest，也就是删除</li>
+</ul>
+<p>因此Bulk中添加了多个<strong>IndexRequest</strong>，就是批量新增功能了。示例：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172227358-759338253.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>我们在导入酒店数据时，将上述代码改造成for循环处理即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">testBulkRequest</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-comment">// 批量查询酒店数据</span><br>    List&lt;Hotel&gt; hotels = hotelService.list();<br><br>    <span class="hljs-comment">// 1.创建Request</span><br>    <span class="hljs-type">BulkRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BulkRequest</span>();<br>    <span class="hljs-comment">// 2.准备参数，添加多个新增的Request</span><br>    <span class="hljs-keyword">for</span> (Hotel hotel : hotels) &#123;<br>        <span class="hljs-comment">// 2.1.转换为文档类型HotelDoc</span><br>        <span class="hljs-type">HotelDoc</span> <span class="hljs-variable">hotelDoc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HotelDoc</span>(hotel);<br>        <span class="hljs-comment">// 2.2.创建新增文档的Request对象</span><br>        request.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">IndexRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>)<br>                    .id(hotelDoc.getId().toString())<br>                    .source(JSON.toJSONString(hotelDoc), XContentType.JSON));<br>    &#125;<br>    <span class="hljs-comment">// 3.发送请求</span><br>    client.bulk(request, RequestOptions.DEFAULT);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="2-批量-新增文档"><a href="#2-批量-新增文档" class="headerlink" title="2.批量  新增文档"></a>2.批量  新增文档</h6><blockquote>
+<p>四步走：</p>
+<ul>
+<li>0）创建索引库实体类</li>
+<li>1）创建Request对象</li>
+<li>2）准备请求参数，也就是DSL中的JSON文档</li>
+<li>3）发送请求 （注意：这里直接使用client.xxx()的API，不再需要**client.indices()**了）</li>
+</ul>
+</blockquote>
+<p>我们要将数据库的酒店数据查询出来，写入elasticsearch中。</p>
+<p>1.<strong>创建索引库实体类</strong></p>
+<blockquote>
+<p>一般实体类里包含<strong>经纬度都需要创建一个新的实体类，将经纬度拼成一个字段</strong></p>
+</blockquote>
+<p>数据库查询后的结果是一个Hotel类型的对象。结构如下：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@TableName</span>(<span class="hljs-string">&quot;tb_hotel&quot;</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">Hotel</span> </span>&#123;<br>    <span class="hljs-meta">@TableId</span>(type = IdType.INPUT)<br>    <span class="hljs-keyword">private</span> Long id;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> name;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> address;<br>    <span class="hljs-keyword">private</span> Integer price;<br>    <span class="hljs-keyword">private</span> Integer score;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> brand;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> city;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> starName;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> business;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> longitude;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> latitude;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> pic;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>与我们的索引库结构存在差异：</p>
+<ul>
+<li>longitude和latitude需要合并为location</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HotelDoc</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">Long</span> id;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> String address;<br>    <span class="hljs-keyword">private</span> Integer price;<br>    <span class="hljs-keyword">private</span> Integer score;<br>    <span class="hljs-keyword">private</span> String brand;<br>    <span class="hljs-keyword">private</span> String city;<br>    <span class="hljs-keyword">private</span> String starName;<br>    <span class="hljs-keyword">private</span> String business;<br>    <span class="hljs-keyword">private</span> String location;<br>    <span class="hljs-keyword">private</span> String pic;<br><br>    <span class="hljs-keyword">public</span> HotelDoc(Hotel hotel) &#123;<br>        <span class="hljs-keyword">this</span>.id = hotel.getId();<br>        <span class="hljs-keyword">this</span>.name = hotel.getName();<br>        <span class="hljs-keyword">this</span>.address = hotel.getAddress();<br>        <span class="hljs-keyword">this</span>.price = hotel.getPrice();<br>        <span class="hljs-keyword">this</span>.score = hotel.getScore();<br>        <span class="hljs-keyword">this</span>.brand = hotel.getBrand();<br>        <span class="hljs-keyword">this</span>.city = hotel.getCity();<br>        <span class="hljs-keyword">this</span>.starName = hotel.getStarName();<br>        <span class="hljs-keyword">this</span>.business = hotel.getBusiness();<br>        <span class="hljs-keyword">this</span>.location = hotel.getLatitude() + <span class="hljs-string">&quot;, &quot;</span> + hotel.getLongitude();<br>        <span class="hljs-keyword">this</span>.pic = hotel.getPic();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>新增代码</strong></p>
+<p>新增文档的DSL语句如下：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">POST <span class="hljs-regexp">/&#123;索引库名&#125;/</span>_doc/<span class="hljs-number">1</span><br>&#123;<br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Jack&quot;</span>,<br>    <span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">21</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对应的java代码如图：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172259030-1988634807.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>我们导入酒店数据，基本流程一致，但是需要考虑几点变化：</p>
+<ul>
+<li>酒店数据来自于数据库，我们需要先查询出来，得到<strong>hotel</strong>对象</li>
+<li>hotel对象需要<strong>转为HotelDoc对象</strong></li>
+<li>HotelDoc需要序列化为json格式</li>
+</ul>
+<p>在hotel-demo的HotelDocumentTest测试类中，编写单元测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">testAddDocument</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-comment">// 批量查询酒店数据</span><br>    List&lt;Hotel&gt; hotels = hotelService.list();<br><br>    <span class="hljs-comment">// 1.创建Request</span><br>    <span class="hljs-type">BulkRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BulkRequest</span>();<br>    <span class="hljs-comment">// 2.准备参数，添加多个新增的Request</span><br>    <span class="hljs-keyword">for</span> (Hotel hotel : hotels) &#123;<br>        <span class="hljs-comment">// 2.1.转换为文档类型HotelDoc</span><br>        <span class="hljs-type">HotelDoc</span> <span class="hljs-variable">hotelDoc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HotelDoc</span>(hotel);<br>        <span class="hljs-comment">// 2.2.创建新增文档的Request对象</span><br>        request.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">IndexRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>)<br>                    .id(hotelDoc.getId().toString())<br>                    .source(JSON.toJSONString(hotelDoc), XContentType.JSON));<span class="hljs-comment">//实体类转JSON，指定JSON格式</span><br>        request.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">IndexRequest</span>(<span class="hljs-string">&quot;xxx&quot;</span>)...)<br>    &#125;<br>    <span class="hljs-comment">// 3.发送请求</span><br>    client.bulk(request, RequestOptions.DEFAULT);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="3-查询文档"><a href="#3-查询文档" class="headerlink" title="3.查询文档"></a>3.查询文档</h6><blockquote>
+<p>查询文档是根据id查询的，所以没有批量查询</p>
+<p>三步走：</p>
+<ul>
+<li>1）准备Request对象。这次是查询，所以是GetRequest</li>
+<li>2）发送请求，得到结果。因为是查询，这里调用client.get()方法</li>
+<li>3）解析结果，就是对JSON做反序列化</li>
+</ul>
+</blockquote>
+<p>查询的DSL语句如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">GET /hotel/_doc/<span class="hljs-punctuation">&#123;</span>id<span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>非常简单，因此代码大概分两步：</p>
+<ul>
+<li>准备Request对象</li>
+<li>发送请求</li>
+</ul>
+<p>不过查询的目的是得到结果，解析为HotelDoc，因此难点是结果的解析。完整代码如下：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2729274/202302/2729274-20230205172309780-381577770.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>可以看到，结果是一个JSON，其中文档放在一个<code>_source</code>属性中，因此解析就是拿到<code>_source</code>，使用工具反序列化为Java对象即可。</p>
+<p>在hotel-demo的HotelDocumentTest测试类中，编写单元测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">testGetDocumentById</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-comment">// 1.准备Request</span><br>    <span class="hljs-type">GetRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">GetRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>, <span class="hljs-string">&quot;61082&quot;</span>);<br>    <span class="hljs-comment">// 2.发送请求，得到响应</span><br>    <span class="hljs-type">GetResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> client.get(request, RequestOptions.DEFAULT);<br>    <span class="hljs-comment">// 3.解析响应结果</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">json</span> <span class="hljs-operator">=</span> response.getSourceAsString();<br><br>    <span class="hljs-type">HotelDoc</span> <span class="hljs-variable">hotelDoc</span> <span class="hljs-operator">=</span> JSON.parseObject(json, HotelDoc.class);<br>    System.out.println(hotelDoc);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="4-批量删除文档"><a href="#4-批量删除文档" class="headerlink" title="4.批量删除文档"></a>4.批量删除文档</h6><p>三步走：</p>
+<ul>
+<li>1）准备Request对象，因为是删除，这次是DeleteRequest对象。要指定索引库名和id</li>
+<li>2）准备参数，无参</li>
+<li>3）发送请求。因为是删除，所以是client.delete()方法</li>
+</ul>
+<p>删除的DSL为是这样的：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">DELETE /hotel/_doc/<span class="hljs-punctuation">&#123;</span>id<span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>在hotel-demo的HotelDocumentTest测试类中，编写单元测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">testDeleteDocument</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-comment">//0.查询数据库中的数据</span><br>    List&lt;Hotel&gt; list = hotelService.list();<br>    <span class="hljs-comment">// 1.创建Request</span><br>    <span class="hljs-type">BulkRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BulkRequest</span>();<br>    <span class="hljs-comment">//2.批量转换实体类，顺便写入到ES中</span><br>    <span class="hljs-keyword">for</span> (Hotel hotel : list) &#123;<br>        <span class="hljs-comment">//2.1转换实体类</span><br>        <span class="hljs-type">HotelDoc</span> <span class="hljs-variable">hotelDoc</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">HotelDoc</span>(hotel);<br>        <span class="hljs-comment">//2.2写入ES</span><br>        request.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DeleteRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>)<br>                    .id(hotel.getId().toString()));<br>    &#125;<br>    <span class="hljs-comment">//3.发送请求</span><br>    client.bulk(request,RequestOptions.DEFAULT);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="5-批量修改文档"><a href="#5-批量修改文档" class="headerlink" title="5.批量修改文档"></a>5.批量修改文档</h6><p>三步走：</p>
+<ul>
+<li>1）准备Request对象。这次是修改，所以是<strong>UpdateRequest</strong></li>
+<li>2）准备参数。也就是JSON文档，里面包含要修改的字段</li>
+<li>3）更新文档。这里调用client.update()方法</li>
+</ul>
+<p>修改有两种方式：</p>
+<ul>
+<li>全量修改：本质是先根据id删除，再新增</li>
+<li>增量修改：修改文档中的指定字段值</li>
+</ul>
+<p>在RestClient的API中，全量修改与新增的API完全一致，判断依据是ID：</p>
+<ul>
+<li>如果新增时，ID已经存在，则修改</li>
+<li>如果新增时，ID不存在，则新增</li>
+</ul>
+<p><strong>只演示增量修改：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205172320621-611636092.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在hotel-demo的HotelDocumentTest测试类中，编写单元测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">testUpdateDocument</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-comment">//0.查询数据库中的数据</span><br>    List&lt;Hotel&gt; list = hotelService.list();<br>    <span class="hljs-comment">// 1.创建Request</span><br>    <span class="hljs-type">BulkRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BulkRequest</span>();<br>    <span class="hljs-comment">//2.批量转换实体类，顺便写入到ES中</span><br>    <span class="hljs-keyword">for</span> (Hotel hotel : list) &#123;<br>        <span class="hljs-comment">//2.1转换实体类</span><br>        <span class="hljs-type">HotelDoc</span> <span class="hljs-variable">hotelDoc</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">HotelDoc</span>(hotel);<br>        <span class="hljs-comment">//2.2写入ES</span><br>        request.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">UpdateRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>,hotel.getId().toString())<br>                    .doc(<br>                        <span class="hljs-string">&quot;price&quot;</span>, <span class="hljs-string">&quot;952&quot;</span>,<br>                        <span class="hljs-string">&quot;starName&quot;</span>, <span class="hljs-string">&quot;四钻&quot;</span><br>                    ));<br>    &#125;<br>    <span class="hljs-comment">//3.发送请求</span><br>    client.bulk(request,RequestOptions.DEFAULT);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
