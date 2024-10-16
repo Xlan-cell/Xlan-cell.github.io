@@ -122,7 +122,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011110823990.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011110827287.png">
 <meta property="article:published_time" content="2024-10-10T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-11T03:13:56.588Z">
+<meta property="article:modified_time" content="2024-10-16T02:15:58.452Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010135925459.png">
@@ -325,7 +325,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k 字
+          4.4k 字
         
       </span>
     
@@ -336,7 +336,7 @@
         
         
         
-          35 分钟
+          37 分钟
         
       </span>
     
@@ -574,6 +574,10 @@
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010232817300.png" srcset="/img/loading.gif" lazyload alt="image-20241010232817300"></p>
 <p>confirmcallback是保证发送到交换机了；returncallback是保证路由到队列了</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241010232827043.png" srcset="/img/loading.gif" lazyload alt="image-20241010232827043"></p>
+<h5 id="4-实际使用"><a href="#4-实际使用" class="headerlink" title="4.实际使用"></a>4.实际使用</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-title class_">CorrelationData</span> cd = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CorrelationData</span>();<br>        cd.<span class="hljs-title function_">getFuture</span>().<span class="hljs-title function_">addCallback</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListenableFutureCallback</span>&lt;<span class="hljs-title class_">CorrelationData</span>.<span class="hljs-property">Confirm</span>&gt;()<br>     &#123;<br>               <span class="hljs-meta">@Override</span><br>   <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">onFailure</span>(<span class="hljs-params"><span class="hljs-title class_">Throwable</span> throwable</span>) &#123;<br>             <span class="hljs-comment">// 处理失败的情况</span><br>            throwable.<span class="hljs-title function_">printStackTrace</span>();<br>                                   &#125;<br><br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">onSuccess</span>(<span class="hljs-params"><span class="hljs-title class_">CorrelationData</span>.<span class="hljs-title class_">Confirm</span> confirm</span>) &#123;<br><span class="hljs-comment">// 处理成功的情况</span><br><span class="hljs-keyword">if</span>(confirm.<span class="hljs-title function_">isAck</span>())<br><span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(<span class="hljs-string">&quot;消息发送成功&quot;</span>);<br><span class="hljs-keyword">else</span><br><span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(<span class="hljs-string">&quot;消息发送失败&quot;</span>);<br>&#125;<br>&#125;<br><br>);<br><br><br><br><br>        kmsTemplate.<span class="hljs-title function_">send</span>( <span class="hljs-title class_">HotArticleConstants</span>.<span class="hljs-property">HOT_ARTICLE_AGGREGATION_QUEUE</span>,mess,cd);<br></code></pre></td></tr></table></figure>
+
+
+
 <h4 id="MQ的可靠性"><a href="#MQ的可靠性" class="headerlink" title="MQ的可靠性"></a>MQ的可靠性</h4><h5 id="1-持久化"><a href="#1-持久化" class="headerlink" title="1.持久化"></a>1.持久化</h5><p>信息到达MQ-&gt;信息是否会丢失-&gt;一旦丢失–生产者重试机制也是没有效果的<br><strong>为了保证数据的可靠性，必须配置数据持久化</strong><br>1.交换机持久存储<br>2.队列持久化<br>3.消息持久化</p>
 <h6 id="交换机持久存储"><a href="#交换机持久存储" class="headerlink" title="交换机持久存储"></a>交换机持久存储</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011101857514.png" srcset="/img/loading.gif" lazyload alt="image-20241011101857514"></p>
 <h6 id="队列持久化"><a href="#队列持久化" class="headerlink" title="队列持久化"></a>队列持久化</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011101907966.png" srcset="/img/loading.gif" lazyload alt="image-20241011101907966"></p>
@@ -593,6 +597,10 @@
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011102227206.png" srcset="/img/loading.gif" lazyload alt="image-20241011102227206"></p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011102233763.png" srcset="/img/loading.gif" lazyload alt="image-20241011102233763"></p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011102240099.png" srcset="/img/loading.gif" lazyload alt="image-20241011102240099"></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Bean</span><br> <span class="hljs-keyword">public</span> <span class="hljs-title class_">Queue</span> <span class="hljs-title function_">directQueue</span>(<span class="hljs-params"></span>)<br> &#123;<br> <br>     <span class="hljs-title class_">Map</span>&lt;<span class="hljs-title class_">String</span>, <span class="hljs-title class_">Object</span>&gt; args = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>     args.<span class="hljs-title function_">put</span>(<span class="hljs-string">&quot;x-queue-mode&quot;</span>, <span class="hljs-string">&quot;lazy&quot;</span>);  <span class="hljs-comment">// 设置队列为懒人模式</span><br>     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Queue</span>(<span class="hljs-string">&quot;direct.music&quot;</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, args);  <span class="hljs-comment">// 持久化，非独占，非自动删除</span><br> &#125;<br></code></pre></td></tr></table></figure>
+
+
+
 <h4 id="消费者可靠性"><a href="#消费者可靠性" class="headerlink" title="消费者可靠性"></a>消费者可靠性</h4><h5 id="1-问题产生"><a href="#1-问题产生" class="headerlink" title="1.问题产生"></a>1.问题产生</h5><h6 id="0-消费者可靠性条件"><a href="#0-消费者可靠性条件" class="headerlink" title="0.消费者可靠性条件"></a>0.消费者可靠性条件</h6><p>消息投递给消费者并不代表就一定被正确消费了</p>
 <ul>
 <li>消息投递的过程中出现了网络故障</li>
@@ -618,6 +626,27 @@
 <h4 id="业务幂等性"><a href="#业务幂等性" class="headerlink" title="业务幂等性"></a>业务幂等性</h4><h6 id="1-问题发生"><a href="#1-问题发生" class="headerlink" title="1.问题发生"></a>1.问题发生</h6><p>业务幂等性 对同一任务进行重复操作<br>业务幂等<br>- 页面卡顿时频繁刷新导致表单重复提交 - 服务间调用的重试<br>- MQ消息的重复投递 例子<br>对方已支付-&gt;发信息给生产者-&gt;出现问题-&gt;重新投递-&gt;用户退款-&gt;执行成功-&gt;已支付信息开始消费-&gt;订单出现异常</p>
 <p>解决-唯一信息ID<br>给信息添加唯一ID</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011110133636.png" srcset="/img/loading.gif" lazyload alt="image-20241011110133636"></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">messageConverterto</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">Jackson2JsonMessageConverter</span> <span class="hljs-title function_">methodConverter</span>(<span class="hljs-params"></span>)<br>    &#123;<br>        <span class="hljs-title class_">Jackson2JsonMessageConverter</span> jjmc=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Jackson2JsonMessageConverter</span>();<br>        jjmc.<span class="hljs-title function_">setCreateMessageIds</span>(<span class="hljs-literal">true</span>);<br>        <span class="hljs-keyword">return</span> jjmc;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> final <span class="hljs-title class_">Set</span>&lt;<span class="hljs-title class_">String</span>&gt; processedMessageIds = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br><span class="hljs-meta">@RabbitListener</span>(queues=<span class="hljs-string">&quot;direct.music&quot;</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">listen</span>(<span class="hljs-params"><span class="hljs-title class_">Message</span> message</span>)<br>&#123;<br>    <span class="hljs-comment">// 模拟存储已处理的 MessageId，实际可以用 Redis 或数据库替代</span><br><br>    <span class="hljs-title class_">String</span> messageId = message.<span class="hljs-title function_">getMessageProperties</span>().<span class="hljs-title function_">getMessageId</span>();<br><br>    <span class="hljs-comment">// 检查消息是否已处理</span><br>    <span class="hljs-keyword">if</span> (messageId != <span class="hljs-literal">null</span> &amp;&amp; processedMessageIds.<span class="hljs-title function_">contains</span>(messageId)) &#123;<br>        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(<span class="hljs-string">&quot;重复消息，已跳过处理：&quot;</span> + messageId);<br>        <span class="hljs-keyword">return</span>; <span class="hljs-comment">// 消息已处理，跳过</span><br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>虽然 <code>Jackson2JsonMessageConverter</code> 可以为每条消息生成唯一的 <code>MessageId</code>，但是为了确保幂等性，还需要在消息消费者侧做以下工作：</p>
+<ul>
+<li>检查是否已处理过该 <code>MessageId</code>。</li>
+<li>记录处理过的消息 ID，防止重复处理。</li>
+</ul>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-keyword">byte</span>[] <span class="hljs-keyword">body</span> = message.getBody();<br>       String jsonString = <span class="hljs-keyword">new</span> String(<span class="hljs-keyword">body</span>);<br>       <span class="hljs-keyword">try</span> &#123;<br>            onlineMusic = <span class="hljs-keyword">new</span> ObjectMapper().readValue( jsonString, OnlineMusic.<span class="hljs-keyword">class</span>);<br>       &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
 <p>2.问题解决</p>
 <p>幂等判断–<br>根据功能来判断是否需要判断 </p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011110146875.png" srcset="/img/loading.gif" lazyload alt="image-20241011110146875"></p>

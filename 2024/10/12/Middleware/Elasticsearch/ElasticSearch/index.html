@@ -77,8 +77,17 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173504670-1488473639.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173509427-1841421871.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173623518-625657913.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173800773-301602834.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173808406-253737161.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173813297-2072845032.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173819239-1577366921.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173828395-1519960077.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173839234-1487715770.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173843949-30830550.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173850338-1907101734.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173858188-382428581.png">
 <meta property="article:published_time" content="2024-10-12T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-15T06:15:26.864Z">
+<meta property="article:modified_time" content="2024-10-16T03:30:46.990Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e3be99393eb52f2b6559211f1b012807.png">
@@ -281,7 +290,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10k 字
+          11k 字
         
       </span>
     
@@ -292,7 +301,7 @@
         
         
         
-          86 分钟
+          95 分钟
         
       </span>
     
@@ -1110,7 +1119,99 @@
 <p>提示：获取你的位置的经纬度的方式：<a target="_blank" rel="noopener" href="https://lbs.amap.com/demo/jsapi-v2/example/map/click-to-get-lnglat/">https://lbs.amap.com/demo/jsapi-v2/example/map/click-to-get-lnglat/</a></p>
 <p>假设我的位置是：31.034661，121.612282，寻找我周围距离最近的酒店。</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173623518-625657913.png" srcset="/img/loading.gif" lazyload alt="image"></p>
-<h6 id="2-分页"><a href="#2-分页" class="headerlink" title="2.分页"></a>2.分页</h6><h6 id="3-高亮"><a href="#3-高亮" class="headerlink" title="3.高亮"></a>3.高亮</h6><h5 id="数据聚合"><a href="#数据聚合" class="headerlink" title="数据聚合"></a>数据聚合</h5><h3 id="RestClient查询文档"><a href="#RestClient查询文档" class="headerlink" title="RestClient查询文档"></a>RestClient查询文档</h3>
+<h6 id="2-分页"><a href="#2-分页" class="headerlink" title="2.分页"></a>2.分页</h6><h6 id="3-高亮"><a href="#3-高亮" class="headerlink" title="3.高亮"></a>3.高亮</h6><h5 id="数据聚合"><a href="#数据聚合" class="headerlink" title="数据聚合"></a>数据聚合</h5><h3 id="RestClient查询文档"><a href="#RestClient查询文档" class="headerlink" title="RestClient查询文档"></a>RestClient查询文档</h3><blockquote>
+<p>文档的查询同样适用昨天学习的 RestHighLevelClient对象，基本步骤包括：</p>
+<ul>
+<li>1）准备Request对象</li>
+<li>2）准备请求参数</li>
+<li>3）发起请求</li>
+<li>4）解析响应</li>
+</ul>
+</blockquote>
+<h5 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h5><blockquote>
+<p>查询的基本步骤是：</p>
+<ol>
+<li><p>创建SearchRequest对象</p>
+</li>
+<li><p>准备Request.source()，也就是DSL。</p>
+<p>① QueryBuilders来构建查询条件</p>
+<p>② 传入Request.source() 的 query() 方法</p>
+</li>
+<li><p>发送请求，得到结果</p>
+</li>
+<li><p>解析结果（参考JSON结果，从外到内，逐层解析）</p>
+</li>
+</ol>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173800773-301602834.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<ul>
+<li><p>第一步，创建<code>SearchRequest</code>对象，指定索引库名</p>
+</li>
+<li><p>第二步，利用<code>request.source()</code>构建DSL，DSL中可以包含查询、分页、排序、高亮等</p>
+<ul>
+<li><code>query()</code>：代表查询条件，利用<code>QueryBuilders.matchAllQuery()</code>构建一个match_all查询的DSL</li>
+</ul>
+</li>
+<li><p>第三步，利用client.search()发送请求，得到响应</p>
+</li>
+</ul>
+<p>这里关键的API有两个，一个是<code>request.source()</code>，其中包含<strong>了查询、排序、分页、高亮</strong>等所有功能：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173808406-253737161.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>另一个是<code>QueryBuilders</code>，其中包含<strong>match、term、function_score、bool</strong>等各种查询：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173813297-2072845032.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h5 id="结果解析"><a href="#结果解析" class="headerlink" title="结果解析"></a>结果解析</h5><p>响应结果的解析：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173819239-1577366921.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<blockquote>
+<p>elasticsearch返回的结果是一个JSON字符串，结构包含：</p>
+<ul>
+<li><pre><code class="hljs">hits
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><br>：命中的结果<br><br>- `total`：总条数，其中的value是具体的总条数值<br><br>- `max_score`：所有结果中得分最高的文档的相关性算分<br><br>- ```<br>  hits<br></code></pre></td></tr></table></figure>
+
+  ：搜索结果的文档数组，其中的每个文档都是一个json对象
+
+  - `_source`：文档中的原始数据，也是json对象
+</code></pre>
+</li>
+</ul>
+<p>因此，我们解析响应结果，就是逐层解析JSON字符串，流程如下：</p>
+<ul>
+<li><pre><code class="hljs">SearchHits
+<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs leaf"><br>：通过response.getHits()获取，就是JSON中的最外层的hits，代表命中的结果<br><br>- `SearchHits<span class="hljs-punctuation">#</span><span class="hljs-keyword">getTotalHits</span><span class="hljs-params">()</span>.value`：获取总条数信息<br><br>- ```<br>  SearchHits<span class="hljs-punctuation">#</span><span class="hljs-keyword">getHits</span><span class="hljs-params">()</span><br></code></pre></td></tr></table></figure>
+
+  ：获取SearchHit数组，也就是文档数组
+
+  - `SearchHit#getSourceAsString()`：获取文档结果中的_source，也就是原始的json文档数据
+</code></pre>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">testMatchAll</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-comment">// 1.准备Request</span><br>    <span class="hljs-type">SearchRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SearchRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>);<br>    <span class="hljs-comment">// 2.准备DSL</span><br>    request.source()<br>        .query(QueryBuilders.matchAllQuery());<br>    <span class="hljs-comment">// 3.发送请求</span><br>    <span class="hljs-type">SearchResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> client.search(request, RequestOptions.DEFAULT);<br><br>    <span class="hljs-comment">// 4.解析响应</span><br>    handleResponse(response);<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handleResponse</span><span class="hljs-params">(SearchResponse response)</span> &#123;<br>    <span class="hljs-comment">// 4.解析响应</span><br>    <span class="hljs-type">SearchHits</span> <span class="hljs-variable">searchHits</span> <span class="hljs-operator">=</span> response.getHits();<br>    <span class="hljs-comment">// 4.1.获取总条数</span><br>    <span class="hljs-type">long</span> <span class="hljs-variable">total</span> <span class="hljs-operator">=</span> searchHits.getTotalHits().value;<br>    System.out.println(<span class="hljs-string">&quot;共搜索到&quot;</span> + total + <span class="hljs-string">&quot;条数据&quot;</span>);<br>    <span class="hljs-comment">// 4.2.文档数组</span><br>    SearchHit[] hits = searchHits.getHits();<br>    <span class="hljs-comment">// 4.3.遍历</span><br>    <span class="hljs-keyword">for</span> (SearchHit hit : hits) &#123;<br>        <span class="hljs-comment">// 获取文档source</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">json</span> <span class="hljs-operator">=</span> hit.getSourceAsString();<br>        <span class="hljs-comment">// 反序列化</span><br>        <span class="hljs-type">HotelDoc</span> <span class="hljs-variable">hotelDoc</span> <span class="hljs-operator">=</span> JSON.parseObject(json, HotelDoc.class);<br>        System.out.println(<span class="hljs-string">&quot;hotelDoc = &quot;</span> + hotelDoc);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h5 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h5><h6 id="1-全文检索查询"><a href="#1-全文检索查询" class="headerlink" title="1.全文检索查询"></a>1.全文检索查询</h6><p>全文检索<strong>的match和multi_match查询与match_all的API基本一致</strong>。差别是查询条件，也就是query的部分。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173828395-1519960077.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> testMatch <span class="hljs-keyword">throw</span> Ioexception&#123;<br>   <span class="hljs-comment">// 1.准备Request</span><br>    <span class="hljs-type">SearchRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SearchRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>);<br>    request.source().query(QueryBuilders.matchQuery(<span class="hljs-string">&quot;all&quot;</span>,<span class="hljs-string">&quot;如家&quot;</span>));<br>    <span class="hljs-type">SearchResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> client.search(request, RequestOptions.DEFAULT);<br>    <span class="hljs-comment">// 4.解析响应</span><br>    handleResponse(response);<br>    <br><br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="2-精准查找"><a href="#2-精准查找" class="headerlink" title="2.精准查找"></a>2.精准查找</h6><p>精确查询主要是两者：</p>
+<ul>
+<li>term：词条精确匹配</li>
+<li>range：范围查询</li>
+</ul>
+<p>与之前的查询相比，差异同样在查询条件，其它都一样。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173839234-1487715770.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> testMatch <span class="hljs-keyword">throw</span> Ioexception&#123;<br>   <span class="hljs-comment">// 1.准备Request</span><br>    <span class="hljs-type">SearchRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SearchRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>);<br>    request.source().query(QueryBuilders.termQuery(<span class="hljs-string">&quot;city&quot;</span>,<span class="hljs-string">&quot;杭州&quot;</span>));<br>    <span class="hljs-type">SearchResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> client.search(request, RequestOptions.DEFAULT);<br>    <span class="hljs-comment">// 4.解析响应</span><br>    handleResponse(response);<br>    <br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="3-地理查询"><a href="#3-地理查询" class="headerlink" title="3.地理查询"></a>3.地理查询</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173843949-30830550.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在<code>cn.itcast.hotel.service.impl</code>的<code>HotelService</code>的<code>search</code>方法中，添加一个排序功能：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173850338-1907101734.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs gradle">@Override<br><span class="hljs-keyword">public</span> PageResult search(RequestParams params) &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 1.准备Request</span><br>        SearchRequest request = <span class="hljs-keyword">new</span> SearchRequest(<span class="hljs-string">&quot;hotel&quot;</span>);<br>        <span class="hljs-comment">// 2.准备DSL</span><br>        <span class="hljs-comment">// 2.1.query</span><br>        buildBasicQuery(params, request);<br><br>        <span class="hljs-comment">// 2.2.分页</span><br>        <span class="hljs-keyword">int</span> page = params.getPage();<br>        <span class="hljs-keyword">int</span> <span class="hljs-keyword">size</span> = params.getSize();<br>        request.<span class="hljs-keyword">source</span>().<span class="hljs-keyword">from</span>((page - <span class="hljs-number">1</span>) * <span class="hljs-keyword">size</span>).<span class="hljs-keyword">size</span>(<span class="hljs-keyword">size</span>);<br><br>        <span class="hljs-comment">// 2.3.排序</span><br>        String location = params.getLocation();<br>        <span class="hljs-keyword">if</span> (location != <span class="hljs-keyword">null</span> &amp;&amp; !location.equals(<span class="hljs-string">&quot;&quot;</span>)) &#123;<br>            request.<span class="hljs-keyword">source</span>().<span class="hljs-keyword">sort</span>(SortBuilders<br>                                  .geoDistanceSort(<span class="hljs-string">&quot;location&quot;</span>, <span class="hljs-keyword">new</span> GeoPoint(location))<br>                                  .order(SortOrder.ASC)<br>                                  .unit(DistanceUnit.KILOMETERS)<br>                                 );<br>        &#125;<br><br>        <span class="hljs-comment">// 3.发送请求</span><br>        SearchResponse response = client.search(request, RequestOptions.<span class="hljs-keyword">DEFAULT</span>);<br>        <span class="hljs-comment">// 4.解析响应</span><br>        <span class="hljs-keyword">return</span> handleResponse(response);<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="4-布尔查询"><a href="#4-布尔查询" class="headerlink" title="4.布尔查询"></a>4.布尔查询</h6><p>布尔查询是用must、must_not、filter等方式组合其它查询，代码示例如下：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2729274-20230205173858188-382428581.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>可以看到，API与其它查询的差别同样是在查询条件的构建，QueryBuilders，结果解析等其他代码完全不变。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">testBool</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-comment">// 1.准备Request</span><br>    <span class="hljs-type">SearchRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SearchRequest</span>(<span class="hljs-string">&quot;hotel&quot;</span>);<br>    <span class="hljs-comment">// 2.准备DSL</span><br>    <span class="hljs-comment">// 2.1.准备BooleanQuery</span><br>    <span class="hljs-type">BoolQueryBuilder</span> <span class="hljs-variable">boolQuery</span> <span class="hljs-operator">=</span> QueryBuilders.boolQuery();<br>    <span class="hljs-comment">// 2.2.添加term</span><br>    boolQuery.must(QueryBuilders.termQuery(<span class="hljs-string">&quot;city&quot;</span>, <span class="hljs-string">&quot;杭州&quot;</span>));<br>    <span class="hljs-comment">// 2.3.添加range</span><br>    boolQuery.filter(QueryBuilders.rangeQuery(<span class="hljs-string">&quot;price&quot;</span>).lte(<span class="hljs-number">250</span>));<br><br>    request.source().query(boolQuery);<br>    <span class="hljs-comment">// 3.发送请求</span><br>    <span class="hljs-type">SearchResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> client.search(request, RequestOptions.DEFAULT);<br>    <span class="hljs-comment">// 4.解析响应</span><br>    handleResponse(response);<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="5-算分函数"><a href="#5-算分函数" class="headerlink" title="5.算分函数"></a>5.算分函数</h6><h6 id="6-设置搜索结果"><a href="#6-设置搜索结果" class="headerlink" title="6.设置搜索结果"></a>6.设置搜索结果</h6><h6 id="7-高亮"><a href="#7-高亮" class="headerlink" title="7.高亮"></a>7.高亮</h6><h6 id="8-聚合"><a href="#8-聚合" class="headerlink" title="8.聚合"></a>8.聚合</h6><h3 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h3><h3 id="Es-Mysql数据同步"><a href="#Es-Mysql数据同步" class="headerlink" title="Es Mysql数据同步"></a>Es Mysql数据同步</h3><h3 id="Es集群"><a href="#Es集群" class="headerlink" title="Es集群"></a>Es集群</h3><p>&#x2F;&#x2F;项目用到自然会讲解</p>
+
                 
               </div>
             
