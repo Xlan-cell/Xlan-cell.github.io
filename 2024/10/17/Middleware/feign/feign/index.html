@@ -19,28 +19,34 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="so分析 hook其参数-得知 修改. text:000A1CE8 01 32                         ADDS    R2, #1 text:000A1CE8 01 32                         ADDS    R2, #8  text:000A1CE8 01 32                         ADDS    R2, #8">
+    <meta name="description" content="OpenFeign-远程调用 1.快速入门案例1.导入案例  2.启动注解 快速入门案例 1.导入案例  img 2.启动注解  3.代码编写  12private final ItemClient itemclient;List&lt;&gt;items&#x3D;itemclient.query();  如上feign帮我们进行了 服务拉取 负载均衡 -请发送的所有工作 2.OpenFeign连接池我们">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2048实现秒过关">
-<meta property="og:url" content="http://example.com/2024/09/06/2048/index.html">
+<meta property="og:title" content="OpenFeign">
+<meta property="og:url" content="http://example.com/2024/10/17/Middleware/feign/feign/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="so分析 hook其参数-得知 修改. text:000A1CE8 01 32                         ADDS    R2, #1 text:000A1CE8 01 32                         ADDS    R2, #8  text:000A1CE8 01 32                         ADDS    R2, #8">
+<meta property="og:description" content="OpenFeign-远程调用 1.快速入门案例1.导入案例  2.启动注解 快速入门案例 1.导入案例  img 2.启动注解  3.代码编写  12private final ItemClient itemclient;List&lt;&gt;items&#x3D;itemclient.query();  如上feign帮我们进行了 服务拉取 负载均衡 -请发送的所有工作 2.OpenFeign连接池我们">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/041e24788116aad3e5b9d66d153c0597.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5997fd65e2f23df2dedd500f805418d1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b0c2eab99470f976c0cc393352fa1b15.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240908230448204.png">
-<meta property="article:published_time" content="2024-09-06T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-08T15:22:14.922Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0a7daefd898024466d28967eea99da8c.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e73d3e068484e2e31915ba7653f1003c.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e73d3e068484e2e31915ba7653f1003c.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0ed643292f8dcdbb4ff4d6e96ce00153.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/8241cb4042ea1e687948cd9b6c752e4b.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d0853161a442680c814a26edfd25d44b.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2f85cd781db72ba5994a9b7341f64c2f.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/76f1f3f63bb3b8d05dc723f7f12117a2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2e098ace474e1339c04dd1aa450c100b.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/670ebe6e23b9c09af17b4f1e53a3f249.png">
+<meta property="article:published_time" content="2024-10-17T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-10-17T07:01:44.364Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/041e24788116aad3e5b9d66d153c0597.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0a7daefd898024466d28967eea99da8c.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>2048实现秒过关 - 逆向狗</title>
+  <title>OpenFeign - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2048实现秒过关"></span>
+            <span id="subtitle" data-typed-text="OpenFeign"></span>
           
         </div>
 
@@ -222,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-06 20:22" pubdate>
-          2024年9月6日 晚上
+        <time datetime="2024-10-17 20:22" pubdate>
+          2024年10月17日 晚上
         </time>
       </span>
     
@@ -234,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          30 字
+          1.2k 字
         
       </span>
     
@@ -245,7 +251,7 @@
         
         
         
-          1 分钟
+          11 分钟
         
       </span>
     
@@ -282,21 +288,95 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2048实现秒过关</h1>
+            <h1 id="seo-header">OpenFeign</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="so分析"><a href="#so分析" class="headerlink" title="so分析"></a>so分析</h1><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/041e24788116aad3e5b9d66d153c0597.png" srcset="/img/loading.gif" lazyload alt="041e24788116aad3e5b9d66d153c0597"></p>
-<p>hook其参数-得知</p>
-<p>修改.</p>
-<p>text:000A1CE8 01 32                         ADDS    R2, #1</p>
-<p>text:000A1CE8 01 32                         ADDS    R2, #8</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5997fd65e2f23df2dedd500f805418d1.png" srcset="/img/loading.gif" lazyload alt="5997fd65e2f23df2dedd500f805418d1"></p>
-<p>text:000A1CE8 01 32                         ADDS    R2, #8</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b0c2eab99470f976c0cc393352fa1b15.png" srcset="/img/loading.gif" lazyload alt="b0c2eab99470f976c0cc393352fa1b15"></p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20240908230448204.png" srcset="/img/loading.gif" lazyload alt="`image-20240908230448204`"></p>
-<p>修改盒子初始值达到快速过关</p>
+                <h1 id="OpenFeign-远程调用"><a href="#OpenFeign-远程调用" class="headerlink" title="OpenFeign-远程调用"></a>OpenFeign-远程调用</h1><p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0a7daefd898024466d28967eea99da8c.png"><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0a7daefd898024466d28967eea99da8c.png" srcset="/img/loading.gif" lazyload alt="0a7daefd898024466d28967eea99da8c"></a></p>
+<h6 id="1-快速入门案例"><a href="#1-快速入门案例" class="headerlink" title="1.快速入门案例"></a>1.快速入门案例</h6><p>1.导入案例</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e73d3e068484e2e31915ba7653f1003c.png"><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e73d3e068484e2e31915ba7653f1003c.png" srcset="/img/loading.gif" lazyload alt="e73d3e068484e2e31915ba7653f1003c"></a></p>
+<p>2.启动注解</p>
+<p>快速入门案例 1.导入案例</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e73d3e068484e2e31915ba7653f1003c.png"><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e73d3e068484e2e31915ba7653f1003c.png" srcset="/img/loading.gif" lazyload alt="img"></a></p>
+<p>img</p>
+<p>2.启动注解</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0ed643292f8dcdbb4ff4d6e96ce00153.png"><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0ed643292f8dcdbb4ff4d6e96ce00153.png" srcset="/img/loading.gif" lazyload alt="img"></a></p>
+<p>3.代码编写</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Xlan-cell/tupian/master/8241cb4042ea1e687948cd9b6c752e4b.png"><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/8241cb4042ea1e687948cd9b6c752e4b.png" srcset="/img/loading.gif" lazyload alt="8241cb4042ea1e687948cd9b6c752e4b"></a></p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">private final ItemClient itemclient<span class="hljs-comment">;</span><br>List&lt;&gt;items<span class="hljs-operator">=</span>itemclient.query()<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<p>如上feign帮我们进行了 <strong>服务拉取 负载均衡 -请发送的所有工作</strong></p>
+<h6 id="2-OpenFeign连接池"><a href="#2-OpenFeign连接池" class="headerlink" title="2.OpenFeign连接池"></a>2.OpenFeign连接池</h6><p>我们发起请求的话-需要建立连接-再销毁-但连接池可以减少这个过程产生的消耗<br>使用ok-http连接池<br>1.导入依赖<br>2.配置启用</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d0853161a442680c814a26edfd25d44b.png"><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d0853161a442680c814a26edfd25d44b.png" srcset="/img/loading.gif" lazyload alt="d0853161a442680c814a26edfd25d44b"></a></p>
+<p>d0853161a442680c814a26edfd25d44b</p>
+<p>OkHttp连接池的操作如下：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">连接的创建和管理: OkHttp连接池会在应用程序启动时创建一组HTTP连接，并在需要时将其保持在连接池中。这些连接可以被多个线程共享和重用，而不是每次请求都重新创建连接。</span><br><br><span class="hljs-section">连接的重用: 当一个线程需要执行一个HTTP请求时，它可以从连接池中获取一个可用的连接，而不必等待新连接的创建。如果连接池中没有可用的连接，线程可能会被阻塞，直到有连接可用为止。</span><br><br><span class="hljs-section">连接的释放: 当一个线程完成了对某个HTTP服务的请求，它会将连接放回连接池，而不是关闭连接。这样可以避免频繁地打开和关闭连接，提高了连接的重用率。</span><br>TEXT<br></code></pre></td></tr></table></figure>
+
+<p>OkHttp连接池可以加快效率的原因包括：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs arcade">减少连接的创建和销毁开销：通过重用连接，可以避免频繁地创建和销毁连接，从而减少了系统资源的消耗和网络延迟。<br><br>提高并发性能：连接池可以确保连接的有效重用，从而使多个线程能够并发地共享同一个连接，提高了系统的并发处理能力。<br><br>降低网络延迟：通过重用连接和减少连接的创建次数，可以减少网络请求的等待时间，从而降低了网络延迟，提高了系统的响应速度。<br><span class="hljs-built_in">TEXT</span><br></code></pre></td></tr></table></figure>
+
+<p>总的来说，OkHttp连接池的有效管理和重用HTTP连接可以显著提高应用程序的性能和效率，特别是在需要频繁进行HTTP通信的场景下。</p>
+<p>这里的请求-是固定的 故此可以保存</p>
+<h6 id="3-api抽取"><a href="#3-api抽取" class="headerlink" title="3.api抽取"></a>3.api抽取</h6><p>方案1 结构层次低-耦合度高<br>方案2 结构层次复杂-哦合度低<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2f85cd781db72ba5994a9b7341f64c2f.png"><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2f85cd781db72ba5994a9b7341f64c2f.png" srcset="/img/loading.gif" lazyload alt="2f85cd781db72ba5994a9b7341f64c2f"></a></p>
+<p>2f85cd781db72ba5994a9b7341f64c2f</p>
+<h6 id="包扫描问题"><a href="#包扫描问题" class="headerlink" title="包扫描问题"></a>包扫描问题</h6><p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Xlan-cell/tupian/master/76f1f3f63bb3b8d05dc723f7f12117a2.png"><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/76f1f3f63bb3b8d05dc723f7f12117a2.png" srcset="/img/loading.gif" lazyload alt="76f1f3f63bb3b8d05dc723f7f12117a2"></a></p>
+<p>76f1f3f63bb3b8d05dc723f7f12117a2</p>
+<p>也是注册为bean-但我忘记常量注入了</p>
+<h6 id="fegin日志配置"><a href="#fegin日志配置" class="headerlink" title="fegin日志配置"></a>fegin日志配置</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2e098ace474e1339c04dd1aa450c100b.png" srcset="/img/loading.gif" lazyload alt="2e098ace474e1339c04dd1aa450c100b"></p>
+<p>修改日志</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Xlan-cell/tupian/master/670ebe6e23b9c09af17b4f1e53a3f249.png"><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/670ebe6e23b9c09af17b4f1e53a3f249.png" srcset="/img/loading.gif" lazyload alt="670ebe6e23b9c09af17b4f1e53a3f249"></a></p>
+<h4 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h4><h6 id="云岚到家"><a href="#云岚到家" class="headerlink" title="云岚到家"></a>云岚到家</h6><p>配合Sentinel使用</p>
+<p>构造API </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomerClient</span>&#123;<br> <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> Api Api;<br> <span class="hljs-meta">@SentinelResource(value = &quot;getAddressBookDetail&quot;, fallback = &quot;detailFallback&quot;, blockHandler = &quot;detailBlockHandler&quot;)</span><br>     <span class="hljs-keyword">public</span> AddressBookResDTO <span class="hljs-title function_">getDetail</span><span class="hljs-params">(Long id)</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> Api.api(id);<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span>  AddressBookResDTO <span class="hljs-title function_">detailFallback</span><span class="hljs-params">(Long id, Throwable throwable)</span><br>    &#123;<br>        log.error(<span class="hljs-string">&quot;异常抛出&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span>  AddressBookResDTO <span class="hljs-title function_">detailBlockHandler</span><span class="hljs-params">(Long id, Throwable throwable)</span><br>    &#123;<br>        log.error(<span class="hljs-string">&quot;熔断&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <br><br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>从你提供的代码来看，这是一个基于 Sentinel 进行服务熔断和降级的客户调用类 <code>CustomerClient</code>。让我为你推理一下各部分的作用和逻辑：</p>
+<ol>
+<li><p><strong>类定义和注解</strong></p>
+<ul>
+<li><code>@Component</code>：将该类注册为 Spring 的组件，使其能够被自动扫描和注入到 Spring 容器中。</li>
+<li><code>@Resource</code>：用于注入 <code>Api</code> 接口的实现，这个 <code>Api</code> 很可能是一个远程服务的客户端，负责获取某些数据（比如地址簿信息）。</li>
+</ul>
+</li>
+<li><p><strong>Sentinel 熔断与降级</strong></p>
+<ul>
+<li><pre><code class="hljs">@SentinelResource(value = &quot;getAddressBookDetail&quot;, fallback = &quot;detailFallback&quot;, blockHandler = &quot;detailBlockHandler&quot;)
+</code></pre>
+<p>：该注解来自 Sentinel，表示这个方法会受到 Sentinel 的保护。如果服务出错或触发限流、熔断机制，将自动调用指定的降级方法和熔断处理方法。</p>
+<ul>
+<li><code>value = &quot;getAddressBookDetail&quot;</code>：定义该资源的名称为 <code>getAddressBookDetail</code>，用于 Sentinel 监控和保护。</li>
+<li><code>fallback = &quot;detailFallback&quot;</code>：当方法出现异常时，会调用 <code>detailFallback</code> 方法进行降级处理。</li>
+<li><code>blockHandler = &quot;detailBlockHandler&quot;</code>：当请求被 Sentinel 触发流控或熔断时，会调用 <code>detailBlockHandler</code> 方法进行熔断处理。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>核心方法 <code>getDetail(Long id)</code></strong></p>
+<ul>
+<li>该方法通过 <code>Api.api(id)</code> 调用外部 API 或服务，获取某个 ID 对应的地址簿详细信息。</li>
+<li>如果该服务正常，则返回 <code>AddressBookResDTO</code> 对象（地址簿详情）。</li>
+</ul>
+</li>
+<li><p><strong>降级方法 <code>detailFallback(Long id, Throwable throwable)</code></strong></p>
+<ul>
+<li>当 <code>getDetail</code> 方法内部抛出异常时，Sentinel 会调用此降级方法。</li>
+<li>通过 <code>Throwable</code> 可以获取具体的异常信息，不过该示例中并未使用，而是简单记录了错误日志，并返回 <code>null</code>。</li>
+</ul>
+</li>
+<li><p><strong>熔断处理方法 <code>detailBlockHandler(Long id, Throwable throwable)</code></strong></p>
+<ul>
+<li>当 <code>getDetail</code> 触发 Sentinel 的流控、熔断规则时，将调用此方法。</li>
+<li>同样，该方法会记录熔断信息，并返回 <code>null</code>。</li>
+</ul>
+</li>
+</ol>
+<p>总结推理：</p>
+<ul>
+<li>该类通过 Sentinel 保护 <code>getDetail</code> 方法，防止因外部服务不稳定或异常而影响系统的稳定性。</li>
+<li>如果 <code>Api.api(id)</code> 调用出错，会进入 <code>detailFallback</code> 进行降级处理。</li>
+<li>如果该方法因流量过大或熔断规则触发，则进入 <code>detailBlockHandler</code> 方法。</li>
+<li>Sentinel 允许开发者将异常与流控分开处理，提高了服务的健壮性。</li>
+</ul>
 
                 
               </div>
@@ -315,7 +395,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%80%86%E5%90%91/" class="category-chain-item">逆向</a>
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
   
   
 
@@ -335,8 +415,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2048实现秒过关</div>
-      <div>http://example.com/2024/09/06/2048/</div>
+      <div>OpenFeign</div>
+      <div>http://example.com/2024/10/17/Middleware/feign/feign/</div>
     </div>
     <div class="license-meta">
       
@@ -348,7 +428,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月6日</div>
+          <div>2024年10月17日</div>
         </div>
       
       
@@ -380,9 +460,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/10/nk/" title="Java基础题目">
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java基础题目</span>
+                        <span class="hidden-mobile">最近的笔记方向</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -390,8 +470,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/06/huanchun/" title="三级缓存解决循环依赖">
-                        <span class="hidden-mobile">三级缓存解决循环依赖</span>
+                      <a href="/2024/10/17/Middleware/freemarker/freemarker/" title="Freemarker">
+                        <span class="hidden-mobile">Freemarker</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
