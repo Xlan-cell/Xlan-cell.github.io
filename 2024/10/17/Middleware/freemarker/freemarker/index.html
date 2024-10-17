@@ -1,0 +1,818 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Freemarkerfreemarker介绍FreeMarker 是模板引擎：基于 模板-数据- -生成输出文本(网页-电子邮件配置文件-源代码)  是一嵌入开发产品的组件。  音乐社区案例 不使用freemarker 前端-&gt;发起请求-&gt;查询数据库-&gt;拿到数据-&gt;返回数据层-&gt;视图层渲染   使用freemarker 发起音乐-&gt;直接访问freemarker静">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逆向狗">
+<meta property="og:url" content="http://example.com/2024/10/17/Middleware/freemarker/freemarker/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="Freemarkerfreemarker介绍FreeMarker 是模板引擎：基于 模板-数据- -生成输出文本(网页-电子邮件配置文件-源代码)  是一嵌入开发产品的组件。  音乐社区案例 不使用freemarker 前端-&gt;发起请求-&gt;查询数据库-&gt;拿到数据-&gt;返回数据层-&gt;视图层渲染   使用freemarker 发起音乐-&gt;直接访问freemarker静">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241017102759599.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241017104844409.png">
+<meta property="article:published_time" content="2024-10-17T02:20:00.038Z">
+<meta property="article:modified_time" content="2024-10-17T02:49:44.021Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241017102759599.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-17 10:20" pubdate>
+          2024年10月17日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Freemarker"><a href="#Freemarker" class="headerlink" title="Freemarker"></a>Freemarker</h1><h4 id="freemarker介绍"><a href="#freemarker介绍" class="headerlink" title="freemarker介绍"></a>freemarker介绍</h4><p>FreeMarker 是模板引擎：基于 模板-数据- -生成输出文本(网页-电子邮件配置文件-源代码)</p>
+<p> 是一嵌入开发产品的组件。</p>
+<blockquote>
+<p>音乐社区案例</p>
+<p>不使用freemarker</p>
+<p>前端-&gt;发起请求-&gt;查询数据库-&gt;拿到数据-&gt;返回数据层-&gt;视图层渲染</p>
+</blockquote>
+<blockquote>
+<p>使用freemarker</p>
+<p>发起音乐-&gt;直接访问freemarker静态网页</p>
+</blockquote>
+<p>在模板中，你可以专注于如何展现数据， 而在模板之外可以专注于要展示什么数据。 </p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241017102759599.png" srcset="/img/loading.gif" lazyload alt="image-20241017102759599"></p>
+<h4 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h4><h6 id="1-导入依赖"><a href="#1-导入依赖" class="headerlink" title="1.导入依赖"></a>1.导入依赖</h6><p>freemarker作为springmvc一种视图格式，默认情况下SpringMVC支持freemarker视图格式。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>heima-leadnews-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.heima<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br> <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>freemarker-demo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br> <br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br> <br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-freemarker<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br> <br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- lombok --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br> <br>        <span class="hljs-comment">&lt;!-- apache 对 java io 的封装工具库 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.commons<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-io<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.3.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br> <br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">freemarker:</span><br>   <span class="hljs-attr">cache:</span> <span class="hljs-literal">false</span>  <span class="hljs-comment">#关闭模板缓存，方便测试</span><br>   <span class="hljs-attr">settings:</span><br>     <span class="hljs-attr">template_update_delay:</span> <span class="hljs-number">0</span> <span class="hljs-comment">#检查模板更新延迟时间，设置为0表示立即检查，如果时间大于0会有缓存不方便进行模板测试</span><br>   <span class="hljs-attr">suffix:</span> <span class="hljs-string">.ftl</span>               <span class="hljs-comment">#指定Freemarker模板文件的后缀名</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="2-创建模型类"><a href="#2-创建模型类" class="headerlink" title="2.创建模型类"></a>2.创建模型类</h6><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> name;<span class="hljs-comment">//姓名</span><br>    <span class="hljs-keyword">private</span> int age;<span class="hljs-comment">//年龄</span><br>    <span class="hljs-keyword">private</span> Date birthday;<span class="hljs-comment">//生日</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">Float</span> money;<span class="hljs-comment">//钱包</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="3-创建模板"><a href="#3-创建模板" class="headerlink" title="3.创建模板"></a>3.创建模板</h6><p>在resources下创建templates，此目录为freemarker的默认模板存放目录。</p>
+<p>在templates下创建模板文件 01-basic.ftl ，模板中的插值表达式最终会被freemarker替换成具体的数据。</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>普通文本 String 展示：<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml">Hello $</span><span class="hljs-template-variable">&#123;name&#125;</span><span class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>对象Student中的数据展示：<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">姓名：$</span><span class="hljs-template-variable">&#123;stu.name&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">年龄：$</span><span class="hljs-template-variable">&#123;stu.age&#125;</span><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FreemarkerDemotApplication</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"><span class="hljs-title class_">String</span>[] args</span>) &#123;<br>      <span class="hljs-title class_">SpringApplication</span>.<span class="hljs-title function_">run</span>(<span class="hljs-title class_">FreemarkerDemotApplication</span>.<span class="hljs-property">class</span>,args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloController</span> &#123;<br> <br>    <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">&quot;/basic&quot;</span>)<br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">String</span> <span class="hljs-title function_">test</span>(<span class="hljs-params"><span class="hljs-title class_">Model</span> model</span>) &#123;<br> <br> <br>        <span class="hljs-comment">//1.纯文本形式的参数</span><br>        model.<span class="hljs-title function_">addAttribute</span>(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;freemarker&quot;</span>);<br>        <span class="hljs-comment">//2.实体类相关的参数</span><br>        <br>        <span class="hljs-title class_">Student</span> student = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>        student.<span class="hljs-title function_">setName</span>(<span class="hljs-string">&quot;小明&quot;</span>);<br>        student.<span class="hljs-title function_">setAge</span>(<span class="hljs-number">18</span>);<br>        model.<span class="hljs-title function_">addAttribute</span>(<span class="hljs-string">&quot;stu&quot;</span>, student);<br> <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;01-basic&quot;</span>;<br>    &#125;<br><br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>Model</code> 在 Spring MVC 中的作用是用于在控制器中传递数据到视图层（如 Thymeleaf、Freemarker 等模板引擎），使得视图可以通过模板语言读取并展示这些数据。</p>
+<p>具体作用如下：</p>
+<ol>
+<li><strong>传递数据到视图层</strong>：<code>Model</code> 是一个容器，可以存储从控制器传递给视图的参数。通过 <code>model.addAttribute()</code> 方法，你可以将数据添加到 <code>Model</code> 中，视图层可以访问这些数据进行渲染。例如，上述代码通过 <code>model.addAttribute(&quot;name&quot;, &quot;freemarker&quot;)</code> 将 <code>&quot;freemarker&quot;</code> 传递给视图层，通过 <code>model.addAttribute(&quot;stu&quot;, student)</code> 传递 <code>Student</code> 实体对象。</li>
+<li><strong>数据在页面展示</strong>：视图层模板通过获取 <code>Model</code> 中的数据展示在页面上。例如，Freemarker 通过 <code>$&#123;name&#125;</code> 和 <code>$&#123;stu.name&#125;</code> 可以读取并显示控制器中传递的数据。</li>
+</ol>
+<p>因此，<code>Model</code> <strong>作为控制器与视图之间的桥梁，负责将数据从控制器传递到视图，用于动态生成页面内容。</strong></p>
+</blockquote>
+<p>访问 </p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8881/basic">http://localhost:8881/basic</a></p>
+<h4 id="Freemarker基础"><a href="#Freemarker基础" class="headerlink" title="Freemarker基础"></a>Freemarker基础</h4><h6 id="1-基础语法分类"><a href="#1-基础语法分类" class="headerlink" title="1.基础语法分类"></a>1.基础语法分类</h6><p> 1、注释，即&lt;#–  –&gt;，介于其之间的内容会被freemarker忽略</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs velocity">&lt;#--我是一个freemarker注释--&gt;<br></code></pre></td></tr></table></figure>
+
+<p>  2、插值（Interpolation）：即 <strong><code>$&#123;..&#125;</code></strong> 部分,freemarker会用真实的值代替**<code>$&#123;..&#125;</code>**</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs velocity">Hello $&#123;name&#125;<br></code></pre></td></tr></table></figure>
+
+<p>  3、FTL指令：和HTML标记类似，名字前加#予以区分，Freemarker会解析标签中的表达式或逻辑。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs velocity">&lt;# &gt;FTL指令&lt;/#&gt; <br></code></pre></td></tr></table></figure>
+
+<p>  4、文本，仅文本信息，这些不是freemarker的注释、插值、FTL指令的内容会被freemarker忽略解析，直接输出内容。</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck">&lt;<span class="hljs-comment">#</span><span class="hljs-literal">--</span><span class="hljs-comment">freemarker中的普通文本</span><span class="hljs-literal">--</span>&gt;<br><span class="hljs-comment">我是一个普通的文本</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="2-集合指令-List和map"><a href="#2-集合指令-List和map" class="headerlink" title="2.集合指令(List和map)"></a>2.集合指令(List和map)</h6><p>案例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/list&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">list</span><span class="hljs-params">(Model model)</span>&#123;<br><span class="hljs-comment">//------------------------------------</span><br><span class="hljs-type">Student</span> <span class="hljs-variable">stu1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>stu1.setName(<span class="hljs-string">&quot;小强&quot;</span>);<br>stu1.setAge(<span class="hljs-number">18</span>);<br>stu1.setMoney(<span class="hljs-number">1000.86f</span>);<br>stu1.setBirthday(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br><br><span class="hljs-comment">//小红对象模型数据</span><br><span class="hljs-type">Student</span> <span class="hljs-variable">stu2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>stu2.setName(<span class="hljs-string">&quot;小红&quot;</span>);<br>stu2.setMoney(<span class="hljs-number">200.1f</span>);<br>stu2.setAge(<span class="hljs-number">19</span>);<br><br><span class="hljs-comment">//将两个对象模型数据存放到List集合中</span><br>List&lt;Student&gt; stus = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>stus.add(stu1);<br>stus.add(stu2);<br><br><span class="hljs-comment">//向model中存放List集合数据</span><br>model.addAttribute(<span class="hljs-string">&quot;stus&quot;</span>,stus);<br><br><span class="hljs-comment">//------------------------------------</span><br><br><span class="hljs-comment">//创建Map数据</span><br>HashMap&lt;String,Student&gt; stuMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>stuMap.put(<span class="hljs-string">&quot;stu1&quot;</span>,stu1);<br>stuMap.put(<span class="hljs-string">&quot;stu2&quot;</span>,stu2);<br><span class="hljs-comment">// 3.1 向model中存放Map数据</span><br>model.addAttribute(<span class="hljs-string">&quot;stuMap&quot;</span>, stuMap);<br><br><span class="hljs-keyword">return</span> <span class="hljs-string">&quot;02-list&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>模板：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml">    </span><br><span class="language-xml">&lt;#-- list 数据的展示 --&gt;</span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>展示list中的stu数据:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>序号<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>姓名<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>年龄<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>钱包<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span><br><span class="language-xml">    &lt;#list stus as stu&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;stu_index+1&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;stu.name&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;stu.age&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;stu.money&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span><br><span class="language-xml">    &lt;/#list&gt;</span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="language-xml">    </span><br><span class="language-xml">&lt;#-- Map 数据的展示 --&gt;</span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>map数据的展示：<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;###&quot;</span>&gt;</span>方式一：通过map[&#x27;keyname&#x27;].property<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">输出stu1的学生信息：<span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">姓名：$</span><span class="hljs-template-variable">&#123;stuMap[&#x27;stu1&#x27;].name&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">年龄：$</span><span class="hljs-template-variable">&#123;stuMap[&#x27;stu1&#x27;].age&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;###&quot;</span>&gt;</span>方式二：通过map.keyname.property<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">输出stu2的学生信息：<span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">姓名：$</span><span class="hljs-template-variable">&#123;stuMap.stu2.name&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">年龄：$</span><span class="hljs-template-variable">&#123;stuMap.stu2.age&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;###&quot;</span>&gt;</span>遍历map中两个学生信息：<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>序号<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>姓名<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>年龄<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>钱包<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span><br><span class="language-xml">    &lt;#list stuMap?keys as key &gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;key_index&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;stuMap[key].name&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;stuMap[key].age&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;stuMap[key].money&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span><br><span class="language-xml">    &lt;/#list&gt;</span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="language-xml"> </span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<h6 id="3-if指令"><a href="#3-if指令" class="headerlink" title="3.if指令"></a>3.if指令</h6><p>freemarker在解析时遇到if会进行判断，条件为真则输出if中间的内容，否则跳过内容不再输出。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-section">&lt;#if &gt;</span><span class="hljs-section">&lt;/if&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>指定名字为小红的为红色</p>
+<figure class="highlight bnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bnf"><span class="hljs-attribute">&lt;table&gt;</span><br>    <span class="hljs-attribute">&lt;tr&gt;</span><br>        <span class="hljs-attribute">&lt;td&gt;</span>姓名<span class="hljs-attribute">&lt;/td&gt;</span><br>        <span class="hljs-attribute">&lt;td&gt;</span>年龄<span class="hljs-attribute">&lt;/td&gt;</span><br>        <span class="hljs-attribute">&lt;td&gt;</span>钱包<span class="hljs-attribute">&lt;/td&gt;</span><br>    <span class="hljs-attribute">&lt;/tr&gt;</span><br>    <span class="hljs-attribute">&lt;#list stus as stu&gt;</span><br>    <span class="hljs-attribute">&lt;#if stu.name=&#x27;小红&#x27;&gt;</span><br>    <span class="hljs-attribute">&lt;tr style=&quot;color: red&quot; &gt;</span><br>            <span class="hljs-attribute">&lt;td &gt;</span>$&#123;stu.name&#125;<span class="hljs-attribute">&lt;/td&gt;</span>  <br>    <span class="hljs-attribute">&lt;/tr&gt;</span><br>    <br>    <span class="hljs-attribute">&lt;/if&gt;</span><br>        <span class="hljs-attribute">&lt;tr&gt;</span><br>            <span class="hljs-attribute">&lt;td &gt;</span>$&#123;stu.name&#125;<span class="hljs-attribute">&lt;/td&gt;</span>  <br>        <span class="hljs-attribute">&lt;/tr&gt;</span><br>    <span class="hljs-attribute">&lt;/#list&gt;</span><br><span class="hljs-attribute">&lt;/table&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="4-运算符"><a href="#4-运算符" class="headerlink" title="4.运算符"></a>4.运算符</h6><p><strong>1、算数运算符</strong></p>
+<p>FreeMarker表达式中完全支持算术运算,FreeMarker支持的算术运算符包括:</p>
+<ul>
+<li>加法： <code>+</code></li>
+<li>减法： <code>-</code>运算符</li>
+<li>乘法： <code>*</code></li>
+<li>除法： <code>/</code></li>
+<li>求模 (求余)： <code>%</code></li>
+</ul>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>算数运算符<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">    100+5 运算：  $</span><span class="hljs-template-variable">&#123;100 + 5 &#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">    100 - 5 * 5运算：$</span><span class="hljs-template-variable">&#123;100 - 5 * 5&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">    5 / 2运算：$</span><span class="hljs-template-variable">&#123;5 / 2&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml">    12 % 10运算：$</span><span class="hljs-template-variable">&#123;12 % 10&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>除了 + 运算以外，其他的运算只能和 number 数字类型的计算。</p>
+<p>2.比较运算符</p>
+<ul>
+<li><strong><code>=</code><strong>或者</strong><code>==</code></strong>:判断两个值是否相等. </li>
+<li><strong><code>!=</code></strong>:判断两个值是否不等. </li>
+<li><strong><code>&gt;</code><strong>或者</strong><code>gt</code></strong>:判断左边值是否大于右边值 </li>
+<li><strong><code>&gt;=</code><strong>或者</strong><code>gte</code></strong>:判断左边值是否大于等于右边值 </li>
+<li><strong><code>&lt;</code><strong>或者</strong><code>lt</code></strong>:判断左边值是否小于右边值 </li>
+<li><strong><code>&lt;=</code><strong>或者</strong><code>lte</code></strong>:判断左边值是否小于等于右边值</li>
+</ul>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs arduino">&lt;<span class="hljs-meta">#<span class="hljs-keyword">if</span> <span class="hljs-string">&quot;xiaoming&quot;</span> == <span class="hljs-string">&quot;xiaoming&quot;</span>&gt;</span><br>               字符串的比较 <span class="hljs-string">&quot;xiaoming&quot;</span> == <span class="hljs-string">&quot;xiaoming&quot;</span><br>           &lt;/<span class="hljs-meta">#<span class="hljs-keyword">if</span>&gt;</span><br>       &lt;/dd&gt;<br>       &lt;dd&gt;<br>           &lt;<span class="hljs-meta">#<span class="hljs-keyword">if</span> 10 != 100&gt;</span><br>               数值的比较 <span class="hljs-number">10</span> != <span class="hljs-number">100</span><br>           &lt;/<span class="hljs-meta">#<span class="hljs-keyword">if</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>**<code>=</code><strong>和</strong><code>!=</code>**可以用于字符串、数值和日期来比较是否相等</li>
+<li>**<code>=</code><strong>和</strong><code>!=</code>**两边必须是相同类型的值,否则会产生错误</li>
+<li>字符串 <strong><code>&quot;x&quot;</code></strong> 、**<code>&quot;x &quot;</code>** 、**<code>&quot;X&quot;</code>**比较是不等的.因为FreeMarker是精确比较</li>
+<li>其它的运行符可以作用于数字和日期,但不能作用于字符串</li>
+<li>使用**<code>gt</code><strong>等字母运算符代替</strong><code>&gt;</code><strong>会有更好的效果,因为 FreeMarker会把</strong><code>&gt;</code>**解释成FTL标签的结束字符</li>
+<li>可以使用括号来避免这种情况,如:<strong><code>&lt;#if (x&gt;y)&gt;</code></strong></li>
+</ul>
+<p>3.逻辑运算符</p>
+<ul>
+<li>逻辑与:&amp;&amp; </li>
+<li>逻辑或:|| </li>
+<li>逻辑非:!</li>
+</ul>
+<p>逻辑运算符只能作用于布尔值,否则将产生错误 </p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs lasso">&lt;b&gt;逻辑运算符&lt;/b&gt;<br>    &lt;br/&gt;<br>    &lt;br/&gt;<br>    &lt;#if (<span class="hljs-number">10</span> <span class="hljs-literal">lt</span> <span class="hljs-number">12</span> )&amp;&amp;( <span class="hljs-number">10</span>  <span class="hljs-literal">gt</span>  <span class="hljs-number">5</span> )  &gt;<br>        (<span class="hljs-number">10</span> <span class="hljs-literal">lt</span> <span class="hljs-number">12</span> )&amp;&amp;( <span class="hljs-number">10</span>  <span class="hljs-literal">gt</span>  <span class="hljs-number">5</span> )  显示为 <span class="hljs-literal">true</span><br>    &lt;/#if&gt;<br>    &lt;br/&gt;<br>    &lt;br/&gt;<br>    &lt;#if !<span class="hljs-literal">false</span>&gt;<br>        <span class="hljs-literal">false</span> 取反为<span class="hljs-literal">true</span><br>    &lt;/#if&gt;<br>&lt;hr&gt;<br></code></pre></td></tr></table></figure>
+
+<p>4.空值处理</p>
+<p>用法为:variable??,如果该变量存在,返回true,否则返回false </p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs clean">&lt;#<span class="hljs-keyword">if</span> stus??&gt;<br> &lt;#list stus <span class="hljs-keyword">as</span> stu&gt;<br> 	......<br> &lt;/#list&gt;<br> &lt;/#<span class="hljs-keyword">if</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>${name!’’}表示如果name为空显示空字符串。</p>
+<p>${(stu.bestFriend.name)!’’}表示，如果stu或bestFriend或name为空默认显示空字符串。</p>
+<h6 id="5-内建函数"><a href="#5-内建函数" class="headerlink" title="5.内建函数"></a>5.内建函数</h6><p>内建函数语法格式： <strong><code>变量+?+函数名称</code></strong>  </p>
+<p>1.某个集合的大小**</p>
+<p><strong><code>$&#123;集合名?size&#125;</code></strong></p>
+<p>2.日期格式化</p>
+<p>显示年月日: <strong><code>$&#123;today?date&#125;</code></strong><br>显示时分秒：**<code>$&#123;today?time&#125;</code>**<br>显示日期+时间：**<code>$&#123;today?datetime&#125;</code>**<br>自定义格式化：  <strong><code>$&#123;today?string(&quot;yyyy年MM月&quot;)&#125;</code></strong></p>
+<p>3.内建函数<code>c</code></p>
+<p>model.addAttribute(“point”, 102920122);</p>
+<p>point是数字型，使用${point}会显示这个数字的值，每三位使用逗号分隔。</p>
+<p>如果不想显示为每三位分隔的数字，可以使用c函数将数字型转成字符串输出</p>
+<p><strong><code>$&#123;point?c&#125;</code></strong></p>
+<p>4.将json字符串转成对象</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell">&lt;#assign text=<span class="hljs-string">&quot;&#123;&#x27;bank&#x27;:&#x27;工商银行&#x27;,&#x27;account&#x27;:&#x27;10101920201920212&#x27;&#125;&quot;</span> /&gt;<br>&lt;#assign <span class="hljs-class"><span class="hljs-keyword">data</span>=text?eval /&gt;</span><br>开户行：$&#123;<span class="hljs-class"><span class="hljs-keyword">data</span>.bank&#125;  账号：$&#123;<span class="hljs-title">data</span>.<span class="hljs-title">account</span>&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>案例</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>inner Function<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>获得集合大小<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    集合大小：$</span><span class="hljs-template-variable">&#123;stus?size&#125;</span><span class="language-xml"></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml"></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>获得日期<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    显示年月日: $</span><span class="hljs-template-variable">&#123;today?date&#125;</span><span class="language-xml">       <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    显示时分秒：$</span><span class="hljs-template-variable">&#123;today?time&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    显示日期+时间：$</span><span class="hljs-template-variable">&#123;today?datetime&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    自定义格式化：  $</span><span class="hljs-template-variable">&#123;today?string(&quot;yyyy年MM月&quot;)&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>内建函数C<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml">    没有C函数显示的数值：$</span><span class="hljs-template-variable">&#123;point&#125;</span><span class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    有C函数显示的数值：$</span><span class="hljs-template-variable">&#123;point?c&#125;</span><span class="language-xml"></span><br><span class="language-xml"></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>声明变量assign<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml">    &lt;#assign text=&quot;</span><span class="hljs-template-variable">&#123;&#x27;bank&#x27;:&#x27;工商银行&#x27;,&#x27;account&#x27;:&#x27;10101920201920212&#x27;&#125;</span><span class="language-xml">&quot; /&gt;</span><br><span class="language-xml">    &lt;#assign data=text?eval /&gt;</span><br><span class="language-xml">    开户行：$</span><span class="hljs-template-variable">&#123;data.bank&#125;</span><span class="language-xml">  账号：$</span><span class="hljs-template-variable">&#123;data.account&#125;</span><span class="language-xml"></span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<h4 id="静态化测试"><a href="#静态化测试" class="headerlink" title="静态化测试"></a>静态化测试</h4><p>不需要springmvc0将freemarker作为视图解析器</p>
+<p>需要使用Freemarker<strong>原生Api来生成静态内容</strong></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241017104844409.png" srcset="/img/loading.gif" lazyload alt="image-20241017104844409"></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">erver:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8881</span> <span class="hljs-comment">#服务端口</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">freemarker-demo</span> <span class="hljs-comment">#指定服务名</span><br>  <span class="hljs-attr">freemarker:</span><br>    <span class="hljs-attr">cache:</span> <span class="hljs-literal">false</span>  <span class="hljs-comment">#关闭模板缓存，方便测试</span><br>    <span class="hljs-attr">settings:</span><br>      <span class="hljs-attr">template_update_delay:</span> <span class="hljs-number">0</span> <span class="hljs-comment">#检查模板更新延迟时间，设置为0表示立即检查，如果时间大于0会有缓存不方便进行模板测试</span><br>    <span class="hljs-attr">suffix:</span> <span class="hljs-string">.ftl</span>               <span class="hljs-comment">#指定Freemarker模板文件的后缀名</span><br>    <span class="hljs-attr">template-loader-path:</span> <span class="hljs-string">classpath:/templates</span>   <span class="hljs-comment">#模板存放位置</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest(classes = FreemarkerDemoApplication.class)</span><br><span class="hljs-meta">@RunWith(SpringRunner.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FreemarkerTest</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> Configuration configuration;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException, TemplateException &#123;<br>        <span class="hljs-comment">//freemarker的模板对象，获取模板</span><br>        <span class="hljs-type">Template</span> <span class="hljs-variable">template</span> <span class="hljs-operator">=</span> configuration.getTemplate(<span class="hljs-string">&quot;02-list.ftl&quot;</span>);<br>        <span class="hljs-type">Map</span> <span class="hljs-variable">params</span> <span class="hljs-operator">=</span> getData();<br>        <span class="hljs-comment">//合成</span><br>        <span class="hljs-comment">//第一个参数 数据模型</span><br>        <span class="hljs-comment">//第二个参数  输出流</span><br>        <br>        <span class="hljs-comment">//参数合成</span><br>        template.process(params, <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-string">&quot;d:/list.html&quot;</span>));<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> Map <span class="hljs-title function_">getData</span><span class="hljs-params">()</span> &#123;<br>        Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br><br>        <span class="hljs-comment">//小强对象模型数据</span><br>        <span class="hljs-type">Student</span> <span class="hljs-variable">stu1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>        stu1.setName(<span class="hljs-string">&quot;小强&quot;</span>);<br>        stu1.setAge(<span class="hljs-number">18</span>);<br>        stu1.setMoney(<span class="hljs-number">1000.86f</span>);<br>        stu1.setBirthday(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br><br>        <span class="hljs-comment">//小红对象模型数据</span><br>        <span class="hljs-type">Student</span> <span class="hljs-variable">stu2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>        stu2.setName(<span class="hljs-string">&quot;小红&quot;</span>);<br>        stu2.setMoney(<span class="hljs-number">200.1f</span>);<br>        stu2.setAge(<span class="hljs-number">19</span>);<br><br>        <span class="hljs-comment">//将两个对象模型数据存放到List集合中</span><br>        List&lt;Student&gt; stus = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        stus.add(stu1);<br>        stus.add(stu2);<br><br>        <span class="hljs-comment">//向map中存放List集合数据</span><br>        map.put(<span class="hljs-string">&quot;stus&quot;</span>, stus);<br><br><br>        <span class="hljs-comment">//创建Map数据</span><br>        HashMap&lt;String, Student&gt; stuMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        stuMap.put(<span class="hljs-string">&quot;stu1&quot;</span>, stu1);<br>        stuMap.put(<span class="hljs-string">&quot;stu2&quot;</span>, stu2);<br>        <span class="hljs-comment">//向map中存放Map数据</span><br>        map.put(<span class="hljs-string">&quot;stuMap&quot;</span>, stuMap);<br><br>        <span class="hljs-comment">//返回Map</span><br>        <span class="hljs-keyword">return</span> map;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h4><h5 id="音乐社区详情页面"><a href="#音乐社区详情页面" class="headerlink" title="音乐社区详情页面"></a>音乐社区详情页面</h5><h5 id="白菜代售详情页"><a href="#白菜代售详情页" class="headerlink" title="白菜代售详情页"></a>白菜代售详情页</h5>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2024/10/17/Middleware/freemarker/freemarker/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/17/Middleware/minIo/MinIO/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/12/Middleware/Elasticsearch/ElasticSearch/" title="ElasticSearch">
+                        <span class="hidden-mobile">ElasticSearch</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
