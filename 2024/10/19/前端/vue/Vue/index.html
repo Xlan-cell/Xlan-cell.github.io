@@ -1,0 +1,852 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Vue1.0vue了解Vue.js 是一个专注于构建用户界面的渐进式 JavaScript 框架，主要用于视图层的开发。以下是关于 Vue.js 视图层的几个核心特点： 1.声明式渲染 Vue 使用模板语法，允许你以声明式的方式将数据与 DOM 显示绑定。数据发生变化时，视图会自动更新。常见的绑定包括文本插值 &#123;&#123;&#125;&#125; 和指令，如 v-bind、v-if、v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue">
+<meta property="og:url" content="http://example.com/2024/10/19/%E5%89%8D%E7%AB%AF/vue/Vue/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="Vue1.0vue了解Vue.js 是一个专注于构建用户界面的渐进式 JavaScript 框架，主要用于视图层的开发。以下是关于 Vue.js 视图层的几个核心特点： 1.声明式渲染 Vue 使用模板语法，允许你以声明式的方式将数据与 DOM 显示绑定。数据发生变化时，视图会自动更新。常见的绑定包括文本插值 &#123;&#123;&#125;&#125; 和指令，如 v-bind、v-if、v">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241019154109301.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241019161001285.png">
+<meta property="article:published_time" content="2024-10-19T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-10-19T08:30:18.756Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241019154109301.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>vue - 逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vue"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-19 20:22" pubdate>
+          2024年10月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">vue</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><h3 id="1-0"><a href="#1-0" class="headerlink" title="1.0"></a>1.0</h3><h4 id="vue了解"><a href="#vue了解" class="headerlink" title="vue了解"></a>vue了解</h4><p>Vue.js 是一个专注于构建用户界面的渐进式 JavaScript 框架，主要用于<strong>视图层</strong>的开发。以下是关于 Vue.js 视图层的几个核心特点：</p>
+<p>1.声明式渲染</p>
+<p>Vue 使用模板语法，允许你以声明式的方式将数据与 DOM 显示绑定。数据发生变化时，视图会自动更新。常见的绑定包括文本插值 <code>&#123;&#123;&#125;&#125;</code> 和指令，如 <code>v-bind</code>、<code>v-if</code>、<code>v-for</code> 等。</p>
+<p>2.组件化</p>
+<p>Vue 的一个重要特性是组件系统，视图可以被拆分成多个独立的、可复用的组件。每个组件都有自己的 HTML 模板、JavaScript 逻辑和 CSS 样式，从而实现视图的模块化开发。</p>
+<p>3.响应式数据绑定</p>
+<p>Vue 的核心是一个响应式系统，当数据对象中的属性发生变化时，Vue 能自动跟踪这些变化并触发视图的更新。你无需手动操作 DOM，Vue 会自动处理视图更新。</p>
+<p>4.单文件组件 (SFC)</p>
+<p>Vue 支持将模板、脚本和样式都写在 <code>.vue</code> 文件中，这种单文件组件形式提高了开发的可维护性。</p>
+<p>5.指令系统</p>
+<p>Vue 提供了一系列内置指令，用于操作 DOM，如 <code>v-model</code> 实现表单双向数据绑定，<code>v-for</code> 用于列表渲染，<code>v-if</code> 用于条件渲染等。</p>
+<p>6.虚拟 DOM</p>
+<p>Vue 使用虚拟 DOM 机制，在每次数据变化时，不会直接操作真实 DOM，而是<strong>更新一个轻量级的虚拟 DOM</strong>，最后通过最小化的操作将变化应用到实际 DOM，提升性能。</p>
+<h4 id="vue使用"><a href="#vue使用" class="headerlink" title="vue使用"></a>vue使用</h4><figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br><span class="language-xml">   <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./vue3.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>//引入vue3</span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;counter&quot;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-comment">&lt;!--vue的语法，告诉vue，这个里面放了一个变量 --&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">num</span>&#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">uname</span>&#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Counter</span>=&#123;</span></span><br><span class="language-javascript"><span class="language-xml">         <span class="hljs-comment">//配置对象--数据会传入</span></span></span><br><span class="language-javascript"><span class="language-xml">            <span class="hljs-attr">data</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;</span></span><br><span class="language-javascript"><span class="language-xml">                <span class="hljs-keyword">return</span>&#123;</span></span><br><span class="language-javascript"><span class="language-xml">                    <span class="hljs-attr">num</span>:<span class="hljs-number">0</span>,</span></span><br><span class="language-javascript"><span class="language-xml">                    <span class="hljs-attr">uname</span>:<span class="hljs-string">&quot;张三&quot;</span></span></span><br><span class="language-javascript"><span class="language-xml">                &#125;</span></span><br><span class="language-javascript"><span class="language-xml">            &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">        &#125;</span></span><br><span class="language-javascript"><span class="language-xml"></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-comment">///.mount进行了数据绑定</span></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-comment">///创建并挂载一个 Vue 应用，并通过控制台输出应用的实例对象</span></span></span><br><span class="language-javascript"><span class="language-xml">   <span class="hljs-keyword">let</span> app=<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">Counter</span>).<span class="hljs-title function_">mount</span>(<span class="hljs-string">&#x27;#counter&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">   <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(app);</span></span><br><span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这一部分表示通过 <code>Vue.createApp()</code> 方法创建了一个新的 Vue 应用实例，并将 <code>Counter</code> 组件作为这个应用的根组件。<code>Counter</code> 通常是一个定义好的 Vue 组件对象，可能包括模板、数据和方法等。</p>
+</blockquote>
+<blockquote>
+<p><code>mount()</code> 方法的作用是将创建的 Vue 应用挂载到 DOM 中指定的元素上。在这个例子中，它会找到页面中 ID 为 <code>#counter</code> 的元素，并将 Vue 应用的内容渲染到这个元素中。页面中的 <code>#counter</code> 可能是这样的一个元素：</p>
+</blockquote>
+<h4 id="vite安装"><a href="#vite安装" class="headerlink" title="vite安装"></a>vite安装</h4><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">$ <span class="hljs-built_in">npm</span> create vue@latest<br>输入项目名字<br>是否安装一堆插件<br>生产完毕<br></code></pre></td></tr></table></figure>
+
+<h4 id="目录导航"><a href="#目录导航" class="headerlink" title="目录导航"></a>目录导航</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241019154109301.png" srcset="/img/loading.gif" lazyload alt="image-20241019154109301"></p>
+<p>index.html</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/src/main.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    //引入mainjs<br> <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>main.js</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs clean"><br><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span><br><br>createApp(App).mount(<span class="hljs-string">&#x27;#app&#x27;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<p>创建vue示例*app.vue。绑定了app.vue</p>
+<p>app.vue</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> &gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br> <br>    <br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span> &gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<h4 id="Dom介绍"><a href="#Dom介绍" class="headerlink" title="Dom介绍"></a>Dom介绍</h4><blockquote>
+<p>前端页面的数据最终需要通过 DOM（文档对象模型，Document Object Model）来显示到网页上。DOM 是浏览器用来表示和操作 HTML 或 XML 文档的一种编程接口。前端开发中，无论是纯 HTML、JavaScript、Vue、React 还是其他前端框架，最终都是通过 DOM 来将数据呈现在网页上。</p>
+</blockquote>
+<p>DOM 与数据的关系</p>
+<ul>
+<li><p><strong>HTML 定义结构</strong>：最初，页面的内容是通过 HTML 标记定义的静态 DOM 结构。</p>
+</li>
+<li><pre><code class="java">&lt;div&gt;
+  &lt;p&gt;这是静态的文本&lt;/p&gt;
+&lt;/div&gt;
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><br>**JavaScript 操作 DOM**：通过 JavaScript，可以动态操作 DOM，改变页面中的内容，比如添加、删除或修改元素。这种操作是手动的。<br><br>```java<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> data = <span class="hljs-string">&#x27;Hello, World!&#x27;</span>;</span><br><span class="language-javascript">  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;app&#x27;</span>).<span class="hljs-property">innerText</span> = data;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+**Vue/React 等框架的虚拟 DOM**：现代前端框架如 Vue 和 React 引入了虚拟 DOM（Virtual DOM）的概念，这是一种抽象层，框架首先在虚拟 DOM 中更新数据，最后将必要的变化应用到真实 DOM 中。这样做大大提高了性能。
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;<br>  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;<br>&lt;/div&gt;<br><br>&lt;script&gt;<br>  <span class="hljs-type">const</span> <span class="hljs-variable">app</span> <span class="hljs-operator">=</span> Vue.createApp(&#123;<br>    data() &#123;<br>      <span class="hljs-keyword">return</span> &#123;<br>        message: <span class="hljs-string">&#x27;Hello Vue!&#x27;</span><br>      &#125;<br>    &#125;<br>  &#125;).mount(<span class="hljs-string">&#x27;#app&#x27;</span>)<br>&lt;/script&gt;<br><br></code></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<h4 id="声明式渲染"><a href="#声明式渲染" class="headerlink" title="声明式渲染"></a>声明式渲染</h4><blockquote>
+<p>声明式渲染的核心在于<strong>数据的响应式特性</strong>。在Vue.js中，响应式系统确保当数据变化时，视图（DOM）会自动更新以反映这些变化。这种机制使得开发者可以专注于数据本身，而不是数据如何影响DOM。Vue 将根据数据的变化自动更新视图</p>
+</blockquote>
+<p>dom监测数据变化-更新视图-vue实现了这个自动的过程</p>
+<h6 id="1-数据驱动"><a href="#1-数据驱动" class="headerlink" title="1.数据驱动"></a>1.数据驱动</h6><blockquote>
+<p>Vue 的核心理念是<strong>数据驱动的视图更新</strong>。你只需定义数据，并在模板中使用该数据，Vue 会自动将数据绑定到视图中。例如：</p>
+</blockquote>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">num</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">uname</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml"> <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    </span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">它将数据对象中的 `message` 自动渲染在 DOM 元素中。当 `message` 的值改变时，Vue 会自动更新页面中的文本内容，而无需手动修改 DOM。</span><br><span class="language-xml"></span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> &gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-comment">///数据导出-进行绑定</span></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span>&#123;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-title function_">data</span>(<span class="hljs-params"></span>)</span></span><br><span class="language-javascript"><span class="language-xml">&#123;</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">return</span>&#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">num</span>:<span class="hljs-number">0</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">uname</span>:<span class="hljs-string">&quot;张三&quot;</span></span></span><br><span class="language-javascript"><span class="language-xml">  &#125;</span></span><br><span class="language-javascript"><span class="language-xml">&#125;</span></span><br><span class="language-javascript"><span class="language-xml"></span></span><br><span class="language-javascript"><span class="language-xml">&#125;</span></span><br><span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="language-xml"></span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241019161001285.png" srcset="/img/loading.gif" lazyload alt="image-20241019161001285"></p>
+<h6 id="2-双向绑定"><a href="#2-双向绑定" class="headerlink" title="2.双向绑定"></a>2.双向绑定</h6><p>Vue 提供了双向数据绑定，通过 <code>v-model</code> 指令可以将输入的值直接与数据绑定。当用户在输入框中输入内容时，数据会自动更新，视图也会相应变化：–将数据与dom绑定了</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;message&quot;</span>&gt;</span> </span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">message</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<h6 id="3-指令与模板语法"><a href="#3-指令与模板语法" class="headerlink" title="3.指令与模板语法"></a>3.指令与模板语法</h6><p>Vue 的声明式渲染还包含一系列常用的指令，比如：</p>
+<ul>
+<li><code>v-bind</code>: 动态绑定属性。</li>
+<li><code>v-if</code> &#x2F; <code>v-show</code>: 条件渲染。</li>
+<li><code>v-for</code>: 列表渲染。</li>
+<li><code>v-on</code>: 事件绑定。</li>
+</ul>
+<p>这些指令允许开发者通过数据来控制 DOM 的显示和行为。</p>
+<h4 id="声明式渲染实现"><a href="#声明式渲染实现" class="headerlink" title="声明式渲染实现"></a>声明式渲染实现</h4><p>Vue 的声明式渲染基于其<strong>响应式系统</strong>与<strong>虚拟 DOM</strong>，它通过跟踪数据变化来自动更新视图</p>
+<h6 id="1-响应式系统"><a href="#1-响应式系统" class="headerlink" title="1.响应式系统"></a>1.响应式系统</h6><p>Vue 创建了一个<strong>响应式数据模型</strong>，通过 <code>Object.defineProperty</code>（Vue 2）或 <code>Proxy</code>（Vue 3）实现对数据的劫持。每当数据发生变化时，Vue 能够检测到这个变化，并自动触发视图更新。</p>
+<p>Vue 会<strong>为每个数据属性创建依赖追踪机制</strong>，当数据改变时当数据（如 <code>message</code>）发生变化时，Vue 记录这个变化，并将其标记为“需要更新”</p>
+<h6 id="2-模板编译"><a href="#2-模板编译" class="headerlink" title="2.模板编译"></a>2.模板编译</h6><p>Vue 将模板编译为一个渲染函数，这个函数可以动态生成虚拟 DOM。它根据数据创建一个抽象的虚拟 DOM 树，而不是直接修改实际的 DOM。</p>
+<h6 id="3-虚拟dom"><a href="#3-虚拟dom" class="headerlink" title="3.虚拟dom"></a>3.虚拟dom</h6><p>当数据变化时，Vue 会通过重新执行渲染函数生成新的虚拟 DOM 树，并与旧的虚拟 DOM 树进行比较（Diff 算法）。这个过程确保了 Vue 只更新必要的 DOM 节点，而不是重新渲染整个页面，极大地提高了性能。</p>
+<h6 id="4-dom更新"><a href="#4-dom更新" class="headerlink" title="4.dom更新"></a>4.dom更新</h6><p>最后，Vue 会将虚拟 DOM 的变化应用到真实的 DOM 中。通过最小化的 DOM 操作（只更新变化部分），Vue 能够在性能和开发效率之间找到平衡。</p>
+<h6 id="5-自动更新视图"><a href="#5-自动更新视图" class="headerlink" title="5.自动更新视图"></a>5.自动更新视图</h6><p>最终，用户在浏览器中看到的视图就会自动根据数据的变化进行更新，开发者不需要手动操作 DOM。</p>
+<h4 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h4><p>Vue 的模板语法是一种声明式的 HTML 扩展，它允许你将数据绑定到 DOM 结构中。通过 Vue 的模板语法，你可以轻松地将数据、属性、事件等与 HTML 模板绑定，完成动态更新。</p>
+<h5 id="1-插值"><a href="#1-插值" class="headerlink" title="1.插值"></a>1.插值</h5><h6 id="文本插值"><a href="#文本插值" class="headerlink" title="文本插值"></a>文本插值</h6><p>最常见的用法是将 JavaScript 表达式的值插入到 HTML 中。</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">message</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml"></span><br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="绑定-HTML"><a href="#绑定-HTML" class="headerlink" title="绑定 HTML"></a>绑定 HTML</h6><p>可以使用 <code>v-html</code> 指令将 HTML 内容插入到元素中。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> v-html=<span class="hljs-string">&quot;rawHtml&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p>如果 <code>rawHtml</code> 是 <code>&#39;&lt;span&gt;Bold&lt;/span&gt;&#39;</code>，那么页面会显示 <code>Bold</code> 作为内嵌 HTML，而不仅仅是普通文本。</p>
+<h5 id="2-指令"><a href="#2-指令" class="headerlink" title="2.指令"></a>2.指令</h5><p>指令是带有 <code>v-</code> 前缀的特殊属性，用来动态地绑定 DOM 的功能。</p>
+<h6 id="1-条件渲染"><a href="#1-条件渲染" class="headerlink" title="1.条件渲染"></a>1.条件渲染</h6><p>条件渲染（<code>v-if</code>、<code>v-else-if</code>、<code>v-else</code>）</p>
+<p>根据条件动态渲染元素。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;seen&quot;</span>&gt;</span>现在你看到我了<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>当 <code>seen</code> 为 <code>true</code> 时，<code>&lt;p&gt;</code> 标签会显示，否则不会显示。</p>
+<h6 id="2-循环渲染"><a href="#2-循环渲染" class="headerlink" title="2.循环渲染"></a>2.循环渲染</h6><p>循环遍历一个数组或者对象并渲染出相应的 DOM 结构。</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in items&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.id&quot;</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">item.text</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br><span class="language-xml"></span><br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>items</code> 是一个数组，<code>item.text</code> 被插值显示在列表项中。</p>
+<h6 id="3-事件监听"><a href="#3-事件监听" class="headerlink" title="3.事件监听"></a>3.事件监听</h6><p><code>v-on</code> 用于监听 DOM 事件，并在事件触发时执行 JavaScript 代码。</p>
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs hsp">&lt;<span class="hljs-keyword">button</span> v-<span class="hljs-keyword">on</span>:click=<span class="hljs-string">&quot;doSomething&quot;</span>&gt;点击我&lt;/<span class="hljs-keyword">button</span>&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p>简写形式：<code>@click=&quot;doSomething&quot;</code>。</p>
+<h6 id="4-双向数据绑定"><a href="#4-双向数据绑定" class="headerlink" title="4.双向数据绑定"></a>4.双向数据绑定</h6><p><code>v-model</code> 实现了表单元素的双向数据绑定，它会自动同步用户输入与 JavaScript 数据。</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;message&quot;</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">message</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml"></span><br></code></pre></td></tr></table></figure>
+
+<p>当用户在输入框中输入时，<code>message</code> 的值会自动更新，并实时反映在 <code>&lt;p&gt;</code> 中。</p>
+<h4 id="3-属性绑定"><a href="#3-属性绑定" class="headerlink" title="3.属性绑定"></a>3.属性绑定</h4><p><code>v-bind</code> 用于动态地绑定 HTML 属性。它可以让你根据数据动态更改属性值。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img v-bind:<span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;imageSrc&quot;</span>&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p>简写形式：<code>:src=&quot;imageSrc&quot;</code>。如果 <code>imageSrc</code> 是图片的 URL，它会被绑定到 <code>&lt;img&gt;</code> 标签的 <code>src</code> 属性。</p>
+<h4 id="4-计算属性"><a href="#4-计算属性" class="headerlink" title="4.计算属性"></a>4.计算属性</h4><p>当模板中的表达式过于复杂时，可以使用计算属性来简化。</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">reversedMessage</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml"></span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus">computed: &#123;<br>  <span class="hljs-built_in">reversedMessage</span>() &#123;<br>    return this<span class="hljs-selector-class">.message</span><span class="hljs-selector-class">.split</span>(<span class="hljs-string">&#x27;&#x27;</span>)<span class="hljs-selector-class">.reverse</span>()<span class="hljs-selector-class">.join</span>(<span class="hljs-string">&#x27;&#x27;</span>)<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>计算属性会基于其依赖进行缓存，只有依赖的数据变化时，才会重新计算。</p>
+<h4 id="5-侦听器"><a href="#5-侦听器" class="headerlink" title="5.侦听器"></a>5.侦听器</h4><p>vue 通过 <code>watch</code> 选项提供了一个更通用的方法，来响应数据的变化。 更适合异步操作</p>
+<h6 id="1-监听普通变化数据"><a href="#1-监听普通变化数据" class="headerlink" title="1.监听普通变化数据"></a>1.监听普通变化数据</h6><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs arcade">watch:&#123;<br>  <span class="hljs-comment">//监听数据变化</span><br>  message:<span class="hljs-keyword">function</span>(<span class="hljs-params">newValue,oldValue</span>)<br>  &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(newValue);<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(oldValue);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs arcade">message: &#123;<br>   <span class="hljs-attr">immediate</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//初始化的时候调用函数</span><br>   handler: <span class="hljs-keyword">function</span> (<span class="hljs-params">newValue</span>) &#123;<br>     <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(newValue);<br>   &#125;,<br> &#125;,<br></code></pre></td></tr></table></figure>
+
+<h6 id="2-对象监听"><a href="#2-对象监听" class="headerlink" title="2.对象监听"></a>2.对象监听</h6><p>深度监听</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs arcade">  user:&#123;<br>    <span class="hljs-attr">deep</span>:<span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">handler</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">newValue</span>)&#123;<br>            <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(newValue);<br>     &#125;,<br><span class="hljs-comment">//深度遍历根值-给每个值上侦听器</span><br><br>  &#125;,<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">//单个侦听器</span><br><span class="hljs-string">&quot;user.name&quot;</span>:&#123;<br>  <span class="hljs-attr">deep</span>:<span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">handler</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">newValue</span>)<br>  &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(newValue);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="6-事件修饰符"><a href="#6-事件修饰符" class="headerlink" title="6.事件修饰符"></a>6.事件修饰符</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;!-- .stop 阻止事件冒泡 --&gt;<br>   &lt;div <span class="hljs-meta">@click</span>=<span class="hljs-string">&quot;divClick&quot;</span>&gt;<br>     &lt;button <span class="hljs-meta">@click</span>.stop=<span class="hljs-string">&quot;btnClick&quot;</span>&gt;按钮&lt;/button&gt;<br>   &lt;/div&gt;<br>    <span class="hljs-comment">//默认点击会直接调用两个函数-但是阻止后只会执行btnClick</span><br>   &lt;!-- .prevent 阻止默认行为 --&gt;<br>   &lt;form action=<span class="hljs-string">&quot;&quot;</span>&gt;<br>     &lt;input type=<span class="hljs-string">&quot;submit&quot;</span> value=<span class="hljs-string">&quot;提交&quot;</span> <span class="hljs-meta">@click</span>.prevent=<span class="hljs-string">&quot;submitClick&quot;</span>&gt;<br>   &lt;/form&gt;<br>    <span class="hljs-comment">//修改表单提交后的代码</span><br>   &lt;!-- .once 只触发一次回调--&gt;<br>   &lt;button <span class="hljs-meta">@click</span>.once=<span class="hljs-string">&quot;onceClick&quot;</span>&gt;只触发一次once&lt;/button&gt;<br>    <span class="hljs-comment">//防止多次点击</span><br>   &lt;!-- .&#123;keyCode（键盘编码） | keyAlias （键盘的简写）&#125;监听键盘的某个键帽 --&gt;<br>   &lt;input type=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-meta">@keyup</span>.enter=<span class="hljs-string">&quot;keyUp&quot;</span>&gt;<br>    <span class="hljs-comment">//回车提交</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="7-Data"><a href="#7-Data" class="headerlink" title="7.Data"></a>7.Data</h4><p><code>data</code> 是一个组件选项，用于定义组件实例的初始数据。 它返回一个对象-这个对象有内部数据</p>
+<p>作用 1.存储组件数据2.方便数据响应式3.初始化数据</p>
+<h4 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a><strong>缩写</strong></h4><p>Vue 为常用的指令提供了缩写形式：</p>
+<ul>
+<li><code>v-bind</code> 缩写为 <code>:</code></li>
+<li><code>v-on</code> 缩写为 <code>@</code></li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img :<span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;imageSrc&quot;</span>&gt;<br>&lt;button @<span class="hljs-attribute">click</span>=<span class="hljs-string">&quot;doSomething&quot;</span>&gt;点击我&lt;/button&gt;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs hsp">&lt;<span class="hljs-keyword">button</span> v-<span class="hljs-keyword">on</span>:click=<span class="hljs-string">&quot;changeUname&quot;</span>&gt;更改名字<span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br>&lt;<span class="hljs-keyword">button</span> @click=<span class="hljs-string">&quot;changeUname&quot;</span>&gt;更改名字&lt;/<span class="hljs-keyword">button</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>一些指令能够接收一个“参数”，在指令名称之后以冒号表示。</p>
+<p>例子-:id&#x3D;:”id”</p>
+<p>id就是动态参数 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">&lt;p :<span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;id&quot;</span>&gt;v-binde绑定&lt;/p&gt;<br> <span class="hljs-built_in">id</span>:<span class="hljs-string">&quot;xxs&quot;</span><br>// 语法糖 :=v-bind<br> &lt;p v-bind:<span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;id + 1&quot;</span>&gt;v-bind绑定&lt;/p&gt;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vue</div>
+      <div>http://example.com/2024/10/19/前端/vue/Vue/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">最近的笔记方向</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/17/Middleware/freemarker/freemarker/" title="Freemarker">
+                        <span class="hidden-mobile">Freemarker</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
