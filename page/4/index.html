@@ -229,15 +229,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
-          Mysql 存储引擎
+        <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/sql%E6%89%A7%E8%A1%8C%E8%80%97%E6%97%B6/" target="_self">
+          mysql执行耗时
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/sql%E6%89%A7%E8%A1%8C%E8%80%97%E6%97%B6/" target="_self">
         <div>
-          存储引擎 MyISAM是MySQL早期的默认存储引擎。它不支持事务，不支持外键，不支持行锁，但是它支持表锁，而且访问速度很快。 1.体系结构  连接层：负责处理客户端连接请求，包括本地sock通信和基于TCP&#x2F;IP的客户端&#x2F;服务端通信，支持线程池和SSL安全连接。该层负责认证、授权及安全性检查。 服务层：执行SQL接口、查询缓存、SQL解析与优化，处理跨存储引擎功能，如函数、过
+          mysql执行耗时 1.sql执行频率  模糊匹配    ，我们可以查看到当前数据库到底是以查询为主，还是以增删改为主，从而为数据库优化提供参考依据。 如果是以查询为主，那么就要考虑对数据库的索引进行优化了。 2.慢日志开启 慢查询日志记录了执行时间超过指定参数（long_query_time，单位：秒，默认10秒）的所有 SQL语句的日志。 MySQL的慢查询日志默认没有开启，需要我们手动的开启
         </div>
       </a>
 
@@ -292,6 +292,60 @@
       <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E7%B4%A2%E5%BC%95/" target="_self">
         <div>
           索引 0.引用数据库除了存储数据之外，还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据， 当我们在查找数据的时候，就可以在这些数据结构上实现高级查找算法，快速查找到我们想要的数据，这种数据结构就是索引。    优势 劣势    提高数据检索的效率，降低数据库的IO成本 索引列也是要占用空间的   通过索引列对数据进行排序，降低数据排序的成本，降低CPU的消耗。 索引大大提
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-26 20:22" pubdate>
+              2024-09-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
+          Mysql 存储引擎
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/26/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%B4%A2%E5%BC%95sql%E4%BC%98%E5%8C%96/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
+        <div>
+          存储引擎 MyISAM是MySQL早期的默认存储引擎。它不支持事务，不支持外键，不支持行锁，但是它支持表锁，而且访问速度很快。 1.体系结构  连接层：负责处理客户端连接请求，包括本地sock通信和基于TCP&#x2F;IP的客户端&#x2F;服务端通信，支持线程池和SSL安全连接。该层负责认证、授权及安全性检查。 服务层：执行SQL接口、查询缓存、SQL解析与优化，处理跨存储引擎功能，如函数、过
         </div>
       </a>
 
@@ -694,60 +748,6 @@
       <span class="category-chain">
         
   <a href="/categories/%E7%88%AC%E8%99%AB/" class="category-chain-item">爬虫</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/09/20/%E5%BE%AE%E6%9C%8D%E5%8A%A101/" target="_self">
-          微服务Spring Cloude
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/20/%E5%BE%AE%E6%9C%8D%E5%8A%A101/" target="_self">
-        <div>
-          微服务01 2024 10 1 更新 微服务事务的场景 cap-   ca   cp原则      Seata的模式   总结-微服务01 远程调用 RestTemplate-&gt;nacos-&gt;OpenFeign-&gt; 微服务02  GetWay网关-&gt;nacos进阶 微服务3 微服务保护-&gt;Sentinel-&gt;微服务事务 微服务了解1.微服务和单体服务区别单体架构
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-20 20:22" pubdate>
-              2024-09-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/spring/" class="category-chain-item">spring</a>
   
   
 
