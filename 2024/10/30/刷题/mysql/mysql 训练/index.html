@@ -19,30 +19,27 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Mysql训练增删改查训练1.创建表1.创建一个actor表，包含如下列信息  1234567create table actor(actor_id smallint(5) primary key,first_name varchar(45) not null,last_name varchar(45) not null,last_update date not null);        获取一">
+    <meta name="description" content="Mysql训练第2章1.单选1.不知道 考数据范围-忘记了 2.d 不知道没学过 3.a 4.c 5.c 6.c 7.d 8.b Alter table grade change name username varchar(20); 9.b 字符串数据类型的不同  VARCHAR  CHAR 10 11c   12.c 13 d 14.b primary key 主键约束 15.c 数据类型的保留">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逆向狗">
-<meta property="og:url" content="http://example.com/2024/10/21/%E5%88%B7%E9%A2%98/mysql/mysql%20%E8%AE%AD%E7%BB%83/index.html">
+<meta property="og:title" content="mysql 01 刷题">
+<meta property="og:url" content="http://example.com/2024/10/30/%E5%88%B7%E9%A2%98/mysql/mysql%20%E8%AE%AD%E7%BB%83/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="Mysql训练增删改查训练1.创建表1.创建一个actor表，包含如下列信息  1234567create table actor(actor_id smallint(5) primary key,first_name varchar(45) not null,last_name varchar(45) not null,last_update date not null);        获取一">
+<meta property="og:description" content="Mysql训练第2章1.单选1.不知道 考数据范围-忘记了 2.d 不知道没学过 3.a 4.c 5.c 6.c 7.d 8.b Alter table grade change name username varchar(20); 9.b 字符串数据类型的不同  VARCHAR  CHAR 10 11c   12.c 13 d 14.b primary key 主键约束 15.c 数据类型的保留">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021224313976.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021224413990.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021225739574.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021230239492.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021225941805.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021230003255.png">
-<meta property="article:published_time" content="2024-10-21T14:25:49.902Z">
-<meta property="article:modified_time" content="2024-10-21T15:11:43.872Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/422dea32c989b92b50cbc6f04d457746.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241022165644488.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241022170412341.png">
+<meta property="article:published_time" content="2024-10-30T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-10-22T13:27:00.727Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021224313976.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/422dea32c989b92b50cbc6f04d457746.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>逆向狗</title>
+  <title>mysql 01 刷题 - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -208,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="mysql 01 刷题"></span>
           
         </div>
 
@@ -224,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-21 22:25" pubdate>
-          2024年10月21日 晚上
+        <time datetime="2024-10-30 20:22" pubdate>
+          2024年10月30日 晚上
         </time>
       </span>
     
@@ -236,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          340 字
+          391 字
         
       </span>
     
@@ -247,7 +244,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -284,41 +281,148 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">mysql 01 刷题</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Mysql训练"><a href="#Mysql训练" class="headerlink" title="Mysql训练"></a>Mysql训练</h1><h4 id="增删改查训练"><a href="#增删改查训练" class="headerlink" title="增删改查训练"></a>增删改查训练</h4><h6 id="1-创建表"><a href="#1-创建表" class="headerlink" title="1.创建表"></a>1.创建表</h6><p>1.创建一个actor表，包含如下列信息</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021224313976.png" srcset="/img/loading.gif" lazyload alt="image-20241021224313976"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> actor(<br>actor_id <span class="hljs-type">smallint</span>(<span class="hljs-number">5</span>) <span class="hljs-keyword">primary</span> key,<br>first_name <span class="hljs-type">varchar</span>(<span class="hljs-number">45</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>last_name <span class="hljs-type">varchar</span>(<span class="hljs-number">45</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>last_update <span class="hljs-type">date</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>);<br><br><br></code></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
+                <h1 id="Mysql训练"><a href="#Mysql训练" class="headerlink" title="Mysql训练"></a>Mysql训练</h1><h4 id="第2章"><a href="#第2章" class="headerlink" title="第2章"></a>第2章</h4><h5 id="1-单选"><a href="#1-单选" class="headerlink" title="1.单选"></a>1.单选</h5><p>1.不知道 考数据范围-忘记了</p>
+<p>2.d 不知道没学过</p>
+<p>3.a</p>
+<p>4.c</p>
+<p>5.c</p>
+<p>6.c</p>
+<p>7.d</p>
+<p>8.b</p>
+<p>Alter table grade change name username varchar(20);</p>
+<p>9.b</p>
+<p>字符串数据类型的不同  VARCHAR  CHAR</p>
+<p>10</p>
+<p>11c </p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/422dea32c989b92b50cbc6f04d457746.png" srcset="/img/loading.gif" lazyload alt="422dea32c989b92b50cbc6f04d457746"></p>
+<p>12.c</p>
+<p>13 d</p>
+<p>14.b</p>
+<p>primary key 主键约束</p>
+<p>15.c</p>
+<p>数据类型的保留-比如坐标</p>
+<p>DECIMAL(6，4)</p>
+<p>16</p>
+<p>drop database name;</p>
+<p>17c</p>
+<p>varchar</p>
+<p>text-大文本数据</p>
+<p>18 a</p>
+<p>固定字符串varchar</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241022165644488.png" srcset="/img/loading.gif" lazyload alt="image-20241022165644488"></p>
+<p>19c</p>
+<p>create table student(</p>
+<p>id int primary key,</p>
+<p>)</p>
+<p>20 d</p>
+<p>create table student(</p>
+<p>id int default 0</p>
+<p>)</p>
+<p>21 c</p>
+<p>修改数据库便编码</p>
+<p>C、CREATE DATABASE itcast <strong>DEFAULT</strong> CHARACTER SET gbk <strong>COLLATE</strong> gbk_bin;</p>
+<p>22 b</p>
+<p>drop table name;</p>
+<p>23  c</p>
+<p>C、CREATE DATABASE itcast <strong>DEFAULT</strong> <strong>CHARACTER SE</strong>T utf8 <strong>COLLATE</strong> utf8_bin;</p>
+<p>24.修改表名 b</p>
+<p>alter table name  rename newname;</p>
+<p>25.b</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241022170412341.png" srcset="/img/loading.gif" lazyload alt="image-20241022170412341"></p>
+<p>26 b</p>
+<p><strong>primary key</strong>(z1,z2,z3)</p>
+<p>27 b</p>
+<p>fulltext</p>
+<p>28 </p>
+<p>int  MEDIUMINT</p>
+<p>29d</p>
+<p>spatial</p>
+<p>SPATIAL INDEX sp(space)</p>
+<p>30d</p>
+<p>31 D</p>
+<p>二进制类型 blob</p>
+<p>32C</p>
+<p>33 C</p>
+<p>ALTER TABLE <strong>ADD</strong> NAME VARCHAR(255);</p>
+<p>34 B</p>
+<p>DROP</p>
+<p>35 B</p>
+<p>CREATE</p>
+<p>36</p>
+<p>CHAR</p>
+<p>37</p>
+<p>SHOW INDEX FROM NAME;</p>
+<p>EXPLAIN</p>
+<p>38</p>
+<p>CREATE TABLE STUDENT(</p>
+<p>STU_ID INT,COURSE_ID,PRIMARY KEY(STU_ID ,COURSE_ID)</p>
+<p>);</p>
+<p>39</p>
+<p>NAME 数据类型 not null;</p>
+<p>40</p>
+<p>blob</p>
+<p>41 c</p>
+<p>DECIMAL(6，2)</p>
+<p>42</p>
+<p>name sjlx  AUTO_INCREMENT;</p>
+<p>43.c</p>
+<p>索引范围</p>
+<p>44</p>
+<p>drop index name <strong>on</strong> table;</p>
+<p>45c</p>
+<p>int</p>
+<p>46</p>
+<p>alter table name <strong>change</strong> oldname newname varchar(255);</p>
+<ol start="47">
 <li></li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021224413990.png" srcset="/img/loading.gif" lazyload alt="image-20241021224413990"></p>
-<p>获取一个表的数据-转接到我们新表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> actor_name (<br>    first_name	<span class="hljs-type">varchar</span>(<span class="hljs-number">45</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>    last_name <span class="hljs-type">varchar</span>(<span class="hljs-number">45</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span><br><br>);<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> actor_name <br><span class="hljs-keyword">select</span> first_name ,last_name <span class="hljs-keyword">from</span> actor;<br></code></pre></td></tr></table></figure>
-
-<p>3.附加店铺数据库</p>
-<p>1.用户表</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021225739574.png" srcset="/img/loading.gif" lazyload alt="image-20241021225739574"></p>
-<p>加入状态字段–用户对应外键-默认大学</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> users(<br>    user_id <span class="hljs-type">BIGINT</span> <span class="hljs-keyword">primary key</span>,<br>    username <span class="hljs-type">Varchar</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">UNIQUE</span>,<br>    email <span class="hljs-type">varchar</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">unique</span>,<br>    <span class="hljs-keyword">password</span> <span class="hljs-type">varchar</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>    phone <span class="hljs-type">varchar</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>    gender enum(<span class="hljs-string">&#x27;male&#x27;</span>,<span class="hljs-string">&#x27;female&#x27;</span>,<span class="hljs-string">&#x27;other&#x27;</span>)<br>    //s<br>);<br></code></pre></td></tr></table></figure>
-
-<p>2.店铺表</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021230239492.png" srcset="/img/loading.gif" lazyload alt="image-20241021230239492"></p>
-<p>新增字段店铺积分-外键大学</p>
-<p>对应评论表</p>
-<p>3.评论表</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021225941805.png" srcset="/img/loading.gif" lazyload alt="image-20241021225941805"></p>
-<p>4.店铺分类表</p>
-<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021230003255.png" srcset="/img/loading.gif" lazyload alt="image-20241021230003255"></p>
-<p>5.大学表</p>
-<p>……</p>
-<h6 id="2-增删改"><a href="#2-增删改" class="headerlink" title="2..增删改"></a>2..增删改</h6><h6 id="3-查"><a href="#3-查" class="headerlink" title="3.查"></a>3.查</h6><h3 id="单词本"><a href="#单词本" class="headerlink" title="单词本"></a>单词本</h3><p>primary key 主键约束</p>
+<p>B、UNIQUE INDEX unique_id(id ASC)</p>
+<ol start="48">
+<li>a</li>
+</ol>
+<p>show databse name;</p>
+<p>49 a</p>
+<p>show table name</p>
+<p>50d</p>
+<p>51d</p>
+<p>blob</p>
+<p>VARBINARY</p>
+<p>52</p>
+<p>text</p>
+<p>53</p>
+<p>varchar</p>
+<p>54</p>
+<p>字段 类型 unique;</p>
+<p>55</p>
+<p>不知道-日期类型</p>
+<p>56</p>
+<p>字段 类型 not null;</p>
+<p>57</p>
+<p>定点数据类型</p>
+<p>58</p>
+<p>DECIMAL(6，2)</p>
+<p>6代表最多的整数位数，2代表小数点后的长度</p>
+<p>59</p>
+<p>show database itcast;</p>
+<p>60</p>
+<p>create table book(</p>
+<p>id int primary key,</p>
+<p>title varchar(50)</p>
+<p>);</p>
+<p>61</p>
+<p>62</p>
+<p>63</p>
+<p>fullext index filltext_text(name);</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
 <p>UNIQUE</p>
 <p>DEFAULT</p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">ENUM</span><br></code></pre></td></tr></table></figure>
@@ -333,6 +437,8 @@
 <p>如果你的枚举值是非常稳定的（比如性别、状态等不常变动的值），使用 <code>ENUM</code> 是个好选择。</p>
 <p>如果枚举值经常需要修改或扩展，建议将这些值存储在单独的表中，通过外键关联来管理，这样在系统的扩展性和维护性上会更灵活。</p>
 </blockquote>
+<p>数据类型</p>
+<p>唯一索引</p>
 
                 
               </div>
@@ -340,6 +446,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
@@ -350,8 +477,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://example.com/2024/10/21/刷题/mysql/mysql 训练/</div>
+      <div>mysql 01 刷题</div>
+      <div>http://example.com/2024/10/30/刷题/mysql/mysql 训练/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +490,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年10月21日</div>
+          <div>2024年10月30日</div>
         </div>
       
       
@@ -395,9 +522,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/27/%E5%88%B7%E9%A2%98/java/java/" title="java刷题0-20">
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">java刷题0-20</span>
+                        <span class="hidden-mobile">最近的笔记方向</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -405,8 +532,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/21/java/java%E5%B9%B6%E5%8F%91%E6%8E%A2%E7%A9%B6/" title="java 高阶-并发探究">
-                        <span class="hidden-mobile">java 高阶-并发探究</span>
+                      <a href="/2024/10/30/%E5%88%B7%E9%A2%98/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%AC%E4%B8%80%E7%AB%A0/1/" title="数据结构概论 01 刷题">
+                        <span class="hidden-mobile">数据结构概论 01 刷题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
