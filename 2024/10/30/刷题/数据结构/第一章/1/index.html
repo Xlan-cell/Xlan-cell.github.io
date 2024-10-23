@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021150331365.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241022162359792.png">
 <meta property="article:published_time" content="2024-10-30T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-22T08:30:48.469Z">
+<meta property="article:modified_time" content="2024-10-23T01:17:59.972Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021144808969.png">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          466 字
+          1.2k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          4 分钟
+          10 分钟
         
       </span>
     
@@ -380,6 +380,102 @@
 </ol>
 <p>5  4</p>
 <p>回去找答案</p>
+<h1 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h1><p>1.a</p>
+<p>2.D</p>
+<blockquote>
+<p>1.进栈后立即出栈在进栈 A   a b c d</p>
+<p>2.顺序出栈 b</p>
+<ol start="3">
+<li><p>a b c 1.bc 2.b 3.bd 4.b</p>
+<p>弹栈 a c  d b</p>
+</li>
+<li><p>a b c d  a b c-&gt;出错</p>
+</li>
+</ol>
+</blockquote>
+<p>3.c</p>
+<p>4.c  *D  我就说我看不懂ai *</p>
+<blockquote>
+</blockquote>
+<p>5.a</p>
+<p>6.d</p>
+<p>7.a</p>
+<p>方便出栈-栈顶必须在数组尾部-</p>
+<p><strong>8.b A忘记了</strong> *</p>
+<p><strong>9.A</strong> D 我感觉答案有问题 *</p>
+<p>10 B 看错了以为是栈 A</p>
+<p>11 C</p>
+<p><strong>12 A D</strong></p>
+<p>考察队列的逻辑结构 忘记了</p>
+<p><strong>13 b</strong></p>
+<p>单队列 遵循先进先出</p>
+<p>双端队列就有五线可能</p>
+<p>14 a</p>
+<p>不知道</p>
+<p>15</p>
+<p>16</p>
+<p>17</p>
+<p>18</p>
+<p>循环队列 回去学习</p>
+<p>19 b</p>
+<p>20  b</p>
+<p>填空题</p>
+<p>栈顶 栈底、</p>
+<p>n&#x2F;</p>
+<p>立即出栈</p>
+<p> c d b a   e   cd be a</p>
+<p><strong>data[top]&#x3D;x;&#x2F; top++.data[top]&#x3D;x</strong></p>
+<p><strong>data[top]&#x3D;0;top–</strong></p>
+<p>top到底指针栈顶-还是栈顶上面+1</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// 假设栈大小为 n，数组 data 用于存储栈元素，top 为栈顶指针</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">push</span>(<span class="hljs-params"><span class="hljs-built_in">int</span>[] data, <span class="hljs-built_in">int</span> n, <span class="hljs-built_in">int</span> x, <span class="hljs-built_in">int</span> top</span>)</span> &#123;<br>    <span class="hljs-keyword">if</span> (top &lt; n) &#123;<br>        data[top] = x;  <span class="hljs-comment">// 将元素 x 放入栈顶</span><br>        top++;          <span class="hljs-comment">// 栈顶指针加 1</span><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;栈满，无法进栈&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">pop</span>(<span class="hljs-params"><span class="hljs-built_in">int</span>[] data, <span class="hljs-built_in">int</span> top</span>)</span> &#123;<br>    <span class="hljs-keyword">if</span> (top &gt; <span class="hljs-number">0</span>) &#123;<br>        top--;            <span class="hljs-comment">// 栈顶指针减 1</span><br>        <span class="hljs-built_in">int</span> x = data[top]; <span class="hljs-comment">// 取出栈顶元素</span><br>        <span class="hljs-keyword">return</span> x;         <span class="hljs-comment">// 返回出栈的元素</span><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;栈空，无法出栈&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;        <span class="hljs-comment">// 表示栈为空时的错误返回值</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>队列</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>不知道，没学过循环队列</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>栈-先进后出-只允许一端操作</p>
+<p>队列-先进先出 一端添加-一端删除</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>一般设置在数组的开端-这是为了栈顶在数组末端方便删除数据，而不需要移动数组</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>1</p>
+<ol start="4">
+<li></li>
+</ol>
+<p>没学过</p>
+<ol start="5">
+<li></li>
+</ol>
+<blockquote>
+<p>顺序队列使用数组作为存储结构，当进行元素的入队和出队操作时，数组的起始位置是固定的。随着出队操作的进行，数组的前面部分空间被释放，但由于队首指针只向后移动，不会将元素搬移到数组的前端，这就导致了所谓的“假溢出”现象——即数组的后端已经满了，但前端还有空余位置。这时我们无法再进行入队操作，虽然数组并没有真正被填满，但由于指针的原因，无法有效利用这些空余的空间。</p>
+</blockquote>
+<p>ps:循环队列</p>
+<p>还要算法表示的结构</p>
+<blockquote>
+<p>在栈的操作中，<code>top</code> 通常指的是 <strong>栈顶指针</strong>，而不是栈顶元素。它表示栈顶元素在数组中的位置。在大多数实现中，<code>top</code> 指向的是下一个可以存放元素的位置（即当前栈顶元素的下一个位置）。例如：</p>
+<ul>
+<li>如果 <code>top = 0</code>，说明栈是空的，栈中还没有元素。</li>
+<li>如果 <code>top = n</code>（n 是栈的大小），则说明栈已经满了。</li>
+</ul>
+<p>因此，<code>top - 1</code> 通常是栈顶元素在数组中的位置。</p>
+<p>总结：</p>
+<ul>
+<li><strong>栈顶指针</strong>：<code>top</code> 表示下一个可以存放元素的位置。</li>
+<li><strong>栈顶元素</strong>：<code>data[top - 1]</code> 表示栈顶的实际元素。</li>
+</ul>
+</blockquote>
 
                 
               </div>
