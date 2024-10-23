@@ -33,8 +33,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241023092640969.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241023093529546.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241023104449281.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241023231324541.png">
 <meta property="article:published_time" content="2024-10-30T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-23T02:49:26.859Z">
+<meta property="article:modified_time" content="2024-10-23T15:13:30.306Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/422dea32c989b92b50cbc6f04d457746.png">
@@ -237,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.9k 字
         
       </span>
     
@@ -248,7 +249,7 @@
         
         
         
-          12 分钟
+          16 分钟
         
       </span>
     
@@ -516,7 +517,66 @@
 <p>1． 在MySQL的整数类型中，INT类型占用的字节数是【4】个。</p>
 <p>若想在book表中的bookid字段上建立一个名称为uniqueidx的唯一性索引，则SQL语句是【alter table book add unique uniqueidx(bookid);】</p>
 <p>1． 若想在book表的info字段上创建名称为fulltextidx的全文索引，则SQL语句是【alter table book add fulltext index fulltextidx(info);】。</p>
-<h5 id="5-简答题"><a href="#5-简答题" class="headerlink" title="5.简答题"></a>5.简答题</h5>
+<h5 id="5-简答题"><a href="#5-简答题" class="headerlink" title="5.简答题"></a>5.简答题</h5><p>168</p>
+<p>唯一约束，数据库默认可以保存重复的值，唯一约束可以确保字段唯一性，如果字段设置唯一约束，那么它字段值不能重复</p>
+<p>name 类型 unique;</p>
+<p>169</p>
+<p>char 不是变长。固定长度</p>
+<p>varchar 变长</p>
+<p>170</p>
+<p>create table tb_qrade(</p>
+<p>id int(11),</p>
+<p>name varchar(20),</p>
+<p>grade float</p>
+<p>);</p>
+<p>180</p>
+<p>数据库默认允许字段空值，当你设置字段为非空约束。那么插入就不能是null值</p>
+<p>属性名 字段类型 not null;</p>
+<p>181</p>
+<p>主键用于唯一标识表中每条记录，作为主键的字段值不能为空且是唯一的，可以是单一字段，也可以是多个字段的组合，每个表最多只能有一个主键约束。</p>
+<p>182</p>
+<p>单 由一个字段主从主键 primary key</p>
+<p>多 多个字段组成主键 primary key</p>
+<ol start="183">
+<li></li>
+</ol>
+<p>简述什么是索引</p>
+<p> 索引是数据库中为提高数据查询效率而常用的数据库对象，索引在数据表中一列或多列的值与记录行之间按照一定的顺序建立关系，以提高对数据表中数据的查询速度。</p>
+<ol start="184">
+<li></li>
+</ol>
+<p>默认值约束用于给数据表中的字段指定默认值。即当在表中插入一条新纪录时，如果没有给这个字段赋值，那么数据库系统会自动为这个字段插入指定的默认值。</p>
+<p>基本语法格式：属性名 数据类型 default 默认值；</p>
+<h5 id="6-总结"><a href="#6-总结" class="headerlink" title="6.总结"></a>6.总结</h5><p>考察</p>
+<p>数据库 数据表的查看方式</p>
+<p><strong>考察数据类型</strong> </p>
+<p>例如</p>
+<p>字符串数据类型</p>
+<p>日期类型</p>
+<p>二进制类型</p>
+<p>浮点数类型</p>
+<p><strong>考察数据库的创建 删除 数据库编码方式更改</strong></p>
+<p><strong>考察数据表-的</strong></p>
+<p>创建-(约束) -考察添加字段</p>
+<p>修改表名</p>
+<p><strong>考察修改</strong></p>
+<p>修改字段数据类型</p>
+<p>修改字段名和数据类型</p>
+<p><strong>考察删除</strong></p>
+<p>删除表 删除字段 </p>
+<p>考察约束</p>
+<p>考察常用约束</p>
+<p>not null </p>
+<p>default</p>
+<p>primary key</p>
+<p>unique</p>
+<p>分别考察建表指定约束和建表后指定约束</p>
+<p>考察索引</p>
+<p>mysql内的</p>
+<p>1.考察索引的类型-和范围-作用</p>
+<p>2.考察索引的创建 查看 删除</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241023231324541.png" srcset="/img/loading.gif" lazyload alt="image-20241023231324541"></p>
+
                 
               </div>
             
@@ -599,9 +659,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/30/%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE/%E5%85%94%E5%B0%8F%E9%B2%9C01/" title="兔小仙开发日志1-3">
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">兔小仙开发日志1-3</span>
+                        <span class="hidden-mobile">最近的笔记方向</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -609,8 +669,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/30/%E5%88%B7%E9%A2%98/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%AC%E4%B8%80%E7%AB%A0/1/" title="数据结构概论 01 刷题">
-                        <span class="hidden-mobile">数据结构概论 01 刷题</span>
+                      <a href="/2024/10/30/%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE/%E5%85%94%E5%B0%8F%E9%B2%9C01/" title="兔小仙开发日志1-3">
+                        <span class="hidden-mobile">兔小仙开发日志1-3</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
