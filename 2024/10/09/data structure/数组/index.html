@@ -19,23 +19,29 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="数组1.数组的概念 数组通常采用顺序存储结构  2.特殊矩阵压缩 1.对称矩阵 观察性质 2.三角矩阵 3.对角矩阵 4.稀疏矩阵-顺序存储法-三元组 注意存储方法 稀疏矩阵-链式存储">
+    <meta name="description" content="数组1.数组的概念 数组通常采用顺序存储结构   12345678题目要求计算三维数组 A 的元素个数，数组的三个维度分别是：A[-2..2]，即从 -2 到 2，包含的元素个数为 5（-2、-1、0、1、2）。A[-4..5]，即从 -4 到 5，包含的元素个数为 10（-4、-3、-2、-1、0、1、2、3、4、5）。A[2..6]，即从 2 到 6，包含的元素个数为 5（2、3、4、5、6）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构-数组">
 <meta property="og:url" content="http://example.com/2024/10/09/data%20structure/%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="数组1.数组的概念 数组通常采用顺序存储结构  2.特殊矩阵压缩 1.对称矩阵 观察性质 2.三角矩阵 3.对角矩阵 4.稀疏矩阵-顺序存储法-三元组 注意存储方法 稀疏矩阵-链式存储">
+<meta property="og:description" content="数组1.数组的概念 数组通常采用顺序存储结构   12345678题目要求计算三维数组 A 的元素个数，数组的三个维度分别是：A[-2..2]，即从 -2 到 2，包含的元素个数为 5（-2、-1、0、1、2）。A[-4..5]，即从 -4 到 5，包含的元素个数为 10（-4、-3、-2、-1、0、1、2、3、4、5）。A[2..6]，即从 2 到 6，包含的元素个数为 5（2、3、4、5、6）">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011101615958.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/766ade2e15e40d22fdbd519ce123126b.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/399eed84788291a7c41769f0cd60bf86.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241009160508352.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/057fdae6ddc8ee7a2a2ddc8de8c06966.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241024171221274.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241024171154940.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241024173418875.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241024171112919.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/3272d9e6f47987fd84f5a4228cd227e2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241024173452056.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9d977f088b0c154045093b10ffc036db.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/cfd3301719db4e90f5c0bad967d590be.jpeg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1b47b8257267e6b272893d4a8919daec.jpeg">
 <meta property="article:published_time" content="2024-10-09T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-11T02:16:45.028Z">
+<meta property="article:modified_time" content="2024-10-24T10:01:31.462Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011101615958.png">
@@ -238,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          73 字
+          340 字
         
       </span>
     
@@ -249,7 +255,7 @@
         
         
         
-          1 分钟
+          3 分钟
         
       </span>
     
@@ -294,12 +300,32 @@
                 <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h4 id="1-数组的概念"><a href="#1-数组的概念" class="headerlink" title="1.数组的概念"></a>1.数组的概念</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241011101615958.png" srcset="/img/loading.gif" lazyload alt="image-20241011101615958"></p>
 <p>数组通常采用顺序存储结构</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/766ade2e15e40d22fdbd519ce123126b.jpeg" srcset="/img/loading.gif" lazyload alt="766ade2e15e40d22fdbd519ce123126b"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/399eed84788291a7c41769f0cd60bf86.png" srcset="/img/loading.gif" lazyload alt="399eed84788291a7c41769f0cd60bf86"></p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs subunit">题目要求计算三维数组 A 的元素个数，数组的三个维度分别是：<br><br>A[<span class="hljs-string">-2</span>..2]，即从 <span class="hljs-string">-2</span> 到 2，包含的元素个数为 5（<span class="hljs-string">-2</span>、<span class="hljs-string">-1</span>、0、1、2）。<br>A[<span class="hljs-string">-4</span>..5]，即从 <span class="hljs-string">-4</span> 到 5，包含的元素个数为 10（<span class="hljs-string">-4</span>、<span class="hljs-string">-3</span>、<span class="hljs-string">-2</span>、<span class="hljs-string">-1</span>、0、1、2、3、4、5）。<br>A[2..6]，即从 2 到 6，包含的元素个数为 5（2、3、4、5、6）。<br>因此，数组的总元素个数为三个维度元素个数的乘积：<br>5×10×5=250<br>正确答案是 B. 250。<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 <h4 id="2-特殊矩阵压缩"><a href="#2-特殊矩阵压缩" class="headerlink" title="2.特殊矩阵压缩"></a>2.特殊矩阵压缩</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241009160508352.png" srcset="/img/loading.gif" lazyload alt="image-20241009160508352"></p>
 <h6 id="1-对称矩阵"><a href="#1-对称矩阵" class="headerlink" title="1.对称矩阵"></a>1.对称矩阵</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/057fdae6ddc8ee7a2a2ddc8de8c06966.png" srcset="/img/loading.gif" lazyload alt="057fdae6ddc8ee7a2a2ddc8de8c06966"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241024171221274.png" srcset="/img/loading.gif" lazyload alt="image-20241024171221274"></p>
+<p>1+2+3+4+5+6+7+……n</p>
 <p>观察性质</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241024171154940.png" srcset="/img/loading.gif" lazyload alt="image-20241024171154940"></p>
+<p>公式推导</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241024173418875.png" srcset="/img/loading.gif" lazyload alt="image-20241024173418875"></p>
+<p>计算元素位置</p>
+<p><strong><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241024171112919.png" srcset="/img/loading.gif" lazyload alt="image-20241024171112919"></strong></p>
+<p>矩阵从零开始会多算一层-所以都是(I+1)I</p>
 <h6 id="2-三角矩阵"><a href="#2-三角矩阵" class="headerlink" title="2.三角矩阵"></a>2.三角矩阵</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/3272d9e6f47987fd84f5a4228cd227e2.png" srcset="/img/loading.gif" lazyload alt="3272d9e6f47987fd84f5a4228cd227e2"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241024173452056.png" srcset="/img/loading.gif" lazyload alt="image-20241024173452056"></p>
+<p>一旦i&gt;j就未知-求最好一位</p>
 <h6 id="3-对角矩阵"><a href="#3-对角矩阵" class="headerlink" title="3.对角矩阵"></a>3.对角矩阵</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/9d977f088b0c154045093b10ffc036db.png" srcset="/img/loading.gif" lazyload alt="9d977f088b0c154045093b10ffc036db"></p>
 <h6 id="4-稀疏矩阵-顺序存储法-三元组"><a href="#4-稀疏矩阵-顺序存储法-三元组" class="headerlink" title="4.稀疏矩阵-顺序存储法-三元组"></a>4.稀疏矩阵-顺序存储法-三元组</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/cfd3301719db4e90f5c0bad967d590be.jpeg" srcset="/img/loading.gif" lazyload alt="cfd3301719db4e90f5c0bad967d590be"></p>
+<p>稀疏矩阵（sparse matrix）中的<strong>0</strong>通常是<strong>多</strong>的。稀疏矩阵的特点是大多数元素为零，只有少量非零元素。与之相对的密集矩阵（dense matrix）则大多数元素为非零。稀疏矩阵在大规模数据处理中常见，因为可以通过只存储非零元素来节省内存和计算资源。</p>
 <p>注意存储方法</p>
 <h6 id="稀疏矩阵-链式存储"><a href="#稀疏矩阵-链式存储" class="headerlink" title="稀疏矩阵-链式存储"></a>稀疏矩阵-链式存储</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1b47b8257267e6b272893d4a8919daec.jpeg" srcset="/img/loading.gif" lazyload alt="1b47b8257267e6b272893d4a8919daec"></p>
 
