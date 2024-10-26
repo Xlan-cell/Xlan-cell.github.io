@@ -1,0 +1,781 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="InputStream源码(2)类实现关系 抽象类解读 12&#x2F;&#x2F; JDK9新增：读取 InputStream 中的全部字节并写入到指定的 OutputStream 中public long transferTo(OutputStream out)  源码实现1.inputStream 梳理部分InputStream及其实现类的源码分析。  源码解读-jdk8 https:&#x2F;&#x2F;gitee.com&#x2F;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java IO 1">
+<meta property="og:url" content="http://example.com/2024/10/26/java/javaIo/javaio2/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="InputStream源码(2)类实现关系 抽象类解读 12&#x2F;&#x2F; JDK9新增：读取 InputStream 中的全部字节并写入到指定的 OutputStream 中public long transferTo(OutputStream out)  源码实现1.inputStream 梳理部分InputStream及其实现类的源码分析。  源码解读-jdk8 https:&#x2F;&#x2F;gitee.com&#x2F;l">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/io-inputstream-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b283d7953048cced732f0b45b346fa23.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241026110518661.png">
+<meta property="article:published_time" content="2024-10-26T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-10-26T03:45:00.773Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/io-inputstream-1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Java IO 1 - 逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java IO 1"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-26 20:22" pubdate>
+          2024年10月26日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Java IO 1</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="InputStream源码-2"><a href="#InputStream源码-2" class="headerlink" title="InputStream源码(2)"></a>InputStream源码(2)</h1><h2 id="类实现关系"><a href="#类实现关系" class="headerlink" title="类实现关系"></a>类实现关系</h2><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/io-inputstream-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="抽象类解读"><a href="#抽象类解读" class="headerlink" title="抽象类解读"></a>抽象类解读</h2><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b283d7953048cced732f0b45b346fa23.png" srcset="/img/loading.gif" lazyload alt="b283d7953048cced732f0b45b346fa23"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// JDK9新增：读取 InputStream 中的全部字节并写入到指定的 OutputStream 中</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">long</span> <span class="hljs-title function_">transferTo</span><span class="hljs-params">(OutputStream out)</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="源码实现"><a href="#源码实现" class="headerlink" title="源码实现"></a>源码实现</h2><h4 id="1-inputStream"><a href="#1-inputStream" class="headerlink" title="1.inputStream"></a>1.inputStream</h4><blockquote>
+<p>梳理部分InputStream及其实现类的源码分析。</p>
+</blockquote>
+<p>源码解读-jdk8</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/laomaodu/myinput-stream/blob/master/src/main/java/MyInputStream.java">https://gitee.com/laomaodu/myinput-stream/blob/master/src/main/java/MyInputStream.java</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.Closeable;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.InputStream;<br><span class="hljs-keyword">import</span> java.io.OutputStream;<br><span class="hljs-keyword">import</span> java.util.Objects;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyInputStream</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Closeable</span> &#123;<br>    <span class="hljs-comment">// MAX_SKIP_BUFFER_SIZE 用于确定跳过时使用的最大缓冲区大小</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">MAX_SKIP_BUFFER_SIZE</span> <span class="hljs-operator">=</span> <span class="hljs-number">2048</span>;<br>    <span class="hljs-comment">// 默认的buffer size</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">DEFAULT_BUFFER_SIZE</span> <span class="hljs-operator">=</span> <span class="hljs-number">8192</span>;<br>    <span class="hljs-comment">// JDK11中增加了一个nullInputStream，即空模式实现，以便可以直接调用而不用判空（可以看如下的补充说明）</span><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 从输入流中读取下一个字节的数据。值作为范围为 0 到 255 的 int 返回。</span><br><span class="hljs-comment">     * 如果由于到达流的末尾而没有可用的字节，则返回 -1。</span><br><span class="hljs-comment">     * 此方法将阻塞，直到有输入数据可用、检测到流的末尾或引发异常。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * &lt;p&gt; 子类必须提供此方法的实现。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 返回下一个字节数据，如果到达流末尾则返回 -1。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@exception</span> IOException 如果发生 I/O 错误。</span><br><span class="hljs-comment">     * 读取下一个字符数据，没有返回-1</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 从输入流中读取若干字节并将其存储到缓冲区数组 b 中。</span><br><span class="hljs-comment">     * 返回读取的字节数。如果 b 的长度为 0，则不读取任何字节并返回 0。</span><br><span class="hljs-comment">     * 如果没有可用的字节，因为流到达文件的末尾，则返回 -1。</span><br><span class="hljs-comment">     * 否则，将至少读取一个字节并存储到 b 中。</span><br><span class="hljs-comment">     *将读取到的数据放在 byte 数组中，该方法实际上调用read(byte b[], int off, int len)方法</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> b 将数据读取到其中的缓冲区。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 返回读取到缓冲区的总字节数，如果到达流末尾则返回 -1。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@exception</span> IOException 如果由于任何原因第一个字节无法读取，流已关闭，或发生其他 I/O 错误。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@exception</span> NullPointerException 如果 b 为 null。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">(<span class="hljs-type">byte</span> b[])</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">return</span> read(b, <span class="hljs-number">0</span>, b.length);<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 从输入流中读取最多 len 个字节的数据到字节数组中。</span><br><span class="hljs-comment">     * 此方法将阻塞，直到有输入数据可用、检测到文件结束或引发异常。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> b 将数据读取到其中的缓冲区。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> off 在数组 b 中开始写入数据的偏移量。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> len 要读取的最大字节数。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 返回读取到缓冲区的总字节数，如果到达流末尾则返回 -1。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@exception</span> IOException 如果由于任何原因第一个字节无法读取，流已关闭，或发生其他 I/O 错误。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@exception</span> NullPointerException 如果 b 为 null。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@exception</span> IndexOutOfBoundsException 如果 off 或 len 为负数，或 len 大于 b.length - off。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">(<span class="hljs-type">byte</span> b[], <span class="hljs-type">int</span> off, <span class="hljs-type">int</span> len)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">// 检查边界</span><br>        <span class="hljs-comment">//Objects.checkFromIndexSize(off, len, b.length);</span><br>        <span class="hljs-comment">//读取最大字节数为0返回</span><br>        <span class="hljs-keyword">if</span> (len == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 读取下一个字节</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> read();<span class="hljs-comment">//</span><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        这里的设计可以提前判断流状态，提前返回，提高效率</span><br><span class="hljs-comment">         */</span><br>        <span class="hljs-keyword">if</span> (c == -<span class="hljs-number">1</span>) &#123; <span class="hljs-comment">// 读到stream末尾，则返回读取的字节数量为-1</span><br>            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-comment">///off 作为偏移量参数，指定了数据在数组 b 中的起始存储位置</span><br>        b[off] = (<span class="hljs-type">byte</span>)c;<span class="hljs-comment">// 将读取到的字节转换为byte类型，存入指定的数组位置b[off]</span><br><br>        <span class="hljs-comment">// i用来记录取了多少个字节</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 循环读取</span><br>            <span class="hljs-keyword">for</span> (; i &lt; len ; i++) &#123;<br>                c = read();<br>                <span class="hljs-keyword">if</span> (c == -<span class="hljs-number">1</span>) &#123;<span class="hljs-comment">// 读到stream末尾，则break</span><br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                b[off + i] = (<span class="hljs-type">byte</span>)c;<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (IOException ee) &#123;<br>        &#125;<br>        <span class="hljs-comment">// 返回读取到的字节个数</span><br>        <span class="hljs-keyword">return</span> i;<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 跳过并丢弃此输入流中的 n 个字节。</span><br><span class="hljs-comment">     * 该方法可能跳过更少的字节（甚至为 0），负数返回 0。返回实际跳过的字节数。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> n 要跳过的字节数。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 实际跳过的字节数。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@exception</span> IOException 如果流不支持跳过操作，或发生其他 I/O 错误。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">long</span> <span class="hljs-title function_">skip</span><span class="hljs-params">(<span class="hljs-type">long</span> n)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">// 剩余要跳过的字节数</span><br>        <span class="hljs-type">long</span> <span class="hljs-variable">remaining</span> <span class="hljs-operator">=</span> n;<br><br>        <span class="hljs-type">int</span> nr;<br>        <span class="hljs-comment">// 如果请求跳过的字节数小于等于0，则直接返回0</span><br>        <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-comment">// 设置缓冲区大小，取最小值</span><br>        <span class="hljs-comment">// 使得最大不超过MAX_SKIP_BUFFER_SIZE，避免过大消耗内存</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">size</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>)Math.min(MAX_SKIP_BUFFER_SIZE, remaining);<br>        <span class="hljs-comment">// 用于跳过字节的缓冲区</span><br>        <span class="hljs-type">byte</span>[] skipBuffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[size];<br>        <span class="hljs-comment">// 循环读取，直到跳过指定字节数或到达流末尾</span><br>        <span class="hljs-keyword">while</span> (remaining &gt; <span class="hljs-number">0</span>) &#123;<br>           <span class="hljs-comment">// 从流中读取最多size或remaining字节，读入skipBuffer，偏移量从0开始</span><br>            nr = read(skipBuffer, <span class="hljs-number">0</span>, (<span class="hljs-type">int</span>)Math.min(size, remaining));<br>            <span class="hljs-comment">// 如果读取结果为负，表示流已结束，跳出循环</span><br>            <span class="hljs-keyword">if</span> (nr &lt; <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-comment">// 更新剩余字节数</span><br>            remaining = remaining - nr;<br>        &#125;<br><br>        <span class="hljs-comment">// 返回实际跳过的字节数（即总字节数n减去剩余字节数remaining）</span><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">假设 n = 15，MAX_SKIP_BUFFER_SIZE = 8，并且输入流中共有 10 个字节可供读取。</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">第一次循环：remaining = 15，缓冲区大小 size = 8。调用 read(skipBuffer, 0, 8)，假设读取 8 个字节，remaining 变为 15 - 8 = 7。</span><br><span class="hljs-comment">第二次循环：remaining = 7，缓冲区大小 size = 7。调用 read(skipBuffer, 0, 7)，假设读取了 2 个字节（流中只剩 2 个字节），remaining 变为 7 - 2 = 5。</span><br><span class="hljs-comment">第三次循环：remaining = 5，调用 read(skipBuffer, 0, 5)，此时返回 -1（流末尾），循环终止。</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">也就是read读到了文件末尾了，你remaining都没读到n的大小-就有了实际跳过数</span><br><span class="hljs-comment">         */</span><br>        <span class="hljs-keyword">return</span> n - remaining;<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 返回在不阻塞的情况下可以从此输入流中读取的字节数的估计值。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 可读取（或跳过）字节数的估计值，当到达输入流末尾时为 0。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@exception</span> IOException 如果发生 I/O 错误。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">available</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 关闭此输入流并释放与流关联的任何系统资源。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@exception</span> IOException 如果发生 I/O 错误。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">close</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;&#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 标记输入流中的当前位置。后续调用 reset 方法将重新定位此流。</span><br><span class="hljs-comment">     * mark 方法不进行任何操作。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> readlimit 在标记位置失效之前可以读取的最大字节数。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">mark</span><span class="hljs-params">(<span class="hljs-type">int</span> readlimit)</span> &#123;&#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 将流重新定位到最后一次调用 mark 方法时的位置。</span><br><span class="hljs-comment">     * 此方法对 InputStream 类无效，仅抛出 IOException。</span><br><span class="hljs-comment">     *  标记读取位置，下次还可以从这里开始读取，使用前要看当前流是否支持，可以使用 markSupport() 方法判断</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@exception</span> IOException 如果未标记或标记已失效。</span><br><span class="hljs-comment">     */</span><br><br>    <span class="hljs-comment">// 重置读取位置为上次 mark 标记的位置</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reset</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IOException</span>(<span class="hljs-string">&quot;mark/reset not supported&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">// 判断当前流是否支持标记流，和上面两个方法配套使用。默认是false，由子类方法重写</span><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 测试此输入流是否支持 mark 和 reset 方法。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 如果此流实例支持 mark 和 reset 方法则返回 true；否则返回 false。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">markSupported</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br><br><br><br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-jdk9更新"><a href="#2-jdk9更新" class="headerlink" title="2.jdk9更新"></a>2.jdk9更新</h4><h6 id="1-具体更新"><a href="#1-具体更新" class="headerlink" title="1.具体更新"></a>1.具体更新</h6><p>InputStream</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// JDK9新增：读取 InputStream 中的所有剩余字节，调用readNBytes(Integer.MAX_VALUE)方法</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">byte</span>[] readAllBytes()<br><span class="hljs-comment">// JDK11更新：读取 InputStream 中的剩余字节的指定上限大小的字节内容；此方法会一直阻塞，直到读取了请求的字节数、检测到流结束或引发异常为止。此方法不会关闭输入流。</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">byte</span>[] readNBytes(<span class="hljs-type">int</span> len)<br><br><span class="hljs-comment">// JDK9新增：从输入流读取请求的字节数并保存在byte数组中； 此方法会一直阻塞，直到读取了请求的字节数、检测到流结束或引发异常为止。此方法不会关闭输入流。</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">readNBytes</span><span class="hljs-params">(<span class="hljs-type">byte</span>[] b, <span class="hljs-type">int</span> off, <span class="hljs-type">int</span> len)</span><br><br><span class="hljs-comment">// JDK9新增：读取 InputStream 中的全部字节并写入到指定的 OutputStream 中</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">long</span> <span class="hljs-title function_">transferTo</span><span class="hljs-params">(OutputStream out)</span><br>    <br>   注<br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * A constant holding the maximum value an &#123;<span class="hljs-doctag">@code</span> int&#125; can</span><br><span class="hljs-comment">     * have, 2&lt;sup&gt;31&lt;/sup&gt;-1.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Native</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span>   <span class="hljs-variable">MAX_VALUE</span> <span class="hljs-operator">=</span> <span class="hljs-number">0x7fffffff</span>;<br>    <br></code></pre></td></tr></table></figure>
+
+<h6 id="2-空模式"><a href="#2-空模式" class="headerlink" title="2.空模式"></a>2.空模式</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// JDK11中增加了一个nullInputStream，即空模式实现，以便可以直接调用而不用判空（可以看如下的补充说明）</span><br>   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> InputStream <span class="hljs-title function_">nullInputStream</span><span class="hljs-params">()</span> &#123;<br>       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStream</span>() &#123;<br>           <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">boolean</span> closed;<br><br>           <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">ensureOpen</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>               <span class="hljs-keyword">if</span> (closed) &#123;<br>                   <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IOException</span>(<span class="hljs-string">&quot;Stream closed&quot;</span>);<br>               &#125;<br>           &#125;<br><br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">available</span> <span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>               ensureOpen();<br>               <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>           &#125;<br><br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>               ensureOpen();<br>               <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>           &#125;<br><br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">(<span class="hljs-type">byte</span>[] b, <span class="hljs-type">int</span> off, <span class="hljs-type">int</span> len)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>               Objects.checkFromIndexSize(off, len, b.length);<br>               <span class="hljs-keyword">if</span> (len == <span class="hljs-number">0</span>) &#123;<br>                   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>               &#125;<br>               ensureOpen();<br>               <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>           &#125;<br><br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-keyword">public</span> <span class="hljs-type">byte</span>[] readAllBytes() <span class="hljs-keyword">throws</span> IOException &#123;<br>               ensureOpen();<br>               <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">0</span>];<br>           &#125;<br><br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">readNBytes</span><span class="hljs-params">(<span class="hljs-type">byte</span>[] b, <span class="hljs-type">int</span> off, <span class="hljs-type">int</span> len)</span><br>               <span class="hljs-keyword">throws</span> IOException &#123;<br>               Objects.checkFromIndexSize(off, len, b.length);<br>               ensureOpen();<br>               <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>           &#125;<br><br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-keyword">public</span> <span class="hljs-type">byte</span>[] readNBytes(<span class="hljs-type">int</span> len) <span class="hljs-keyword">throws</span> IOException &#123;<br>               <span class="hljs-keyword">if</span> (len &lt; <span class="hljs-number">0</span>) &#123;<br>                   <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;len &lt; 0&quot;</span>);<br>               &#125;<br>               ensureOpen();<br>               <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">0</span>];<br>           &#125;<br><br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-keyword">public</span> <span class="hljs-type">long</span> <span class="hljs-title function_">skip</span><span class="hljs-params">(<span class="hljs-type">long</span> n)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>               ensureOpen();<br>               <span class="hljs-keyword">return</span> <span class="hljs-number">0L</span>;<br>           &#125;<br><br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-keyword">public</span> <span class="hljs-type">long</span> <span class="hljs-title function_">transferTo</span><span class="hljs-params">(OutputStream out)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>               Objects.requireNonNull(out);<br>               ensureOpen();<br>               <span class="hljs-keyword">return</span> <span class="hljs-number">0L</span>;<br>           &#125;<br><br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">close</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>               closed = <span class="hljs-literal">true</span>;<br>           &#125;<br>       &#125;;<br>   &#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="3-读取所有字节"><a href="#3-读取所有字节" class="headerlink" title="3.读取所有字节"></a>3.读取所有字节</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 分配的最大数组大小。</span><br>   <span class="hljs-comment">// 由于一些VM在数组中保留一些头字，所以尝试分配较大的阵列可能会导致OutOfMemoryError（请求的阵列大小超过VM限制）</span><br>   <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">MAX_BUFFER_SIZE</span> <span class="hljs-operator">=</span> Integer.MAX_VALUE - <span class="hljs-number">8</span>;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// JDK9新增：读取 InputStream 中的所有剩余字节，调用readNBytes(Integer.MAX_VALUE)方法</span><br>   <span class="hljs-keyword">public</span> <span class="hljs-type">byte</span>[] readAllBytes() <span class="hljs-keyword">throws</span> IOException &#123;<br>       <span class="hljs-keyword">return</span> readNBytes(Integer.MAX_VALUE);<br>   &#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// JDK11更新：读取 InputStream 中的剩余字节的指定上限大小的字节内容；此方法会一直阻塞，直到读取了请求的字节数、检测到流结束或引发异常为止。此方法不会关闭输入流。</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-type">byte</span>[] readNBytes(<span class="hljs-type">int</span> len) <span class="hljs-keyword">throws</span> IOException &#123;<br>      <span class="hljs-comment">// 边界检查</span><br>      <span class="hljs-keyword">if</span> (len &lt; <span class="hljs-number">0</span>) &#123;<br>          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;len &lt; 0&quot;</span>);<br>      &#125;<br><br>      List&lt;<span class="hljs-type">byte</span>[]&gt; bufs = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 缓存每次读取到的内容放到bufs，最后组装成result</span><br>      <span class="hljs-type">byte</span>[] result = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 最后读取到的内容</span><br>      <span class="hljs-type">int</span> <span class="hljs-variable">total</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>      <span class="hljs-type">int</span> <span class="hljs-variable">remaining</span> <span class="hljs-operator">=</span> len; <span class="hljs-comment">// 剩余字节长度</span><br>      <span class="hljs-type">int</span> n;<br>      <span class="hljs-keyword">do</span> &#123;<br>          <span class="hljs-type">byte</span>[] buf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[Math.min(remaining, DEFAULT_BUFFER_SIZE)];<br>          <span class="hljs-type">int</span> <span class="hljs-variable">nread</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br>          <span class="hljs-comment">// 读取到结束为止，读取大小n可能大于或小于缓冲区大小</span><br>          <span class="hljs-keyword">while</span> ((n = read(buf, nread,<br>                  Math.min(buf.length - nread, remaining))) &gt; <span class="hljs-number">0</span>) &#123;<br>              nread += n; <br>              remaining -= n;<br>          &#125;<br><br>          <span class="hljs-keyword">if</span> (nread &gt; <span class="hljs-number">0</span>) &#123;<br>              <span class="hljs-keyword">if</span> (MAX_BUFFER_SIZE - total &lt; nread) &#123;<br>                  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OutOfMemoryError</span>(<span class="hljs-string">&quot;Required array size too large&quot;</span>);<br>              &#125;<br>              total += nread;<br>              <span class="hljs-keyword">if</span> (result == <span class="hljs-literal">null</span>) &#123;<br>                  result = buf;<br>              &#125; <span class="hljs-keyword">else</span> &#123;<br>                  <span class="hljs-keyword">if</span> (bufs == <span class="hljs-literal">null</span>) &#123;<br>                      bufs = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>                      bufs.add(result);<br>                  &#125;<br>                  bufs.add(buf);<br>              &#125;<br>          &#125;<br>          <span class="hljs-comment">// 如果读不到内容（返回-1）或者没有剩余的字节，则跳出循环</span><br>      &#125; <span class="hljs-keyword">while</span> (n &gt;= <span class="hljs-number">0</span> &amp;&amp; remaining &gt; <span class="hljs-number">0</span>);<br><br>      <span class="hljs-keyword">if</span> (bufs == <span class="hljs-literal">null</span>) &#123;<br>          <span class="hljs-keyword">if</span> (result == <span class="hljs-literal">null</span>) &#123;<br>              <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">0</span>];<br>          &#125;<br>          <span class="hljs-keyword">return</span> result.length == total ?<br>              result : Arrays.copyOf(result, total);<br>      &#125;<br><br>      <span class="hljs-comment">// 组装最后的result</span><br>      result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[total];<br>      <span class="hljs-type">int</span> <span class="hljs-variable">offset</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>      remaining = total;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-type">byte</span>[] b : bufs) &#123;<br>          <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> Math.min(b.length, remaining);<br>          System.arraycopy(b, <span class="hljs-number">0</span>, result, offset, count);<br>          offset += count;<br>          remaining -= count;<br>      &#125;<br><br>      <span class="hljs-keyword">return</span> result;<br>  &#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="3-阻塞读取字节保存数组"><a href="#3-阻塞读取字节保存数组" class="headerlink" title="3.阻塞读取字节保存数组"></a>3.阻塞读取字节保存数组</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// JDK9新增：从输入流读取请求的字节数并保存在byte数组中； 此方法会一直阻塞，直到读取了请求的字节数、检测到流结束或引发异常为止。此方法不会关闭输入流。</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">readNBytes</span><span class="hljs-params">(<span class="hljs-type">byte</span>[] b, <span class="hljs-type">int</span> off, <span class="hljs-type">int</span> len)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    Objects.checkFromIndexSize(off, len, b.length);<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (n &lt; len) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> read(b, off + n, len - n);<br>        <span class="hljs-keyword">if</span> (count &lt; <span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">break</span>;<br>        n += count;<br>    &#125;<br>    <span class="hljs-keyword">return</span> n;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="4-inputstream到outputstream"><a href="#4-inputstream到outputstream" class="headerlink" title="4.inputstream到outputstream"></a>4.inputstream到outputstream</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">long</span> <span class="hljs-title function_">transferTo</span><span class="hljs-params">(OutputStream out)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        Objects.requireNonNull(out, <span class="hljs-string">&quot;out&quot;</span>);<br>        <span class="hljs-type">long</span> <span class="hljs-variable">transferred</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[DEFAULT_BUFFER_SIZE];<br>        <span class="hljs-type">int</span> read;<br>        <span class="hljs-keyword">while</span> ((read = <span class="hljs-built_in">this</span>.read(buffer, <span class="hljs-number">0</span>, DEFAULT_BUFFER_SIZE)) &gt;= <span class="hljs-number">0</span>) &#123;<br>            out.write(buffer, <span class="hljs-number">0</span>, read);<br>            transferred += read;<br>        &#125;<br>        <span class="hljs-keyword">return</span> transferred;<br>    &#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241026110518661.png" srcset="/img/loading.gif" lazyload alt="image-20241026110518661"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestInputStream</span> &#123;<br>    <span class="hljs-keyword">private</span> InputStream inputStream;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">CONTENT</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello World&quot;</span>;<br>    <span class="hljs-meta">@Before</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setUp</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-built_in">this</span>.inputStream =<br>            TestInputStream.class.getResourceAsStream(<span class="hljs-string">&quot;/input.txt&quot;</span>);<br>    &#125;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testReadAllBytes</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-built_in">this</span>.inputStream.readAllBytes());<br>        <span class="hljs-comment">//assertEquals 方法验证读取的内容是否与 CONTENT 相等。</span><br>        assertEquals(CONTENT, content);<br>    &#125;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testReadNBytes</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">byte</span>[] data = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">5</span>];<br>        <span class="hljs-built_in">this</span>.inputStream.readNBytes(data, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>);<br>        assertEquals(<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data));<br>    &#125;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testTransferTo</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">ByteArrayOutputStream</span> <span class="hljs-variable">outputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteArrayOutputStream</span>();<br>        <span class="hljs-built_in">this</span>.inputStream.transferTo(outputStream);<br>        assertEquals(CONTENT, outputStream.toString());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过三种方法验证 <code>InputStream</code> 的读取功能，确保能够正确读取数据并处理流操作。每个测试方法都使用 <code>assertEquals</code> 进行断言，确保期望值与实际值一致。</p>
+<h6 id="6-read-readnbytes探究"><a href="#6-read-readnbytes探究" class="headerlink" title="6.read readnbytes探究"></a>6.read readnbytes探究</h6><p>在java中，<code>InputStream</code>类有方法<code>read(byte[], int, int)</code>和<code>readNBytes(byte[], int, int)</code>。看起来这两个方法具有完全相同的功能，所以我想知道它们之间有什么区别。</p>
+<blockquote>
+<ul>
+<li><code>read()</code>表示它尝试读取*“最多<code>len</code>字节…<strong>但可能读取较少的数字</strong>。此方法会阻塞，直到输入数据可用、检测到文件末尾或引发异常。”*</li>
+<li><code>readNBytes()</code>说<em>“阻塞直到<code>len</code>读取输入数据的字节，检测到流的末尾，或者抛出异常。”</em></li>
+</ul>
+<p>尽管<em>JDK 的实现</em>可能会为<code>InputStream</code>这两种方法提供相同的结果，但记录的差异意味着从它继承的其他类可能会表现不同。</p>
+<p>例如，给定流<code>&#39;12345&lt;end&gt;&#39;</code>，<code>read(s,0,10)</code>允许返回<code>&#39;123&#39;</code>，而<code>readNbytes()</code>更有可能继续寻找流的末尾并提供整个内容。</p>
+</blockquote>
+<p>举个例子：如果文本内容是<code>12345&lt;end&gt;</code>, read(s,0,10)是允许返回<code>123</code>的, 而readNbytes(s,0,10)会一直（while循环）查找直到stream尾为止，并返回<code>12345</code>.</p>
+<hr>
+<h6 id="7-空对空模式"><a href="#7-空对空模式" class="headerlink" title="7.空对空模式"></a>7.空对空模式</h6><p>例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyParser</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Parser</span> &#123;<br>  <span class="hljs-comment">// 创建一个空对象，代表“无操作”</span><br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">Action</span> <span class="hljs-variable">NO_ACTION</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Action</span>() &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doSomething</span><span class="hljs-params">()</span> &#123; <span class="hljs-comment">/* do nothing */</span> &#125;<br>  &#125;;<br><br>  <span class="hljs-comment">// 根据用户输入查找动作</span><br>  <span class="hljs-keyword">public</span> Action <span class="hljs-title function_">findAction</span><span class="hljs-params">(String userInput)</span> &#123;<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-keyword">if</span> ( <span class="hljs-comment">/* we can&#x27;t find any actions */</span> ) &#123;<br>      <span class="hljs-keyword">return</span> NO_ACTION; <span class="hljs-comment">// 如果找不到任何动作，返回空对象</span><br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后便可以始终可以这么调用，而不用再判断空了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">ParserFactory.getParser().findAction(someInput).doSomething();<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在这里，调用者不需要检查返回的 <code>Action</code> 是否为 <code>null</code>。无论如何，调用 <code>doSomething</code> 方法都不会引发 <code>NullPointerException</code>。如果找到了有效的动作，则执行相应的操作；如果没有找到动作，则 <code>doSomething</code> 什么都不做。</p>
+</blockquote>
+<h4 id="3-输入输出缓冲区"><a href="#3-输入输出缓冲区" class="headerlink" title="3.输入输出缓冲区"></a>3.输入输出缓冲区</h4><p>如同管道一样</p>
+<blockquote>
+<p>在 Java 的输入输出流实现中，<strong>缓冲区</strong>用于在读取和写入数据时提供临时存储，以提高数据传输的效率。<code>skip</code> 方法的设计通过缓冲区实现对输入流字节的跳过，但并不会将这些字节存储在主程序的实际变量中。</p>
+</blockquote>
+<blockquote>
+<p><strong>输入缓冲区</strong>：这是指从外部数据源（如文件或网络）读取数据时使用的临时存储区域。读取数据时，输入流会将数据批量加载到缓冲区中，而不是逐字节加载，优化了读取速度。</p>
+<p><strong>输出缓冲区</strong>：在输出数据（如写入文件或网络）时，数据首先会被存储到缓冲区，然后批量写入目标输出。</p>
+</blockquote>
+<blockquote>
+<p>在 <code>skip</code> 方法中，<code>skipBuffer</code> 充当了一个 <strong>临时输入缓冲区</strong>，用于存放读取到的字节。这些字节不是直接存储到主程序的内存，而是立即舍弃，从而实现“跳过”的效果。</p>
+</blockquote>
+<p>为什么需要缓冲区</p>
+<blockquote>
+<p><strong>提高效率</strong>：<code>skip</code> 方法不能直接跳过任意数量的字节，尤其是流类型不支持随意定位的情况下。比如在网络流中，不支持直接定位到某个字节位置，因此必须通过逐个读取字节的方式跳过。</p>
+<p><strong>批量读取减少 I&#x2F;O 操作</strong>：<code>skipBuffer</code> 的存在使得方法可以批量读取指定字节数，而不是逐字节读取。相比逐字节读取，这种方式减少了 I&#x2F;O 操作的次数，提升了性能。</p>
+</blockquote>
+<h4 id="4-FilterInputStream"><a href="#4-FilterInputStream" class="headerlink" title="4.FilterInputStream"></a>4.FilterInputStream</h4><p>FilterInputStream 源码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FilterInputStream</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">InputStream</span> &#123;<br>    <br>    <span class="hljs-comment">// 被装饰的inputStream</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">volatile</span> InputStream in;<br>    <br>    <span class="hljs-comment">// 构造函数，注入被装饰的inputStream</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-title function_">FilterInputStream</span><span class="hljs-params">(InputStream in)</span> &#123;<br>        <span class="hljs-built_in">this</span>.in = in;<br>    &#125;<br><br>    <span class="hljs-comment">// 本质是调用被装饰的inputStream的方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">return</span> in.read();<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">(<span class="hljs-type">byte</span> b[])</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">return</span> read(b, <span class="hljs-number">0</span>, b.length);<br>     &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">(<span class="hljs-type">byte</span> b[], <span class="hljs-type">int</span> off, <span class="hljs-type">int</span> len)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">return</span> in.read(b, off, len);<br>     &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">long</span> <span class="hljs-title function_">skip</span><span class="hljs-params">(<span class="hljs-type">long</span> n)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">return</span> in.skip(n);<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">available</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">return</span> in.available();<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">close</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        in.close();<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">mark</span><span class="hljs-params">(<span class="hljs-type">int</span> readlimit)</span> &#123;<br>        in.mark(readlimit);<br>     &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reset</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        in.reset();<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">markSupported</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> in.markSupported();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="5-ByteArrayInputStream"><a href="#5-ByteArrayInputStream" class="headerlink" title="5.ByteArrayInputStream"></a>5.ByteArrayInputStream</h4><p>ByteArrayInputStream源码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ByteArrayInputStream</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">InputStream</span> &#123;<br>    <br>    <span class="hljs-comment">// 内部保存的byte 数组</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-type">byte</span> buf[];<br>    <br>    <span class="hljs-comment">// 读取下一个字节的数组下标，byte[pos]就是read获取的下个字节</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-type">int</span> pos;<br>    <br>    <span class="hljs-comment">// mark的数组下标位置</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-type">int</span> <span class="hljs-variable">mark</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-comment">// 保存的有效byte的个数</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-type">int</span> count;<br><br>    <span class="hljs-comment">// 构造方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ByteArrayInputStream</span><span class="hljs-params">(<span class="hljs-type">byte</span> buf[])</span> &#123;<br>        <span class="hljs-built_in">this</span>.buf = buf;              <br>        <span class="hljs-built_in">this</span>.pos = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">this</span>.count = buf.length;<br>     &#125;<br>    <br>    <span class="hljs-comment">// 构造方法，带offset的</span><br>     <span class="hljs-keyword">public</span> <span class="hljs-title function_">ByteArrayInputStream</span><span class="hljs-params">(<span class="hljs-type">byte</span> buf[], <span class="hljs-type">int</span> offset, <span class="hljs-type">int</span> length)</span> &#123;                <br>        <span class="hljs-built_in">this</span>.buf = buf;<br>        <span class="hljs-built_in">this</span>.pos = offset;<br>        <span class="hljs-built_in">this</span>.count = Math.min(offset + length, buf.length);<br>        <span class="hljs-built_in">this</span>.mark = offset;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 从流中读取下一个字节，没有读取到返回 -1</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> (pos &lt; count) ? (buf[pos++] &amp; <span class="hljs-number">0xff</span>) : -<span class="hljs-number">1</span>;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 从第 off 位置读取&lt;b&gt;最多(实际可能小于)&lt;/b&gt; len 长度字节的数据放到 byte 数组中，流是以 -1 来判断是否读取结束的</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">(<span class="hljs-type">byte</span> b[], <span class="hljs-type">int</span> off, <span class="hljs-type">int</span> len)</span> &#123;<br>        <span class="hljs-comment">// 边界检查</span><br>        <span class="hljs-keyword">if</span> (b == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NullPointerException</span>();<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (off &lt; <span class="hljs-number">0</span> || len &lt; <span class="hljs-number">0</span> || len &gt; b.length - off) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IndexOutOfBoundsException</span>();<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (pos &gt;= count) &#123;<br>            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        &#125;<br><br>        <span class="hljs-type">int</span> <span class="hljs-variable">avail</span> <span class="hljs-operator">=</span> count - pos;<br>        <span class="hljs-keyword">if</span> (len &gt; avail) &#123;<br>            len = avail;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (len &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 从buf拷贝到byte 数组b中</span><br>        System.arraycopy(buf, pos, b, off, len);<br>        pos += len;<br>        <span class="hljs-keyword">return</span> len;<br>    &#125;<br><br>    <span class="hljs-comment">// 跳过指定个数的字节不读取</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-type">long</span> <span class="hljs-title function_">skip</span><span class="hljs-params">(<span class="hljs-type">long</span> n)</span> &#123;<br>        <span class="hljs-type">long</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> count - pos;<br>        <span class="hljs-keyword">if</span> (n &lt; k) &#123;<br>            k = n &lt; <span class="hljs-number">0</span> ? <span class="hljs-number">0</span> : n;<br>        &#125;<br><br>        pos += k;<br>        <span class="hljs-keyword">return</span> k;<br>    &#125;<br><br>    <span class="hljs-comment">// 还有稍稍byte在buffer中未读取，即总的count 减去 当前byte位置</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-type">int</span> <span class="hljs-title function_">available</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> count - pos;<br>    &#125;<br><br>    <span class="hljs-comment">// 支持mark所以返回true</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">markSupported</span><span class="hljs-params">()</span> &#123; <br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;  <br><br>    <span class="hljs-comment">// 在流中当前位置mark, readAheadLimit参数未使用    </span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">mark</span><span class="hljs-params">(<span class="hljs-type">int</span> readAheadLimit)</span> &#123;            <br>        mark = pos;<br>    &#125;<br><br>    <span class="hljs-comment">// 重置流，即回到mark的位置</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reset</span><span class="hljs-params">()</span> &#123;<br>        pos = mark;<br>    &#125;<br><br>    <span class="hljs-comment">// 关闭ByteArrayInputStream不会产生任何动作</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">close</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123; <br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="6-BufferedInputStream"><a href="#6-BufferedInputStream" class="headerlink" title="6.BufferedInputStream"></a>6.BufferedInputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BufferedInputStream</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">FilterInputStream</span> &#123;<br><br>    <span class="hljs-comment">// 默认的buffer大小</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-variable">DEFAULT_BUFFER_SIZE</span> <span class="hljs-operator">=</span> <span class="hljs-number">8192</span>;<br><br>    <span class="hljs-comment">// 分配的最大数组大小。</span><br>    <span class="hljs-comment">// 由于一些VM在数组中保留一些头字，所以尝试分配较大的阵列可能会导致OutOfMemoryError（请求的阵列大小超过VM限制）</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-variable">MAX_BUFFER_SIZE</span> <span class="hljs-operator">=</span> Integer.MAX_VALUE - <span class="hljs-number">8</span>;<br><br>    <span class="hljs-comment">// 内部保存在byte 数组中</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">byte</span> buf[];<br><br>    <span class="hljs-comment">// 关闭流的方法可能是异步的，所以使用原子AtomicReferenceFieldUpdater提供CAS无锁方式（可以解决CAS的ABA问题）来保证</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> AtomicReferenceFieldUpdater&lt;BufferedInputStream, <span class="hljs-type">byte</span>[]&gt; bufUpdater =<br>        AtomicReferenceFieldUpdater.newUpdater(BufferedInputStream.class,  <span class="hljs-type">byte</span>[].class, <span class="hljs-string">&quot;buf&quot;</span>);<br><br>    <span class="hljs-comment">// 有效byte的大小</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-type">int</span> count;<br><br>    <span class="hljs-comment">// 当前位置</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-type">int</span> pos;<br><br>    <span class="hljs-comment">// 最后一次，调用mark方法，标记的位置</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-type">int</span> <span class="hljs-variable">markpos</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 该变量惟一入口就是mark(int readLimit)，好比调用方法mark(1024)，那么后面读取的数据若是</span><br><span class="hljs-comment">     * 超过了1024字节，那么这次mark就为无效标记，子类能够选择抛弃该mark标记，从头开始。不过具体实现</span><br><span class="hljs-comment">     * 跟具体的子类有关，在BufferedInputStream中，会抛弃mark标记，从新将markpos赋值为-1</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-type">int</span> marklimit;<br><br>    <span class="hljs-comment">// 获取被装饰的stream</span><br>    <span class="hljs-keyword">private</span> InputStream <span class="hljs-title function_">getInIfOpen</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">InputStream</span> <span class="hljs-variable">input</span> <span class="hljs-operator">=</span> in;<br>        <span class="hljs-keyword">if</span> (input == <span class="hljs-literal">null</span>)<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IOException</span>(<span class="hljs-string">&quot;Stream closed&quot;</span>);<br>        <span class="hljs-keyword">return</span> input;<br>    &#125;<br><br>    <span class="hljs-comment">// 获取实际内部的buffer数组</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">byte</span>[] getBufIfOpen() <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">byte</span>[] buffer = buf;<br>        <span class="hljs-keyword">if</span> (buffer == <span class="hljs-literal">null</span>)<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IOException</span>(<span class="hljs-string">&quot;Stream closed&quot;</span>);<br>        <span class="hljs-keyword">return</span> buffer;<br>    &#125;<br><br>    <span class="hljs-comment">// 构造函数，buffer是8kb</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">BufferedInputStream</span><span class="hljs-params">(InputStream in)</span> &#123;<br>        <span class="hljs-built_in">this</span>(in, DEFAULT_BUFFER_SIZE);<br>    &#125;<br><br>    <span class="hljs-comment">// 构造函数，指定buffer大小</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">BufferedInputStream</span><span class="hljs-params">(InputStream in, <span class="hljs-type">int</span> size)</span> &#123;<br>        <span class="hljs-built_in">super</span>(in);<br>        <span class="hljs-keyword">if</span> (size &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;Buffer size &lt;= 0&quot;</span>);<br>        &#125;<br>        buf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[size];<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 用更多的数据填充缓冲区,考虑到shuffling和其他处理标记的技巧，</span><br><span class="hljs-comment">     * 假设它是由同步方法调用的。该方法还假设所有数据已经被读入，因此pos &gt;count。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">fill</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    	<span class="hljs-comment">// 得到内部缓冲区buffer</span><br>        <span class="hljs-type">byte</span>[] buffer = getBufIfOpen();<br>        <span class="hljs-comment">// 没有mark的情况下， pos为0</span><br>        <span class="hljs-keyword">if</span> (markpos &lt; <span class="hljs-number">0</span>)<br>            pos = <span class="hljs-number">0</span>;            <span class="hljs-comment">/* no mark: throw away the buffer */</span><br>        <span class="hljs-comment">// pos &gt;= buffer.length  buffer已经被读取完了 </span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pos &gt;= buffer.length)  <span class="hljs-comment">/* no room left in buffer */</span><br>        	<span class="hljs-comment">// markpos &gt; 0  有标记，标记处在缓存中间</span><br>            <span class="hljs-keyword">if</span> (markpos &gt; <span class="hljs-number">0</span>) &#123;  <span class="hljs-comment">/* can throw away early part of the buffer */</span><br>            	<span class="hljs-comment">// 把buffer中，markpos到pos的部分移动到0-sz处，pos设置为sz，markpos为0</span><br>                <span class="hljs-type">int</span> <span class="hljs-variable">sz</span> <span class="hljs-operator">=</span> pos - markpos;<br>                System.arraycopy(buffer, markpos, buffer, <span class="hljs-number">0</span>, sz);<br>                pos = sz;<br>                markpos = <span class="hljs-number">0</span>;<br>                <span class="hljs-comment">// markpos已经为0了，marklimit比buffer.length小，再读取buffer已经没有地方了</span><br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (buffer.length &gt;= marklimit) &#123;<br>            	<span class="hljs-comment">// 清空缓存，清空标记，markpos为-1，pos为0</span><br>                markpos = -<span class="hljs-number">1</span>;   <span class="hljs-comment">/* buffer got too big, invalidate mark */</span><br>                pos = <span class="hljs-number">0</span>;        <span class="hljs-comment">/* drop buffer contents */</span><br>                <span class="hljs-comment">// markpos已经为0了，marklimit比buffer.length大，而buffer.length已经最大了，不能扩容</span><br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (buffer.length &gt;= MAX_BUFFER_SIZE) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OutOfMemoryError</span>(<span class="hljs-string">&quot;Required array size too large&quot;</span>);<br>               <span class="hljs-comment">// markpos已经为0了，marklimit比buffer.length大</span><br>            &#125; <span class="hljs-keyword">else</span> &#123;            <span class="hljs-comment">/* grow buffer */</span><br>            	<span class="hljs-comment">// 建立一个长度为min(2*pos,marklimit,MAX_BUFFER_SIZE),的缓存数组，然后把原来0-pos移动到新数组的0-pos处</span><br>                <span class="hljs-type">int</span> <span class="hljs-variable">nsz</span> <span class="hljs-operator">=</span> (pos &lt;= MAX_BUFFER_SIZE - pos) ?<br>                        pos * <span class="hljs-number">2</span> : MAX_BUFFER_SIZE;<br>                <span class="hljs-keyword">if</span> (nsz &gt; marklimit)<br>                    nsz = marklimit;<br>                <span class="hljs-type">byte</span> nbuf[] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[nsz];<br>                System.arraycopy(buffer, <span class="hljs-number">0</span>, nbuf, <span class="hljs-number">0</span>, pos);<br>                <span class="hljs-comment">// 用bufUpdater替换buffer</span><br>                <span class="hljs-keyword">if</span> (!bufUpdater.compareAndSet(<span class="hljs-built_in">this</span>, buffer, nbuf)) &#123;<br>                    <span class="hljs-comment">// Can&#x27;t replace buf if there was an async close.</span><br>                    <span class="hljs-comment">// Note: This would need to be changed if fill()</span><br>                    <span class="hljs-comment">// is ever made accessible to multiple threads.</span><br>                    <span class="hljs-comment">// But for now, the only way CAS can fail is via close.</span><br>                    <span class="hljs-comment">// assert buf == null;</span><br>                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IOException</span>(<span class="hljs-string">&quot;Stream closed&quot;</span>);<br>                &#125;<br>                buffer = nbuf;<br>            &#125;<br>        <span class="hljs-comment">// 当前读取上限count为pos</span><br>        count = pos;<br>        <span class="hljs-comment">// 从内部的输入流，读取pos到buffer.length部分，读取的字节数加到count</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> getInIfOpen().read(buffer, pos, buffer.length - pos);<br>        <span class="hljs-keyword">if</span> (n &gt; <span class="hljs-number">0</span>)<br>            count = n + pos;<br>    &#125;<br><br>    <span class="hljs-comment">// 读取byte</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">// 说明当前buf[]数组大小不够了，须要fill()</span><br>        <span class="hljs-keyword">if</span> (pos &gt;= count) &#123;<br>            fill();<br>            <span class="hljs-comment">// 说明没有读取到任何数据</span><br>            <span class="hljs-keyword">if</span> (pos &gt;= count)<br>                <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> getBufIfOpen()[pos++] &amp; <span class="hljs-number">0xff</span>;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * Read characters into a portion of an array, reading from the underlying</span><br><span class="hljs-comment">     * stream at most once if necessary.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read1</span><span class="hljs-params">(<span class="hljs-type">byte</span>[] b, <span class="hljs-type">int</span> off, <span class="hljs-type">int</span> len)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">avail</span> <span class="hljs-operator">=</span> count - pos;<br>        <span class="hljs-keyword">if</span> (avail &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-comment">// 当写入指定数组b的长度大小超过BufferedInputStream中核心缓存数组buf[]的大小而且 markpos &lt; 0，那么就直接从数据流中读取数据给b数组，而不经过buf[]缓存数组，避免buf[]数组急剧增大</span><br>            <span class="hljs-keyword">if</span> (len &gt;= getBufIfOpen().length &amp;&amp; markpos &lt; <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">return</span> getInIfOpen().read(b, off, len);<br>            &#125;<br>            fill();<br>            avail = count - pos;<br>            <span class="hljs-keyword">if</span> (avail &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> (avail &lt; len) ? avail : len;<br>        System.arraycopy(getBufIfOpen(), pos, b, off, cnt);<br>        pos += cnt;<br>        <span class="hljs-keyword">return</span> cnt;<br>    &#125;<br><br>    <span class="hljs-comment">// 读取到byte数组b中</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">(<span class="hljs-type">byte</span> b[], <span class="hljs-type">int</span> off, <span class="hljs-type">int</span> len)</span><br>        <span class="hljs-keyword">throws</span> IOException<br>    &#123;<br>        getBufIfOpen(); <span class="hljs-comment">// Check for closed stream</span><br>        <span class="hljs-keyword">if</span> ((off | len | (off + len) | (b.length - (off + len))) &lt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IndexOutOfBoundsException</span>();<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (len == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (;;) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">nread</span> <span class="hljs-operator">=</span> read1(b, off + n, len - n);<br>            <span class="hljs-keyword">if</span> (nread &lt;= <span class="hljs-number">0</span>)<br>                <span class="hljs-keyword">return</span> (n == <span class="hljs-number">0</span>) ? nread : n;<br>            n += nread;<br>            <span class="hljs-keyword">if</span> (n &gt;= len)<br>                <span class="hljs-keyword">return</span> n;<br>            <span class="hljs-comment">// if not closed but no bytes available, return</span><br>            <span class="hljs-type">InputStream</span> <span class="hljs-variable">input</span> <span class="hljs-operator">=</span> in;<br>            <span class="hljs-keyword">if</span> (input != <span class="hljs-literal">null</span> &amp;&amp; input.available() &lt;= <span class="hljs-number">0</span>)<br>                <span class="hljs-keyword">return</span> n;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 跳过n个</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-type">long</span> <span class="hljs-title function_">skip</span><span class="hljs-params">(<span class="hljs-type">long</span> n)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        getBufIfOpen(); <span class="hljs-comment">// Check for closed stream</span><br>        <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-type">long</span> <span class="hljs-variable">avail</span> <span class="hljs-operator">=</span> count - pos;<br><br>        <span class="hljs-keyword">if</span> (avail &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-comment">// If no mark position set then don&#x27;t keep in buffer</span><br>            <span class="hljs-keyword">if</span> (markpos &lt;<span class="hljs-number">0</span>)<br>                <span class="hljs-keyword">return</span> getInIfOpen().skip(n);<br><br>            <span class="hljs-comment">// Fill in buffer to save bytes for reset</span><br>            fill();<br>            avail = count - pos;<br>            <span class="hljs-keyword">if</span> (avail &lt;= <span class="hljs-number">0</span>)<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-type">long</span> <span class="hljs-variable">skipped</span> <span class="hljs-operator">=</span> (avail &lt; n) ? avail : n;<br>        pos += skipped;<br>        <span class="hljs-keyword">return</span> skipped;<br>    &#125;<br><br>    <span class="hljs-comment">// buf[]数组剩余字节数+输入流中剩余字节数</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-type">int</span> <span class="hljs-title function_">available</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> count - pos;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">avail</span> <span class="hljs-operator">=</span> getInIfOpen().available();<br>        <span class="hljs-keyword">return</span> n &gt; (Integer.MAX_VALUE - avail)<br>                    ? Integer.MAX_VALUE<br>                    : n + avail;<br>    &#125;<br><br>    <br>    <span class="hljs-comment">// 标记位置，marklimit只有在这里才可以被赋值，readlimit表示mark()方法执行后，最多可以从流中读取的数据</span><br>    <span class="hljs-comment">// 若是超过该字节大小，那么在fill()的时候，就会认为此mark()标记无效，从新将 markpos = -1，pos = 0</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">mark</span><span class="hljs-params">(<span class="hljs-type">int</span> readlimit)</span> &#123;<br>        marklimit = readlimit;<br>        markpos = pos;<br>    &#125;<br><br>    <span class="hljs-comment">// 重置位置</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reset</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        getBufIfOpen(); <span class="hljs-comment">// 如果已经close, 则直接报错</span><br>        <span class="hljs-keyword">if</span> (markpos &lt; <span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IOException</span>(<span class="hljs-string">&quot;Resetting to invalid mark&quot;</span>);<br>        pos = markpos;<br>    &#125;<br><br>    <span class="hljs-comment">// 支持mark, 所以返回true</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">markSupported</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 通过AtomicReferenceFieldUpdater的CAS无锁方式close</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">close</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">byte</span>[] buffer;<br>        <span class="hljs-keyword">while</span> ( (buffer = buf) != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">if</span> (bufUpdater.compareAndSet(<span class="hljs-built_in">this</span>, buffer, <span class="hljs-literal">null</span>)) &#123;<br>                <span class="hljs-type">InputStream</span> <span class="hljs-variable">input</span> <span class="hljs-operator">=</span> in;<br>                in = <span class="hljs-literal">null</span>;<br>                <span class="hljs-keyword">if</span> (input != <span class="hljs-literal">null</span>)<br>                    input.close();<br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br>            <span class="hljs-comment">// Else retry in case a new buf was CASed in fill()</span><br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="7-ps"><a href="#7-ps" class="headerlink" title="7.ps"></a>7.ps</h4><p>5 6源码没细看，先去过java基础，后续再回来研究喜喜</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java IO 1</div>
+      <div>http://example.com/2024/10/26/java/javaIo/javaio2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/27/%E5%88%B7%E9%A2%98/java/java/" title="java刷题0-20">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">java刷题0-20</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/25/java/javaIo/javaIo1/" title="Java IO 1">
+                        <span class="hidden-mobile">Java IO 1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
