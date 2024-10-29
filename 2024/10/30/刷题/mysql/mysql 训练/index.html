@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241023104449281.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241023231324541.png">
 <meta property="article:published_time" content="2024-10-30T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-26T10:21:04.643Z">
+<meta property="article:modified_time" content="2024-10-28T07:44:08.689Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/422dea32c989b92b50cbc6f04d457746.png">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          2.9k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          23 分钟
+          25 分钟
         
       </span>
     
@@ -787,7 +787,130 @@
 <p>34   group by</p>
 <p>35 DISTINCT</p>
 <h5 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h5><p>自己看</p>
-<h1 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h1><p>ps:先复习多表查询</p>
+<h4 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h4><h5 id="单选"><a href="#单选" class="headerlink" title="单选"></a>单选</h5><p>ps:先复习多表查询</p>
+<p>1.a</p>
+<ul>
+<li><input disabled="" type="checkbox"> 内链接 子查询</li>
+</ul>
+<p>2.b</p>
+<p>3.c</p>
+<p>4.b</p>
+<ul>
+<li><input disabled="" type="checkbox"> 外键</li>
+</ul>
+<p>foringn key</p>
+<p>5.c</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>外键输出</p>
+<p> alter table from  drop foreign key name;</p>
+<p>7 </p>
+<p>drop</p>
+<p>8</p>
+<p>20</p>
+<p>9</p>
+<p>inner join  on条件</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"># 查询每一个员工的姓名 , 及关联的部门的名称 <br><span class="hljs-keyword">select</span> <span class="hljs-built_in">e</span>.name, d.name <span class="hljs-keyword">from</span> emp <span class="hljs-built_in">e</span> <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> dept d <span class="hljs-keyword">on</span> <span class="hljs-built_in">e</span>.dept_id = d.id;<br><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">e</span>.name,d.name <span class="hljs-keyword">from</span> emp <span class="hljs-built_in">e</span>  （<span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span>）,dept d （<span class="hljs-keyword">on</span>)<span class="hljs-keyword">where</span> <span class="hljs-built_in">e</span>.dept_id = d.id;<br></code></pre></td></tr></table></figure>
+
+<p>10 b</p>
+<p>11 a</p>
+<p>12  in</p>
+<p>any </p>
+<p>in </p>
+<p>all</p>
+<p>13</p>
+<h5 id="多选"><a href="#多选" class="headerlink" title="多选"></a>多选</h5><p>14</p>
+<p>alter table name add constraint wjname</p>
+<p>foreign key (zbname) references fname(fzdname);</p>
+<p>C.ALTER TABLE 从表名 ADD CONSTRAINT FOREIGN KEY (外键字段名) REFERENCES 主表名(主键字段名);</p>
+<p>15</p>
+<p>a </p>
+<p>b </p>
+<p>c</p>
+<p>d</p>
+<p>16</p>
+<p>可以在子查询中使用的比较运算符有</p>
+<p>&#x3D; !&#x3D; </p>
+<p>17</p>
+<p>a c</p>
+<h5 id="判断题-1"><a href="#判断题-1" class="headerlink" title="判断题"></a>判断题</h5><p>省</p>
+<p>填空题、1.any</p>
+<p>2.exists-判断子查询的结果集是否为空</p>
+<p>3.笛卡尔积</p>
+<p>4.主键</p>
+<p>5.匹配条件</p>
+<p>6.left join</p>
+<p>请简述左连接查询和右连接查询的区别。</p>
+<p>左 left join </p>
+<p>右right join</p>
+<p>左-返回左表所有结果和右表符合的结果</p>
+<p>右 右表所有结果和左表返回的结果</p>
+<h4 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h4><h5 id="单选-1"><a href="#单选-1" class="headerlink" title="单选"></a>单选</h5><ol start="2">
+<li></li>
+</ol>
+<p>fulltext</p>
+<p>3.b</p>
+<p>alter table name add index name_index(zdmz);</p>
+<ul>
+<li><input disabled="" type="checkbox"> 索引</li>
+</ul>
+<ol start="4">
+<li></li>
+</ol>
+<p>查看试图</p>
+<p>show create  view name;</p>
+<p>DESCRIBE stu_glass;</p>
+<p>5.a</p>
+<p>update view_stu set chinese&#x3D;100;</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>b</p>
+<p>7.d</p>
+<ol start="8">
+<li></li>
+</ol>
+<p>show index from tablename;</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>create view view_stu as setlect *from student;</p>
+<ol start="10">
+<li></li>
+</ol>
+<p>create index name on table(ziduan1);</p>
+<ul>
+<li><input disabled="" type="checkbox"> 索引失效问题</li>
+</ul>
+<p>11</p>
+<p>show create view name;</p>
+<p>视图状态</p>
+<p>DESCRIBE stu_glass</p>
+<p>C.SHOW TABLE STATUS LIKE ‘视图名’;</p>
+<p>12</p>
+<p>show index from name;</p>
+<p>1.需要数据表内数据的有from 更新 插入查看</p>
+<p>2.非数据基本数据的 show展示 视图 </p>
+<h5 id="多选-1"><a href="#多选-1" class="headerlink" title="多选"></a>多选</h5><p>13</p>
+<p>abcd</p>
+<p>14</p>
+<p>show index from emp;</p>
+<p>15</p>
+<ul>
+<li><input disabled="" type="checkbox"> 视图的优点</li>
+<li><input disabled="" type="checkbox"> </li>
+</ul>
+<p>create unique index  stu_name on table(name)</p>
+<p>p index name on;</p>
+<h5 id="判断题-2"><a href="#判断题-2" class="headerlink" title="判断题"></a>判断题</h5><ul>
+<li><p><input disabled="" type="checkbox"> 
+EXPAIN</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+DESCRIBE</p>
+</li>
+</ul>
 
                 
               </div>

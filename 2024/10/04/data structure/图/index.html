@@ -19,12 +19,12 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="图图的定义 a b c d e f组成顶点集边集-链接顶点的边组成 图的规则-图的每个边必须有顶点     图-的边集可以是空 图的逻辑结果应用 图的性质无向图和有向图  有向图  尾 -&gt;没有箭头头-&gt;有箭头 A-&gt;c  A弧尾  C弧头   简单图多重图 只探讨简单图   多重 不许自己加自己好友-不许重复加好友 顶点的度 入度 出度 有向图计算 顶点度的计算  顶点-顶点的">
+    <meta name="description" content="图图的定义 a b c d e f组成顶点集边集-链接顶点的边组成 图的规则-图的每个边必须有顶点     图-的边集可以是空 图的逻辑结果应用 图的性质无向图和有向图  有向图  尾 -&gt;没有箭头头-&gt;有箭头 A-&gt;c  A弧尾  C弧头   简单图多重图  无重边：图中任意两个顶点之间最多只有一条边，即不存在多条边连接同一对顶点。例如 a-&gt;b不能再出现一条a-&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构-图">
 <meta property="og:url" content="http://example.com/2024/10/04/data%20structure/%E5%9B%BE/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="图图的定义 a b c d e f组成顶点集边集-链接顶点的边组成 图的规则-图的每个边必须有顶点     图-的边集可以是空 图的逻辑结果应用 图的性质无向图和有向图  有向图  尾 -&gt;没有箭头头-&gt;有箭头 A-&gt;c  A弧尾  C弧头   简单图多重图 只探讨简单图   多重 不许自己加自己好友-不许重复加好友 顶点的度 入度 出度 有向图计算 顶点度的计算  顶点-顶点的">
+<meta property="og:description" content="图图的定义 a b c d e f组成顶点集边集-链接顶点的边组成 图的规则-图的每个边必须有顶点     图-的边集可以是空 图的逻辑结果应用 图的性质无向图和有向图  有向图  尾 -&gt;没有箭头头-&gt;有箭头 A-&gt;c  A弧尾  C弧头   简单图多重图  无重边：图中任意两个顶点之间最多只有一条边，即不存在多条边连接同一对顶点。例如 a-&gt;b不能再出现一条a-&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/19214be3c45d09940407b8c6322f29e1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b7a8db0b939dd4da7949904e9effd2ab.png">
@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e0de7d8305249f953c9c2cf42a803b45.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/ef2ebdd1464378a93e8a18d5482d92d4.png">
 <meta property="article:published_time" content="2024-10-04T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-08T05:36:28.375Z">
+<meta property="article:modified_time" content="2024-10-29T07:32:51.968Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/19214be3c45d09940407b8c6322f29e1.png">
@@ -298,7 +298,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          399 字
+          601 字
         
       </span>
     
@@ -309,7 +309,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -369,11 +369,22 @@
 <img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/af418af68cb716958a4790c6c147e495.png" srcset="/img/loading.gif" lazyload alt="af418af68cb716958a4790c6c147e495" style="zoom:50%;" />
 
 <h5 id="简单图多重图"><a href="#简单图多重图" class="headerlink" title="简单图多重图"></a>简单图多重图</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4c63b0b865be3241750e2c81432d88ce.png" srcset="/img/loading.gif" lazyload alt="4c63b0b865be3241750e2c81432d88ce"></p>
+<blockquote>
+<p><strong>无重边</strong>：图中任意两个顶点之间最多只有一条边，即不存在多条边连接同一对顶点。例如 a-&gt;b不能再出现一条a-&gt;b</p>
+<p><strong>无自环</strong>：图中不存在连接自身的边，即任何顶点不能有与自身相连的边。</p>
+<p><strong>无方向</strong>（对于无向图）：边没有方向，即边的连接关系是对称的；有向图则没有此要求。</p>
+</blockquote>
+<blockquote>
+<p><strong>检查边的数量</strong>：查看是否有重复的边。如果有重边，则不是简单图。</p>
+<p><strong>检查自环</strong>：检查每个顶点是否有连接自身的边。如果有自环，则不是简单图。</p>
+<p><strong>确认边的方向</strong>（对于无向图）：确保所有边都是无向的，且连接的顶点对是唯一的。</p>
+</blockquote>
 <p>只探讨简单图</p>
 <img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/3aa2a0d6462a243daa747c659b6d0288.png" srcset="/img/loading.gif" lazyload alt="3aa2a0d6462a243daa747c659b6d0288" style="zoom:33%;" />
 
 <p>多重 不许自己加自己好友-不许重复加好友</p>
-<h5 id="顶点的度-入度-出度"><a href="#顶点的度-入度-出度" class="headerlink" title="顶点的度 入度 出度"></a>顶点的度 入度 出度</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/90ec4308e2c4d454e66104654a2112e9.png" srcset="/img/loading.gif" lazyload alt="90ec4308e2c4d454e66104654a2112e9"></p>
+<h5 id="顶点的度-入度-出度"><a href="#顶点的度-入度-出度" class="headerlink" title="顶点的度 入度 出度"></a>顶点的度 入度 出度</h5><p>弧尾-hu头</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/90ec4308e2c4d454e66104654a2112e9.png" srcset="/img/loading.gif" lazyload alt="90ec4308e2c4d454e66104654a2112e9"></p>
 <p>有向图计算 顶点度的计算</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/eb3c96e46ff13c39547c95fd3b39e191.png" srcset="/img/loading.gif" lazyload alt="eb3c96e46ff13c39547c95fd3b39e191"></p>
 <h5 id="顶点-顶点的关系描述"><a href="#顶点-顶点的关系描述" class="headerlink" title="顶点-顶点的关系描述 ***"></a>顶点-顶点的关系描述 ***</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/bc517c509e931b20b768753113386775.png" srcset="/img/loading.gif" lazyload alt="bc517c509e931b20b768753113386775"></p>

@@ -1,0 +1,857 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="java基础 注解0.注解认识注解是JDK1.5版本开始引入的一个特性，用于对代码进行说明，可以对包、类、接口、字段、方法参数、局部变量等进行注解  注解分类  java内置注解1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950public class testa &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java基础笔记-注解">
+<meta property="og:url" content="http://example.com/2024/10/28/java/java%E6%B3%A8%E8%A7%A3/java%E5%9F%BA%E7%A1%80%E6%B3%A8%E8%A7%A3/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="java基础 注解0.注解认识注解是JDK1.5版本开始引入的一个特性，用于对代码进行说明，可以对包、类、接口、字段、方法参数、局部变量等进行注解  注解分类  java内置注解1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950public class testa &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241029144225973.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241029144240709.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241029145157922.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241029145350197.png">
+<meta property="article:published_time" content="2024-10-28T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-10-29T07:04:51.680Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241029144225973.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>java基础笔记-注解 - 逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="java基础笔记-注解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-28 20:22" pubdate>
+          2024年10月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">java基础笔记-注解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="java基础-注解"><a href="#java基础-注解" class="headerlink" title="java基础 注解"></a>java基础 注解</h1><h4 id="0-注解认识"><a href="#0-注解认识" class="headerlink" title="0.注解认识"></a>0.注解认识</h4><p>注解是JDK1.5版本开始引入的一个特性，用于对代码进行说明，可以对包、类、接口、字段、方法参数、局部变量等进行注解</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241029144225973.png" srcset="/img/loading.gif" lazyload alt="image-20241029144225973"></p>
+<p>注解分类</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241029144240709.png" srcset="/img/loading.gif" lazyload alt="image-20241029144240709"></p>
+<h4 id="java内置注解"><a href="#java内置注解" class="headerlink" title="java内置注解"></a>java内置注解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">testa</span> &#123;<br>    <span class="hljs-keyword">class</span>  <span class="hljs-title class_">A</span>&#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">()</span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;A&quot;</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">b</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">A</span><br>    &#123;<br>      <span class="hljs-comment">/**</span><br><span class="hljs-comment">        * 重载父类的test方法</span><br><span class="hljs-comment">        */</span><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">()</span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;B&quot;</span>);<br>        &#125;<br>          <span class="hljs-comment">/**</span><br><span class="hljs-comment">        * 被弃用的方法</span><br><span class="hljs-comment">        */</span><br>        <span class="hljs-meta">@Deprecated</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">print2</span><span class="hljs-params">()</span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;B2&quot;</span>);<br>        &#125;<br>        <br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">        * 忽略告警</span><br><span class="hljs-comment">        * </span><br><span class="hljs-comment">        * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">        */</span><br>        <span class="hljs-meta">@SuppressWarnings(&quot;rawtype&quot;)</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">print3</span><span class="hljs-params">()</span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;B3&quot;</span>);<br>        &#125;<br><br><br>    &#125;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span>&#123;<br>        b b1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">b</span>();<br>        b1.print();<br>        b1.print2();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>       <span class="hljs-comment">// A a=new testa().new b();</span><br>        testa t=<span class="hljs-keyword">new</span>  <span class="hljs-title class_">testa</span>();<br>        t.test();<br><br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>Java 1.5开始自带的标准注解，包括<code>@Override</code>、<code>@Deprecated</code>和<code>@SuppressWarnings</code>：</p>
+<ul>
+<li><code>@Override</code>：表示当前的方法定义将覆盖父类中的方法</li>
+<li><code>@Deprecated</code>：表示代码被弃用，如果使用了被@Deprecated注解的代码则编译器将发出警告</li>
+<li><code>@SuppressWarnings</code>：表示关闭编译器警告信息</li>
+</ul>
+<p>我们再具体看下这几个内置注解，同时通过这几个内置注解中的元注解的定义来引出元注解</p>
+<hr>
+<h5 id="1-Override"><a href="#1-Override" class="headerlink" title="1.Override"></a>1.Override</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@Target</span>(ElementType.METHOD)<br><span class="hljs-comment">//修饰方法</span><br><span class="hljs-variable">@Retention</span>(RetentionPolicy.SOURCE)<br><span class="hljs-comment">//编译适有效</span><br>public <span class="hljs-variable">@interface</span> Override &#123;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>告诉编译器被修饰的方法是重写的父类的中的相同签名的方法，编译器会对此做出检查，若发现父类中不存在这个方法或是存在的方法签名不同报错</p>
+<h5 id="2-Deprecated"><a href="#2-Deprecated" class="headerlink" title="2.Deprecated"></a>2.Deprecated</h5><p>弃用方法-只要不直接引用 字节码文件就不会生成他的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Documented</span> <span class="hljs-comment">//文档</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><span class="hljs-comment">//编译期</span><br><span class="hljs-meta">@Target(value=&#123;CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE&#125;)</span><span class="hljs-comment">//谁使用</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Deprecated &#123;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>从它的定义我们可以知道，它会被文档化，能够保留到运行时，能够修饰构造方法、属性、局部变量、方法、包、参数、类型。这个注解的作用是告诉编译器被修饰的程序元素已被“废弃”，不再建议使用</p>
+<h5 id="3-SuppressWarnings"><a href="#3-SuppressWarnings" class="headerlink" title="3.SuppressWarnings"></a>3.SuppressWarnings</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241029145157922.png" srcset="/img/loading.gif" lazyload alt="image-20241029145157922"></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+<th>原描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>all</td>
+<td>抑制所有警告</td>
+<td>to suppress all warnings</td>
+</tr>
+<tr>
+<td>boxing</td>
+<td>抑制装箱、拆箱操作时候的警告</td>
+<td>to suppress warnings relative to boxing&#x2F;unboxing operations</td>
+</tr>
+<tr>
+<td>cast</td>
+<td>抑制映射相关的警告</td>
+<td>to suppress warnings relative to cast operations</td>
+</tr>
+<tr>
+<td>dep-ann</td>
+<td>抑制启用注释的警告</td>
+<td>to suppress warnings relative to deprecated annotation</td>
+</tr>
+<tr>
+<td>deprecation</td>
+<td>抑制过期方法警告</td>
+<td>to suppress warnings relative to deprecation</td>
+</tr>
+<tr>
+<td>fallthrough</td>
+<td>抑制确在switch中缺失breaks的警告</td>
+<td>to suppress warnings relative to missing breaks in switch statements</td>
+</tr>
+<tr>
+<td>finally</td>
+<td>抑制finally模块没有返回的警告</td>
+<td>to suppress warnings relative to finally block that don’t return</td>
+</tr>
+<tr>
+<td>hiding</td>
+<td>抑制与隐藏变数的区域变数相关的警告</td>
+<td>to suppress warnings relative to locals that hide variable（）</td>
+</tr>
+<tr>
+<td>incomplete-switch</td>
+<td>忽略没有完整的switch语句</td>
+<td>to suppress warnings relative to missing entries in a switch statement (enum case)</td>
+</tr>
+<tr>
+<td>nls</td>
+<td>忽略非nls格式的字符</td>
+<td>to suppress warnings relative to non-nls string literals</td>
+</tr>
+<tr>
+<td>null</td>
+<td>忽略对null的操作</td>
+<td>to suppress warnings relative to null analysis</td>
+</tr>
+<tr>
+<td>rawtype</td>
+<td>使用generics时忽略没有指定相应的类型</td>
+<td>to suppress warnings relative to un-specific types when using</td>
+</tr>
+<tr>
+<td>restriction</td>
+<td>抑制与使用不建议或禁止参照相关的警告</td>
+<td>to suppress warnings relative to usage of discouraged or</td>
+</tr>
+<tr>
+<td>serial</td>
+<td>忽略在serializable类中没有声明serialVersionUID变量</td>
+<td>to suppress warnings relative to missing serialVersionUID field for a serializable class</td>
+</tr>
+<tr>
+<td>static-access</td>
+<td>抑制不正确的静态访问方式警告</td>
+<td>to suppress warnings relative to incorrect static access</td>
+</tr>
+<tr>
+<td>synthetic-access</td>
+<td>抑制子类没有按最优方法访问内部类的警告</td>
+<td>to suppress warnings relative to unoptimized access from inner classes</td>
+</tr>
+<tr>
+<td>unchecked</td>
+<td>抑制没有进行类型检查操作的警告</td>
+<td>to suppress warnings relative to unchecked operations</td>
+</tr>
+<tr>
+<td>unqualified-field-access</td>
+<td>抑制没有权限访问的域的警告</td>
+<td>to suppress warnings relative to field access unqualified</td>
+</tr>
+<tr>
+<td>unused</td>
+<td>抑制没被使用过的代码的警告</td>
+<td>to suppress warnings relative to unused code</td>
+</tr>
+</tbody></table>
+<h4 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241029145350197.png" srcset="/img/loading.gif" lazyload alt="image-20241029145350197"></p>
+<p>这些元注解的使用为自定义注解提供了更加灵活和明确的行为控制。</p>
+<h5 id="1-Target"><a href="#1-Target" class="headerlink" title="1.@Target"></a>1.@Target</h5><p>Target注解用来说明那些被它所注解的注解类可修饰的对象范围：注解可以用于修饰 packages、types（类、接口、枚举、注解类）、类成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数），在定义注解类时使用了@Target 能够更加清晰的知道它能够被用来修饰哪些对象，它的取值范围定义在ElementType 枚举中。</p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">ElementType</span> &#123;<br> <br>    TYPE, <span class="hljs-comment">// 类、接口、枚举类</span><br> <br>    FIELD, <span class="hljs-comment">// 成员变量（包括：枚举常量）</span><br> <br>    METHOD, <span class="hljs-comment">// 成员方法</span><br> <br>    PARAMETER, <span class="hljs-comment">// 方法参数</span><br> <br>    CONSTRUCTOR, <span class="hljs-comment">// 构造方法</span><br> <br>    LOCAL_VARIABLE, <span class="hljs-comment">// 局部变量</span><br> <br>    ANNOTATION_TYPE, <span class="hljs-comment">// 注解类</span><br> <br>    PACKAGE, <span class="hljs-comment">// 可用于修饰：包</span><br> <br>    TYPE_PARAMETER, <span class="hljs-comment">// 类型参数，JDK 1.8 新增</span><br> <br>    TYPE_USE <span class="hljs-comment">// 使用类型的任何地方，JDK 1.8 新增</span><br> <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h5 id="2-Retention-RetentionTarget"><a href="#2-Retention-RetentionTarget" class="headerlink" title="2.@Retention &amp; @RetentionTarget"></a>2.@Retention &amp; @RetentionTarget</h5><p>Reteniton注解的作用是：描述注解保留的时间范围（即：被描述的注解在它所修饰的类中可以被保留到何时） 。</p>
+<p>Reteniton注解用来限定那些被它所注解的注解类在注解到其他类上以后，可被保留到何时，一共有三种策略，定义在RetentionPolicy枚举中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">RetentionPolicy</span> &#123;<br> <br>    SOURCE,    <span class="hljs-comment">// 源文件保留</span><br>    CLASS,       <span class="hljs-comment">// 编译期保留，默认值</span><br>    RUNTIME   <span class="hljs-comment">// 运行期保留，可通过反射去获取注解信息</span><br>&#125;<br>------<br><br></code></pre></td></tr></table></figure>
+
+<h5 id="3-Documented"><a href="#3-Documented" class="headerlink" title="3.@Documented"></a>3.@Documented</h5><p>Documented注解的作用是：描述在使用 javadoc 工具为类生成帮助文档时是否要保留其注解信息。</p>
+<p>以下代码在使用Javadoc工具可以生成<code>@TestDocAnnotation</code>注解信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.annotation.Documented;<br><span class="hljs-keyword">import</span> java.lang.annotation.ElementType;<br><span class="hljs-keyword">import</span> java.lang.annotation.Target;<br> <br><span class="hljs-meta">@Documented</span><br><span class="hljs-meta">@Target(&#123;ElementType.TYPE,ElementType.METHOD&#125;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> TestDocAnnotation &#123;<br> <br>	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">value</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&quot;default&quot;</span>;<br>&#125;<br>------<br><br></code></pre></td></tr></table></figure>
+
+<h5 id="4-Inherited"><a href="#4-Inherited" class="headerlink" title="4.Inherited"></a>4.Inherited</h5><p>Inherited注解的作用：被它修饰的Annotation将具有继承性。如果某个类使用了被@Inherited修饰的Annotation，则其子类将自动具有该注解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Inherited</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-meta">@Target(&#123;ElementType.TYPE,ElementType.METHOD&#125;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> TestInheritedAnnotation &#123;<br>    String [] values();<br>    <span class="hljs-type">int</span> <span class="hljs-title function_">number</span><span class="hljs-params">()</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@TestInheritedAnnotation(values = &#123;&quot;value&quot;&#125;, number = 10)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> &#123;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Person</span>&#123;<br>	<span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">Class</span> <span class="hljs-variable">clazz</span> <span class="hljs-operator">=</span> Student.class;<br>        Annotation[] annotations = clazz.getAnnotations();<br>        <span class="hljs-keyword">for</span> (Annotation annotation : annotations) &#123;<br>            System.out.println(annotation.toString());<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">xxxxxxx.TestInheritedAnnotation(values=[value], number=<span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
+
+<p>即使Student类没有显示地被注解<code>@TestInheritedAnnotation</code>，但是它的父类Person被注解，而且<code>@TestInheritedAnnotation</code>被<code>@Inherited</code>注解，因此Student类自动有了该注解</p>
+<hr>
+<h4 id="注解与反射接口"><a href="#注解与反射接口" class="headerlink" title="注解与反射接口"></a>注解与反射接口</h4><p>学完反射后再来</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>java基础笔记-注解</div>
+      <div>http://example.com/2024/10/28/java/java注解/java基础注解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/28/java/2024-9-6%20Java%20%E5%AE%9E%E4%B9%A0%E5%A4%8D%E4%B9%A0%E7%AF%87%20172056/" title="java基础笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">java基础笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/27/%E5%88%B7%E9%A2%98/java/java/" title="java刷题0-20">
+                        <span class="hidden-mobile">java刷题0-20</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
