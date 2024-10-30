@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241023104449281.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241023231324541.png">
 <meta property="article:published_time" content="2024-10-30T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-28T07:44:08.689Z">
+<meta property="article:modified_time" content="2024-10-30T01:26:41.384Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/422dea32c989b92b50cbc6f04d457746.png">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k 字
+          4k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          25 分钟
+          34 分钟
         
       </span>
     
@@ -911,6 +911,293 @@ EXPAIN</p>
 DESCRIBE</p>
 </li>
 </ul>
+<h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><p>考察存储过程</p>
+<h4 id="单选-2"><a href="#单选-2" class="headerlink" title="单选"></a>单选</h4><ol>
+<li></li>
+</ol>
+<p>02 not found -考察02报错</p>
+<ul>
+<li><input disabled="" type="checkbox"> 条件处理程序</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<ul>
+<li><input disabled="" type="checkbox"> close 游标</li>
+</ul>
+<p>3.c</p>
+<p>4.c</p>
+<p>5.d</p>
+<p><strong>6.c</strong></p>
+<p><strong>存储过程参数传递</strong></p>
+<p>7.b</p>
+<p>set select user into user from name;</p>
+<ol start="8">
+<li></li>
+</ol>
+<p>call</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>declare @num;</p>
+<p>call name(20,@num);</p>
+<p>10</p>
+<ul>
+<li><input disabled="" type="checkbox"> 不知道</li>
+</ul>
+<ol start="11">
+<li></li>
+</ol>
+<p>declare val;</p>
+<p><strong>if val is null</strong></p>
+<p><strong>then</strong></p>
+<p>select ‘val is null’;</p>
+<p><strong>else</strong> </p>
+<p>select ‘val not null’;</p>
+<p><strong>end if;</strong></p>
+<p>了解一下if快，跟lua脚本一样</p>
+<p>12</p>
+<p>drop procedure  if exists name;</p>
+<ul>
+<li><input disabled="" type="checkbox"> 存储过程的删除1</li>
+</ul>
+<p>13</p>
+<p>累加10</p>
+<p>declare i int default 0;</p>
+<p>while i&lt;10 </p>
+<p>do</p>
+<p>set i&#x3D;i+1;</p>
+<p>end while; </p>
+<p>14  alter</p>
+<ul>
+<li><input disabled="" type="checkbox"> 修改存储过程</li>
+</ul>
+<p>15 d</p>
+<p>select</p>
+<p>drop </p>
+<p>16 b</p>
+<p>声明 打开 使用 关闭</p>
+<p>17</p>
+<p>dropp 记不到 if exists  nbame;</p>
+<p>PROCEDURE </p>
+<p>18</p>
+<p>do while循环配套</p>
+<p>repeat  </p>
+<p>until 条件</p>
+<p>end repeat</p>
+<p>语句回快</p>
+<p>19 a</p>
+<ul>
+<li><input disabled="" type="checkbox"> 删除存储过程警告</li>
+</ul>
+<p>20 </p>
+<p>loop死循环必备-无条件</p>
+<p>21</p>
+<ul>
+<li><input disabled="" type="checkbox"> 不知道</li>
+</ul>
+<p>22</p>
+<p>所有存储过程的信息存放在下列哪个数据库中</p>
+<ul>
+<li><input disabled="" type="checkbox"> information_schema</li>
+<li><input disabled="" type="checkbox"> information_schema数据库下的Routines表存储所有存储过程的定义</li>
+</ul>
+<p>23</p>
+<p>存放在哪个表</p>
+<blockquote>
+<ul>
+<li><input disabled="" type="checkbox"> information_schema. Routines</li>
+</ul>
+</blockquote>
+<p>24</p>
+<ul>
+<li><input disabled="" type="checkbox"> 代码阅读</li>
+<li><input disabled="" type="checkbox"> c 异常捕获后进行的操作</li>
+</ul>
+<p>25</p>
+<p>fetch name into a,n;</p>
+<p>26</p>
+<p>跳过本轮循环</p>
+<p>、LEAVE语句(终止当前循环，跳出循环体）</p>
+<p>ITERATE语句（结束本次循环，开始下一轮循环的执行）</p>
+<p>loop</p>
+<p>27</p>
+<p>错误处理</p>
+<p>sqlwarnih</p>
+<p>28</p>
+<p>声明游标</p>
+<p>declare name cursor for 查询语句；</p>
+<p>29</p>
+<p>1． 一个流程控制语句（如 <code>IF</code>、<code>CASE</code>、<code>LOOP</code>、<code>REPEAT</code>、<code>WHILE</code> 等）可以保护或包含任意数量的SQL语句</p>
+<p>30a</p>
+<p>CREATE PROCEDURE Myproc () BEGIN SELECT * FROM student; END;</p>
+<p>31 b</p>
+<p>32d</p>
+<p>D、UNDO<br> 指的是撤销或回滚操作，它允许你撤销之前执行的事务所做的更改。</p>
+<p>33d</p>
+<p>34 a</p>
+<p>leave</p>
+<p>45</p>
+<p>declare name int default 1;</p>
+<p>36declare </p>
+<p>37</p>
+<p>declare name cursor for select;</p>
+<p>38</p>
+<p>create procedure</p>
+<p>39 </p>
+<p>exit</p>
+<p>40</p>
+<p>open</p>
+<p>41a</p>
+<p>in</p>
+<p>out</p>
+<p>42</p>
+<p>inout</p>
+<p>43</p>
+<p>exit</p>
+<p>44</p>
+<p>A、SHOW PROCEDURE STATUS LIKE’C%’\G</p>
+<p>45</p>
+<p>delimiter &#x2F;&#x2F;</p>
+<h4 id="多选-2"><a href="#多选-2" class="headerlink" title="多选"></a>多选</h4><p>46</p>
+<p>不知道、INVOKER</p>
+<p>DEFINER</p>
+<p>47</p>
+<p>查看存储过程</p>
+<p>A、SHOW PROCEDURE STATUS name</p>
+<p>B、SHOW CREATE PROCEDURE name</p>
+<p>48-50</p>
+<p>光标的定义位置</p>
+<p>光标操作关键字</p>
+<p>51</p>
+<p>错误类型</p>
+<p>52</p>
+<p>流程控制语句</p>
+<p>53</p>
+<p>1． 在MySQL中，存储过程要修改的部分的取值包括</p>
+<p>A、CONTAINS SQL - 这通常指的是存储过程包含SQL语句，但不一定修改数据。</p>
+<p>B、NO SQL - 表示存储过程不包含任何SQL语句</p>
+<p>C、READS SQL DATA - 表示存储过程包含读取数据的SQL语句，但不包含修改数据的语句</p>
+<p>D、MODIFIES SQL DATA  表示存储过程包含修改数据的SQL语句，如INSERT、UPDATE、DELETE等。</p>
+<p>54</p>
+<p>create  procedure name </p>
+<p>begin</p>
+<p>语句;</p>
+<p>end</p>
+<p>55</p>
+<p>case month </p>
+<p>when 1 then</p>
+<p>;</p>
+<p>when 2 then</p>
+<p>;</p>
+<p>else </p>
+<p>;</p>
+<p>ebd case;</p>
+<p>CASE case_expr WHEN when_value THEN statement_list [WHEN when_value THEN statement_list]… [ELSE statement_list] END CASE</p>
+<p>CASE WHEN expr_condition THEN statement_list [WHEN expr_condition THEN statement_list] [ELSE statement_list] END CASE;</p>
+<p>case case_expt when when value then  ;when when_value then end case;</p>
+<p>56</p>
+<p>loop</p>
+<p>while</p>
+<p>if</p>
+<p>case</p>
+<p>repeat</p>
+<p>57</p>
+<p>declare cmd_not_allow condition for SQLSTATE’42000’;</p>
+<p>DECLARE cmd_not_allow CONDITION FOR 1148;</p>
+<p>58</p>
+<p>59</p>
+<p>exit</p>
+<p>continue</p>
+<p>undo 不处理</p>
+<p>60</p>
+<p>if case</p>
+<p>61</p>
+<p>存储过程优点</p>
+<p>效率高</p>
+<p>安全性号 增强程序的可重用性</p>
+<p>减少网络链接次数</p>
+<p>62</p>
+<p>1． LOOP 循环 <strong>repeat</strong>,while</p>
+<p>63 </p>
+<p>1 2 3 4 5 6 10</p>
+<p>64</p>
+<p>if case</p>
+<p>判断题</p>
+<h4 id="简答题-1"><a href="#简答题-1" class="headerlink" title="简答题"></a>简答题</h4><ol>
+<li></li>
+</ol>
+<p>都可以用于创建一个带有条件判断的循环过程</p>
+<p>While在语句执行时，先对指定的表达式进行判断，符合条件在执行循环体；</p>
+<p>而repeat先执行循环体，然后在进行条件判断。</p>
+<p>2． 简述什么是存储过程。</p>
+<p>存储过程是一条或多条SQL语句的集合，他可以将常用或复杂的操作封装成一个代码块存储在数据库服务器中，以便重复使用，大大减少了数据库开发人员的工作量。</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>简述调用存储过程的优点有哪些？（写出至少3点）<br> A、使程序执行效率更高</p>
+<p>B、安全性更好</p>
+<p>C、增强程序的可重用性和维护性</p>
+<p>D、实现了一次编写存储过程，多次调用的目标</p>
+<ol start="4">
+<li></li>
+</ol>
+<p>简述存储过程中流程控制语句的作用？<br> 流程控制语句用于将多个SQL语句划分或组成符合业务逻辑的代码块，用来根据条件控制语句的执行</p>
+<ol start="5">
+<li></li>
+</ol>
+<p>.简述操作光标的基本步骤。（写出四个步骤）<br> 定义光标、打开光标、利用光标、关闭</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>简述存储过程中的定义条件和处理程序分别是什么。</p>
+<p> 定义条件是事先定义程序执行过程中遇到的问题，处理程序定义了在遇到这些问题应当采取的处理方式，并且保证存储过程在遇到警告或错误时能继续执行。</p>
+<ol start="7">
+<li></li>
+</ol>
+<p>declare id int default 0;</p>
+<p>while id&lt;&#x3D;10</p>
+<p>set id&#x3D;id+1;</p>
+<p>select id;</p>
+<p>end while;</p>
+<ol start="8">
+<li></li>
+</ol>
+<p>create procedure d()</p>
+<p>begin</p>
+<p>declare p1 int default 0;</p>
+<p>My_loop;LOOP</p>
+<p>SET P1&#x3D;P1+1;</p>
+<p>If P1&lt;10 THEN ITERATE my_loop;</p>
+<p>ElSECT p1&gt;20 then leave my_loop;</p>
+<p>End if;</p>
+<p>Select ‘pl is between 10 AND 20’;</p>
+<p>End LOOP my_loop;</p>
+<p>end;</p>
+<h1 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h1><p>掌握触发器的创建删除</p>
+<p>1.创建</p>
+<p>create  trigger test age </p>
+<p>before&#x2F;after insert&#x2F;update&#x2F;delete</p>
+<p>on name for each row </p>
+<p>begin</p>
+<p>-sel;</p>
+<p>end</p>
+<p>drop trigger name;</p>
+<p>show trigger name;</p>
+<p>触发器中的SQL语句不能出现 SELECT * FROM TABLE 形式的查询 ，因为其会返回一个结果集 ，使用时会抛出错误Not allowed to return a result set from a trigger，可以使用SELECT INTO 为变量设置值</p>
+<p>create trigger user_insert</p>
+<p>after insert onuser for each row</p>
+<p>begin</p>
+<ul>
+<li></li>
+</ul>
+<p>&#x2F;&#x2F;插入日志表</p>
+<p>insert into user_logs(id, operation, operate_time, operate_id, operate_params)</p>
+<p>valies</p>
+<p>(null, ‘insert’, now(), new.id, concat(‘插入的数据内容为: id&#x3D;’,new.id,’,name&#x3D;’,new.name, ‘, phone&#x3D;’,NEW.phone, ‘, email&#x3D;’, NEW.email, ‘, profession&#x3D;’, NEW.profession))</p>
+<p>end</p>
+<p>**new **</p>
+<p>获取数据</p>
 
                 
               </div>

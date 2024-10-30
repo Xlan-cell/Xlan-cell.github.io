@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/6ead8aebc1af0bee4df72f6d0230fd86.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/368d80234ab3ce11f8a7d64050292c65.png">
 <meta property="article:published_time" content="2024-09-27T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-09-28T03:56:42.742Z">
+<meta property="article:modified_time" content="2024-10-30T00:59:58.759Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d5fc934f5c3f21ae0bf0e11fa1da2997.png">
@@ -243,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          2k 字
         
       </span>
     
@@ -254,7 +254,7 @@
         
         
         
-          16 分钟
+          17 分钟
         
       </span>
     
@@ -302,11 +302,14 @@
 <blockquote>
 <p>可以把某一业务SQL封装在存储过程中，需要用到的时候直接调用即可。<br>类似于其他语言的函数(方法)，在使用存储过程中，可以传递参数，也可以接收返回值。<br>减少客户端与数据库的网络交互，提高执行效率，如果涉及到多条SQL执行，每执行一次都是一次网络传输。 而如果封装在存储过程中，我们只需要网络交互一次可能就可以了。</p>
 </blockquote>
+<p>在MySQL中，用户可以通过查询information_schema数据库下的Routines表的记录来查询存储过程的信息。</p>
+<p>MySQL中用户可以使用SHOW STATUS语句或【SHOW CREATE PROCEDURE 存储过程名；】语句来查看存储过程，也可以直接从系统的information_schema数据库中查询。</p>
+<p>在MySQL中可以使用【ALTER PROCEDURE 过程名称；】语句修改存储过程的特性。</p>
 <h6 id="2-存储过程创建注意事项"><a href="#2-存储过程创建注意事项" class="headerlink" title="2.存储过程创建注意事项"></a>2.存储过程创建注意事项</h6><p>分号错误</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/e9a127dff3080aec7ceae81b655ef24f.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <p>通过关键字 <code>delimiter</code><strong>重新指定SQL语句的结束符</strong>,</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/62d1ca8ad004f80a5f8f8347a08c7d33.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<h4 id="进阶使用"><a href="#进阶使用" class="headerlink" title="进阶使用"></a>进阶使用</h4><h5 id="1-变量探究"><a href="#1-变量探究" class="headerlink" title="1.变量探究"></a>1.变量探究</h5><p>系统变量</p>
+<h6 id="3-存储的过程的修改"><a href="#3-存储的过程的修改" class="headerlink" title="3.存储的过程的修改"></a>3.存储的过程的修改</h6><h4 id="进阶使用"><a href="#进阶使用" class="headerlink" title="进阶使用"></a>进阶使用</h4><h5 id="1-变量探究"><a href="#1-变量探究" class="headerlink" title="1.变量探究"></a>1.变量探究</h5><p>系统变量</p>
 <p>系统变量 是MySQL服务器提供，属于服务器层面，其中又分为全局变量、会话变量</p>
 <ul>
 <li>全局变量(<code>GLOBAL</code>): 设置后针对于所有的会话生效</li>
@@ -316,7 +319,7 @@
 </ul>
 <p>用户自定义变量</p>
 <p>用户根据需要自己定义的变量，可以不提前声明直接使用（返回null），在用的时候直接用 “<code>@变量名</code>” 就可以。其作用域为当前连接。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 赋值时，可以使用 = ，也可以使用 := </span><br><span class="hljs-keyword">SET</span> <span class="hljs-variable">@var_name</span> <span class="hljs-operator">=</span> expr [, <span class="hljs-variable">@var_name</span> <span class="hljs-operator">=</span> expr] ... ; <br><span class="hljs-keyword">SET</span> <span class="hljs-variable">@var_name</span> :<span class="hljs-operator">=</span> expr [, <span class="hljs-variable">@var_name</span> :<span class="hljs-operator">=</span> expr] ... ;<br><br><span class="hljs-comment">-- ===使用示例===</span><br><span class="hljs-keyword">set</span> <span class="hljs-variable">@test1</span> :<span class="hljs-operator">=</span> <span class="hljs-number">111</span>  <span class="hljs-comment">-- 可为单个变量声明赋值</span><br><span class="hljs-keyword">set</span> <span class="hljs-variable">@test2</span> :<span class="hljs-operator">=</span> <span class="hljs-number">222</span>,<span class="hljs-variable">@test3</span><span class="hljs-operator">=</span><span class="hljs-number">333</span>  <span class="hljs-comment">-- 可为多个变量声明赋值</span><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 赋值时，可以使用 = ，也可以使用 := <br>SET @var_name = expr [, @var_name = expr] ... ; <br>SET @var_name := expr [, @var_name := expr] ... ;<br><br>-- ===使用示例===<br>set @test1 := 111  -- 可为单个变量声明赋值<br>set @test2 := 222,@test3=333  -- 可为多个变量声明赋值<br><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>方式二</li>
@@ -363,8 +366,9 @@
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/161abeed68a1f50b90748a3a4309ba00.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h6 id="3-loop"><a href="#3-loop" class="headerlink" title="3.loop"></a>3.loop</h6><p>LOOP 也可以用来实现循环，如果不在SQL逻辑中增加退出循环的条件，可以用其来实现简单的死循环。 LOOP可以配合一下两个语句使用：</p>
 <ul>
-<li><code>LEAVE</code> ：配合循环使用，退出循环。</li>
-<li><code>ITERATE</code>：必须用在循环中，作用是跳过当前循环剩下的语句，直接进入下一次循环。</li>
+<li><strong><code>LEAVE</code> ：配合循环使用，退出循环。</strong></li>
+<li><strong><code>ITERATE</code>：必须用在循环中，作用是跳过当前循环剩下的语句，直接进入下一次循环。</strong></li>
+<li>ITERATE语句用于将执行顺序转到语句段的开头处，它只可以出现在LOOP、REPEAT和WHILE语句内。</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/11400f1726eebe19759860b613c2b24d.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <table>
@@ -390,6 +394,7 @@
 <h6 id="4-游标"><a href="#4-游标" class="headerlink" title="4.游标"></a>4.游标</h6><p>我们的变量只能存储单个查询结果<strong>，而游标（CURSOR）是用来存储查询结果集的数据类型</strong> , 在存储过程和函数中可以使用游标对结果集进行循环的处理。</p>
 <ul>
 <li>声明游标</li>
+<li>declare 变量名 变量类型 [DEFAULT … ];</li>
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DECLARE</span> 游标名称 <span class="hljs-keyword">CURSOR</span> <span class="hljs-keyword">FOR</span> 查询语句;<br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 
@@ -411,10 +416,24 @@
 <p>使用示例：根据传入的参数uage，来查询用户表tb_user中，所有的用户年龄小于等于uage的用户姓名 （name）和专业（profession），并将用户的姓名和专业插入到所创建的一张新表 (id,name,profession)中</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4ed019020ad2479cbafa0a9df7c7ed93.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <p>在我们调用上述存储过程的过程中，由于while循环中并没有退出条件，当游标的数据集获取完毕之后，再次获取数据，就会报错，从而终止了程序的执行。但是此时，user_pro表结构及其数据都已经插入成功了。 要想解决这个问题，就需要通过MySQL中提供的 条件处理程序 Handler 来解决</p>
-<h6 id="5-条件处理程序"><a href="#5-条件处理程序" class="headerlink" title="5. 条件处理程序"></a>5. 条件处理程序</h6><p>条件处理程序（Handler）可以用来定义在流程控制结构执行过程中遇到问题时相应的处理步骤。</p>
-<p>语法<br>DECLARE handler_action HANDLER FOR condition_value [,condition_value] …   statement;<br>1<br>handler_action 的取值：</p>
-<p>CONTINUE: 继续执行当前程序<br>EXIT: 终止执行当前程序<br>condition_value 的取值：</p>
+<h4 id="5-条件处理程序"><a href="#5-条件处理程序" class="headerlink" title="5. 条件处理程序"></a>5. 条件处理程序</h4><p>条件处理程序（Handler）可以用来定义在流程控制结构执行过程中遇到问题时相应的处理步骤。</p>
+<blockquote>
+<p>语法<br>DECLARE handler_action </p>
+<p>HANDLER FOR </p>
+<p>condition_value [,condition_value] …   statement;</p>
+</blockquote>
+<p>定义错误</p>
+<p>DECLARE cmd_not_allow CONDITION FOR SQLSTATE’42000’;</p>
+<p>DECLARE cmd_not_allow CONDITION FOR 1148;</p>
+<p>1<br>handler_action 的取值：</p>
+<blockquote>
+<p>CONTINUE: 继续执行当前程序<br>EXIT: 终止执行当前程序   遇到错误默认的方式</p>
+<p>UNDO 什么都不做</p>
+<p>condition_value 的取值：</p>
+</blockquote>
+<blockquote>
 <p>SQLSTATE sqlstate_value: 状态码，如 02000<br>SQLWARNING: 所有以01开头的SQLSTATE代码的简写<br>NOT FOUND: 所有以02开头的SQLSTATE代码的简写<br>SQLEXCEPTION: 所有没有被SQLWARNING 或 NOT FOUND捕获的SQLSTATE代码的简写<br>我们来处理完善一下上一个案例所遇到的问题~</p>
+</blockquote>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/6ead8aebc1af0bee4df72f6d0230fd86.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h4 id="6-存储函数"><a href="#6-存储函数" class="headerlink" title="6.存储函数"></a>6.存储函数</h4><p>存储函数<strong>是有返回值的存储过程</strong>，存储函数的参数只能是<code>in</code>类型的。具体语法如下：</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ada">CREATE  <span class="hljs-keyword">FUNCTION</span>   <span class="hljs-title">存储函数名称</span> ([ 参数列表 ])<br>RETURNS  type  [characteristic ...]<br>BEGIN<br>	<span class="hljs-comment">-- SQL语句</span><br>	<span class="hljs-keyword">RETURN</span> <span class="hljs-type">...</span>;<br><span class="hljs-keyword">END</span> ;<br><br></code></pre></td></tr></table></figure>
