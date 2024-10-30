@@ -1,0 +1,895 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="反射原理0.反射认识JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。Java反射机制在框架设计中极为广泛，需要深入理解。 运行时识别一个对象的类型和类的信息。主要有两种方式：一种是“传统的”RTTI，它假定我们在编译时已经知道了所有的类型；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 反射">
+<meta property="og:url" content="http://example.com/2024/10/30/java/java%E5%8F%8D%E5%B0%84/java%E5%8F%8D%E5%B0%84/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="反射原理0.反射认识JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。Java反射机制在框架设计中极为广泛，需要深入理解。 运行时识别一个对象的类型和类的信息。主要有两种方式：一种是“传统的”RTTI，它假定我们在编译时已经知道了所有的类型；">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030111139721.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/java-basic-reflection-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/newInstance%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030170655165.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030170944205.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030171053820.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030171530856.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030171707141.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030171803749.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030171931704.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030172403150.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030172502060.png">
+<meta property="article:published_time" content="2024-10-30T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-10-30T09:26:18.022Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030111139721.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>java 反射 - 逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="java 反射"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-30 20:22" pubdate>
+          2024年10月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">java 反射</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h5 id="0-反射认识"><a href="#0-反射认识" class="headerlink" title="0.反射认识"></a>0.反射认识</h5><p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。Java反射机制在框架设计中极为广泛，需要深入理解。</p>
+<p>运行时识别一个对象的类型和类的信息。主要有两种方式：一种是“传统的”RTTI，它假定我们在编译时已经知道了所有的类型；另一种是“反射”机制，它允许我们在运行时发现和使用类的信息。</p>
+<p>反射就是把java类中的各种成分映射成一个个的Java对象</p>
+<p>例如：一个类有：成员变量、方法、构造方法、包等等信息，利用反射技术可以对一个类进行解剖，把个个组成部分映射成一个个对象。</p>
+<h5 id="1-反射-原理探究"><a href="#1-反射-原理探究" class="headerlink" title="1.反射 原理探究"></a>1.反射 原理探究</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030111139721.png" srcset="/img/loading.gif" lazyload alt="image-20241030111139721"></p>
+<p>在Java中，所有的类的父类都是<code>java.lang.Class</code>，这是一个管理类元数据的对象。每个类在加载时，JVM会生成一个唯一的<code>Class</code>对象，这个对象与该类相对应。 当一个类被加载时，JVM会在方法区（Method Area）中为该类创建一个对应的<code>Class</code>对象。这个对象包含了类的结构信息，如字段、方法、父类、接口等元数据。</p>
+<p>通过反射，你可以访问这个<code>Class</code>对象来获取类的元数据信息，比如类名、字段、方法和构造方法等。</p>
+<p>具体来说，每个类都会在第一次被JVM加载时，创建一个唯一的<code>Class</code>实例，并且所有对该类的引用都会指向同一个<code>Class</code>实例。因此，不同实例之间共享同一个<code>Class</code>对象，避免了额外的内存开销。我们可以从反射的角度来验证这一点：</p>
+<p><strong><code>Class</code>对象唯一性</strong>：对于某个类<code>A</code>，不管创建多少个实例，通过反射或<code>A.class</code>获取到的<code>Class</code>对象始终是唯一的。因此，<code>Class</code>对象是每个类的“单例”表示。</p>
+<p><strong>反射访问元数据</strong>：通过反射，<code>Class</code>对象允许我们在运行时访问类的元数据，但不需要知道类的具体信息。比如，可以调用<code>getDeclaredFields</code>获取类的字段，或者调用<code>getDeclaredMethods</code>获取方法，这些操作都作用于同一个<code>Class</code>对象。</p>
+<h5 id="2-获取类实例-原理"><a href="#2-获取类实例-原理" class="headerlink" title="2.获取类实例 原理"></a>2.获取类实例 原理</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="类加载流程"></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">Class</span>&lt;A&gt; clazz1 = A.<span class="hljs-keyword">class</span>;<br><span class="hljs-keyword">Class</span>&lt;A&gt; clazz2 = (<span class="hljs-keyword">Class</span>&lt;A&gt;) <span class="hljs-keyword">Class</span>.forName(&quot;A&quot;);<br><br>// clazz1 和 clazz2 指向同一个 <span class="hljs-keyword">Class</span> 对象<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(clazz1 == clazz2); // <span class="hljs-keyword">true</span><br><br></code></pre></td></tr></table></figure>
+
+<p>class.forName(“A”) 如何拿取这个类的信息的呢</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/java-basic-reflection-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>研究</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">package</span> <span class="hljs-title">java.lang;</span><br></code></pre></td></tr></table></figure>
+
+<p>根据给定的类名返回对应的<code>Class</code>对象，同时还会触发该类的初始化。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Class</span>&lt;T&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">java</span>.io.Serializable,<br>                              GenericDeclaration,<br>                              Type,<br>                              AnnotatedElement &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> ANNOTATION= <span class="hljs-number">0x00002000</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">ENUM</span>      <span class="hljs-operator">=</span> <span class="hljs-number">0x00004000</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">SYNTHETIC</span> <span class="hljs-operator">=</span> <span class="hljs-number">0x00001000</span>;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">registerNatives</span><span class="hljs-params">()</span>;<br>    <span class="hljs-keyword">static</span> &#123;<br>        registerNatives();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>forname探究</p>
+<blockquote>
+<p>类加载器的层级结构意味着子类可以从父类的类加载器继承行为。如果使用调用者的类加载器加载类，可以确保类之间的继承关系和访问权限能够正确地处理。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-meta">@CallerSensitive</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Class&lt;?&gt; forName(String className)<br>            <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;<br>            <span class="hljs-comment">//获取调用者的类  -&gt;方便后续获取类加载器</span><br>    Class&lt;?&gt; caller = Reflection.getCallerClass();<br>    <span class="hljs-keyword">return</span> forName0(className, <span class="hljs-literal">true</span>, ClassLoader.getClassLoader(caller), caller);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>className</code>: 需要查找的类的名称。</p>
+<p><code>true</code>: 这个参数指示是否需要初始化类。</p>
+<p><code>ClassLoader.getClassLoader(caller)</code>: 获取调用者的类加载器，以确保使用正确的加载器去加载目标类。只 返回类加载器</p>
+<p><code>caller</code>: 调用者类，用于权限检查。</p>
+</blockquote>
+<p>类加载器获取</p>
+<p>类加载 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">native</span> Class&lt;?&gt; forName0(String name, <span class="hljs-type">boolean</span> initialize,<br>                                        ClassLoader loader,<br>                                        Class&lt;?&gt; caller)<br></code></pre></td></tr></table></figure>
+
+<p>forName()反射获取类信息，并没有将实现留给了java,而是交给了jvm去加载。</p>
+<p>主要是先获取 ClassLoader, 然后调用 native 方法，获取信息，加载类则是回调 java.lang.ClassLoader.</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ClassLoader</span> loader,<br></code></pre></td></tr></table></figure>
+
+<p>ClassLoader 探究</p>
+<p>探究-&gt;loadClass</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Class&lt;?&gt; loadClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;<br>     <span class="hljs-keyword">return</span> loadClass(name, <span class="hljs-literal">false</span>);<br> &#125;<br></code></pre></td></tr></table></figure>
+
+<p>-&gt;调用了loadClass(name,false);-&gt;一个小小的双亲委派机制 -</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="hljs-type">boolean</span> resolve)<br>        <span class="hljs-keyword">throws</span> ClassNotFoundException<br>&#123;<br>    <span class="hljs-comment">// 使用类加载锁来确保线程安全</span><br>    <span class="hljs-keyword">synchronized</span> (getClassLoadingLock(name)) &#123;<br>        <span class="hljs-comment">// 首先检查类是否已经被加载</span><br>        Class&lt;?&gt; c = findLoadedClass(name);<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-type">long</span> <span class="hljs-variable">t0</span> <span class="hljs-operator">=</span> System.nanoTime(); <span class="hljs-comment">// 记录开始时间</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-comment">// 如果存在父类加载器，则尝试通过父类加载器加载类</span><br>                <span class="hljs-keyword">if</span> (parent != <span class="hljs-literal">null</span>) &#123;<br>                    c = parent.loadClass(name, <span class="hljs-literal">false</span>);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-comment">// 如果没有父类加载器，则尝试在引导类加载器中查找</span><br>                    c = findBootstrapClassOrNull(name);<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (ClassNotFoundException e) &#123;<br>                <span class="hljs-comment">// 如果在非空父类加载器中找不到类，则抛出 ClassNotFoundException</span><br>            &#125;<br><br>            <span class="hljs-comment">// 如果仍然未找到类，则调用 findClass 方法查找类</span><br>            <span class="hljs-keyword">if</span> (c == <span class="hljs-literal">null</span>) &#123;<br>                <span class="hljs-type">long</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> System.nanoTime(); <span class="hljs-comment">// 记录查找类开始时间</span><br>                c = findClass(name); <span class="hljs-comment">// 查找类的具体实现</span><br><br>                <span class="hljs-comment">// 记录性能统计数据</span><br>                sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);<br>                sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);<br>                sun.misc.PerfCounter.getFindClasses().increment();<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 如果需要解析类，则调用 resolveClass 方法</span><br>        <span class="hljs-keyword">if</span> (resolve) &#123;<br>            resolveClass(c);<br>        &#125;<br>        <span class="hljs-keyword">return</span> c; <span class="hljs-comment">// 返回加载的类</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h5 id="3-类加载对象流程"><a href="#3-类加载对象流程" class="headerlink" title="3.类加载对象流程"></a>3.类加载对象流程</h5><p>下面来看<img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/newInstance%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="newInstance实现流程">一下 <strong>newInstance</strong>() 的实现方式。</p>
+<blockquote>
+<ul>
+<li><ol>
+<li>权限检测，如果不通过直接抛出异常；</li>
+</ol>
+</li>
+<li><ol>
+<li>查找无参构造器，并将其缓存起来；</li>
+</ol>
+</li>
+<li><ol>
+<li>调用具体方法的无参构造方法，生成实例并返回；</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs java">**Constructor&lt;T&gt;**: 这是一个泛型类型，表示缓存的构造函数。通过这个字段，可以避免每次调用 `newInstance` 方法时都重新查找构造函数，提高性能。<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">transient</span> Constructor&lt;T&gt; cachedConstructor;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">transient</span> Class&lt;?&gt;       newInstanceCallerCache;<br>这个字段用于缓存调用 newInstance 方法的类（调用者类）。它的存在目的是为了优化安全检查，避免每次都进行昂贵的调用者检查。<br><span class="hljs-keyword">public</span> T <span class="hljs-title function_">newInstance</span><span class="hljs-params">()</span><br><span class="hljs-keyword">throws</span> InstantiationException, IllegalAccessException<br>&#123;<br>    <span class="hljs-comment">// 检查安全管理器，如果存在则进行访问检查</span><br>    <span class="hljs-keyword">if</span> (System.getSecurityManager() != <span class="hljs-literal">null</span>) &#123;<br>        checkMemberAccess(Member.PUBLIC, Reflection.getCallerClass(), <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 注意：以下代码在当前Java内存模型下可能并不严格正确。</span><br><br>    <span class="hljs-comment">// 构造函数查找</span><br>    <span class="hljs-keyword">if</span> (cachedConstructor == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-comment">// 检查是否是 java.lang.Class 的 Class 对象，不能实例化</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span> == Class.class) &#123;<br>             <span class="hljs-comment">// 不允许调用 Class 的 newInstance() 方法</span><br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalAccessException</span>(<br>                <span class="hljs-string">&quot;Can not call newInstance() on the Class for java.lang.Class&quot;</span><br>            );<br>        &#125;<br>        <span class="hljs-keyword">try</span> &#123;<br>            Class&lt;?&gt;[] empty = &#123;&#125;; <span class="hljs-comment">// 空参数数组</span><br>               <span class="hljs-comment">// 获取无参构造器</span><br><br>            <span class="hljs-keyword">final</span> Constructor&lt;T&gt; c = getConstructor0(empty, Member.DECLARED);<br>            <span class="hljs-comment">// 禁用构造函数的可访问性检查，因为我们必须在这里进行安全检查</span><br>            <span class="hljs-comment">// （构造函数的安全检查的栈深度是错误的）</span><br>            java.security.AccessController.doPrivileged(<br>                <span class="hljs-keyword">new</span> <span class="hljs-title class_">java</span>.security.PrivilegedAction&lt;Void&gt;() &#123;<br>                    <span class="hljs-keyword">public</span> Void <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>                        c.setAccessible(<span class="hljs-literal">true</span>); <span class="hljs-comment">// 设置构造函数为可访问</span><br>                        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>                    &#125;<br>                &#125;);<br>            cachedConstructor = c; <span class="hljs-comment">// 缓存构造函数</span><br>        &#125; <span class="hljs-keyword">catch</span> (NoSuchMethodException e) &#123;<br>            <span class="hljs-comment">// 如果找不到构造函数，则抛出实例化异常，并将原始异常作为原因</span><br>            <span class="hljs-keyword">throw</span> (InstantiationException)<br>                <span class="hljs-keyword">new</span> <span class="hljs-title class_">InstantiationException</span>(getName()).initCause(e);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 获取缓存的构造函数</span><br>    Constructor&lt;T&gt; tmpConstructor = cachedConstructor;<br><br>    <span class="hljs-comment">// 安全检查（与 java.lang.reflect.Constructor 中的检查相同） </span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">modifiers</span> <span class="hljs-operator">=</span> tmpConstructor.getModifiers(); <span class="hljs-comment">// 获取构造函数的修饰符 这些修饰符指示了构造函数的访问权限。</span><br>    <span class="hljs-keyword">if</span> (!Reflection.quickCheckMemberAccess(<span class="hljs-built_in">this</span>, modifiers)) &#123;<br>        <span class="hljs-comment">//通过 Reflection.quickCheckMemberAccess 方法快速检查调用者是否有权限访问这个构造函数。如果没有权限，则进入进一步的权限检查逻辑。</span><br>       <span class="hljs-comment">// 验证这个调用者是否有权访问目标构造函数</span><br>        <br>        Class&lt;?&gt; caller = Reflection.getCallerClass();<br>        <span class="hljs-comment">// 如果调用者与缓存不匹配，进行权限检查</span><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        如果当前调用者与缓存的调用者类不一致，</span><br><span class="hljs-comment">        调用 Reflection.ensureMemberAccess 方法进行安全检查，</span><br><span class="hljs-comment">        以确保调用者可以访问这个构造函数。如果安全检查通过，则更新 newInstanceCallerCache 为当前调用者类。</span><br><span class="hljs-comment">        */</span><br>        <span class="hljs-keyword">if</span> (newInstanceCallerCache != caller) &#123;<br>            <span class="hljs-comment">///进行访问权限检查，以确保调用者类 caller 对目标类（即 this）的成员（如构造函数、方法或字段）具有适当的访问权限。</span><br>            Reflection.ensureMemberAccess(caller, <span class="hljs-built_in">this</span>, <span class="hljs-literal">null</span>, modifiers);<br>            newInstanceCallerCache = caller; <span class="hljs-comment">// 更新缓存</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 执行构造函数</span><br>    <span class="hljs-keyword">try</span> &#123;<br>         <span class="hljs-comment">// 调用无参构造器</span><br>        <span class="hljs-keyword">return</span> tmpConstructor.newInstance((Object[])<span class="hljs-literal">null</span>); <span class="hljs-comment">// 创建实例 -&gt;调用constructor</span><br>    &#125; <span class="hljs-keyword">catch</span> (InvocationTargetException e) &#123;<br>        <span class="hljs-comment">// 如果构造函数抛出异常，抛出目标异常</span><br>        Unsafe.getUnsafe().throwException(e.getTargetException());<br>        <span class="hljs-comment">// 这里不会被执行</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>下面是获取构造器的过程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> Constructor&lt;T&gt; <span class="hljs-title function_">getConstructor0</span><span class="hljs-params">(Class&lt;?&gt;[] parameterTypes,</span><br><span class="hljs-params">                                        <span class="hljs-type">int</span> which)</span> <span class="hljs-keyword">throws</span> NoSuchMethodException<br>&#123;<br>    <span class="hljs-comment">// 获取所有构造器，根据访问修饰符选择</span><br>    Constructor&lt;T&gt;[] constructors = privateGetDeclaredConstructors((which == Member.PUBLIC));<br>    <br>    <span class="hljs-comment">// 遍历所有构造器</span><br>    <span class="hljs-keyword">for</span> (Constructor&lt;T&gt; constructor : constructors) &#123;<br>        <span class="hljs-comment">// 检查提供的参数类型数组与构造器的参数类型是否相同 a</span><br>        <span class="hljs-keyword">if</span> (arrayContentsEq(parameterTypes, constructor.getParameterTypes())) &#123;<br>            <span class="hljs-comment">// 如果匹配，则返回构造器的一个复制</span><br>            <span class="hljs-keyword">return</span> getReflectionFactory().copyConstructor(constructor);<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 如果没有找到匹配的构造器，则抛出 NoSuchMethodException</span><br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NoSuchMethodException</span>(getName() + <span class="hljs-string">&quot;.&lt;init&gt;&quot;</span> + argumentTypesToString(parameterTypes));<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>getConstructor0() 为获取匹配的构造方器；分三步：</p>
+<ul>
+<li><ol>
+<li>先获取所有的constructors, 然后通过进行参数类型比较；</li>
+</ol>
+</li>
+<li><ol>
+<li>找到匹配后，通过 ReflectionFactory copy一份constructor返回；</li>
+</ol>
+</li>
+<li><ol>
+<li>否则抛出 NoSuchMethodException;</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 反射数据类，用于缓存类的反射信息</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReflectionData</span>&lt;T&gt; &#123;<br>    <span class="hljs-comment">// 缓存类中声明的字段（私有和受保护）</span><br>    <span class="hljs-keyword">volatile</span> Field[] declaredFields;<br><br>    <span class="hljs-comment">// 缓存类中公共字段</span><br>    <span class="hljs-keyword">volatile</span> Field[] publicFields;<br><br>    <span class="hljs-comment">// 缓存类中声明的方法（私有和受保护）</span><br>    <span class="hljs-keyword">volatile</span> Method[] declaredMethods;<br><br>    <span class="hljs-comment">// 缓存类中公共方法</span><br>    <span class="hljs-keyword">volatile</span> Method[] publicMethods;<br><br>    <span class="hljs-comment">// 缓存类中声明的构造器（私有和受保护）</span><br>    <span class="hljs-keyword">volatile</span> Constructor&lt;T&gt;[] declaredConstructors;<br><br>    <span class="hljs-comment">// 缓存类中公共构造器</span><br>    <span class="hljs-keyword">volatile</span> Constructor&lt;T&gt;[] publicConstructors;<br><br>    <span class="hljs-comment">// 中间结果用于获取字段和方法</span><br>    <span class="hljs-keyword">volatile</span> Field[] declaredPublicFields; <span class="hljs-comment">// 缓存声明的公共字段</span><br>    <span class="hljs-keyword">volatile</span> Method[] declaredPublicMethods; <span class="hljs-comment">// 缓存声明的公共方法</span><br>    <span class="hljs-keyword">volatile</span> Class&lt;?&gt;[] interfaces; <span class="hljs-comment">// 缓存类实现的接口</span><br><br>    <span class="hljs-comment">// 创建该 ReflectionData 实例时的 classRedefinedCount 值</span><br>    <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> redefinedCount;<br><br>    <span class="hljs-comment">// 构造器，接受 classRedefinedCount 参数并初始化</span><br>    ReflectionData(<span class="hljs-type">int</span> redefinedCount) &#123;<br>        <span class="hljs-built_in">this</span>.redefinedCount = redefinedCount; <span class="hljs-comment">// 设置重定义计数</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取当前类所有的构造方法，通过 JVM 或缓存</span><br><span class="hljs-comment">// Returns an array of &quot;root&quot; constructors. These Constructor</span><br><span class="hljs-comment">// objects must NOT be propagated to the outside world, but must</span><br><span class="hljs-comment">// instead be copied via ReflectionFactory.copyConstructor.</span><br><br><br><br><span class="hljs-keyword">private</span> Constructor&lt;T&gt;[] privateGetDeclaredConstructors(<span class="hljs-type">boolean</span> publicOnly) &#123;<br>    checkInitted(); <span class="hljs-comment">// 检查类是否已初始化</span><br><br>    Constructor&lt;T&gt;[] res; <span class="hljs-comment">// 存储构造器数组</span><br><br>    <span class="hljs-comment">// 调用 reflectionData() 获取保存的信息，使用软引用保存，</span><br>    <span class="hljs-comment">// 从而使内存不够时可以回收</span><br>    ReflectionData&lt;T&gt; rd = reflectionData();<br>    <br>    <span class="hljs-keyword">if</span> (rd != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-comment">// 根据 publicOnly 参数选择返回公共构造器或所有构造器</span><br>        res = publicOnly ? rd.publicConstructors : rd.declaredConstructors;<br>        <br>        <span class="hljs-comment">// 如果存在缓存，则直接返回</span><br>        <span class="hljs-keyword">if</span> (res != <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 如果没有缓存，向 JVM 请求构造器</span><br>    <span class="hljs-keyword">if</span> (isInterface()) &#123;<br>        <span class="hljs-comment">// 如果是接口，返回一个空的构造器数组</span><br>        <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span><br>        Constructor&lt;T&gt;[] temporaryRes = (Constructor&lt;T&gt;[]) <span class="hljs-keyword">new</span> <span class="hljs-title class_">Constructor</span>&lt;?&gt;[<span class="hljs-number">0</span>];<br>        res = temporaryRes;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 使用 native 方法从 JVM 获取构造器</span><br>        res = getDeclaredConstructors0(publicOnly);<br>    &#125;<br>    <br>    <span class="hljs-comment">// 将从 JVM 中读取的内容存入缓存</span><br>    <span class="hljs-keyword">if</span> (rd != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-comment">// 根据 publicOnly 参数更新缓存</span><br>        <span class="hljs-keyword">if</span> (publicOnly) &#123;<br>            rd.publicConstructors = res;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            rd.declaredConstructors = res;<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> res; <span class="hljs-comment">// 返回构造器数组</span><br>&#125;<br><br><br><br><br><br><br><span class="hljs-comment">// 懒惰创建并缓存 ReflectionData</span><br><span class="hljs-keyword">private</span> ReflectionData&lt;T&gt; <span class="hljs-title function_">reflectionData</span><span class="hljs-params">()</span> &#123;<br>    SoftReference&lt;ReflectionData&lt;T&gt;&gt; reflectionData = <span class="hljs-built_in">this</span>.reflectionData; <span class="hljs-comment">// 获取软引用</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">classRedefinedCount</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.classRedefinedCount; <span class="hljs-comment">// 获取类重定义计数</span><br>    ReflectionData&lt;T&gt; rd; <span class="hljs-comment">// 存储 ReflectionData 对象</span><br><br>    <span class="hljs-comment">// 如果使用缓存，并且软引用未被清除且有效，检查重定义计数</span><br>    <span class="hljs-keyword">if</span> (useCaches &amp;&amp;<br>        reflectionData != <span class="hljs-literal">null</span> &amp;&amp;<br>        (rd = reflectionData.get()) != <span class="hljs-literal">null</span> &amp;&amp;<br>        rd.redefinedCount == classRedefinedCount) &#123;<br>        <span class="hljs-keyword">return</span> rd; <span class="hljs-comment">// 返回缓存的 ReflectionData</span><br>    &#125;<br>    <br>    <span class="hljs-comment">// 否则，创建新的 ReflectionData 实例</span><br>    <span class="hljs-keyword">return</span> newReflectionData(reflectionData, classRedefinedCount);<br>&#125;<br><br><span class="hljs-comment">// 新创建缓存，保存反射信息</span><br><span class="hljs-keyword">private</span> ReflectionData&lt;T&gt; <span class="hljs-title function_">newReflectionData</span><span class="hljs-params">(SoftReference&lt;ReflectionData&lt;T&gt;&gt; oldReflectionData,</span><br><span class="hljs-params">                                            <span class="hljs-type">int</span> classRedefinedCount)</span> &#123;<br>    <span class="hljs-keyword">if</span> (!useCaches) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// 如果不使用缓存，返回 null</span><br><br>    <span class="hljs-comment">// 使用 CAS 保证更新的线程安全性</span><br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>        <span class="hljs-comment">// 创建新的 ReflectionData 实例</span><br>        <span class="hljs-comment">///reflectionData：这是一个软引用，指向存储类反射信息的 ReflectionData 实例。通过这种方式，可以在内存紧张时被垃圾回收。</span><br>        ReflectionData&lt;T&gt; rd = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReflectionData</span>&lt;&gt;(classRedefinedCount);<br>        <br>        <span class="hljs-comment">// 尝试 CAS 更新</span><br>        <span class="hljs-keyword">if</span> (Atomic.casReflectionData(<span class="hljs-built_in">this</span>, oldReflectionData, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SoftReference</span>&lt;&gt;(rd))) &#123;<br>            <span class="hljs-keyword">return</span> rd; <span class="hljs-comment">// 如果更新成功，返回新实例</span><br>        &#125;<br><br>        <span class="hljs-comment">// 如果更新失败，检查当前已被其他线程更新的情况</span><br>        oldReflectionData = <span class="hljs-built_in">this</span>.reflectionData; <span class="hljs-comment">// 更新软引用</span><br>        classRedefinedCount = <span class="hljs-built_in">this</span>.classRedefinedCount; <span class="hljs-comment">// 更新重定义计数</span><br>        <br>        <span class="hljs-comment">// 如果当前软引用有效且重定义计数一致，返回已缓存的对象</span><br>        <span class="hljs-keyword">if</span> (oldReflectionData != <span class="hljs-literal">null</span> &amp;&amp;<br>            (rd = oldReflectionData.get()) != <span class="hljs-literal">null</span> &amp;&amp;<br>            rd.redefinedCount == classRedefinedCount) &#123;<br>            <span class="hljs-keyword">return</span> rd;<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>获取所有构造器</p>
+<ul>
+<li><ol>
+<li>先尝试从缓存中获取；</li>
+</ol>
+</li>
+<li><ol>
+<li>如果缓存没有，则从jvm中重新获取，并存入缓存，缓存使用软引用进行保存，保证内存可用；</li>
+</ol>
+</li>
+</ul>
+<p>另外，使用 relactionData() 进行缓存保存；</p>
+<p>其中，还有一个点，就是如何比较构造是否是要查找构造器，其实就是比较类型完成相等就完了，有一个不相等则返回false。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">arrayContentsEq</span><span class="hljs-params">(Object[] a1, Object[] a2)</span> &#123;<br>        <span class="hljs-keyword">if</span> (a1 == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> a2 == <span class="hljs-literal">null</span> || a2.length == <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (a2 == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> a1.length == <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (a1.length != a2.length) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a1.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> (a1[i] != a2[i]) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-comment">// sun.reflect.ReflectionFactory</span><br>    <span class="hljs-comment">/** Makes a copy of the passed constructor. The returned</span><br><span class="hljs-comment">        constructor is a &quot;child&quot; of the passed one; see the comments</span><br><span class="hljs-comment">        in Constructor.java for details. */</span><br>    <span class="hljs-keyword">public</span> &lt;T&gt; Constructor&lt;T&gt; <span class="hljs-title function_">copyConstructor</span><span class="hljs-params">(Constructor&lt;T&gt; arg)</span> &#123;<br>        <span class="hljs-keyword">return</span> langReflectAccess().copyConstructor(arg);<br>    &#125;<br>    <br>    <span class="hljs-comment">// java.lang.reflect.Constructor, copy 其实就是新new一个 Constructor 出来</span><br>    Constructor&lt;T&gt; <span class="hljs-title function_">copy</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// This routine enables sharing of ConstructorAccessor objects</span><br>        <span class="hljs-comment">// among Constructor objects which refer to the same underlying</span><br>        <span class="hljs-comment">// method in the VM. (All of this contortion is only necessary</span><br>        <span class="hljs-comment">// because of the &quot;accessibility&quot; bit in AccessibleObject,</span><br>        <span class="hljs-comment">// which implicitly requires that new java.lang.reflect</span><br>        <span class="hljs-comment">// objects be fabricated for each reflective call on Class</span><br>        <span class="hljs-comment">// objects.)</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.root != <span class="hljs-literal">null</span>)<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;Can not copy a non-root Constructor&quot;</span>);<br><br>        Constructor&lt;T&gt; res = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Constructor</span>&lt;&gt;(clazz,<br>                                               parameterTypes,<br>                                               exceptionTypes, modifiers, slot,<br>                                               signature,<br>                                               annotations,<br>                                               parameterAnnotations);<br>        <span class="hljs-comment">// root 指向当前 constructor</span><br>        res.root = <span class="hljs-built_in">this</span>;<br>        <span class="hljs-comment">// Might as well eagerly propagate this if already present</span><br>        res.constructorAccessor = constructorAccessor;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>通过上面，获取到 Constructor 了。</p>
+<p>接下来就只需调用其相应构造器的 newInstance()，即返回实例了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// return tmpConstructor.newInstance((Object[])null); </span><br>   <span class="hljs-comment">// java.lang.reflect.Constructor</span><br>   <span class="hljs-meta">@CallerSensitive</span><br>   <span class="hljs-keyword">public</span> T <span class="hljs-title function_">newInstance</span><span class="hljs-params">(Object ... initargs)</span><br>       <span class="hljs-keyword">throws</span> InstantiationException, IllegalAccessException,<br>              IllegalArgumentException, InvocationTargetException<br>   &#123;<br>       <span class="hljs-keyword">if</span> (!override) &#123;<br>           <span class="hljs-keyword">if</span> (!Reflection.quickCheckMemberAccess(clazz, modifiers)) &#123;<br>               Class&lt;?&gt; caller = Reflection.getCallerClass();<br>               checkAccess(caller, clazz, <span class="hljs-literal">null</span>, modifiers);<br>           &#125;<br>       &#125;<br>       <span class="hljs-keyword">if</span> ((clazz.getModifiers() &amp; Modifier.ENUM) != <span class="hljs-number">0</span>)<br>           <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;Cannot reflectively create enum objects&quot;</span>);<br>       <span class="hljs-type">ConstructorAccessor</span> <span class="hljs-variable">ca</span> <span class="hljs-operator">=</span> constructorAccessor;   <span class="hljs-comment">// read volatile</span><br>       <span class="hljs-keyword">if</span> (ca == <span class="hljs-literal">null</span>) &#123;<br>           ca = acquireConstructorAccessor();<br>       &#125;<br>       <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span><br>       <span class="hljs-type">T</span> <span class="hljs-variable">inst</span> <span class="hljs-operator">=</span> (T) ca.newInstance(initargs);<br>       <span class="hljs-keyword">return</span> inst;<br>   &#125;<br>   <span class="hljs-comment">// sun.reflect.DelegatingConstructorAccessorImpl</span><br>   <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">newInstance</span><span class="hljs-params">(Object[] args)</span><br>     <span class="hljs-keyword">throws</span> InstantiationException,<br>            IllegalArgumentException,<br>            InvocationTargetException<br>   &#123;<br>       <span class="hljs-keyword">return</span> delegate.newInstance(args);<br>   &#125;<br>   <span class="hljs-comment">// sun.reflect.NativeConstructorAccessorImpl</span><br>   <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">newInstance</span><span class="hljs-params">(Object[] args)</span><br>       <span class="hljs-keyword">throws</span> InstantiationException,<br>              IllegalArgumentException,<br>              InvocationTargetException<br>   &#123;<br>       <span class="hljs-comment">// We can&#x27;t inflate a constructor belonging to a vm-anonymous class</span><br>       <span class="hljs-comment">// because that kind of class can&#x27;t be referred to by name, hence can&#x27;t</span><br>       <span class="hljs-comment">// be found from the generated bytecode.</span><br>       <span class="hljs-keyword">if</span> (++numInvocations &gt; ReflectionFactory.inflationThreshold()<br>               &amp;&amp; !ReflectUtil.isVMAnonymousClass(c.getDeclaringClass())) &#123;<br>           <span class="hljs-type">ConstructorAccessorImpl</span> <span class="hljs-variable">acc</span> <span class="hljs-operator">=</span> (ConstructorAccessorImpl)<br>               <span class="hljs-keyword">new</span> <span class="hljs-title class_">MethodAccessorGenerator</span>().<br>                   generateConstructor(c.getDeclaringClass(),<br>                                       c.getParameterTypes(),<br>                                       c.getExceptionTypes(),<br>                                       c.getModifiers());<br>           parent.setDelegate(acc);<br>       &#125;<br><br>       <span class="hljs-comment">// 调用native方法，进行调用 constructor</span><br>       <span class="hljs-keyword">return</span> newInstance0(c, args);<br>   &#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>返回构造器的实例后，可以根据外部进行进行类型转换，从而使用接口或方法进行调用实例功能了。</p>
+<p>construct探究-newInstance</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@CallerSensitive</span><br><span class="hljs-keyword">public</span> T <span class="hljs-title function_">newInstance</span><span class="hljs-params">(Object ... initargs)</span><br>        <span class="hljs-keyword">throws</span> InstantiationException, IllegalAccessException,<br>               IllegalArgumentException, InvocationTargetException &#123;<br>    <span class="hljs-comment">// 检查是否覆盖访问控制</span><br>    <span class="hljs-keyword">if</span> (!override) &#123;<br>        <span class="hljs-comment">// 如果没有覆盖，快速检查成员访问权限</span><br>        <span class="hljs-keyword">if</span> (!Reflection.quickCheckMemberAccess(clazz, modifiers)) &#123;<br>            <span class="hljs-comment">// 获取调用者的类</span><br>            Class&lt;?&gt; caller = Reflection.getCallerClass();<br>            <span class="hljs-comment">// 检查调用者是否有权访问该类</span><br>            checkAccess(caller, clazz, <span class="hljs-literal">null</span>, modifiers);<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 检查该类是否是枚举类，枚举类不能通过反射创建实例</span><br>    <span class="hljs-keyword">if</span> ((clazz.getModifiers() &amp; Modifier.ENUM) != <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;Cannot reflectively create enum objects&quot;</span>);<br><br>    <span class="hljs-comment">// 读取构造器访问器（构造器的底层实现），可能是 null</span><br>    <span class="hljs-type">ConstructorAccessor</span> <span class="hljs-variable">ca</span> <span class="hljs-operator">=</span> constructorAccessor;   <span class="hljs-comment">// 读取 volatile 变量</span><br>    <span class="hljs-keyword">if</span> (ca == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-comment">// 如果构造器访问器为 null，获取一个新的构造器访问器</span><br>        ca = acquireConstructorAccessor();<br>    &#125;<br>    <br>    <span class="hljs-comment">// 调用构造器访问器的 newInstance 方法创建新实例，并传入初始化参数</span><br>    <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span><br>    <span class="hljs-type">T</span> <span class="hljs-variable">inst</span> <span class="hljs-operator">=</span> (T) ca.newInstance(initargs);<br>    <br>    <span class="hljs-keyword">return</span> inst; <span class="hljs-comment">// 返回创建的实例</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h4 id="0-反射"><a href="#0-反射" class="headerlink" title="0.反射"></a>0.反射</h4><p>在Java中，Class类与java.lang.reflect类库一起对反射技术进行了全力的支持。</p>
+<p>在反射包中，我们常用的类主要有<strong>Constructor</strong>类表示的是Class 对象所表示的类的构造方法，利用它可以在运行时动态创建对象、</p>
+<p><strong>Field</strong>表示Class对象所表示的类的成员变量，通过它可以在运行时动态修改成员变量的属性值(包含private)</p>
+<p><strong>Method</strong>表示Class对象所表示的类的成员方法，通过它可以动态调用对象的方法(包含private)，下面将对这几个重要类进行分别说明。</p>
+<h4 id="1-class类"><a href="#1-class类" class="headerlink" title="1.class类"></a>1.class类</h4><h6 id="1-认识class类"><a href="#1-认识class类" class="headerlink" title="1..认识class类"></a>1..认识class类</h6><p>在类加载的时候，jvm会创建一个class对象</p>
+<p>class对象是可以说是反射中最常用的，获取class对象的方式的主要有三种</p>
+<ul>
+<li>根据类名：类名.class</li>
+<li>根据对象：对象.getClass()</li>
+<li>根据全限定类名：Class.forName(全限定类名)</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030170655165.png" srcset="/img/loading.gif" lazyload alt="image-20241030170655165"></p>
+<p><code>Class</code> 类是反射机制的核心，代表一个类或接口的运行时类型信息。每个 Java 类都有一个与之对应的 <code>Class</code> 对象，这个对象由 Java 虚拟机（JVM）自动创建和管理。</p>
+<p><code>Class</code> 对象提供有关类或接口的详细信息，例如名称、父类、实现的接口、字段、方法和构造器等。</p>
+<p><strong>Class 类的性质</strong>：<code>Class</code> 类本身也是一种类，与使用 <code>class</code> 关键字定义的类是不同的。手动编写的类在编译后会生成一个 <code>Class</code> 对象，这个对象表示该类的类型信息，并保存在同名的 <code>.class</code> 字节码文件中。</p>
+<p><strong>唯一性</strong>：对于每个通过 <code>class</code> 关键字定义的类，在内存中只会存在一个对应的 <code>Class</code> 对象。这意味着无论创建多少个该类的实例，所有实例都共享同一个 <code>Class</code> 对象。</p>
+<p><strong>构造函数的私有性</strong>：<code>Class</code> 类的构造函数是私有的，因此只有 JVM 能够创建和加载 <code>Class</code> 对象。</p>
+<p><strong>提供类型信息</strong>：<code>Class</code> 对象在运行时提供或获取某个对象的类型信息，这对反射技术非常重要。反射允许程序在运行时查询和操作对象的属性和行为。</p>
+<p>类记载过程</p>
+<img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030170944205.png" srcset="/img/loading.gif" lazyload alt="image-20241030170944205" style="zoom:33%;" />
+
+<img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030171053820.png" srcset="/img/loading.gif" lazyload alt="image-20241030171053820" style="zoom: 50%;" />
+
+<h6 id="2-class使用"><a href="#2-class使用" class="headerlink" title="2.class使用"></a>2.class使用</h6><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> classTest() throws <span class="hljs-keyword">Exception</span> &#123;<br>    // 获取<span class="hljs-keyword">Class</span>对象的三种方式<br>    logger.<span class="hljs-keyword">info</span>(&quot;根据类名:  \t&quot; + <span class="hljs-keyword">User</span>.<span class="hljs-keyword">class</span>);<br>    logger.<span class="hljs-keyword">info</span>(&quot;根据对象:  \t&quot; + <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>().getClass());<br>    logger.<span class="hljs-keyword">info</span>(&quot;根据全限定类名:\t&quot; + <span class="hljs-keyword">Class</span>.forName(&quot;com.test.User&quot;));<br>    // 常用的方法<br>    logger.<span class="hljs-keyword">info</span>(&quot;获取全限定类名:\t&quot; + userClass.getName());<br>    logger.<span class="hljs-keyword">info</span>(&quot;获取类名:\t&quot; + userClass.getSimpleName());<br>    logger.<span class="hljs-keyword">info</span>(&quot;实例化:\t&quot; + userClass.newInstance());<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="2-Constructor"><a href="#2-Constructor" class="headerlink" title="2.Constructor"></a>2.Constructor</h4><h6 id="1-了解"><a href="#1-了解" class="headerlink" title="1.了解"></a>1.了解</h6><blockquote>
+<p>Constructor类存在于反射包(java.lang.reflect)中，反映的是Class 对象所表示的类的构造方法。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030171530856.png" srcset="/img/loading.gif" lazyload alt="image-20241030171530856"></p>
+<h6 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConstructionTest</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br><br>        Class&lt;?&gt; clazz = <span class="hljs-literal">null</span>;<br><br>        <span class="hljs-comment">//获取Class对象的引用</span><br>        clazz = Class.forName(<span class="hljs-string">&quot;com.example.javabase.User&quot;</span>);<br><br>        <span class="hljs-comment">//第一种方法，实例化默认构造方法，User必须无参构造函数,否则将抛异常</span><br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> (User) clazz.newInstance();<br>        user.setAge(<span class="hljs-number">20</span>);<br>        user.setName(<span class="hljs-string">&quot;Jack&quot;</span>);<br>        System.out.println(user);<br><br>        System.out.println(<span class="hljs-string">&quot;--------------------------------------------&quot;</span>);<br><br>        <span class="hljs-comment">//获取带String参数的public构造函数</span><br>        <span class="hljs-type">Constructor</span> <span class="hljs-variable">cs1</span> <span class="hljs-operator">=</span>clazz.getConstructor(String.class);<br>        <span class="hljs-comment">//创建User</span><br>        User user1= (User) cs1.newInstance(<span class="hljs-string">&quot;hiway&quot;</span>);<br>        user1.setAge(<span class="hljs-number">22</span>);<br>        System.out.println(<span class="hljs-string">&quot;user1:&quot;</span>+user1.toString());<br><br>        System.out.println(<span class="hljs-string">&quot;--------------------------------------------&quot;</span>);<br><br>        <span class="hljs-comment">//取得指定带int和String参数构造函数,该方法是私有构造private</span><br>        Constructor cs2=clazz.getDeclaredConstructor(<span class="hljs-type">int</span>.class,String.class);<br>        <span class="hljs-comment">//由于是private必须设置可访问</span><br>        cs2.setAccessible(<span class="hljs-literal">true</span>);<br>        <span class="hljs-comment">//创建user对象</span><br>        User user2= (User) cs2.newInstance(<span class="hljs-number">25</span>,<span class="hljs-string">&quot;hiway2&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;user2:&quot;</span>+user2.toString());<br><br>        System.out.println(<span class="hljs-string">&quot;--------------------------------------------&quot;</span>);<br><br>        <span class="hljs-comment">//获取所有构造包含private</span><br>        Constructor&lt;?&gt; cons[] = clazz.getDeclaredConstructors();<br>        <span class="hljs-comment">// 查看每个构造方法需要的参数</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; cons.length; i++) &#123;<br>            <span class="hljs-comment">//获取构造函数参数类型</span><br>            Class&lt;?&gt; clazzs[] = cons[i].getParameterTypes();<br>            System.out.println(<span class="hljs-string">&quot;构造函数[&quot;</span>+i+<span class="hljs-string">&quot;]:&quot;</span>+cons[i].toString() );<br>            System.out.print(<span class="hljs-string">&quot;参数类型[&quot;</span>+i+<span class="hljs-string">&quot;]:(&quot;</span>);<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; clazzs.length; j++) &#123;<br>                <span class="hljs-keyword">if</span> (j == clazzs.length - <span class="hljs-number">1</span>)<br>                    System.out.print(clazzs[j].getName());<br>                <span class="hljs-keyword">else</span><br>                    System.out.print(clazzs[j].getName() + <span class="hljs-string">&quot;,&quot;</span>);<br>            &#125;<br>            System.out.println(<span class="hljs-string">&quot;)&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">super</span>();<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-built_in">super</span>();<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 私有构造</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> age</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> name</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">User</span><span class="hljs-params">(<span class="hljs-type">int</span> age, String name)</span> &#123;<br>        <span class="hljs-built_in">super</span>();<br>        <span class="hljs-built_in">this</span>.age = age;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAge</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> age;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span> &#123;<br>        <span class="hljs-built_in">this</span>.age = age;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;User&#123;&quot;</span> +<br>                <span class="hljs-string">&quot;age=&quot;</span> + age +<br>                <span class="hljs-string">&quot;, name=&#x27;&quot;</span> + name + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">/* output <br><span class="hljs-section">User&#123;age=20, name=&#x27;Jack&#x27;&#125;</span><br><span class="hljs-section">--------------------------------------------</span><br><span class="hljs-section">user1:User&#123;age=22, name=&#x27;hiway&#x27;&#125;</span><br><span class="hljs-section">--------------------------------------------</span><br><span class="hljs-section">user2:User&#123;age=25, name=&#x27;hiway2&#x27;&#125;</span><br><span class="hljs-section">--------------------------------------------</span><br>构造函数[0]:private com.example.javabase.User(int,java.lang.String)<br>参数类型[0]:(int,java.lang.String)<br>构造函数[1]:public com.example.javabase.User(java.lang.String)<br>参数类型[1]:(java.lang.String)<br>构造函数[2]:public com.example.javabase.User()<br>参数类型[2]:()<br><span class="hljs-code">------</span><br><span class="hljs-code"></span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030171707141.png" srcset="/img/loading.gif" lazyload alt="image-20241030171707141"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Constructor</span> <span class="hljs-variable">cs3</span> <span class="hljs-operator">=</span> clazz.getDeclaredConstructor(<span class="hljs-type">int</span>.class,String.class);<br>System.out.println(<span class="hljs-string">&quot;-----getDeclaringClass-----&quot;</span>);<br>Class uclazz=cs3.getDeclaringClass();<br><span class="hljs-comment">//Constructor对象表示的构造方法的类</span><br>System.out.println(<span class="hljs-string">&quot;构造方法的类:&quot;</span>+uclazz.getName());<br><br>System.out.println(<span class="hljs-string">&quot;-----getGenericParameterTypes-----&quot;</span>);<br><span class="hljs-comment">//对象表示此 Constructor 对象所表示的方法的形参类型</span><br>Type[] tps=cs3.getGenericParameterTypes();<br><span class="hljs-keyword">for</span> (Type tp:tps) &#123;<br>    System.out.println(<span class="hljs-string">&quot;参数名称tp:&quot;</span>+tp);<br>&#125;<br>System.out.println(<span class="hljs-string">&quot;-----getParameterTypes-----&quot;</span>);<br><span class="hljs-comment">//获取构造函数参数类型</span><br>Class&lt;?&gt; clazzs[] = cs3.getParameterTypes();<br><span class="hljs-keyword">for</span> (Class claz:clazzs) &#123;<br>    System.out.println(<span class="hljs-string">&quot;参数名称:&quot;</span>+claz.getName());<br>&#125;<br>System.out.println(<span class="hljs-string">&quot;-----getName-----&quot;</span>);<br><span class="hljs-comment">//以字符串形式返回此构造方法的名称</span><br>System.out.println(<span class="hljs-string">&quot;getName:&quot;</span>+cs3.getName());<br><br>System.out.println(<span class="hljs-string">&quot;-----getoGenericString-----&quot;</span>);<br><span class="hljs-comment">//返回描述此 Constructor 的字符串，其中包括类型参数。</span><br>System.out.println(<span class="hljs-string">&quot;getoGenericString():&quot;</span>+cs3.toGenericString());<br>------<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-Field"><a href="#3-Field" class="headerlink" title="3.Field"></a>3.Field</h4><h6 id="1-了解-1"><a href="#1-了解-1" class="headerlink" title="1.了解"></a>1.了解</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030171803749.png" srcset="/img/loading.gif" lazyload alt="image-20241030171803749"></p>
+<h6 id="2-使用-1"><a href="#2-使用-1" class="headerlink" title="2.使用"></a>2.使用</h6><p>下面的代码演示了上述方法的使用过程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReflectField</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ClassNotFoundException, NoSuchFieldException &#123;<br>        Class&lt;?&gt; clazz = Class.forName(<span class="hljs-string">&quot;reflect.Student&quot;</span>);<br>        <span class="hljs-comment">//获取指定字段名称的Field类,注意字段修饰符必须为public而且存在该字段,</span><br>        <span class="hljs-comment">// 否则抛NoSuchFieldException</span><br>        <span class="hljs-type">Field</span> <span class="hljs-variable">field</span> <span class="hljs-operator">=</span> clazz.getField(<span class="hljs-string">&quot;age&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;field:&quot;</span>+field);<br><br>        <span class="hljs-comment">//获取所有修饰符为public的字段,包含父类字段,注意修饰符为public才会获取</span><br>        Field fields[] = clazz.getFields();<br>        <span class="hljs-keyword">for</span> (Field f:fields) &#123;<br>            System.out.println(<span class="hljs-string">&quot;f:&quot;</span>+f.getDeclaringClass());<br>        &#125;<br><br>        System.out.println(<span class="hljs-string">&quot;================getDeclaredFields====================&quot;</span>);<br>        <span class="hljs-comment">//获取当前类所字段(包含private字段),注意不包含父类的字段</span><br>        Field fields2[] = clazz.getDeclaredFields();<br>        <span class="hljs-keyword">for</span> (Field f:fields2) &#123;<br>            System.out.println(<span class="hljs-string">&quot;f2:&quot;</span>+f.getDeclaringClass());<br>        &#125;<br>        <span class="hljs-comment">//获取指定字段名称的Field类,可以是任意修饰符的自动,注意不包含父类的字段</span><br>        <span class="hljs-type">Field</span> <span class="hljs-variable">field2</span> <span class="hljs-operator">=</span> clazz.getDeclaredField(<span class="hljs-string">&quot;desc&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;field2:&quot;</span>+field2);<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">      输出结果: </span><br><span class="hljs-comment">     field:public int reflect.Person.age</span><br><span class="hljs-comment">     f:public java.lang.String reflect.Student.desc</span><br><span class="hljs-comment">     f:public int reflect.Person.age</span><br><span class="hljs-comment">     f:public java.lang.String reflect.Person.name</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">     ================getDeclaredFields====================</span><br><span class="hljs-comment">     f2:public java.lang.String reflect.Student.desc</span><br><span class="hljs-comment">     f2:private int reflect.Student.score</span><br><span class="hljs-comment">     field2:public java.lang.String reflect.Student.desc</span><br><span class="hljs-comment">     */</span><br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> age;<br>    <span class="hljs-keyword">public</span> String name;<br>    <span class="hljs-comment">//省略set和get方法</span><br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Person</span>&#123;<br>    <span class="hljs-keyword">public</span> String desc;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> score;<br>    <span class="hljs-comment">//省略set和get方法</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>上述方法需要注意的是，如果我们不期望获取其父类的字段，则需使用Class类的getDeclaredField&#x2F;getDeclaredFields方法来获取字段即可，倘若需要连带获取到父类的字段，那么请使用Class类的getField&#x2F;getFields，但是也只能获取到public修饰的的字段，无法获取父类的私有字段。下面将通过Field类本身的方法对指定类属性赋值，代码演示如下</p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//获取Class对象引用</span><br>Class&lt;?&gt; clazz = Class.forName(<span class="hljs-string">&quot;reflect.Student&quot;</span>);<br><br>Student st= (Student) clazz.newInstance();<br><span class="hljs-comment">//获取父类public字段并赋值</span><br><span class="hljs-type">Field</span> <span class="hljs-variable">ageField</span> <span class="hljs-operator">=</span> clazz.getField(<span class="hljs-string">&quot;age&quot;</span>);<br>ageField.set(st,<span class="hljs-number">18</span>);<br><span class="hljs-type">Field</span> <span class="hljs-variable">nameField</span> <span class="hljs-operator">=</span> clazz.getField(<span class="hljs-string">&quot;name&quot;</span>);<br>nameField.set(st,<span class="hljs-string">&quot;Lily&quot;</span>);<br><br><span class="hljs-comment">//只获取当前类的字段,不获取父类的字段</span><br><span class="hljs-type">Field</span> <span class="hljs-variable">descField</span> <span class="hljs-operator">=</span> clazz.getDeclaredField(<span class="hljs-string">&quot;desc&quot;</span>);<br>descField.set(st,<span class="hljs-string">&quot;I am student&quot;</span>);<br><span class="hljs-type">Field</span> <span class="hljs-variable">scoreField</span> <span class="hljs-operator">=</span> clazz.getDeclaredField(<span class="hljs-string">&quot;score&quot;</span>);<br><span class="hljs-comment">//设置可访问，score是private的</span><br>scoreField.setAccessible(<span class="hljs-literal">true</span>);<br>scoreField.set(st,<span class="hljs-number">88</span>);<br>System.out.println(st.toString());<br><br><span class="hljs-comment">//输出结果：Student&#123;age=18, name=&#x27;Lily ,desc=&#x27;I am student&#x27;, score=88&#125; </span><br><br><span class="hljs-comment">//获取字段值</span><br>System.out.println(scoreField.get(st));<br><span class="hljs-comment">// 88</span><br>------<br><br></code></pre></td></tr></table></figure>
+
+<p>其中的set(Object obj, Object value)方法是Field类本身的方法，用于设置字段的值，而get(Object obj)则是获取字段的值，当然关于Field类还有其他常用的方法如下：</p>
+<hr>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030171931704.png" srcset="/img/loading.gif" lazyload alt="image-20241030171931704"></p>
+<h4 id="4-Method"><a href="#4-Method" class="headerlink" title="4.Method"></a>4.Method</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030172403150.png" srcset="/img/loading.gif" lazyload alt="image-20241030172403150"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReflectMethod</span>  &#123;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ClassNotFoundException, NoSuchMethodException &#123;<br><br>        <span class="hljs-type">Class</span> <span class="hljs-variable">clazz</span> <span class="hljs-operator">=</span> Class.forName(<span class="hljs-string">&quot;reflect.Circle&quot;</span>);<br><br>        <span class="hljs-comment">//根据参数获取public的Method,包含继承自父类的方法</span><br>        <span class="hljs-type">Method</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> clazz.getMethod(<span class="hljs-string">&quot;draw&quot;</span>,<span class="hljs-type">int</span>.class,String.class);<br><br>        System.out.println(<span class="hljs-string">&quot;method:&quot;</span>+method);<br><br>        <span class="hljs-comment">//获取所有public的方法:</span><br>        Method[] methods =clazz.getMethods();<br>        <span class="hljs-keyword">for</span> (Method m:methods)&#123;<br>            System.out.println(<span class="hljs-string">&quot;m::&quot;</span>+m);<br>        &#125;<br><br>        System.out.println(<span class="hljs-string">&quot;=========================================&quot;</span>);<br><br>        <span class="hljs-comment">//获取当前类的方法包含private,该方法无法获取继承自父类的method</span><br>        <span class="hljs-type">Method</span> <span class="hljs-variable">method1</span> <span class="hljs-operator">=</span> clazz.getDeclaredMethod(<span class="hljs-string">&quot;drawCircle&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;method1::&quot;</span>+method1);<br>        <span class="hljs-comment">//获取当前类的所有方法包含private,该方法无法获取继承自父类的method</span><br>        Method[] methods1=clazz.getDeclaredMethods();<br>        <span class="hljs-keyword">for</span> (Method m:methods1)&#123;<br>            System.out.println(<span class="hljs-string">&quot;m1::&quot;</span>+m);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;draw&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">(<span class="hljs-type">int</span> count , String name)</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;draw &quot;</span>+ name +<span class="hljs-string">&quot;,count=&quot;</span>+count);<br>    &#125;<br><br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Shape</span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">drawCircle</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;drawCircle&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAllCount</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">100</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>输出结果:</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs arduino">method:<span class="hljs-keyword">public</span> <span class="hljs-type">void</span> reflect.Shape.<span class="hljs-built_in">draw</span>(<span class="hljs-type">int</span>,java.lang.<span class="hljs-type">String</span>)<br><br>m::<span class="hljs-keyword">public</span> <span class="hljs-type">int</span> reflect.Circle.<span class="hljs-built_in">getAllCount</span>()<br>m::<span class="hljs-keyword">public</span> <span class="hljs-type">void</span> reflect.Shape.<span class="hljs-built_in">draw</span>()<br>m::<span class="hljs-keyword">public</span> <span class="hljs-type">void</span> reflect.Shape.<span class="hljs-built_in">draw</span>(<span class="hljs-type">int</span>,java.lang.<span class="hljs-type">String</span>)<br>m::<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">void</span> java.lang.Object.<span class="hljs-built_in">wait</span>(<span class="hljs-type">long</span>,<span class="hljs-type">int</span>) throws java.lang.InterruptedException<br>m::<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> native <span class="hljs-type">void</span> java.lang.Object.<span class="hljs-built_in">wait</span>(<span class="hljs-type">long</span>) throws java.lang.InterruptedException<br>m::<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">void</span> java.lang.Object.<span class="hljs-built_in">wait</span>() throws java.lang.InterruptedException<br>m::<span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> java.lang.Object.<span class="hljs-built_in">equals</span>(java.lang.Object)<br>m::<span class="hljs-keyword">public</span> java.lang.<span class="hljs-type">String</span> java.lang.Object.<span class="hljs-built_in">toString</span>()<br>m::<span class="hljs-keyword">public</span> native <span class="hljs-type">int</span> java.lang.Object.<span class="hljs-built_in">hashCode</span>()<br>m::<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> native java.lang.Class java.lang.Object.<span class="hljs-built_in">getClass</span>()<br>m::<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> native <span class="hljs-type">void</span> java.lang.Object.<span class="hljs-built_in">notify</span>()<br>m::<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> native <span class="hljs-type">void</span> java.lang.Object.<span class="hljs-built_in">notifyAll</span>()<br><br>=========================================<br>method1::<span class="hljs-keyword">private</span> <span class="hljs-type">void</span> reflect.Circle.<span class="hljs-built_in">drawCircle</span>()<br><br>m1::<span class="hljs-keyword">public</span> <span class="hljs-type">int</span> reflect.Circle.<span class="hljs-built_in">getAllCount</span>()<br>m1::<span class="hljs-keyword">private</span> <span class="hljs-type">void</span> reflect.Circle.<span class="hljs-built_in">drawCircle</span>()<br><br></code></pre></td></tr></table></figure>
+
+<p>在通过getMethods方法获取Method对象时，会把父类的方法也获取到，如上的输出结果，把Object类的方法都打印出来了。而<code>getDeclaredMethod/getDeclaredMethods</code>方法都只能获取当前类的方法。我们在使用时根据情况选择即可。下面将演示通过Method对象调用指定类的方法：</p>
+<hr>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs arduino">Class clazz = Class.forName(<span class="hljs-string">&quot;reflect.Circle&quot;</span>);<br><span class="hljs-comment">//创建对象</span><br>Circle circle = (Circle) clazz.<span class="hljs-built_in">newInstance</span>();<br><br><span class="hljs-comment">//获取指定参数的方法对象Method</span><br>Method method = clazz.<span class="hljs-built_in">getMethod</span>(<span class="hljs-string">&quot;draw&quot;</span>,<span class="hljs-type">int</span>.<span class="hljs-keyword">class</span>,<span class="hljs-type">String</span>.<span class="hljs-keyword">class</span>);<br><br><span class="hljs-comment">//通过Method对象的invoke(Object obj,Object... args)方法调用</span><br>method.<span class="hljs-built_in">invoke</span>(circle,<span class="hljs-number">15</span>,<span class="hljs-string">&quot;圈圈&quot;</span>);<br><br><span class="hljs-comment">//对私有无参方法的操作</span><br>Method method1 = clazz.<span class="hljs-built_in">getDeclaredMethod</span>(<span class="hljs-string">&quot;drawCircle&quot;</span>);<br><span class="hljs-comment">//修改私有方法的访问标识</span><br>method<span class="hljs-number">1.</span><span class="hljs-built_in">setAccessible</span>(<span class="hljs-literal">true</span>);<br>method<span class="hljs-number">1.</span><span class="hljs-built_in">invoke</span>(circle);<br><br><span class="hljs-comment">//对有返回值得方法操作</span><br>Method method2 =clazz.<span class="hljs-built_in">getDeclaredMethod</span>(<span class="hljs-string">&quot;getAllCount&quot;</span>);<br>Integer count = (Integer) method<span class="hljs-number">2.</span><span class="hljs-built_in">invoke</span>(circle);<br>System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;count:&quot;</span>+count);<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">draw</span> 圈圈,count=<span class="hljs-number">15</span><br><span class="hljs-attribute">drawCircle</span><br><span class="hljs-attribute">count</span>:<span class="hljs-number">100</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241030172502060.png" srcset="/img/loading.gif" lazyload alt="image-20241030172502060"></p>
+<p>ps:本文大部分内容来自pdai.tech </p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>java 反射</div>
+      <div>http://example.com/2024/10/30/java/java反射/java反射/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">最近的笔记方向</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/30/%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE/%E5%85%94%E5%B0%8F%E9%B2%9C01/" title="兔小仙开发日志1-3">
+                        <span class="hidden-mobile">兔小仙开发日志1-3</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
