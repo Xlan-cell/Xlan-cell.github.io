@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="异常异常认识Java异常类层次结构Throwable 是 Java 语言中所有错误与异常的超类。  Error 类及其子类：程序中无法处理的错误，表示运行应用程序中出现了严重的错误 Exception 程序本身可以捕获并且可以处理的异常。Exception 这种异常又分为两类：运行时异常和编译时异常。  运行时异常运行时异常都是RuntimeException类及其子类异常 如NullPointe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java异常">
+<meta property="og:url" content="http://example.com/2024/11/01/java/java%E5%BC%82%E5%B8%B8/java%E5%BC%82%E5%B8%B8/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="异常异常认识Java异常类层次结构Throwable 是 Java 语言中所有错误与异常的超类。  Error 类及其子类：程序中无法处理的错误，表示运行应用程序中出现了严重的错误 Exception 程序本身可以捕获并且可以处理的异常。Exception 这种异常又分为两类：运行时异常和编译时异常。  运行时异常运行时异常都是RuntimeException类及其子类异常 如NullPointe">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5b8dd265a5f94619125f81a2829c14c1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2bda92351dcc892f1e5d6e5b6a6c6517_720.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101164347019.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165242767.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165302605.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165328094.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165342076.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165357075.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165419496.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165441805.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165509040.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/55a6788fda381eca924a1c8bbff8b7c5.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101170705389.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c4f479bcf6c21c2e1c7dd2ec5f6b97ec.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/fe9a179b2d5911bec2067818b2bebafd_720.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4950aabdfa51244c7e19861cbd621f57_720.jpg">
+<meta property="article:published_time" content="2024-11-01T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-11-01T09:08:53.305Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5b8dd265a5f94619125f81a2829c14c1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>java异常 - 逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="java异常"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-01 20:22" pubdate>
+          2024年11月1日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">java异常</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><h2 id="异常认识"><a href="#异常认识" class="headerlink" title="异常认识"></a>异常认识</h2><h5 id="Java异常类层次结构"><a href="#Java异常类层次结构" class="headerlink" title="Java异常类层次结构"></a>Java异常类层次结构</h5><p>Throwable 是 Java 语言中所有错误与异常的超类。 </p>
+<p>Error 类及其子类：程序中无法处理的错误，表示运行应用程序中出现了严重的错误</p>
+<p>Exception 程序本身可以捕获并且可以处理的异常。Exception 这种异常又分为两类：<strong>运行时异常和编译时异常。</strong></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/5b8dd265a5f94619125f81a2829c14c1.png" srcset="/img/loading.gif" lazyload alt="5b8dd265a5f94619125f81a2829c14c1"></p>
+<h6 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h6><p>运行时异常都是RuntimeException类及其子类异常</p>
+<p>如NullPointerException(空指针异常)、IndexOutOfBoundsException(下标越界异常)等</p>
+<p>这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理。这些异常一般是由程序逻辑错误引起的，程序应该从逻辑角度尽可能避免这类异常的发生。</p>
+<p>运行时异常的特点是Java编译器不会检查它，也就是说，当程序中可能出现这类异常，即使没有用try-catch语句捕获它，也没有用throws子句声明抛出它，也会编译通过。</p>
+<h6 id="非运行时异常"><a href="#非运行时异常" class="headerlink" title="非运行时异常"></a>非运行时异常</h6><p>非运行时异常 （编译异常）是RuntimeException以外的异常，类型上都属于Exception类及其子类。</p>
+<p>从程序语法角度讲是必须进行处理的异常，如果不处理，程序就不能编译通过。</p>
+<p>如IOException、SQLException等以及用户自定义的Exception异常，一般情况下不自定义检查异常</p>
+<h6 id="可查-不可查异常"><a href="#可查-不可查异常" class="headerlink" title="可查&#x2F;不可查异常"></a>可查&#x2F;不可查异常</h6><p>可查的异常（checked exceptions）和不可查的异常（unchecked exceptions）区别？</p>
+<p>可查异常（编译器要求必须处置的异常）<strong>非运行时异常</strong>：正确的程序在运行中，很容易出现的、情理可容的异常状况。</p>
+<p>可查异常虽然是异常状况，但在一定程度上它的发生是可以预计的，而且一旦发生这种异常状况，就必须采取某种方式进行处理。</p>
+<p>除了<strong>RuntimeException</strong>及其子类以外，其他的Exception类及其子类都属于可查异常。</p>
+<p>这种异常的特点是Java编译器会检查它，也就是说，当程序中可能出现这类异常，要么用try-catch语句捕获它，要么用throws子句声明抛出它，否则编译不会通过。</p>
+<p>不可查异常(编译器不要求强制处置的异常)包括运行时异常 <strong>运行时异常</strong>（RuntimeException与其子类）和错误（Error）。</p>
+<h4 id="异常的基础代码"><a href="#异常的基础代码" class="headerlink" title="异常的基础代码"></a>异常的基础代码</h4><p><strong>try</strong> – 用于监听。将要被监听的代码(可能抛出异常的代码)放在try语句块之内，当try语句块内发生异常时，异常就被抛出。</p>
+<p><strong>catch</strong> – 用于捕获异常。catch用来捕获try语句块中发生的异常。</p>
+<p><strong>finally</strong> – finally语句块总是会被执行。它主要用于回收在try块里打开的物力资源(如数据库连接、网络连接和磁盘文件)。只有finally块，执行完成之后，才会回来执行try或者catch块中的return或者throw语句，如果finally中使用了return或者throw等终止方法的语句，则就不会跳回执行，直接停止。</p>
+<p><strong>throw</strong> – 用于抛出异常。</p>
+<p><strong>throws</strong> – 用在方法签名中，用于声明该方法可能抛出的异常。</p>
+<h5 id="throw和throws的区别？"><a href="#throw和throws的区别？" class="headerlink" title="throw和throws的区别？"></a>throw和throws的区别？</h5><h6 id="1-throws"><a href="#1-throws" class="headerlink" title="1.throws"></a>1.throws</h6><p>在 Java 中，程序的执行始于 <code>main</code> 方法。每个执行的语句都在某个方法内。如果一个方法可能抛出可查异常（checked exception），那么必须在方法头中使用 <code>throws</code> 关键字声明该异常，以提醒调用者需要处理它。</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs oxygene"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> void <span class="hljs-keyword">method</span><span class="hljs-params">()</span> <span class="hljs-title function_">throws</span> <span class="hljs-title function_">IOException</span>, <span class="hljs-title function_">FileNotFoundException</span> <span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    // 方法内容</span><br><span class="hljs-comment">&#125;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>如果一个父类的方法没有声明异常，子类在覆盖时也不能声明异常。</p>
+<p><strong>异常处理的建议：</strong></p>
+<p><strong>捕获异常</strong>：如果你知道如何处理某个异常，应该在方法内使用 <code>try-catch</code> 来捕获它。</p>
+<p><strong>传递异常</strong>：如果你不知道如何处理该异常，可以在方法签名中使用 <code>throws</code> 关键字将其抛出，让调用者处理。</p>
+<p>例如，下面的 <code>readFile</code> 方法声明可能抛出 <code>IOException</code>：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> readFile(String filePath) <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-keyword">File</span> <span class="hljs-keyword">file</span> = <span class="hljs-keyword">new</span> <span class="hljs-keyword">File</span>(filePath);<br>    String result;<br>    BufferedReader reader = <span class="hljs-keyword">new</span> BufferedReader(<span class="hljs-keyword">new</span> FileReader(<span class="hljs-keyword">file</span>));<br>    <span class="hljs-keyword">while</span> ((result = reader.readLine()) != <span class="hljs-keyword">null</span>) &#123;<br>        System.out.<span class="hljs-keyword">println</span>(result);<br>    &#125;<br>    reader.close();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>关于 <code>throws</code> 的规则：</strong></p>
+<ol>
+<li><strong>可查异常</strong>：如果方法可能抛出可查异常，必须使用 <code>throws</code> 声明，或在方法内捕获它。</li>
+<li><strong>不可查异常</strong>：对于 <code>Error</code> 和 <code>RuntimeException</code> 及其子类，可以不声明，虽然在运行时可能会抛出这些异常。</li>
+<li><strong>覆盖方法</strong>：当子类覆盖父类方法时，不能声明与父类不同的异常。声明的异常必须是父类声明异常的同类或子类。</li>
+</ol>
+<h6 id="2-throw"><a href="#2-throw" class="headerlink" title="2.throw"></a>2.throw</h6><p>如果代码可能会引发某种错误，可以创建一个合适的异常类实例并抛出它，这就是抛出异常。如下所示：</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs oxygene"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> double <span class="hljs-keyword">method</span><span class="hljs-params">(int value)</span> <span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    if(value == 0) &#123;</span><br><span class="hljs-comment">        throw new ArithmeticException(&quot;参数不能为0&quot;); //抛出一个运行时异常</span><br><span class="hljs-comment">    &#125;</span><br>    <span class="hljs-title function_">return</span> 5.0 / <span class="hljs-title function_">value</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>大部分情况下都不需要手动抛出异常，因为Java的大部分方法要么已经处理异常，要么已声明异常。所以一般都是捕获异常或者再往上抛。</p>
+<p>有时我们会从 catch 中抛出一个异常，目的是为了改变异常的类型。多用于在多系统集成时，当某个子系统故障，异常类型可能有多种，可以用统一的异常类型向外暴露，不需暴露太多内部异常细节。</p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readFile</span><span class="hljs-params">(String filePath)</span> <span class="hljs-keyword">throws</span> MyException &#123;    <br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// code</span><br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        <span class="hljs-type">MyException</span> <span class="hljs-variable">ex</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyException</span>(<span class="hljs-string">&quot;read file failed.&quot;</span>);<br>        ex.initCause(e);<br>        <span class="hljs-keyword">throw</span> ex;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="异常的自定义"><a href="#异常的自定义" class="headerlink" title="异常的自定义"></a>异常的自定义</h4><p>习惯上，定义一个异常类应包含两个构造函数，一个无参构造函数和一个带有详细描述信息的构造函数（Throwable 的 toString 方法会打印这些详细信息，调试时很有用）, 比如上面用到的自定义MyException：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Exception</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyException</span><span class="hljs-params">()</span>&#123; &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyException</span><span class="hljs-params">(String msg)</span>&#123;<br>        <span class="hljs-built_in">super</span>(msg);<br>    &#125;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="异常的捕获"><a href="#异常的捕获" class="headerlink" title="异常的捕获"></a>异常的捕获</h4><p>异常捕获处理的方法通常有： try-catch try-catch-finally try-finally try-with-resource</p>
+<h6 id="try-catch"><a href="#try-catch" class="headerlink" title="try-catch"></a>try-catch</h6><p>这是最常见的异常处理方式。在 <code>try</code> 块中放置可能抛出异常的代码，<code>catch</code> 块用于捕获并处理该异常。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 可能抛出异常的代码</span><br>&#125; <span class="hljs-keyword">catch</span> (ExceptionType e) &#123;<br>    <span class="hljs-comment">// 异常处理代码</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="try-catch-finally"><a href="#try-catch-finally" class="headerlink" title="try-catch-finally"></a>try-catch-finally</h6><p>这种方式在 <code>try-catch</code> 的基础上增加了 <code>finally</code> 块。无论 <code>try</code> 块中的代码是否抛出异常，<code>finally</code> 块中的代码都会执行，通常用于清理资源</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 可能抛出异常的代码</span><br>&#125; <span class="hljs-keyword">catch</span> (ExceptionType e) &#123;<br>    <span class="hljs-comment">// 异常处理代码</span><br>&#125; <span class="hljs-keyword">finally</span> &#123;<br>    <span class="hljs-comment">// 无论是否有异常，都会执行的代码</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="try-finally"><a href="#try-finally" class="headerlink" title="try-finally"></a>try-finally</h6><p>这种方式只包含 <code>try</code> 和 <code>finally</code> 块。如果 <code>try</code> 块中抛出异常，<code>finally</code> 块中的代码仍会被执行，但没有 <code>catch</code> 块来处理异常。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 可能抛出异常的代码</span><br>&#125; <span class="hljs-keyword">finally</span> &#123;<br>    <span class="hljs-comment">// 无论是否有异常，都会执行的代码</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>finally遇见如下情况不会执行</p>
+<ul>
+<li>在前面的代码中用了System.exit()退出程序。</li>
+<li>finally语句块中发生了异常。</li>
+<li>程序所在的线程死亡。</li>
+<li>关闭CPU。</li>
+</ul>
+<h6 id="try-with-resource"><a href="#try-with-resource" class="headerlink" title="try-with-resource"></a>try-with-resource</h6><p>try-with-resource是Java 7中引入的，很容易被忽略。</p>
+<p>finally 中的 close 方法也可能抛出 IOException, 从而覆盖了原始异常。</p>
+<p>JAVA 7 提供了更优雅的方式来实现资源的自动释放，自动释放的资源需要是实现了 AutoCloseable 接口的类。</p>
+<hr>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">private</span>  <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tryWithResourceTest</span>()</span>&#123;<br>    <span class="hljs-keyword">try</span> (Scanner scanner = <span class="hljs-keyword">new</span> Scanner(<span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;c:/abc&quot;</span>),<span class="hljs-string">&quot;UTF-8&quot;</span>))&#123;<br>        <span class="hljs-comment">// code</span><br>    &#125; <span class="hljs-keyword">catch</span> (IOException e)&#123;<br>        <span class="hljs-comment">// handle exception</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>看下Scanner</li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-symbol">Scanner</span> <span class="hljs-symbol">implements</span> <span class="hljs-symbol">Iterator</span>&lt;<span class="hljs-symbol">String</span>&gt;, <span class="hljs-symbol">Closeable</span> &#123;<br>  <span class="hljs-comment">// ...</span><br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">Closeable</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">AutoCloseable</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> close() throws IOException;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>try 代码块退出时，会自动调用 scanner.close 方法，和把 scanner.close 方法放在 finally 代码块中不同的是，若 scanner.close 抛出异常，则会被抑制，抛出的仍然为原始异常。被抑制的异常会由 addSusppressed 方法添加到原来的异常，如果想要获取被抑制的异常列表，可以调用 getSuppressed 方法来获取</p>
+<hr>
+<h4 id="常见的异常"><a href="#常见的异常" class="headerlink" title="常见的异常"></a>常见的异常</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/2bda92351dcc892f1e5d6e5b6a6c6517_720.jpg" srcset="/img/loading.gif" lazyload alt="2bda92351dcc892f1e5d6e5b6a6c6517_720"></p>
+<h2 id="异常实践"><a href="#异常实践" class="headerlink" title="异常实践"></a>异常实践</h2><p>对异常的处理</p>
+<h6 id="1-只针对不正常的情况才使用异常"><a href="#1-只针对不正常的情况才使用异常" class="headerlink" title="1.只针对不正常的情况才使用异常"></a>1.只针对不正常的情况才使用异常</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101164347019.png" srcset="/img/loading.gif" lazyload alt="image-20241101164347019"></p>
+<h3 id="在-finally-块中清理资源或者使用-try-with-resource-语句"><a href="#在-finally-块中清理资源或者使用-try-with-resource-语句" class="headerlink" title="在 finally 块中清理资源或者使用 try-with-resource 语句"></a>在 finally 块中清理资源或者使用 try-with-resource 语句</h3><p>当使用类似InputStream这种需要使用后关闭的资源时，一个常见的错误就是在try块的最后关闭资源。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> doNotCloseResourceInTry() &#123;<br>    FileInputStream inputStream = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">File</span> <span class="hljs-keyword">file</span> = <span class="hljs-keyword">new</span> <span class="hljs-keyword">File</span>(<span class="hljs-string">&quot;./tmp.txt&quot;</span>);<br>        inputStream = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">file</span>);<br>        <span class="hljs-comment">// use the inputStream to read a file</span><br>        <span class="hljs-comment">// do NOT do this</span><br>        inputStream.close();<br>    &#125; <span class="hljs-keyword">catch</span> (FileNotFoundException e) &#123;<br>        log.error(e);<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        log.error(e);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>方法一：使用 finally 代码块</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">closeResourceInFinally</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">FileInputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;./tmp.txt&quot;</span>);<br>        inputStream = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(file);<br>        <span class="hljs-comment">// use the inputStream to read a file</span><br>    &#125; <span class="hljs-keyword">catch</span> (FileNotFoundException e) &#123;<br>        log.error(e);<br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-keyword">if</span> (inputStream != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                inputStream.close();<br>            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                log.error(e);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>方法二：Java 7 的 try-with-resource 语法</li>
+</ul>
+<p>如果你的资源实现了 AutoCloseable 接口，你可以使用这个语法。大多数的 Java 标准资源都继承了这个接口。当你在 try 子句中打开资源，资源会在 try 代码块执行后或异常处理后自动关闭。</p>
+<hr>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">如果你的资源实现了 AutoCloseable 接口，你可以使用这个语法。大多数的 Java 标准资源都继承了这个接口。当你在 <span class="hljs-keyword">try</span> 子句中打开资源，资源会在 <span class="hljs-keyword">try</span> 代码块执行后或异常处理后自动关闭。<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="尽量使用标准的异常"><a href="#尽量使用标准的异常" class="headerlink" title="尽量使用标准的异常"></a>尽量使用标准的异常</h3><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165242767.png" srcset="/img/loading.gif" lazyload alt="image-20241101165242767"></p>
+<h3 id="对异常进行文档说明"><a href="#对异常进行文档说明" class="headerlink" title="对异常进行文档说明"></a>对异常进行文档说明</h3><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165302605.png" srcset="/img/loading.gif" lazyload alt="image-20241101165302605"></p>
+<h3 id="优先捕获最具体的异常"><a href="#优先捕获最具体的异常" class="headerlink" title="优先捕获最具体的异常"></a>优先捕获最具体的异常</h3><blockquote>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165328094.png" srcset="/img/loading.gif" lazyload alt="image-20241101165328094"></p>
+</blockquote>
+<h3 id="不要捕获-Throwable-类"><a href="#不要捕获-Throwable-类" class="headerlink" title="不要捕获 Throwable 类"></a>不要捕获 Throwable 类</h3><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165342076.png" srcset="/img/loading.gif" lazyload alt="image-20241101165342076"></p>
+<h3 id="不要忽略异常"><a href="#不要忽略异常" class="headerlink" title="不要忽略异常"></a>不要忽略异常</h3><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165357075.png" srcset="/img/loading.gif" lazyload alt="image-20241101165357075"></p>
+<h3 id="不要记录并抛出异常"><a href="#不要记录并抛出异常" class="headerlink" title="不要记录并抛出异常"></a>不要记录并抛出异常</h3><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165419496.png" srcset="/img/loading.gif" lazyload alt="image-20241101165419496"></p>
+<h3 id="包装异常时不要抛弃原始的异常"><a href="#包装异常时不要抛弃原始的异常" class="headerlink" title="包装异常时不要抛弃原始的异常"></a>包装异常时不要抛弃原始的异常</h3><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165441805.png" srcset="/img/loading.gif" lazyload alt="image-20241101165441805"></p>
+<h3 id="不要使用异常控制程序的流程"><a href="#不要使用异常控制程序的流程" class="headerlink" title="不要使用异常控制程序的流程"></a>不要使用异常控制程序的流程</h3><p>不应该使用异常控制应用的执行流程，例如，本应该使用if语句进行条件判断的情况下，你却使用异常处理，这是非常不好的习惯，会严重影响应用的性能。</p>
+<h3 id="不要在finally块中使用return。"><a href="#不要在finally块中使用return。" class="headerlink" title="不要在finally块中使用return。"></a>不要在finally块中使用return。</h3><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101165509040.png" srcset="/img/loading.gif" lazyload alt="image-20241101165509040"></p>
+<h2 id="深入理解异常"><a href="#深入理解异常" class="headerlink" title="深入理解异常"></a>深入理解异常</h2><h6 id="JVM理解"><a href="#JVM理解" class="headerlink" title="JVM理解"></a>JVM理解</h6><p>提到JVM处理异常的机制，就需要提及Exception Table，以下称为异常表。我们暂且不急于介绍异常表，先看一个简单的 Java 处理异常的小例子。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">simpleTryCatch</span>()</span> &#123;<br>   <span class="hljs-keyword">try</span> &#123;<br>       testNPE();<br>   &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>       e.printStackTrace();<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/55a6788fda381eca924a1c8bbff8b7c5.jpg" srcset="/img/loading.gif" lazyload alt="55a6788fda381eca924a1c8bbff8b7c5"></p>
+<p>Exception table，异常表。异常表中包含了一个或多个异常处理者(Exception Handler)的信息，这些信息包含如下from 可能发生异常的起始点to 可能发生异常的结束点target 上述from和to之前发生异常后的异常处理者的位置type 异常处理者处理的异常的类信息</p>
+<blockquote>
+<p>答案是异常发生的时候，当一个异常发生时</p>
+<ul>
+<li>1.JVM会在当前出现异常的方法中，查找异常表，是否有合适的处理者来处理</li>
+<li>2.如果当前方法异常表不为空，并且异常符合处理者的from和to节点，并且type也匹配，则JVM调用位于target的调用者来处理。</li>
+<li>3.如果上一条未找到合理的处理者，则继续查找异常表中的剩余条目</li>
+<li>4.如果当前方法的异常表无法处理，则向上查找（弹栈处理）刚刚调用该方法的调用处，并重复上面的操作。</li>
+<li>5.如果所有的栈帧被弹出，仍然没有处理，则抛给当前的Thread，Thread则会终止。</li>
+<li>6.如果当前Thread为最后一个非守护线程，且未处理异常，则会导致JVM终止运行。</li>
+</ul>
+<p>以上就是JVM处理异常的一些机制。</p>
+</blockquote>
+<h6 id="try-catch-finally-1"><a href="#try-catch-finally-1" class="headerlink" title="try catch -finally"></a><strong>try catch -finally</strong></h6><p>除了简单的try-catch外，我们还常常和finally做结合使用。比如这样的代码</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">simpleTryCatchFinally</span>()</span> &#123;<br>   <span class="hljs-keyword">try</span> &#123;<br>       testNPE();<br>   &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>       e.printStackTrace();<br>   &#125; <span class="hljs-keyword">finally</span> &#123;<br>       System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;Finally&quot;</span>);<br>   &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241101170705389.png" srcset="/img/loading.gif" lazyload alt="image-20241101170705389"></p>
+<p>finally是如何保证自己一定被执行的</p>
+<p>正常情况下。执行完后调转到41</p>
+<p>异常情况。从异常表跳到14 如果异常内正常执行 就跳到41</p>
+<p>如果异常内发生错误14-19 就跳转到31执行finally</p>
+<h6 id="cathc问题"><a href="#cathc问题" class="headerlink" title="cathc问题"></a>cathc问题</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/c4f479bcf6c21c2e1c7dd2ec5f6b97ec.jpeg" srcset="/img/loading.gif" lazyload alt="c4f479bcf6c21c2e1c7dd2ec5f6b97ec"></p>
+<p>异常表越靠前，就越先被捕获</p>
+<h6 id="return和finally"><a href="#return和finally" class="headerlink" title="return和finally"></a>return和finally</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/fe9a179b2d5911bec2067818b2bebafd_720.jpg" srcset="/img/loading.gif" lazyload alt="fe9a179b2d5911bec2067818b2bebafd_720"></p>
+<p>都会执行</p>
+<p>还是三种情况<br>正常情况下。 拷贝1<br>异常情况。异常内有异常 跳转拷贝<br>异常正常执行情况  拷贝</p>
+<h6 id="异常耗时"><a href="#异常耗时" class="headerlink" title="异常耗时"></a>异常耗时</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4950aabdfa51244c7e19861cbd621f57_720.jpg" srcset="/img/loading.gif" lazyload alt="4950aabdfa51244c7e19861cbd621f57_720"></p>
+<p>newException() 方法：<br>这个方法创建了testTimes个Exception实例。<br>与Object不同，Exception类包含了一些额外的字段和方法，用于存储异常信息、堆栈跟踪等。<br>创建Exception对象时，JVM需要分配更多的内存，并可能执行一些初始化操作，比如设置异常消息和堆栈跟踪。<br>这些额外的操作使得创建Exception对象比创建Object对象要慢。<br>3.<br>catchException() 方法：<br>这个方法不仅创建了testTimes个Exception对象，还抛出了它们并捕获。<br>抛出异常涉及到在调用栈中查找合适的异常处理器，这需要遍历调用栈并检查每个方法是否有匹配的catch块。<br>捕获异常时，JVM需要执行catch块中的代码，这可能包括记录日志、清理资源等操作。<br>这些操作比仅仅创建对象要复杂得多，因此这个方法执行起来最慢。</p>
+<p><a target="_blank" rel="noopener" href="https://www.iteye.com/blog/icyfenix-857722">https://www.iteye.com/blog/icyfenix-857722</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>java异常</div>
+      <div>http://example.com/2024/11/01/java/java异常/java异常/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">最近的笔记方向</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/31/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E7%BB%B4%E6%8A%A4/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E7%BB%B4%E6%8A%A4/" title="mysql-数据库的管理和维护">
+                        <span class="hidden-mobile">mysql-数据库的管理和维护</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
