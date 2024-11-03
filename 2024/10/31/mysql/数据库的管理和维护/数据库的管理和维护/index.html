@@ -32,8 +32,13 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/18f52ca6d6f7a70175b2242168bce61d_720.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4f362e9b6d4f608909c910e608814893_720.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/fe9e88edc93d2addf7967bf02461ea30_720.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241102111847102.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241102115225797.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241102115240963.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241102120036127.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0cb87ae0e12c6ed6be56712dfdc9cb94.png">
 <meta property="article:published_time" content="2024-10-31T13:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-31T03:42:47.237Z">
+<meta property="article:modified_time" content="2024-11-02T04:01:43.685Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4eed1a88b6a6b07d453c56d76f430a4f.jpeg">
@@ -236,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.5k 字
         
       </span>
     
@@ -247,7 +252,7 @@
         
         
         
-          11 分钟
+          13 分钟
         
       </span>
     
@@ -381,7 +386,39 @@ select hsot,user from mysql.user where user=&#39;xx&#39;;
 <h5 id="1-Mysql权限"><a href="#1-Mysql权限" class="headerlink" title="1.Mysql权限"></a>1.Mysql权限</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/18f52ca6d6f7a70175b2242168bce61d_720.jpg" srcset="/img/loading.gif" lazyload alt="18f52ca6d6f7a70175b2242168bce61d_720"></p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4f362e9b6d4f608909c910e608814893_720.jpg" srcset="/img/loading.gif" lazyload alt="4f362e9b6d4f608909c910e608814893_720"></p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/fe9e88edc93d2addf7967bf02461ea30_720.jpg" srcset="/img/loading.gif" lazyload alt="fe9e88edc93d2addf7967bf02461ea30_720"></p>
-<h5 id="2-授予权限"><a href="#2-授予权限" class="headerlink" title="2.授予权限"></a>2.授予权限</h5>
+<h5 id="2-授予权限"><a href="#2-授予权限" class="headerlink" title="2.授予权限"></a>2.授予权限</h5><p>myqsl提供未用户授予权限语句</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">GRANT</span> 权限类型 [字段列表]<span class="hljs-keyword">ON</span> 权限级别(数据库.表名 ) <span class="hljs-keyword">TO</span> <span class="hljs-string">&#x27;用户名&#x27;</span>@<span class="hljs-string">&#x27;主机名&#x27;</span>，<span class="hljs-string">&#x27;用户名&#x27;</span>@<span class="hljs-string">&#x27;主机名&#x27;</span> <span class="hljs-keyword">with</span> with_option;<br><br></code></pre></td></tr></table></figure>
+
+<p>权限类是上面的图片中的权限</p>
+<p>字段列表，单独给某个字段给值，如果没指定就是整个表的权限</p>
+<p>权限级别 9-6包含的权限级别 值</p>
+<ul>
+<li><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241102111847102.png" srcset="/img/loading.gif" lazyload alt="image-20241102111847102"></li>
+</ul>
+<p>to</p>
+<p>指定 1个或多个用户</p>
+<p><code>WITH OPTION</code> 选项的取值主要包括以下五个</p>
+<p><strong>WITH GRANT OPTION</strong>：允许被授予权限的用户将他们所拥有的权限再授予其他用户。</p>
+<p><strong>WITH MAX_QUERIES_PER_HOUR</strong>：限制用户每小时最大查询次数。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ON</span> mydb.* <span class="hljs-keyword">TO</span> <span class="hljs-string">&#x27;user&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> <span class="hljs-keyword">WITH</span> MAX_QUERIES_PER_HOUR <span class="hljs-number">100</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>WITH MAX_UPDATES_PER_HOUR</strong>：限制用户每小时最大更新次数。</p>
+<ul>
+<li><pre><code class="hljs">GRANT UPDATE ON mydb.* TO &#39;user&#39;@&#39;localhost&#39; WITH MAX_UPDATES_PER_HOUR 20;
+</code></pre>
+</li>
+</ul>
+<p><strong>WITH MAX_CONNECTIONS_PER_HOUR</strong>：限制用户每小时最大连接次数。</p>
+<p><strong>WITH MAX_USER_CONNECTIONS</strong>：限制用户最大同时连接数。</p>
+<p>案例</p>
+<p>给emp_test 用户授予数据库ems的员工表emp的select权限  以及对empno和ename字段的插入权限</p>
+<p>grant select,insert(empno,ename) on ems.emp to ‘emp_test‘@’localhost’;</p>
+<h5 id="3-查看权限"><a href="#3-查看权限" class="headerlink" title="3.查看权限"></a>3.查看权限</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241102115225797.png" srcset="/img/loading.gif" lazyload alt="image-20241102115225797"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241102115240963.png" srcset="/img/loading.gif" lazyload alt="image-20241102115240963"></p>
+<h5 id="4-收回权限"><a href="#4-收回权限" class="headerlink" title="4.收回权限"></a>4.收回权限</h5><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241102120036127.png" srcset="/img/loading.gif" lazyload alt="image-20241102120036127"></p>
+<p>一次性收回</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/0cb87ae0e12c6ed6be56712dfdc9cb94.png" srcset="/img/loading.gif" lazyload alt="0cb87ae0e12c6ed6be56712dfdc9cb94"></p>
+
                 
               </div>
             

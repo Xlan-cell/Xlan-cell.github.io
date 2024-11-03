@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241022220629279.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4c08f71d2960abc064ff408b5e1d3b9b.png">
 <meta property="article:published_time" content="2024-10-28T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-10-28T15:32:00.473Z">
+<meta property="article:modified_time" content="2024-11-03T03:58:33.651Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f76067a5-7d5f-4135-9549-8199c77d8f1c.jpg">
@@ -245,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.1k 字
+          9.4k 字
         
       </span>
     
@@ -256,7 +256,7 @@
         
         
         
-          76 分钟
+          78 分钟
         
       </span>
     
@@ -543,10 +543,15 @@ Scanner input = new Scanner(System.in);
 
 <hr>
 <p>2.方法</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">声明方法不能被子类重写。<span class="hljs-keyword">private</span> 方法隐式地被指定为 <span class="hljs-keyword">final</span>，如果在子类中定义的方法和基类中的一个 <span class="hljs-keyword">private</span> 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法。<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">声明方法不能被子类重写。<span class="hljs-keyword">private</span> 方法隐式地被指定为 <span class="hljs-keyword">final</span>，如果在子类中定义的方法和基类中的一个 <span class="hljs-keyword">private</span> 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法。<br><br>可以重载不能重写<br></code></pre></td></tr></table></figure>
 
 <p>3.类</p>
 <p>类不能继承</p>
+<blockquote>
+<p> <code>final</code> 关键字不能用来修饰接口</p>
+<p> 被final关键字修饰的类不能被继承，但抽象类存在的意义在于被其它类继承然后实现其内部方法的，这样final和抽象类之间就产生了矛盾。因此，final并不能修饰抽象类，选项A错误，选项B正确。</p>
+<p>C选项，重载的实现是编译器根据函数的不同的参数表，对同名函数的名称做修饰，那么对于编译器而言，这些同名函数就成了不同的函数。但重写则是子类方法对父类的方法的延申，即子类不仅继承了父类的方法，还向父类的方法中添加了属于自己的内容，改变了父类方法原本的内容，而final代表了一种不可变，这明显与重写形成了冲突。因此被final修饰的类可以被重载但不能被重写，选项C错误。</p>
+</blockquote>
 <h5 id="2-static"><a href="#2-static" class="headerlink" title="2.static"></a>2.static</h5><h6 id="1-静态变量"><a href="#1-静态变量" class="headerlink" title="1. 静态变量"></a><strong>1. 静态变量</strong></h6><ul>
 <li>静态变量: 又称为类变量，也就是说这个变量属于类的，类所有的实例都共享静态变量，可以直接通过类名来访问它；静态变量在内存中只存在一份。</li>
 <li>实例变量: 每创建一个实例就会产生一个实例变量，它与该实例同生共死。</li>
