@@ -53,8 +53,15 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241103115901179.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241103120620496.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241103121011985.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105165251407.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105165642936.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105165903628.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170034955.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170353952.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170824625.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170919349.png">
 <meta property="article:published_time" content="2024-10-27T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-11-03T04:10:18.051Z">
+<meta property="article:modified_time" content="2024-11-05T09:10:21.715Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241021103807715.png">
@@ -257,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          5.3k 字
         
       </span>
     
@@ -268,7 +275,7 @@
         
         
         
-          34 分钟
+          45 分钟
         
       </span>
     
@@ -577,6 +584,88 @@
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241103120620496.png" srcset="/img/loading.gif" lazyload alt="image-20241103120620478"></p>
 <p>27</p>
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241103121011985.png" srcset="/img/loading.gif" lazyload alt="image-20241103121011965"></p>
+<p>28</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105165251407.png" srcset="/img/loading.gif" lazyload alt="image-20241105165251407"></p>
+<ol>
+<li><strong>选项 A</strong>: <code>class InnerClass&#123; public static float func()&#123;return f;&#125; &#125;</code><ul>
+<li>错误：<code>f</code> 是 <code>OuterClass</code> 的实例字段，在 <code>InnerClass</code> 中直接引用时，会因为 <code>func</code> 是静态方法而导致编译错误。静态方法无法直接访问非静态成员。</li>
+</ul>
+</li>
+<li><strong>选项 B</strong>: <code>abstract class InnerClass&#123; public abstract float func()&#123;&#125; &#125;</code><ul>
+<li>错误：<code>func()</code> 是一个抽象方法，但方法体（<code>&#123;&#125;</code>）是不合法的，因为抽象方法不能有实现。应该去掉方法体。</li>
+</ul>
+</li>
+<li><strong>选项 C</strong>: <code>static class InnerClass&#123; protected static float func()&#123;return f;&#125; &#125;</code><ul>
+<li>错误：<code>f</code> 是实例字段，而 <code>func()</code> 是静态方法。静态方法无法访问实例字段 <code>f</code>，因此这段代码会报错。</li>
+</ul>
+</li>
+<li><strong>选项 D</strong>: <code>public class InnerClass&#123; static float func()&#123;return f;&#125; &#125;</code><ul>
+<li>错误：同样，<code>f</code> 是实例字段，而 <code>func()</code> 是静态方法。静态方法不能直接访问实例字段 <code>f</code>，这段代码也会报错。</li>
+</ul>
+</li>
+</ol>
+<p>总结：所有选项都有问题，原因基本都是静态方法无法访问实例字段 <code>f</code>。</p>
+<p>静态类不能访问实例字段-接口不能有方法体</p>
+<p>29</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105165642936.png" srcset="/img/loading.gif" lazyload alt="image-20241105165642936"></p>
+<blockquote>
+<p><strong>. Hashtable允许null值作为key和value，而HashMap不可以</strong> —— 这是错误的。实际上，<code>HashMap</code> 允许 <code>null</code> 作为 <code>key</code> 和 <code>value</code>，而 <code>Hashtable</code> <strong>不允许</strong> <code>null</code> 作为 <code>key</code> 或 <code>value</code>。尝试在 <code>Hashtable</code> 中插入 <code>null</code> 会抛出 <code>NullPointerException</code>。</p>
+<p>其他选项分析：</p>
+<ul>
+<li><strong>A. 两者都是用key-value方式获取数据</strong>：这是真的。<code>HashMap</code> 和 <code>Hashtable</code> 都是基于哈希表实现的，存储数据的方式是 <code>key-value</code> 对。</li>
+<li><strong>C. HashMap不是同步的，而Hashtable是同步的</strong>：这也是真的。<code>HashMap</code> 是非同步的，因此不适合多线程环境；而 <code>Hashtable</code> 是同步的，适用于多线程环境。</li>
+<li><strong>D. 迭代HashMap采用快速迭代机制，而Hashtable不是</strong>：这也是真的。<code>HashMap</code> 在迭代时采用了快速迭代机制（fail-fast），在迭代过程中，如果发生了结构变化（如插入或删除元素），会抛出 <code>ConcurrentModificationException</code>。而 <code>Hashtable</code> 没有这种机制。</li>
+</ul>
+</blockquote>
+<p>30</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105165903628.png" srcset="/img/loading.gif" lazyload alt="image-20241105165903628"></p>
+<p>在序列化时，<code>word</code> 会被序列化到文件中，因为它是实例变量。而静态变量 <code>i</code> 不会被序列化，因为静态变量属于类，而不属于某个实例。所以，反序列化时，<code>i</code> 的值将恢复为它的默认值 <code>0</code>。</p>
+<p><code>word</code> 在序列化时被写入文件，因此反序列化时它会被恢复为 <code>&quot;123&quot;</code>。</p>
+<p><code>i</code> 是静态变量，在序列化和反序列化过程中不会被存储，因此在反序列化时它会保持其类的默认值 <code>0</code>。</p>
+<p>31</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170034955.png" srcset="/img/loading.gif" lazyload alt="image-20241105170034955"></p>
+<blockquote>
+<p>  A.StringBuilder线程不安全，StringBuffer线程安全。 </p>
+<p>  B.同时用 abstract和final就会自相矛盾。 </p>
+<p>  C.Hashmap中的value可以之null，get(key)&#x3D;&#x3D;null有两种情况，一是key不存在，二是该key中存的是null，所以应该使用map.containskey(key)返回的true&#x2F;false来判断是否存在这个key。 </p>
+<p>  D.volatile关键字有两个作用： </p>
+<p>  1.并发环境可见性：volatile修饰后的变量能够保证该变量在线程间的可见性，线程进行数据的读写操作时将绕开工作内存（CPU缓存）而直接跟主内存进行数据交互，即线程进行读操作时直接从主内存中读取，写操作时直接将修改后端变量刷新到主内存中，这样就能保证其他线程访问到的数据是最新数据 </p>
+<p>  2.并发环境有序性：通过对volatile变量采取内存屏障（Memory barrier）的方式来防止编译重排序和CPU指令重排序，具体方式是通过在操作volatile变量的指令前后加入内存屏障，来实现happens-before关系，保证在多线程环境下的数据交互不会出现紊乱。</p>
+</blockquote>
+<p>32</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170353952.png" srcset="/img/loading.gif" lazyload alt="image-20241105170353952"></p>
+<blockquote>
+<ul>
+<li>B 初始化块在构造器执行之前执行，类初始化阶段先执行最顶层父类的静态初始化块，依次向下执行，最后执行当前类的静态初始化块；创建对象时，先调用顶层父类的构造方法，依次向下执行，最后调用本类的构造方法。</li>
+</ul>
+</blockquote>
+<p>33</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170824625.png" srcset="/img/loading.gif" lazyload alt="image-20241105170824625"></p>
+<p>接口是抽象类的延伸，在 Java 8 之前，它可以看成是一个完全抽象的类，也就是说它不能有任何的方法实现。</p>
+<p>34</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170919349.png" srcset="/img/loading.gif" lazyload alt="image-20241105170919349"></p>
+<blockquote>
+<p><strong>A. <code>float f[][] = new float[6][6];</code></strong></p>
+<ul>
+<li><strong>合法</strong>：这是创建一个二维数组的正确方式。这里 <code>f</code> 是一个二维浮点数组，数组的大小为 6 行 6 列。</li>
+</ul>
+<p><strong>B. <code>float []f[] = new float[6][6];</code></strong></p>
+<ul>
+<li><strong>合法</strong>：这种写法与选项 A 等价，虽然书写顺序不同，但效果相同。先声明 <code>f</code> 为一个二维数组，<code>new float[6][6]</code> 用于创建 6x6 的二维数组。</li>
+</ul>
+<p><strong>C. <code>float f[][] = new float[][6];</code></strong></p>
+<ul>
+<li><strong>不合法</strong>：这是不合法的语法。数组的第一个维度必须在声明时指定，而第二个维度可以在初始化时指定，不能只给第二个维度。</li>
+</ul>
+<p><strong>D. <code>float [][]f = new float[6][6];</code></strong></p>
+<ul>
+<li><strong>合法</strong>：这是另一种合法的写法，数组 <code>f</code> 被声明为二维数组并初始化为 6x6 的数组。这里，数组的声明和初始化方式是完全合法的。</li>
+</ul>
+<p><strong>E. <code>float [][]f = new float[6][];</code></strong></p>
+<ul>
+<li><strong>合法</strong>：这是合法的语法。你可以先指定一个维度（这里是 6），然后使用 <code>null</code> 来初始化第二个维度（即每一行的列数可以不同）。这</li>
+</ul>
+</blockquote>
 
                 
               </div>

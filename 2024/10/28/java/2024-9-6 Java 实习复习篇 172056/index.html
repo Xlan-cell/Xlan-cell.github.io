@@ -30,6 +30,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241028105843615.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241028112903516.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241022220912758.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170742679.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241022221314373.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241028113435807.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241028113609139.png">
@@ -40,9 +41,10 @@
 <meta property="og:image" content="https://www.cainiaojc.com/run/images/ExceptionHierarchy.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241022220620503.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241022220629279.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170601561.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4c08f71d2960abc064ff408b5e1d3b9b.png">
 <meta property="article:published_time" content="2024-10-28T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-11-03T03:58:33.651Z">
+<meta property="article:modified_time" content="2024-11-05T09:08:17.118Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f76067a5-7d5f-4135-9549-8199c77d8f1c.jpg">
@@ -245,7 +247,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.4k 字
+          9.6k 字
         
       </span>
     
@@ -256,7 +258,7 @@
         
         
         
-          78 分钟
+          81 分钟
         
       </span>
     
@@ -707,7 +709,9 @@ Scanner input = new Scanner(System.in);
 <p>在Java中，可以将一个类定义在另一个类里面或者一个方法里边，这样的类称为内部类，广泛意义上的内部类一般包括四种：成员内部类，局部内部类，匿名内部类，静态内部类 </p>
 </blockquote>
 </blockquote>
-<h5 id="2-接口"><a href="#2-接口" class="headerlink" title="2.接口"></a>2.接口</h5><blockquote>
+<h5 id="2-接口"><a href="#2-接口" class="headerlink" title="2.接口"></a>2.接口</h5><p>接口中的方法可以有任何合法的参数类型和返回类型，只要它们是 <code>public</code> 或默认访问权限。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170742679.png" srcset="/img/loading.gif" lazyload alt="image-20241105170742679"></p>
+<blockquote>
 <p>接口是抽象类的延伸，在 Java 8 之前，它可以看成是一个完全抽象的类，也就是说它不能有任何的方法实现。</p>
 </blockquote>
 <p>interface-接口声明</p>
@@ -715,7 +719,7 @@ Scanner input = new Scanner(System.in);
 <p>接口可以继承其他接口</p>
 <blockquote>
 <p>从 Java 8 开始，接口也可以拥有默认的方法实现，这是因为不支持默认方法的接口的维护成本太高了。在 Java 8 之前，如果一个接口想要添加新的方法，那么要修改所有实现了该接口的类。</p>
-<p>接口的成员(字段 + 方法)默认都是 public 的，并且不允许定义为 private 或者 protected。</p>
+<p>接口的成员(字段 + 方法)默认都是 public 的，<strong>并且不允许定义为 private 或者 protected。</strong></p>
 <p>接口的字段默认都是 static 和 final 的</p>
 <hr>
 </blockquote>
@@ -896,7 +900,8 @@ Scanner input = new Scanner(System.in);
 
 
 <h2 id="4-Object通用方法"><a href="#4-Object通用方法" class="headerlink" title="4.Object通用方法"></a>4.Object通用方法</h2><p>来自包体</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">package</span> <span class="hljs-title">java.lang;</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105170601561.png" srcset="/img/loading.gif" lazyload alt="image-20241105170601561"></p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-function"><span class="hljs-title">clone</span>():</span><br><span class="hljs-function"></span><br><span class="hljs-function">是 <span class="hljs-variable"><span class="hljs-class">Object</span></span> 类中的方法。它用于创建并返回当前对象的副本（即浅拷贝）。不过，<span class="hljs-title">clone</span>() 方法是 <span class="hljs-variable">protected</span> 的，所以只能在当前类或其子类中直接调用。</span><br><span class="hljs-function"><span class="hljs-title">toString</span>():</span><br><span class="hljs-function"></span><br><span class="hljs-function">也是 <span class="hljs-variable"><span class="hljs-class">Object</span></span> 类中的方法。它返回对象的字符串表示，默认返回的是对象的类名和哈希码的组合。很多类会覆盖此方法，以提供更有意义的字符串表示。</span><br><span class="hljs-function"><span class="hljs-title">wait</span>():</span><br><span class="hljs-function"></span><br><span class="hljs-function">是 <span class="hljs-variable"><span class="hljs-class">Object</span></span> 类中的方法。它用于使当前线程在对象上等待，直到其他线程调用该对象的 <span class="hljs-title">notify</span>() 或 <span class="hljs-title">notifyAll</span>() 方法来唤醒它。<span class="hljs-title">wait</span>() 方法是用来进行线程间通信的。</span><br><span class="hljs-function"><span class="hljs-title">finalize</span>():</span><br><span class="hljs-function"></span><br><span class="hljs-function">是 <span class="hljs-variable"><span class="hljs-class">Object</span></span> 类中的方法。它在对象被垃圾回收器回收之前由垃圾回收器调用，可以用于执行清理工作（比如关闭文件、释放资源等）。不过，这个方法已经不推荐使用（自 <span class="hljs-variable">Java</span> <span class="hljs-number">9</span> 起被标记为过时），因为垃圾回收的时机是不确定的。</span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-variable">package</span> <span class="hljs-variable">java.lang</span>;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4c08f71d2960abc064ff408b5e1d3b9b.png" srcset="/img/loading.gif" lazyload alt="4c08f71d2960abc064ff408b5e1d3b9b"></p>
 <h4 id="1-equals探究"><a href="#1-equals探究" class="headerlink" title="1.equals探究"></a>1.equals探究</h4><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-keyword">equals</span>(<span class="hljs-type">Object</span> obj)<br></code></pre></td></tr></table></figure>
