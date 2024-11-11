@@ -81,8 +81,32 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105162921185.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105163546428.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241105163614676.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107140839281.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141042179.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141051590.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141235461.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141253697.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141311922.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141319364.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141325186.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143511406.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143517414.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143706792.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143725407.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143728895.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143742926.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143751102.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143843001.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143849262.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107145706200.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107145725307.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107150120811.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107150157429.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107150204626.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107150231276.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107150237643.png">
 <meta property="article:published_time" content="2024-11-04T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-11-05T08:46:42.213Z">
+<meta property="article:modified_time" content="2024-11-07T07:02:53.464Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4a93a411fd36a4345d0fdd27acfcaa5b.png">
@@ -285,7 +309,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.6k 字
+          9.4k 字
         
       </span>
     
@@ -296,7 +320,7 @@
         
         
         
-          47 分钟
+          79 分钟
         
       </span>
     
@@ -649,6 +673,160 @@
 <p>   启动类加载器依然无法通过java代码获取到，返回的仍然是null，保持了统一。</p>
 <p>2、扩展类加载器被替换成了平台类加载器（Platform Class Loader）。</p>
 <p>​     平台类加载器遵循模块化方式加载字节码文件，所以继承关系从URLClassLoader变成了BuiltinClassLoader，BuiltinClassLoader实现了从模块中加载字节码文件。平台类加载器的存在更多的是为了与老版本的设计方案兼容，自身没有特殊的逻辑。</p>
+<h1 id="Jvm02-运行时数据区"><a href="#Jvm02-运行时数据区" class="headerlink" title="Jvm02 运行时数据区"></a>Jvm02 运行时数据区</h1><p>Java虚拟机在运行Java程序过程中管理的内存区域，称之为运行时数据区。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107140839281.png" srcset="/img/loading.gif" lazyload alt="image-20241107140839281"></p>
+<h2 id="线程不共享区"><a href="#线程不共享区" class="headerlink" title="线程不共享区"></a>线程不共享区</h2><p>ps:单独的线程-</p>
+<h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1.程序计数器"></a>1.程序计数器</h3><p>EIP寄存器</p>
+<p>程序计数器（Program Counter Register）也叫PC寄存器，每个线程会通过程序计数器记录当前要执行的的字节码指令的地址。</p>
+<p>程序计数器可以控制程序指令的进行，实现分支、跳转、异常等逻辑。不管是分支、跳转、异常，只需要在程序计数器中放入下一行要执行的指令地址即可。</p>
+<p>在多线程执行情况下，Java虚拟机需要通过程序计数器记录CPU切换前解释执行到那一句指令并继续解释运行。</p>
+<p>程序计数器不会出现内存溢出</p>
+<h3 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h3><h4 id="1-认识java虚拟机栈"><a href="#1-认识java虚拟机栈" class="headerlink" title="1.认识java虚拟机栈"></a>1.认识java虚拟机栈</h4><p>Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管理方法调用中的基本数据，先进后出（First In Last Out）,每一个方法的调用使用一个栈帧（Stack Frame）来保存。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MethodDemo</span> &#123;   <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;        <br>         study();    <br>     &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">study</span>()</span>&#123;<br>        eat();<br><br>        sleep();<br>    &#125;   <br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eat</span>()</span>&#123;       <br>         System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;吃饭&quot;</span>);   <br>    &#125;    <br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sleep</span>()</span>&#123;        <br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;睡觉&quot;</span>);    <br>        &#125;<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141042179.png" srcset="/img/loading.gif" lazyload alt="image-20241107141042179"></p>
+<p>循环调用–</p>
+<p>再return前-会将当前开辟的栈帧的地址置0</p>
+<p>return 会返回上一个函数的起始地址</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141051590.png" srcset="/img/loading.gif" lazyload alt="image-20241107141051590"></p>
+<p>Java虚拟机栈随着线程的创建而创建，而回收则会在线程的销毁时进行。由于方法可能会在不同线程中执行，每个线程都会包含一个自己的虚拟机栈。</p>
+<h5 id="栈帧数据探究"><a href="#栈帧数据探究" class="headerlink" title="栈帧数据探究"></a>栈帧数据探究</h5><p>Java虚拟机栈的栈帧中主要包含三方面的内容：</p>
+<ul>
+<li>局部变量表，局部变量表的作用是在运行过程中存放所有的局部变量</li>
+<li>操作数栈，操作数栈是栈帧中虚拟机在执行指令过程中用来存放临时数据的一块区域</li>
+<li>帧数据，帧数据主要包含动态链接、方法出口、异常表的引用</li>
+</ul>
+<h6 id="1-局部变量表"><a href="#1-局部变量表" class="headerlink" title="1.局部变量表"></a><strong>1.局部变量表</strong></h6><p>局部变量表的作用是在方法执行过程中存放所有的局部变量。局部变量表分为两种，一种是字节码文件中的，另外一种是栈帧中的也就是保存在内存中。</p>
+<p>栈帧中的局部变量表是根据字节码文件中的内容生成的。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span>()</span>&#123;<br>    <span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">long</span> j = <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>test1方法的局部变量表如下：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141235461.png" srcset="/img/loading.gif" lazyload alt="image-20241107141235461"></p>
+<p>局部变量表中保存了字节码指令生效的偏移量：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141253697.png" srcset="/img/loading.gif" lazyload alt="image-20241107141253697"></p>
+<p>比如<code>i</code>这个变量，它的起始PC是2，代表从<code>lconst_1</code>这句指令开始才能使用<code>i</code>，长度为3，也就是2-4这三句指令都可以使用<code>i</code>。为什么从2才能使用，因为0和1这两句字节码指令还在处理<code>int i = 0</code>这句赋值语句。<code>j</code>这个变量只有等3指令执行完之后也就是<code>long j = 1</code>代码执行完之后才能使用，所以起始PC为4，只能在4这行字节码指令中使用。</p>
+<h6 id="2-栈帧中的局部变量"><a href="#2-栈帧中的局部变量" class="headerlink" title="2.栈帧中的局部变量"></a>2.<strong>栈帧中的局部变量</strong></h6><p>栈帧中的局部变量表是一个数组，数组中每一个位置称之为槽(slot) ，long和double类型占用两个槽，其他类型占用一个槽。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141311922.png" srcset="/img/loading.gif" lazyload alt="image-20241107141311922"></p>
+<p><code>i</code>占用数组下标为0的位置，<code>j</code>占用数组下标1-2的位置。</p>
+<hr>
+<hr>
+<p>刚才看到的是静态方法，实例方法中的序号为0的位置存放的是this，指的是当前调用方法的对象，运行时会在内存中存放实例对象的地址。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141319364.png" srcset="/img/loading.gif" lazyload alt="image-20241107141319364"></p>
+<p>方法参数也会保存在局部变量表中，其顺序与方法中参数定义的顺序一致。局部变量表保存的内容有：实例方法的this对象，方法的参数，方法体中声明的局部变量。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107141325186.png" srcset="/img/loading.gif" lazyload alt="image-20241107141325186"></p>
+<p>test3方法中包含两个参数<code>k</code>,<code>m</code>，这两个参数也会被加入到局部变量表中</p>
+<p>ps:</p>
+<p>槽在我看来也是抽象出来的概念-包括字节码文件中的局部变量</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-keyword">mov</span> [<span class="hljs-built_in">ebp</span>-<span class="hljs-number">0x11</span>],<span class="hljs-number">3</span><br><br><span class="hljs-keyword">lea</span> <span class="hljs-built_in">eax</span>,[<span class="hljs-built_in">ebp</span>-<span class="hljs-number">0x11</span>]<br><br>//汇编忘差不多了 -在我看来这就是局部变量<br><span class="hljs-keyword">int</span> i=<span class="hljs-number">3</span><span class="hljs-comment">;</span><br><span class="hljs-keyword">int</span> j=i<span class="hljs-comment">;</span><br>局部变量的开辟<br></code></pre></td></tr></table></figure>
+
+<p>实例</p>
+<p>以下代码的局部变量表中会占用几个槽？</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title">test4</span><span class="hljs-params">(<span class="hljs-type">int</span> k,<span class="hljs-type">int</span> m)</span></span>&#123;<br>    &#123;<br>        <span class="hljs-type">int</span> a = <span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> b = <span class="hljs-number">2</span>;<br>    &#125;<span class="hljs-comment">// 1 +2 +2-2</span><br>    &#123;<br>        <span class="hljs-type">int</span> c = <span class="hljs-number">1</span>;<br>    &#125;<span class="hljs-number">3</span><span class="hljs-number">+1</span><span class="hljs-number">-1</span><br>    <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; <span class="hljs-number">3</span><span class="hljs-number">+1</span><br>    <span class="hljs-type">long</span> j = <span class="hljs-number">1</span>; <span class="hljs-number">4</span><span class="hljs-number">+2</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>局部变量表数值的长度为6。这一点在编译期间就可以确定了，运行过程中只需要在栈帧中创建长度为6的数组即可。</p>
+<p>数组再汇编中也是如上</p>
+<p>数组在反汇编中的本质</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs x86asm">实践<span class="hljs-number">1</span><br><span class="hljs-number">10</span>: 	<span class="hljs-keyword">int</span> a[<span class="hljs-number">5</span>] = &#123; <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span> &#125;<span class="hljs-comment">;</span><br>00333E85  <span class="hljs-keyword">mov</span>         <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [a],<span class="hljs-number">1</span><br>00333E8C  <span class="hljs-keyword">mov</span>         <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">ebp</span>-<span class="hljs-number">14h</span>],<span class="hljs-number">2</span><br>00333E93  <span class="hljs-keyword">mov</span>         <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">ebp</span>-<span class="hljs-number">10h</span>],<span class="hljs-number">3</span><br>00333E9A  <span class="hljs-keyword">mov</span>         <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">ebp</span>-<span class="hljs-number">0Ch</span>],<span class="hljs-number">4</span><br>00333EA1  <span class="hljs-keyword">mov</span>         <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">ebp</span>-<span class="hljs-number">8</span>],<span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="3-操作数栈"><a href="#3-操作数栈" class="headerlink" title="3.操作数栈"></a>3.操作数栈</h6><p>操作数栈是栈帧中虚拟机在执行指令过程中用来存放中间数据的一块区域。他是一种栈式的数据结构，如果一条指令将一个值压入操作数栈，则后面的指令可以弹出并使用该值。</p>
+<p>在编译期就可以确定操作数栈的最大深度，从而在执行时正确的分配内存大小。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143511406.png" srcset="/img/loading.gif" lazyload alt="image-20241107143511406"></p>
+<p>比如之前的相加案例中，操作数栈最大的深入会出现在这个时刻：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143517414.png" srcset="/img/loading.gif" lazyload alt="image-20241107143517414"></p>
+<p>所以操作数栈的深度会定义为2。</p>
+<h6 id="4-帧数据"><a href="#4-帧数据" class="headerlink" title="4.帧数据"></a>4.帧数据</h6><p>帧数据主要包含动态链接、方法出口、异常表的引用。</p>
+<p><strong>1.动态链接</strong></p>
+<p>当前类的字节码指令引用了其他类的属性或者方法时</p>
+<p>需要将符号引用（编号）转换成对应的运行时常量池中的内存地址。</p>
+<p>动态链接就保存了编号到运行时常量池的内存地址的映射关系。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143706792.png" srcset="/img/loading.gif" lazyload alt="image-20241107143706792"></p>
+<p><strong>2.方法出口</strong></p>
+<p>return的数据</p>
+<p>方法出口指的是方法在正确或者异常结束时，当前栈帧会被弹出，同时程序计数器应该指向上一个栈帧中的下一条指令的地址。所以在当前栈帧中，需要存储此方法出口的地址。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143725407.png" srcset="/img/loading.gif" lazyload alt="image-20241107143725407"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143728895.png" srcset="/img/loading.gif" lazyload alt="image-20241107143728895"></p>
+<p>再进入函数前-会将下一条指令压入栈中</p>
+<p>后续开栈-恢复后 return自然就到了当时压栈的那个返回地址</p>
+<p>3.异常表</p>
+<p>异常表存放的是代码中异常的处理信息，包含了异常捕获的生效范围以及异常发生后跳转到的字节码指令位置。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143742926.png" srcset="/img/loading.gif" lazyload alt="image-20241107143742926"></p>
+<p><code>如下案例：i=1</code>这行源代码编译成字节码指令之后，会包含偏移量2-4这三行指令。其中2-3是对i进行赋值1的操作，4的没有异常就跳转到10方法结束。如果出现异常的情况下，继续执行到7这行指令，7会将异常对象放入操作数栈中，这样在catch代码块中就可以使用异常对象了。接下来执行8-9，对i进行赋值为2的操作。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143751102.png" srcset="/img/loading.gif" lazyload alt="image-20241107143751102"></p>
+<p>所以异常表中，异常捕获的起始偏移量就是2，结束偏移量是4，在2-4执行过程中抛出了<code>java.lang.Exception</code>对象或者子类对象，就会将其捕获，然后跳转到偏移量为7的指令。</p>
+<h5 id="栈溢出问题探究"><a href="#栈溢出问题探究" class="headerlink" title="栈溢出问题探究"></a>栈溢出问题探究</h5><p>Java虚拟机栈如果栈帧过多，占用内存超过栈内存可以分配的最大大小就会出现内存溢出。Java虚拟机栈内存溢出时会出现StackOverflowError的错误。</p>
+<p>JVM 将创建一个具有默认大小的栈。大小取决于操作系统和计算机的体系结构。</p>
+<p>要修改Java虚拟机栈的大小，可以使用虚拟机参数 -Xss 。</p>
+<ul>
+<li>语法：-Xss栈大小</li>
+<li>单位：字节（默认，必须是 1024 的倍数）、k或者K(KB)、m或者M(MB)、g或者G(GB)</li>
+</ul>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-Xss1048576 </span><br><span class="hljs-deletion">-Xss1024K      </span><br><span class="hljs-deletion">-Xss1m</span><br><span class="hljs-deletion">-Xss1g</span><br></code></pre></td></tr></table></figure>
+
+<p>一般情况下，工作中即便使用了递归进行操作，栈的深度最多也只能到几百,不会出现栈的溢出。所以此参数可以手动指定为-Xss256k节省内存。</p>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>本地方法栈存储的是native本地方法的栈帧。</p>
+<p>在Hotspot虚拟机中，Java虚拟机栈和本地方法栈实现上使用了同一个栈空间。本地方法栈会在栈内存上生成一个栈帧，临时保存方法的参数同时方便出现异常时也把本地方法的栈信息打印出来。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143843001.png" srcset="/img/loading.gif" lazyload alt="image-20241107143843001"></p>
+<p>执行之后发生异常，会打印出所有栈帧的名字：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107143849262.png" srcset="/img/loading.gif" lazyload alt="image-20241107143849262"></p>
+<p><code>open0</code>是一个本地方法，所以创建了本地方法的栈帧。本地方法和Java虚拟机方法的栈帧在一个栈上。</p>
+<h2 id="线程共享区"><a href="#线程共享区" class="headerlink" title="线程共享区"></a>线程共享区</h2><h3 id="堆内存"><a href="#堆内存" class="headerlink" title="堆内存"></a>堆内存</h3><h4 id="1-了解堆内存"><a href="#1-了解堆内存" class="headerlink" title="1.了解堆内存"></a>1.了解堆内存</h4><p>一般Java程序中堆内存是空间最大的一块内存区域。创建出来的对象都存在于堆上。栈上的局部变量表中，可以存放堆上对象的引用。静态变量也可以存放堆对象的引用，通过静态变量就可以实现对象在线程之间共享。</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs abnf">ublic class Test &#123;    <br>    public static void main(String[] args) &#123;        <br>        Student s1 <span class="hljs-operator">=</span> new Student()<span class="hljs-comment">;        </span><br>        s1.name <span class="hljs-operator">=</span> <span class="hljs-string">&quot;张三&quot;</span><span class="hljs-comment">;       </span><br>        s1.age <span class="hljs-operator">=</span> <span class="hljs-number">18</span><span class="hljs-comment">;       </span><br>        s1.id <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;</span><br>        s1.printTotalScore()<span class="hljs-comment">;        </span><br>        s1.printAverageScore()<span class="hljs-comment">;        </span><br>        <br>        Student s2 <span class="hljs-operator">=</span> new Student()<span class="hljs-comment">;       </span><br>        s2.name <span class="hljs-operator">=</span> <span class="hljs-string">&quot;李四&quot;</span><span class="hljs-comment">;        </span><br>        s2.age <span class="hljs-operator">=</span> <span class="hljs-number">19</span><span class="hljs-comment">;        </span><br>        s2.id<span class="hljs-operator">=</span> <span class="hljs-number">2</span><span class="hljs-comment">;        </span><br>        s2.printTotalScore()<span class="hljs-comment">;        </span><br>        s2.printAverageScore()<span class="hljs-comment">;    </span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这段代码中通过<code>new</code>关键字创建了两个<code>Student</code>类的对象，这两个对象会被存放在堆上。在栈上通过<code>s1</code>和<code>s2</code>两个局部变量保存堆上两个对象的地址，从而实现了引用关系的建立。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107145706200.png" srcset="/img/loading.gif" lazyload alt="image-20241107145706200"></p>
+<p>堆内存大小是有上限的，当对象一直向堆中放入对象达到上限之后，就会抛出OutOfMemory错误。</p>
+<h4 id="2-堆内存特性"><a href="#2-堆内存特性" class="headerlink" title="2.堆内存特性"></a>2.堆内存特性</h4><p>堆空间有三个需要关注的值，used、total、max。used指的是当前已使用的堆内存，total是java虚拟机已经分配的可用堆内存，max是java虚拟机可以分配的最大堆内存。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107145725307.png" srcset="/img/loading.gif" lazyload alt="image-20241107145725307"></p>
+<p>当内存不够-&gt;total向max扩张</p>
+<p>那么是不是当used &#x3D; max &#x3D; total的时候，堆内存就溢出了呢？</p>
+<p>不是，堆内存溢出的判断条件比较复杂，在下一章《垃圾回收器》中会详细介绍。</p>
+<h4 id="3-设置堆大小"><a href="#3-设置堆大小" class="headerlink" title="3.设置堆大小"></a>3.设置堆大小</h4><p>要修改堆的大小，可以使用虚拟机参数 –Xmx（max最大值）和-Xms (初始的total)。</p>
+<p>语法：<code>-Xmx值 -Xms值</code></p>
+<p>单位：字节（默认，必须是 1024 的倍数）、k或者K(KB)、m或者M(MB)、g或者G(GB)</p>
+<p>限制：Xmx必须大于 2 MB，Xms必须大于1MB</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-Xms6291456</span><br><span class="hljs-deletion">-Xms6144k</span><br><span class="hljs-deletion">-Xms6m</span><br><span class="hljs-deletion">-Xmx83886080</span><br><span class="hljs-deletion">-Xmx81920k</span><br><span class="hljs-deletion">-Xmx80m</span><br></code></pre></td></tr></table></figure>
+
+<p>这样可以将max和初始的total都设置为4g，在启动后就已经获得了最大的堆内存大小。运行过程中不需要向操作系统申请。</p>
+<p>Java服务端程序开发时，建议将-Xmx和-Xms设置为相同的值，这样在程序启动之后可使用的总内存就是最大内存，而无需向java虚拟机再次申请，减少了申请并分配内存时间上的开销，同时也不会出现内存过剩之后堆收缩的情况。-Xmx具体设置的值与实际的应用程序运行环境有关，在《实战篇》中会给出设置方案。</p>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>方法区是存放基础信息的位置，线程共享，主要包含三部分内容：</p>
+<ul>
+<li>类的元信息，保存了所有类的基本信息</li>
+<li>运行时常量池，保存了字节码文件中的常量池内容</li>
+<li>字符串常量池，保存了字符串常量</li>
+</ul>
+<h6 id="1-类的元信息"><a href="#1-类的元信息" class="headerlink" title="1,类的元信息"></a>1,类的元信息</h6><p>方法区是用来存储每个类的基本信息（元信息），一般称之为InstanceKlass对象。在类的加载阶段完成。其中就包含了类的字段、方法等字节码文件中的内容，同时还保存了运行过程中需要使用的虚方法表（实现多态的基础）等信息。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107150120811.png" srcset="/img/loading.gif" lazyload alt="image-20241107150120811"></p>
+<h6 id="2-运行时常量池"><a href="#2-运行时常量池" class="headerlink" title="2.运行时常量池"></a>2.运行时常量池</h6><p>常量池中存放的是字节码中的常量池内容。</p>
+<p>字节码文件中通过编号查表的方式找到常量，这种常量池称为静态常量池。当常量池加载到内存中之后，可以通过内存地址快速的定位到常量池中的内容，这种常量池称为运行时常量池。</p>
+<h6 id="3-方法区的实现"><a href="#3-方法区的实现" class="headerlink" title="3.方法区的实现"></a>3.方法区的实现</h6><p>JDK7及之前的版本将方法区存放在堆区域中的永久代空间，堆的大小由虚拟机参数来控制。</p>
+<p>JDK8及之后的版本将方法区存放在元空间中<strong>，元空间位于操作系统维护的直接内存中，默认情况下只要不超过操作系统承受的上限，可以一直分配。</strong></p>
+<h6 id="4-方法区的溢出"><a href="#4-方法区的溢出" class="headerlink" title="4.方法区的溢出"></a>4.方法区的溢出</h6><ul>
+<li>JDK7将方法区存放在堆区域中的永久代空间，堆的大小由虚拟机参数-XX:MaxPermSize&#x3D;值来控制。</li>
+<li>JDK8将方法区存放在元空间中，元空间位于操作系统维护的直接内存中，默认情况下只要不超过操作系统承受的上限，可以一直分配。可以使用-XX:MaxMetaspaceSize&#x3D;值将元空间最大大小进行限制。</li>
+</ul>
+<h6 id="5-字符串常量池–堆的特性"><a href="#5-字符串常量池–堆的特性" class="headerlink" title="5.字符串常量池–堆的特性"></a>5.字符串常量池–堆的特性</h6><p>字符串常量池存储在代码中定义的常量字符串内容。比如“123” 这个123就会被放入字符串常量池。</p>
+<p>如下代码执行时，代码中包含<code>abc</code>字符串，就会被直接放入字符串常量池。在堆上创建String对象，并通过局部变量s1引用堆上的对象。</p>
+<p>接下来通过s2局部变量引用字符串常量池的<code>abc</code>。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107150157429.png" srcset="/img/loading.gif" lazyload alt="image-20241107150157429"></p>
+<p>所以s1和s2指向的不是同一个对象，打印出<code>false</code>。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107150204626.png" srcset="/img/loading.gif" lazyload alt="image-20241107150204626"></p>
+<h6 id="6-静态变量在哪"><a href="#6-静态变量在哪" class="headerlink" title="6.静态变量在哪"></a>6.静态变量在哪</h6><ul>
+<li>JDK6及之前的版本中，静态变量是存放在方法区中的，也就是永久代。</li>
+<li>JDK7及之后的版本中，静态变量是存放在堆中的Class对象中，脱离了永久代。具体源码可参考虚拟机源码：BytecodeInterpreter针对putstatic指令的处理。</li>
+</ul>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>在 JDK 1.4 中引入了 NIO 机制，使用了直接内存，主要为了解决以下两个问题:</p>
+<p>1、Java堆中的对象如果不再使用要回收，回收时会影响对象的创建和使用。</p>
+<p>2、IO操作比如读文件，需要先把文件读入直接内存（缓冲区）再把数据复制到Java堆中。</p>
+<p>现在直接放入直接内存即可，同时Java堆上维护直接内存的引用，减少了数据复制的开销。写文件也是类似的思路。</p>
+<p>使用堆创建对象的过程：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107150231276.png" srcset="/img/loading.gif" lazyload alt="image-20241107150231276"></p>
+<p>使用直接内存创建对象的过程，不需要进行复制对象，数据直接存放在直接内存中：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241107150237643.png" srcset="/img/loading.gif" lazyload alt="image-20241107150237643"></p>
+<p>要创建直接内存上的数据，可以使用<code>ByteBuffer</code>。</p>
+<p>语法： <code>ByteBuffer directBuffer = ByteBuffer.allocateDirect(size);</code></p>
+<h3 id="特性了解"><a href="#特性了解" class="headerlink" title="特性了解"></a>特性了解</h3><p>方法区-根据版本不同-在元空间或者永久代中</p>
+<p>元空间 jdk1.8提出的概念-再直接内存中</p>
+<p>永久代-堆中位于永久代中-老概念</p>
 
                 
               </div>
