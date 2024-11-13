@@ -21,8 +21,8 @@
   
     <meta name="description" content="jvm调优篇内存调优内存溢出和内存泄漏内存泄漏在Java中如果不再使用一个对象，但是该对象依然在GC ROOT的引用链上，这个对象就不会被垃圾回收器回收，这种情况就称之为内存泄漏。内存泄漏绝大多数情况都是由堆内存泄漏引起的 场景 1234存泄漏导致溢出的常见场景是大型的Java后端应用中，在处理用户的请求之后，没有及时将用户的数据删除。随着用户请求数量越来越多，内存泄漏的对象占满了堆内存最终导致内">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jvm 垃圾回收篇">
-<meta property="og:url" content="http://example.com/2024/11/06/java%20jvm/%E5%9F%BA%E7%A1%80/Jvm%E8%B0%83%E4%BC%98/index.html">
+<meta property="og:title" content="jvm调优篇">
+<meta property="og:url" content="http://example.com/2024/11/13/java%20jvm/%E5%9F%BA%E7%A1%80/Jvm%E8%B0%83%E4%BC%98/index.html">
 <meta property="og:site_name" content="逆向狗">
 <meta property="og:description" content="jvm调优篇内存调优内存溢出和内存泄漏内存泄漏在Java中如果不再使用一个对象，但是该对象依然在GC ROOT的引用链上，这个对象就不会被垃圾回收器回收，这种情况就称之为内存泄漏。内存泄漏绝大多数情况都是由堆内存泄漏引起的 场景 1234存泄漏导致溢出的常见场景是大型的Java后端应用中，在处理用户的请求之后，没有及时将用户的数据删除。随着用户请求数量越来越多，内存泄漏的对象占满了堆内存最终导致内">
 <meta property="og:locale" content="zh_CN">
@@ -139,8 +139,8 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113104957125.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113105004378.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113105011891.png">
-<meta property="article:published_time" content="2024-11-06T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-11-13T02:55:38.325Z">
+<meta property="article:published_time" content="2024-11-13T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-11-13T02:57:47.446Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241112123340109.png">
@@ -149,7 +149,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>jvm 垃圾回收篇 - 逆向狗</title>
+  <title>jvm调优篇 - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -315,7 +315,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="jvm 垃圾回收篇"></span>
+            <span id="subtitle" data-typed-text="jvm调优篇"></span>
           
         </div>
 
@@ -331,8 +331,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-06 20:22" pubdate>
-          2024年11月6日 晚上
+        <time datetime="2024-11-13 20:22" pubdate>
+          2024年11月13日 晚上
         </time>
       </span>
     
@@ -391,7 +391,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">jvm 垃圾回收篇</h1>
+            <h1 id="seo-header">jvm调优篇</h1>
             
             
               <div class="markdown-body">
@@ -1124,8 +1124,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>jvm 垃圾回收篇</div>
-      <div>http://example.com/2024/11/06/java jvm/基础/Jvm调优/</div>
+      <div>jvm调优篇</div>
+      <div>http://example.com/2024/11/13/java jvm/基础/Jvm调优/</div>
     </div>
     <div class="license-meta">
       
@@ -1137,7 +1137,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月6日</div>
+          <div>2024年11月13日</div>
         </div>
       
       
@@ -1169,9 +1169,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/10/java/javaIo/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/java%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" title="java网络通信">
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">java网络通信</span>
+                        <span class="hidden-mobile">最近的笔记方向</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1179,8 +1179,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/06/java%20jvm/%E5%9F%BA%E7%A1%80/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/" title="jvm 垃圾回收篇">
-                        <span class="hidden-mobile">jvm 垃圾回收篇</span>
+                      <a href="/2024/11/12/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8/" title="Mysql 数据库配置">
+                        <span class="hidden-mobile">Mysql 数据库配置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
