@@ -1,0 +1,1094 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=819429207&amp;spec=640&amp;img_type=jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GraaJvm AgentGraaJvm1.什么是graajvmGraalVM是Oracle官方推出的一款高性能JDK，使用它享受比OpenJDK或者OracleJDK更好的性能。 官方标语：Build faster, smaller, leaner applications。  更低的CPU、内存使用率 更快的启动速度，无需预热即可获得最好的性能 更好的安全性、更小的可执行文件 支持多种框架Sp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GraaJvm Agent">
+<meta property="og:url" content="http://example.com/2024/11/13/java%20jvm/%E5%9F%BA%E7%A1%80/GraaJvm/index.html">
+<meta property="og:site_name" content="逆向狗">
+<meta property="og:description" content="GraaJvm AgentGraaJvm1.什么是graajvmGraalVM是Oracle官方推出的一款高性能JDK，使用它享受比OpenJDK或者OracleJDK更好的性能。 官方标语：Build faster, smaller, leaner applications。  更低的CPU、内存使用率 更快的启动速度，无需预热即可获得最好的性能 更好的安全性、更小的可执行文件 支持多种框架Sp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110638024.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110654280.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110700727.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110734779.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110744534.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110750549.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110758454.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110846535.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110853813.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110914571.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110920858.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110926218.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110933639.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110940177.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110947067.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110953032.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111000233.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111006779.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111013847.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111048070.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111054125.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111100471.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111106763.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111114074.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725083757249-62.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725083757249-63.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111144471.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111332489.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111353300.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111400597.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445152-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445152-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111427557.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111437861.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111609290.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111844934.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111859814.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111920742.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-13.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-15.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-17.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112129850.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-19.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112201276.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089457470-62.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112309827.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089457470-64.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112328769.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112335607.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112342327.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112400785.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089457470-69.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089457470-70.png">
+<meta property="article:published_time" content="2024-11-13T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-11-13T03:25:16.135Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110638024.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GraaJvm Agent - 逆向狗</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>逆向狗</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.locimg.com/2024/09/06/63bc048e8a257.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GraaJvm Agent"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-13 20:22" pubdate>
+          2024年11月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          55 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GraaJvm Agent</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="GraaJvm-Agent"><a href="#GraaJvm-Agent" class="headerlink" title="GraaJvm Agent"></a>GraaJvm Agent</h1><h4 id="GraaJvm"><a href="#GraaJvm" class="headerlink" title="GraaJvm"></a>GraaJvm</h4><h5 id="1-什么是graajvm"><a href="#1-什么是graajvm" class="headerlink" title="1.什么是graajvm"></a>1.什么是graajvm</h5><p>GraalVM是Oracle官方推出的一款高性能JDK，使用它享受比OpenJDK或者OracleJDK更好的性能。</p>
+<p>官方标语：Build faster, smaller, leaner applications。</p>
+<ul>
+<li>更低的CPU、内存使用率</li>
+<li>更快的启动速度，无需预热即可获得最好的性能</li>
+<li>更好的安全性、更小的可执行文件</li>
+<li>支持多种框架Spring Boot、Micronaut、Helidon 和 Quarkus。</li>
+<li>多家云平台支持。</li>
+<li>通过Truffle框架运行JS、Python、Ruby等其他语言。</li>
+</ul>
+<p>GraalVM分为社区版（Community Edition）和企业版（Enterprise Edition）。企业版相比较社区版，在性能上有更多的优化。</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>描述</th>
+<th>社区版</th>
+<th>企业版</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>收费</td>
+<td>是否收费</td>
+<td>免费</td>
+<td>收费</td>
+</tr>
+<tr>
+<td>G1<strong>垃圾回收器</strong></td>
+<td>使用<strong>G1垃圾回收器优化垃圾回收性能</strong></td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Profile Guided<strong>Optimization（PGO）</strong></td>
+<td>运行过程中收集动态数据，进一步优化本地镜像的性能</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>高级优化特性</td>
+<td>更多优化技术，降低内存和垃圾回收的开销</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>高级优化参数</td>
+<td>更多的高级优化参数可以设置</td>
+<td>×</td>
+<td>√</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://www.graalvm.org/downloads/">https://www.graalvm.org/downloads/</a></p>
+<p>下载地址</p>
+<p>安装同jvm一样</p>
+<h5 id="graajvm模式"><a href="#graajvm模式" class="headerlink" title="graajvm模式"></a>graajvm模式</h5><h6 id="1-jit"><a href="#1-jit" class="headerlink" title="1.jit"></a>1.jit</h6><p>即时编译模式</p>
+<p>JIT模式的处理方式与Oracle JDK类似，满足两个特点：</p>
+<p>Write Once,Run Anywhere -&gt; 一次编写，到处运行。</p>
+<p>预热之后，通过内置的Graal即时编译器优化热点代码，生成比Hotspot JIT更高性能的机器码。</p>
+<p>各类jvm速度比对</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110638024.png" srcset="/img/loading.gif" lazyload alt="image-20241113110638024"></p>
+<h6 id="2-aot"><a href="#2-aot" class="headerlink" title="2.aot"></a>2.aot</h6><p>提前编译模式</p>
+<p>AOT 编译器通过源代码，为特定平台创建可执行文件。比如，在Windows下编译完成之后，会生成exe文件。</p>
+<p>通过这种方式，达到启动之后获得最高性能的目的。但是不具备跨平台特性，不同平台使用需要单独编译。</p>
+<p>这种模式生成的文件称之为Native Image本地镜像。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110654280.png" srcset="/img/loading.gif" lazyload alt="image-20241113110654280"></p>
+<p>指定平台生成可直接编译的代码  省去了运行时编译的过程</p>
+<p>社区版的GraalVM使用本地镜像模式性能不如Hotspot JVM的JIT模式，但是企业版的性能相对会高很多。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110700727.png" srcset="/img/loading.gif" lazyload alt="image-20241113110700727"></p>
+<h5 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h5><p>GraalVM的AOT模式虽然在启动速度、内存和CPU开销上非常有优势，但是使用这种技术会带来几个问题：</p>
+<p>1、跨平台问题，在不同平台下运行需要编译多次。编译平台的依赖库等环境要与运行平台保持一致。</p>
+<p>2、使用框架之后，编译本地镜像的时间比较长，同时也需要消耗大量的CPU和内存。</p>
+<p>3、AOT 编译器在编译时，需要知道运行时所有可访问的所有类。但是Java中有一些技术可以在运行时创建类，例如反射、动态代理等。这些技术在很多框架比如Spring中大量使用，所以框架需要对AOT编译器进行适配解决类似的问题。</p>
+<p>解决方案：</p>
+<p>1、使用公有云的Docker等容器化平台进行在线编译，确保编译环境和运行环境是一致的，同时解决了编译资源问题。</p>
+<p>2、使用SpringBoot3等整合了GraalVM AOT模式的框架版本。</p>
+<h6 id="1-spring搭建graajvm应用"><a href="#1-spring搭建graajvm应用" class="headerlink" title="1.spring搭建graajvm应用"></a>1.spring搭建graajvm应用</h6><p>SpringBoot3对GraalVM进行了完整的适配</p>
+<p>1、使用 <a target="_blank" rel="noopener" href="https://start.spring.io/">https://start.spring.io/</a> spring提供的在线生成器构建项目。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110734779.png" srcset="/img/loading.gif" lazyload alt="image-20241113110734779"></p>
+<p>2、编写业务代码，修改原代码将<code>PostConstructor</code>注解去掉：</p>
+<p>3、执行 mvn -Pnative clean native:compile 命令生成本地镜像。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110744534.png" srcset="/img/loading.gif" lazyload alt="image-20241113110744534"></p>
+<p>4、运行本地镜像</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110750549.png" srcset="/img/loading.gif" lazyload alt="image-20241113110750549"></p>
+<p>什么场景下需要使用GraalVM呢？</p>
+<p>1、对性能要求比较高的场景，可以选择使用收费的企业版提升性能。</p>
+<p>2、公有云的部分服务是按照CPU和内存使用量进行计费的，使用GraalVM可以有效地降低费用。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110758454.png" srcset="/img/loading.gif" lazyload alt="image-20241113110758454"></p>
+<h5 id="函数计算"><a href="#函数计算" class="headerlink" title="函数计算"></a>函数计算</h5><p>前端-部分请求就可直接转发到函数计算中进行处理</p>
+<p>Serverless架构中第一种常见的服务是函数计算（Function as a Service），将一个应用拆分成多个函数，每个函数会以事件驱动的方式触发。典型代表有AWS的Lambda、阿里云的FC。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110846535.png" srcset="/img/loading.gif" lazyload alt="image-20241113110846535"></p>
+<p>函数计算主要应用场景有如下几种：</p>
+<p>小程序、API服务中的接口，此类接口的调用频率不高，使用常规的服务器架构容易产生资源浪费，使用Serverless就可以实现按需付费降低成本，同时支持自动伸缩能应对流量的突发情况。</p>
+<p>大规模任务的处理，比如音视频文件转码、审核等，可以利用事件机制当文件上传之后，自动触发对应的任务。</p>
+<p>函数计算的计费标准中包含CPU和内存使用量，所以使用GraalVM AOT模式编译出来的本地镜像可以节省更多的成本。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110853813.png" srcset="/img/loading.gif" lazyload alt="image-20241113110853813"></p>
+<p>使用方法</p>
+<p>1、在项目中编写Dockerfile文件。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-comment"># Using Oracle GraalVM for JDK 17</span><br><span class="hljs-keyword">FROM</span> container-registry.oracle.com/graalvm/native-image:<span class="hljs-number">17</span>-ol8 AS builder<br><br><span class="hljs-comment"># Set the working directory to /home/app</span><br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> /build</span><br><br><span class="hljs-comment"># Copy the source code into the image for building</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> . /build</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">chmod</span> 777 ./mvnw</span><br><br><span class="hljs-comment"># Build</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> ./mvnw --no-transfer-progress native:compile -Pnative</span><br><br><span class="hljs-comment"># The deployment Image</span><br><span class="hljs-keyword">FROM</span> container-registry.oracle.com/os/oraclelinux:<span class="hljs-number">8</span>-slim<br><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">8080</span><br><br><span class="hljs-comment"># Copy the native executable into the containers</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> --from=builder /build/target/spring-boot-3-native-demo app</span><br><span class="hljs-keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="hljs-string">&quot;/app&quot;</span>]</span><br></code></pre></td></tr></table></figure>
+
+<p>2、使用服务器制作镜像，这一步会消耗大量的CPU和内存资源，同时GraalVM相关的镜像服务器在国外，建议使用阿里云的镜像服务器制作Docker镜像。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110914571.png" srcset="/img/loading.gif" lazyload alt="image-20241113110914571"></p>
+<p>3、使用函数计算将Docker镜像转换成函数服务。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110920858.png" srcset="/img/loading.gif" lazyload alt="image-20241113110920858"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110926218.png" srcset="/img/loading.gif" lazyload alt="image-20241113110926218"></p>
+<p>配置触发器：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110933639.png" srcset="/img/loading.gif" lazyload alt="image-20241113110933639"></p>
+<p>4、绑定域名并进行测试。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110940177.png" srcset="/img/loading.gif" lazyload alt="image-20241113110940177"></p>
+<p>需要准备一个自己的域名：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110947067.png" srcset="/img/loading.gif" lazyload alt="image-20241113110947067"></p>
+<p>配置接口路径：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113110953032.png" srcset="/img/loading.gif" lazyload alt="image-20241113110953032"></p>
+<p>会出现一个错误：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111000233.png" srcset="/img/loading.gif" lazyload alt="image-20241113111000233"></p>
+<p>把域名导向阿里云的域名：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111006779.png" srcset="/img/loading.gif" lazyload alt="image-20241113111006779"></p>
+<p>测试成功：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111013847.png" srcset="/img/loading.gif" lazyload alt="image-20241113111013847"></p>
+<h5 id="Serverless应用"><a href="#Serverless应用" class="headerlink" title="Serverless应用"></a>Serverless应用</h5><p>函数计算的服务资源比较受限，比如AWS的Lambda服务一般无法支持超过15分钟的函数执行，所以云服务商提供了另外一套方案：基于容器的Serverless应用，无需手动配置K8s中的Pod、Service等内容，只需选择镜像就可自动生成应用服务。</p>
+<p>同样，Serverless应用的计费标准中包含CPU和内存使用量，所以使用GraalVM AOT模式编译出来的本地镜像可以节省更多的成本。</p>
+<table>
+<thead>
+<tr>
+<th>服务分类</th>
+<th>交付模式</th>
+<th>弹性效率</th>
+<th>计费模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>函数计算</td>
+<td>函数</td>
+<td>毫秒级</td>
+<td>调用次数<strong>CPU内存使用量</strong></td>
+</tr>
+<tr>
+<td>Serverless<strong>应用</strong></td>
+<td>镜像容器</td>
+<td>秒级</td>
+<td>CPU<strong>内存使用量</strong></td>
+</tr>
+</tbody></table>
+<p>步骤：</p>
+<p>1、在项目中编写Dockerfile文件。</p>
+<p>2、使用服务器制作镜像，这一步会消耗大量的CPU和内存资源，同时GraalVM相关的镜像服务器在国外，建议使用阿里云的镜像服务器制作Docker镜像。</p>
+<p>前两步同实战案例2</p>
+<p>3、配置Serverless应用，选择容器镜像、CPU和内存。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111048070.png" srcset="/img/loading.gif" lazyload alt="image-20241113111048070"></p>
+<p>4、绑定外网负载均衡并使用Postman进行测试。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111054125.png" srcset="/img/loading.gif" lazyload alt="image-20241113111054125"></p>
+<p>先别急着点确定，需要先创建弹性公网IP:</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111100471.png" srcset="/img/loading.gif" lazyload alt="image-20241113111100471"></p>
+<p>全选默认，然后创建：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111106763.png" srcset="/img/loading.gif" lazyload alt="image-20241113111106763"></p>
+<p>创建SLB负载均衡：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111114074.png" srcset="/img/loading.gif" lazyload alt="image-20241113111114074"></p>
+<p>这次就可以成功创建了：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725083757249-62.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>绑定刚才创建的SLB负载均衡：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725083757249-63.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>![img](G:\360MoveData\Users\nixg\Desktop\java Jvm\jvm高级\assets\1725083757249-64.png)</p>
+<p>访问公网IP就能处理请求了：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111144471.png" srcset="/img/loading.gif" lazyload alt="image-20241113111144471"></p>
+<h4 id="Agent"><a href="#Agent" class="headerlink" title="Agent"></a>Agent</h4><p>1、诊断类工具，如Arthas、VisualVM等。</p>
+<p>2、开发类工具，如Idea、Eclipse。</p>
+<p>3、APM应用性能监测工具，如Skywalking、Zipkin等。</p>
+<p>4、热部署工具，如Jrebel等。</p>
+<h5 id="Java-Agent技术"><a href="#Java-Agent技术" class="headerlink" title="Java Agent技术"></a>Java Agent技术</h5><p>Java Agent技术是JDK提供的用来编写Java工具的技术，使用这种技术生成一种特殊的jar包，这种jar包可以让Java程序运行其中的代码。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111332489.png" srcset="/img/loading.gif" lazyload alt="image-20241113111332489"></p>
+<h6 id="两种加载模式"><a href="#两种加载模式" class="headerlink" title="两种加载模式"></a>两种加载模式</h6><p>Java Agent技术实现了让Java程序执行独立的Java Agent程序中的代码，执行方式有两种：</p>
+<ul>
+<li>静态加载模式</li>
+</ul>
+<p>静态加载模式可以在程序启动的一开始就执行我们需要执行的代码，适合用APM等性能监测系统从一开始就监控程序的执行性能。静态加载模式需要在Java Agent的项目中编写一个premain的方法，并打包成jar包。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111353300.png" srcset="/img/loading.gif" lazyload alt="image-20241113111353300"></p>
+<p>接下来使用以下命令启动Java程序，此时Java虚拟机将会加载agent中的代码并执行。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111400597.png" srcset="/img/loading.gif" lazyload alt="image-20241113111400597"></p>
+<p>premain方法会在主线程中执行：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445152-3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li>动态加载模式</li>
+</ul>
+<p>动态加载模式可以随时让java agent代码执行，适用于Arthas等诊断系统。动态加载模式需要在Java Agent的项目中编写一个agentmain的方法，并打包成jar包。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445152-4.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>接下来使用以下代码就可以让java agent代码在指定的java进程中执行了。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111427557.png" srcset="/img/loading.gif" lazyload alt="image-20241113111427557"></p>
+<p>agentmain方法会在独立线程中执行：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111437861.png" srcset="/img/loading.gif" lazyload alt="image-20241113111437861"></p>
+<h6 id="静态加载环境配置"><a href="#静态加载环境配置" class="headerlink" title="静态加载环境配置"></a>静态加载环境配置</h6><p>步骤：</p>
+<p>1、创建maven项目，添加maven-assembly-plugin插件，此插件可以打包出java agent的jar包。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>maven-assembly-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">descriptorRefs</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">descriptorRef</span>&gt;</span>jar-with-dependencies<span class="hljs-tag">&lt;/<span class="hljs-name">descriptorRef</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">descriptorRefs</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">archive</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">manifestFile</span>&gt;</span>src/main/resources/MANIFEST.MF<span class="hljs-tag">&lt;/<span class="hljs-name">manifestFile</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">archive</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>2、编写类和premain方法，premain方法中打印一行信息。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AgentDemo</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 参数添加模式 启动java主程序时添加 -javaangent:agent路径</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> <span class="hljs-variable">agentArgs</span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> <span class="hljs-variable">inst</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">premain</span>(<span class="hljs-params"><span class="hljs-title class_">String</span> agentArgs, <span class="hljs-title class_">Instrumentation</span> inst</span>) &#123;<br>        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(<span class="hljs-string">&quot;java agent执行了...&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>3、编写MANIFEST.MF文件，此文件主要用于描述java agent的配置属性，比如使用哪一个类的premain方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs Java">Manifest-Version: <span class="hljs-number">1.0</span><br>Premain-Class: com.itheima.jvm.javaagent.AgentDemo<br>Agent-Class: com.itheima.jvm.javaagent.AgentDemo<br>Can-Redefine-Classes: <span class="hljs-literal">true</span><br>Can-Retransform-Classes: <span class="hljs-literal">true</span><br>Can-Set-Native-Method-Prefix: <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<p>4、使用maven-assembly-plugin进行打包。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111609290.png" srcset="/img/loading.gif" lazyload alt="image-20241113111609290"></p>
+<p>5、创建spring boot应用，并静态加载上一步打包完的java agent。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-8.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h6 id="动态加载环境配置"><a href="#动态加载环境配置" class="headerlink" title="动态加载环境配置"></a>动态加载环境配置</h6><p>步骤：</p>
+<p>1、创建maven项目，添加maven-assembly-plugin插件，此插件可以打包出java agent的jar包。</p>
+<p>2、编写类和agentmain方法， agentmain方法中打印一行信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">package</span> com.itheima.jvm.javaagent.demo01;<br><br><span class="hljs-keyword">import</span> java.lang.instrument.Instrumentation;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AgentDemo</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 参数添加模式 启动java主程序时添加 -javaangent:agent路径</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> agentArgs</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> inst</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">premain</span><span class="hljs-params">(String agentArgs, Instrumentation inst)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;java agent执行了...&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * attach 挂载模式 java主程序运行之后，随时可以将agent挂载上去</span><br><span class="hljs-comment">     */</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">agentmain</span><span class="hljs-params">(String agentArgs, Instrumentation inst)</span> &#123;<br>        <span class="hljs-comment">//打印线程名称</span><br>        System.out.println(Thread.currentThread().getName());<br>        System.out.println(<span class="hljs-string">&quot;attach模式执行了...&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>3、编写MANIFEST.MF文件，此文件主要用于描述java agent的配置属性，比如使用哪一个类的agentmain方法。</p>
+<p>4、使用maven-assembly-plugin进行打包。</p>
+<p>5、编写main方法，动态连接到运行中的java程序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">package</span> com.itheima.jvm.javaagent.demo01;<br><br><span class="hljs-keyword">import</span> com.sun.tools.attach.AgentInitializationException;<br><span class="hljs-keyword">import</span> com.sun.tools.attach.AgentLoadException;<br><span class="hljs-keyword">import</span> com.sun.tools.attach.AttachNotSupportedException;<br><span class="hljs-keyword">import</span> com.sun.tools.attach.VirtualMachine;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AttachMain</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, AttachNotSupportedException, AgentLoadException, AgentInitializationException &#123;<br>        <span class="hljs-type">VirtualMachine</span> <span class="hljs-variable">vm</span> <span class="hljs-operator">=</span> VirtualMachine.attach(<span class="hljs-string">&quot;24200&quot;</span>);<br>        vm.loadAgent(<span class="hljs-string">&quot;D:\\jvm-java-agent\\target\\itheima-jvm-java-agent-jar-with-dependencies.jar&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="Arthas案例"><a href="#Arthas案例" class="headerlink" title="Arthas案例"></a>Arthas案例</h5><p>ps:笔记直接复制了</p>
+<p>需求：</p>
+<p>编写一个简化版的Arthas程序，具备以下几个功能：</p>
+<p>1、查看内存使用情况</p>
+<p>2、生成堆内存快照</p>
+<p>3、打印栈信息</p>
+<p>4、打印类加载器</p>
+<p>5、打印类的源码</p>
+<p>6、打印方法执行的参数和耗时</p>
+<p>需求：</p>
+<p>该程序是一个独立的Jar包，可以应用于任何Java编写的系统中。</p>
+<p>具备以下特点：代码无侵入性、操作简单、性能高。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111844934.png" srcset="/img/loading.gif" lazyload alt="image-20241113111844934"></p>
+<h6 id="查看内存使用情况"><a href="#查看内存使用情况" class="headerlink" title="查看内存使用情况"></a>查看内存使用情况</h6><p> JDK从1.5开始提供了Java Management Extensions (JMX) 技术，通过Mbean对象的写入和获取，实现：</p>
+<p>运行时配置的获取和更改</p>
+<p>应用程序运行信息的获取（线程栈、内存、类信息等）</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111859814.png" srcset="/img/loading.gif" lazyload alt="image-20241113111859814"></p>
+<p> 获取JVM默认提供的Mbean可以通过如下的方式，例如获取内存信息：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-11.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>ManagementFactory提供了一系列的方法获取各种各样的信息：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113111920742.png" srcset="/img/loading.gif" lazyload alt="image-20241113111920742"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima.jvm.javaagent.demo02;<br><br><span class="hljs-keyword">import</span> java.lang.instrument.Instrumentation;<br><span class="hljs-keyword">import</span> java.lang.management.*;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 1、查询所有进程</span><br><span class="hljs-comment"> * 2、显示内存相关的信息</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AgentDemo</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 参数添加模式 启动java主程序时添加 -javaangent:agent路径</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> agentArgs</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> inst</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">premain</span><span class="hljs-params">(String agentArgs, Instrumentation inst)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;java agent执行了...&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * attach 挂载模式 java主程序运行之后，随时可以将agent挂载上去</span><br><span class="hljs-comment">     */</span><br><br>    <span class="hljs-comment">//-XX:+UseSerialGC -Xmx1g -Xms512m</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">agentmain</span><span class="hljs-params">(String agentArgs, Instrumentation inst)</span> &#123;<br>        <span class="hljs-comment">//打印内存的使用情况</span><br>        memory();<br>    &#125;<br><br>    <span class="hljs-comment">//获取内存信息</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">memory</span><span class="hljs-params">()</span>&#123;<br>        List&lt;MemoryPoolMXBean&gt; memoryPoolMXBeans = ManagementFactory.getMemoryPoolMXBeans();<br><br>        System.out.println(<span class="hljs-string">&quot;堆内存：&quot;</span>);<br>        <span class="hljs-comment">//获取堆内存</span><br>        getMemoryInfo(memoryPoolMXBeans, MemoryType.HEAP);<br><br>        <span class="hljs-comment">//获取非堆内存</span><br>        System.out.println(<span class="hljs-string">&quot;非堆内存：&quot;</span>);<br>        getMemoryInfo(memoryPoolMXBeans, MemoryType.NON_HEAP);<br><br>        <span class="hljs-comment">//nio使用的直接内存</span><br>        <span class="hljs-keyword">try</span>&#123;<br>            <span class="hljs-meta">@SuppressWarnings(&quot;rawtypes&quot;)</span><br>            <span class="hljs-type">Class</span> <span class="hljs-variable">bufferPoolMXBeanClass</span> <span class="hljs-operator">=</span> Class.forName(<span class="hljs-string">&quot;java.lang.management.BufferPoolMXBean&quot;</span>);<br>            <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span><br>            List&lt;BufferPoolMXBean&gt; bufferPoolMXBeans = ManagementFactory.getPlatformMXBeans(bufferPoolMXBeanClass);<br>            <span class="hljs-keyword">for</span> (BufferPoolMXBean mbean : bufferPoolMXBeans) &#123;<br>                <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>                sb<br>                        .append(<span class="hljs-string">&quot;name:&quot;</span>)<br>                        .append(mbean.getName())<br><br>                        .append(<span class="hljs-string">&quot; used:&quot;</span>)<br>                        .append(mbean.getMemoryUsed()/ <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span>)<br>                        .append(<span class="hljs-string">&quot;m&quot;</span>)<br><br>                        .append(<span class="hljs-string">&quot; max:&quot;</span>)<br>                        .append(mbean.getTotalCapacity() / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span>)<br>                        .append(<span class="hljs-string">&quot;m&quot;</span>);<br><br>                System.out.println(sb);<br>            &#125;<br>        &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            System.out.println(e);<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getMemoryInfo</span><span class="hljs-params">(List&lt;MemoryPoolMXBean&gt; memoryPoolMXBeans, MemoryType heap)</span> &#123;<br>        memoryPoolMXBeans.stream().filter(x -&gt; x.getType().equals(heap))<br>                .forEach(x -&gt; &#123;<br>                    <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>                    sb<br>                            .append(<span class="hljs-string">&quot;name:&quot;</span>)<br>                            .append(x.getName())<br><br>                            .append(<span class="hljs-string">&quot; used:&quot;</span>)<br>                            .append(x.getUsage().getUsed() / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span>)<br>                            .append(<span class="hljs-string">&quot;m&quot;</span>)<br><br>                            .append(<span class="hljs-string">&quot; max:&quot;</span>)<br>                            .append(x.getUsage().getMax() / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span>)<br>                            .append(<span class="hljs-string">&quot;m&quot;</span>)<br><br>                            .append(<span class="hljs-string">&quot; committed:&quot;</span>)<br>                            .append(x.getUsage().getCommitted() / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span>)<br>                            .append(<span class="hljs-string">&quot;m&quot;</span>);<br><br>                    System.out.println(sb);<br>                &#125;);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        memory();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="生成堆内存快照"><a href="#生成堆内存快照" class="headerlink" title="生成堆内存快照"></a>生成堆内存快照</h6><p>更多的信息可以通过ManagementFactory.getPlatformMXBeans获取，比如：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-13.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>通过这种方式，获取到了Java虚拟机中分配的直接内存和内存映射缓冲区的大小。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-14.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>获取到虚拟机诊断用的MXBean，通过这个Bean对象可以生成内存快照。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">heapDump</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">simpleDateFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd-HH-mm&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">filename</span> <span class="hljs-operator">=</span> simpleDateFormat.format(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()) + <span class="hljs-string">&quot;.hprof&quot;</span>;<br>    System.out.println(<span class="hljs-string">&quot;生成内存dump文件，文件名为:&quot;</span> + filename);<br><br>    <span class="hljs-type">HotSpotDiagnosticMXBean</span> <span class="hljs-variable">hotSpotDiagnosticMXBean</span> <span class="hljs-operator">=</span><br>            ManagementFactory.getPlatformMXBean(HotSpotDiagnosticMXBean.class);<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        hotSpotDiagnosticMXBean.dumpHeap(filename, <span class="hljs-literal">true</span>);<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="打印栈信息"><a href="#打印栈信息" class="headerlink" title="打印栈信息"></a>打印栈信息</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">package</span> com.itheima.jvm.javaagent.demo03;<br><br><span class="hljs-keyword">import</span> java.lang.management.ManagementFactory;<br><span class="hljs-keyword">import</span> java.lang.management.ThreadInfo;<br><span class="hljs-keyword">import</span> java.lang.management.ThreadMXBean;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadCommand</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printStackInfo</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">ThreadMXBean</span> <span class="hljs-variable">threadMXBean</span> <span class="hljs-operator">=</span> ManagementFactory.getThreadMXBean();<br>        ThreadInfo[] infos = threadMXBean.dumpAllThreads(threadMXBean.isObjectMonitorUsageSupported(),<br>                threadMXBean.isSynchronizerUsageSupported());<br>        <span class="hljs-keyword">for</span> (ThreadInfo info : infos) &#123;<br>            <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">stringBuilder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>            stringBuilder.append(<span class="hljs-string">&quot;name:&quot;</span>)<br>                    .append(info.getThreadName())<br>                    .append(<span class="hljs-string">&quot; threadId:&quot;</span>)<br>                    .append(info.getThreadId())<br>                    .append(<span class="hljs-string">&quot; state:&quot;</span>)<br>                    .append(info.getThreadState())<br>            ;<br>            System.out.println(stringBuilder);<br><br>            StackTraceElement[] stackTrace = info.getStackTrace();<br>            <span class="hljs-keyword">for</span> (StackTraceElement stackTraceElement : stackTrace) &#123;<br>                System.out.println(stackTraceElement.toString());<br>            &#125;<br><br>            System.out.println();<br>        &#125;<br>    &#125;<br><br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        printStackInfo();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="打印类加载器"><a href="#打印类加载器" class="headerlink" title="打印类加载器"></a>打印类加载器</h6><p>Java Agent中可以获得Java虚拟机提供的Instumentation对象：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-15.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>该对象有以下几个作用： 1、redefine，重新设置类的字节码信息。 2、retransform，根据现有类的字节码信息进行增强。 3、获取所有已加载的类信息。 Oracle官方手册： <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/17/docs/api/java/lang/instrument/Instrumentation.html">https://docs.oracle.com/javase/17/docs/api/java/lang/instrument/Instrumentation.html</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">package</span> com.itheima.jvm.javaagent.demo04;<br><br><span class="hljs-keyword">import</span> org.jd.core.v1.ClassFileToJavaSourceDecompiler;<br><span class="hljs-keyword">import</span> org.jd.core.v1.api.loader.Loader;<br><span class="hljs-keyword">import</span> org.jd.core.v1.api.loader.LoaderException;<br><span class="hljs-keyword">import</span> org.jd.core.v1.api.printer.Printer;<br><br><span class="hljs-keyword">import</span> java.lang.instrument.*;<br><span class="hljs-keyword">import</span> java.security.ProtectionDomain;<br><span class="hljs-keyword">import</span> java.util.Comparator;<br><span class="hljs-keyword">import</span> java.util.HashSet;<br><span class="hljs-keyword">import</span> java.util.Scanner;<br><span class="hljs-keyword">import</span> java.util.Set;<br><span class="hljs-keyword">import</span> java.util.stream.Collectors;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassCommand</span> &#123;<br><br>    <span class="hljs-comment">//获取所有类加载器</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Set&lt;ClassLoader&gt; <span class="hljs-title function_">getAllClassLoader</span><span class="hljs-params">(Instrumentation inst)</span>&#123;<br>        HashSet&lt;ClassLoader&gt; classLoaders = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>        Class[] allLoadedClasses = inst.getAllLoadedClasses();<br>        <span class="hljs-keyword">for</span> (Class clazz : allLoadedClasses) &#123;<br>            <span class="hljs-type">ClassLoader</span> <span class="hljs-variable">classLoader</span> <span class="hljs-operator">=</span> clazz.getClassLoader();<br>            classLoaders.add(classLoader);<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> classLoaders;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printAllClassLoader</span><span class="hljs-params">(Instrumentation inst)</span>&#123;<br>        Set&lt;ClassLoader&gt; allClassLoader = getAllClassLoader(inst);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> allClassLoader.stream().map(x -&gt; &#123;<br>            <span class="hljs-keyword">if</span> (x ==<span class="hljs-literal">null</span>) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;BootStrapClassLoader&quot;</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">return</span> x.toString();<br>            &#125;<br>        &#125;).distinct().sorted(String::compareTo).collect(Collectors.joining(<span class="hljs-string">&quot;,&quot;</span>));<br>        System.out.println(result);<br>    &#125;<br><br>    <br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="打印类的源码"><a href="#打印类的源码" class="headerlink" title="打印类的源码"></a>打印类的源码</h6><p>需要分为以下几个步骤</p>
+<p>1、获得内存中的类的字节码信息。利用Instrumentation提供的转换器来获取字节码信息。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-16.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-17.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>2、通过反编译工具将字节码信息还原成源代码信息。</p>
+<p>这里我们会使用jd-core依赖库来完成，github地址：<a target="_blank" rel="noopener" href="https://github.com/java-decompiler/jd-core">https://github.com/java-decompiler/jd-core</a></p>
+<p>Pom添加依赖:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.jd<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jd-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.1.3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>//获取类信息<br>public static void printClass(Instrumentation inst)&#123;<br>    Scanner scanner = new Scanner(System.in);<br>    System.out.println(&quot;请输入类名:&quot;);<br>    String next = scanner.next();<br>    Class[] allLoadedClasses = inst.getAllLoadedClasses();<br>    System.out.println(&quot;要查找的类名是:&quot; + next);<br>    //匹配类名<br>    for (Class clazz : allLoadedClasses) &#123;<br>        if(clazz.getName().equals(next))&#123;<br>            System.out.println(&quot;找到了类,类加载器为:&quot; + clazz.getClassLoader());<br>            ClassFileTransformer transformer = new ClassFileTransformer() &#123;<br>                @Override<br>                public byte[] transform(Module module, ClassLoader loader, String className, Class&lt;?&gt; classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException &#123;<br>                    ClassFileToJavaSourceDecompiler classFileToJavaSourceDecompiler = new ClassFileToJavaSourceDecompiler();<br><br>                    Printer printer = new Printer() &#123;<br>                        protected static final String TAB = &quot;  &quot;;<br>                        protected static final String NEWLINE = &quot;\n&quot;;<br><br>                        protected int indentationCount = 0;<br>                        protected StringBuilder sb = new StringBuilder();<br><br>                        @Override public String toString() &#123; return sb.toString(); &#125;<br><br>                        @Override public void start(int maxLineNumber, int majorVersion, int minorVersion) &#123;&#125;<br>                        @Override public void end() &#123;<br>                            System.out.println(sb.toString());<br>                        &#125;<br><br>                        @Override public void printText(String text) &#123; sb.append(text); &#125;<br>                        @Override public void printNumericConstant(String constant) &#123; sb.append(constant); &#125;<br>                        @Override public void printStringConstant(String constant, String ownerInternalName) &#123; sb.append(constant); &#125;<br>                        @Override public void printKeyword(String keyword) &#123; sb.append(keyword); &#125;<br>                        @Override public void printDeclaration(int type, String internalTypeName, String name, String descriptor) &#123; sb.append(name); &#125;<br>                        @Override public void printReference(int type, String internalTypeName, String name, String descriptor, String ownerInternalName) &#123; sb.append(name); &#125;<br><br>                        @Override public void indent() &#123; this.indentationCount++; &#125;<br>                        @Override public void unindent() &#123; this.indentationCount--; &#125;<br><br>                        @Override public void startLine(int lineNumber) &#123; for (int i=0; i&lt;indentationCount; i++) sb.append(TAB); &#125;<br>                        @Override public void endLine() &#123; sb.append(NEWLINE); &#125;<br>                        @Override public void extraLine(int count) &#123; while (count-- &gt; 0) sb.append(NEWLINE); &#125;<br><br>                        @Override public void startMarker(int type) &#123;&#125;<br>                        @Override public void endMarker(int type) &#123;&#125;<br>                    &#125;;<br><br>                    try &#123;<br>                        classFileToJavaSourceDecompiler.decompile(new Loader() &#123;<br>                            @Override<br>                            public boolean canLoad(String s) &#123;<br>                                return false;<br>                            &#125;<br><br>                            @Override<br>                            public byte[] load(String s) throws LoaderException &#123;<br>                                return classfileBuffer;<br>                            &#125;<br>                        &#125;,printer,className);<br>                    &#125; catch (Exception e) &#123;<br>                        e.printStackTrace();<br>                    &#125;<br>                    //System.out.println(new String(classfileBuffer));<br>                    return ClassFileTransformer.super.transform(module, loader, className, classBeingRedefined, protectionDomain, classfileBuffer);<br>                &#125;<br>            &#125;;<br><br>            inst.addTransformer(transformer,true);<br>            try &#123;<br>                inst.retransformClasses(clazz);<br>            &#125; catch (UnmodifiableClassException e) &#123;<br>                e.printStackTrace();<br>            &#125;finally &#123;<br>                inst.removeTransformer(transformer);<br>            &#125;<br><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="打印方法执行的参数和耗时"><a href="#打印方法执行的参数和耗时" class="headerlink" title="打印方法执行的参数和耗时"></a>打印方法执行的参数和耗时</h4><p><strong>Spring AOP是不是也可以实现类似的功能呢？</strong></p>
+<p>Spring AOP 确实可以实现统计方法执行时间，打印方法参数等功能，但是使用这种方式存在几个问题：</p>
+<p>代码有侵入性，AOP代码必须在当前项目中被引入才能完成相应的功能。</p>
+<p>无法做到灵活地开启和关闭功能。</p>
+<p>与Spring框架强耦合，如果项目没有使用Spring框架就不可以使用。</p>
+<p>所以使用Java Agent技术 + 字节码增强技术，就可以解决上述三个问题。</p>
+<h6 id="ASM字节码增强技术"><a href="#ASM字节码增强技术" class="headerlink" title="ASM字节码增强技术"></a>ASM字节码增强技术</h6><p>打印方法执行的参数和耗时需要对原始类的方法进行增强，可以使用类似于Spring AOP这类面向切面编程的方式，但是考虑到并非每个项目都使用了Spring这些框架，所以我们选择的是最基础的字节码增强框架。字节码增强框架是在当前类的字节码信息中插入一部分字节码指令，从而起到增强的作用。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112129850.png" srcset="/img/loading.gif" lazyload alt="image-20241113112129850"></p>
+<p>ASM是一个通用的 Java 字节码操作和分析框架。它可用于直接以二进制形式修改现有类或动态生成类。ASM重点关注性能。让操作尽可能小且尽可能快，所以它非常适合在动态系统中使用。ASM的缺点是代码复杂。</p>
+<p>ASM的官方网址：<a target="_blank" rel="noopener" href="https://asm.ow2.io/">https://asm.ow2.io/</a> 操作步骤： 1、引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.ow2.asm<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>asm<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>9.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>2、搭建基础框架，此代码为固定代码。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089445153-19.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>3、编写一个类描述如何去增强类，类需要继承自MethodVisitor</p>
+<p>ASM基础案例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">package</span> com.itheima.jvm.javaagent.demo05;<br><br><span class="hljs-keyword">import</span> org.objectweb.asm.*;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.InputStream;<br><span class="hljs-keyword">import</span> java.lang.reflect.InvocationTargetException;<br><br><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.objectweb.asm.Opcodes.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ASMDemo</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">byte</span>[] classASM(<span class="hljs-type">byte</span>[] bytes)&#123;<br>        <span class="hljs-type">ClassWriter</span> <span class="hljs-variable">cw</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassWriter</span>(<span class="hljs-number">0</span>);<br>        <span class="hljs-comment">// cv forwards all events to cw</span><br>        <span class="hljs-type">ClassVisitor</span> <span class="hljs-variable">cv</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassVisitor</span>(ASM7, cw) &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> MethodVisitor <span class="hljs-title function_">visitMethod</span><span class="hljs-params">(<span class="hljs-type">int</span> access, String name, String descriptor, String signature, String[] exceptions)</span> &#123;<br>                <span class="hljs-type">MethodVisitor</span> <span class="hljs-variable">mv</span> <span class="hljs-operator">=</span> cv.visitMethod(access, name, descriptor, signature, exceptions);<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyMethodVisitor</span>(<span class="hljs-built_in">this</span>.api,mv);<br>            &#125;<br>        &#125;;<br>        <span class="hljs-type">ClassReader</span> <span class="hljs-variable">cr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassReader</span>(bytes);<br>        cr.accept(cv, <span class="hljs-number">0</span>);<br><br>        <span class="hljs-keyword">return</span> cw.toByteArray();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException &#123;<br>        <span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> ASMDemo.class.getResourceAsStream(<span class="hljs-string">&quot;/com/itheima/jvm/javaagent/demo05/ASMDemo.class&quot;</span>);<br>        <span class="hljs-type">byte</span>[] b1 = inputStream.readAllBytes();<br><br>        <span class="hljs-type">byte</span>[] b2 = classASM(b1); <span class="hljs-comment">// b2 represents the same class as b1</span><br><br>        <span class="hljs-comment">//创建类加载器</span><br>        <span class="hljs-type">MyClassLoader</span> <span class="hljs-variable">myClassLoader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClassLoader</span>();<br>        <span class="hljs-type">Class</span> <span class="hljs-variable">clazz</span> <span class="hljs-operator">=</span> myClassLoader.defineClass(<span class="hljs-string">&quot;com.itheima.jvm.javaagent.demo05.ASMDemo&quot;</span>, b2);<br>        clazz.getDeclaredConstructor().newInstance();<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClassLoader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ClassLoader</span> &#123;<br>    <span class="hljs-keyword">public</span> Class <span class="hljs-title function_">defineClass</span><span class="hljs-params">(String name, <span class="hljs-type">byte</span>[] b)</span> &#123;<br>        <span class="hljs-keyword">return</span> defineClass(name, b, <span class="hljs-number">0</span>, b.length);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyMethodVisitor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">MethodVisitor</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyMethodVisitor</span><span class="hljs-params">(<span class="hljs-type">int</span> api, MethodVisitor methodVisitor)</span> &#123;<br>        <span class="hljs-built_in">super</span>(api, methodVisitor);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">visitCode</span><span class="hljs-params">()</span> &#123;<br>        mv.visitFieldInsn(Opcodes.GETSTATIC,<span class="hljs-string">&quot;java/lang/System&quot;</span>,<span class="hljs-string">&quot;out&quot;</span>,<span class="hljs-string">&quot;Ljava/io/PrintStream;&quot;</span>);<br>        mv.visitLdcInsn(<span class="hljs-string">&quot;开始执行&quot;</span>);<br>        mv.visitMethodInsn(INVOKEVIRTUAL,<span class="hljs-string">&quot;java/io/PrintStream&quot;</span>,<span class="hljs-string">&quot;println&quot;</span>,<span class="hljs-string">&quot;(Ljava/lang/String;)V&quot;</span>,<span class="hljs-literal">false</span>);<br>        <span class="hljs-built_in">super</span>.visitCode();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">visitInsn</span><span class="hljs-params">(<span class="hljs-type">int</span> opcode)</span> &#123;<br>        <span class="hljs-keyword">if</span>(opcode == ARETURN || opcode == RETURN ) &#123;<br>            mv.visitFieldInsn(Opcodes.GETSTATIC,<span class="hljs-string">&quot;java/lang/System&quot;</span>,<span class="hljs-string">&quot;out&quot;</span>,<span class="hljs-string">&quot;Ljava/io/PrintStream;&quot;</span>);<br>            mv.visitLdcInsn(<span class="hljs-string">&quot;结束执行&quot;</span>);<br>            mv.visitMethodInsn(INVOKEVIRTUAL,<span class="hljs-string">&quot;java/io/PrintStream&quot;</span>,<span class="hljs-string">&quot;println&quot;</span>,<span class="hljs-string">&quot;(Ljava/lang/String;)V&quot;</span>,<span class="hljs-literal">false</span>);<br>        &#125;<br>        <span class="hljs-built_in">super</span>.visitInsn(opcode);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">visitEnd</span><span class="hljs-params">()</span> &#123;<br>        mv.visitMaxs(<span class="hljs-number">20</span>,<span class="hljs-number">50</span>);<br>        <span class="hljs-built_in">super</span>.visitEnd();<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="Byte-Buddy字节码增强技术"><a href="#Byte-Buddy字节码增强技术" class="headerlink" title="Byte Buddy字节码增强技术"></a>Byte Buddy字节码增强技术</h6><p>Byte Buddy 是一个代码生成和操作库，用于在 Java 应用程序运行时创建和修改 Java 类，而无需编译器的帮助。 Byte Buddy底层基于ASM，提供了非常方便的 API。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112201276.png" srcset="/img/loading.gif" lazyload alt="image-20241113112201276"></p>
+<p>Byte Buddy官网： <a target="_blank" rel="noopener" href="https://bytebuddy.net/">https://bytebuddy.net/</a></p>
+<p>操作步骤：</p>
+<p>1、引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>net.bytebuddy<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>byte-buddy<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.14.10<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>net.bytebuddy<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>byte-buddy-agent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.14.10<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>2、搭建基础框架，此代码为固定代码</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089457470-62.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>3、编写一个Advice通知描述如何去增强类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">package</span> com.itheima.jvm.javaagent.demo05;<br><br><span class="hljs-keyword">import</span> net.bytebuddy.ByteBuddy;<br><span class="hljs-keyword">import</span> net.bytebuddy.agent.ByteBuddyAgent;<br><span class="hljs-keyword">import</span> net.bytebuddy.asm.Advice;<br><span class="hljs-keyword">import</span> net.bytebuddy.dynamic.DynamicType;<br><span class="hljs-keyword">import</span> net.bytebuddy.dynamic.loading.ClassReloadingStrategy;<br><span class="hljs-keyword">import</span> net.bytebuddy.matcher.ElementMatchers;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.InputStream;<br><span class="hljs-keyword">import</span> java.lang.reflect.InvocationTargetException;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ByteBuddyDemo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException &#123;<br><br>        <span class="hljs-type">Foo</span> <span class="hljs-variable">foo</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Foo</span>();<br>        <span class="hljs-type">MyClassLoader</span> <span class="hljs-variable">myClassLoader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClassLoader</span>();<br><br>        Class&lt;? <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Foo</span>&gt; newClazz = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteBuddy</span>()<br>                .subclass(Foo.class)<br>                .method(ElementMatchers.any())<br>                .intercept(Advice.to(MyAdvice.class))<br>                .make()<br>                .load(myClassLoader)<br>                .getLoaded();<br><br>        <span class="hljs-type">Foo</span> <span class="hljs-variable">foo1</span> <span class="hljs-operator">=</span> newClazz.getDeclaredConstructor().newInstance();<br>        foo1.test();<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyAdvice</span> &#123;<br>    <span class="hljs-meta">@Advice</span>.OnMethodEnter<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onEnter</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;方法进入&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Advice</span>.OnMethodExit<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onExit</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;方法退出&quot;</span>);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>增强后的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">package</span> com.itheima.jvm.javaagent.demo05;<br><br><span class="hljs-keyword">import</span> net.bytebuddy.agent.builder.AgentBuilder;<br><span class="hljs-keyword">import</span> net.bytebuddy.asm.Advice;<br><span class="hljs-keyword">import</span> net.bytebuddy.description.method.MethodDescription;<br><span class="hljs-keyword">import</span> net.bytebuddy.description.type.TypeDescription;<br><span class="hljs-keyword">import</span> net.bytebuddy.dynamic.DynamicType;<br><span class="hljs-keyword">import</span> net.bytebuddy.implementation.MethodDelegation;<br><span class="hljs-keyword">import</span> net.bytebuddy.matcher.ElementMatchers;<br><span class="hljs-keyword">import</span> net.bytebuddy.utility.JavaModule;<br><span class="hljs-keyword">import</span> org.jd.core.v1.ClassFileToJavaSourceDecompiler;<br><span class="hljs-keyword">import</span> org.jd.core.v1.api.loader.Loader;<br><span class="hljs-keyword">import</span> org.jd.core.v1.api.loader.LoaderException;<br><span class="hljs-keyword">import</span> org.jd.core.v1.api.printer.Printer;<br><br><span class="hljs-keyword">import</span> java.lang.instrument.ClassFileTransformer;<br><span class="hljs-keyword">import</span> java.lang.instrument.IllegalClassFormatException;<br><span class="hljs-keyword">import</span> java.lang.instrument.Instrumentation;<br><span class="hljs-keyword">import</span> java.lang.instrument.UnmodifiableClassException;<br><span class="hljs-keyword">import</span> java.security.ProtectionDomain;<br><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> net.bytebuddy.matcher.ElementMatchers.isMethod;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassEnhancerCommand</span> &#123;<br><br><br>    <span class="hljs-comment">//获取类信息</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">enhanceClass</span><span class="hljs-params">(Instrumentation inst)</span>&#123;<br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        System.out.println(<span class="hljs-string">&quot;请输入类名:&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">next</span> <span class="hljs-operator">=</span> scanner.next();<br>        Class[] allLoadedClasses = inst.getAllLoadedClasses();<br>        System.out.println(<span class="hljs-string">&quot;要查找的类名是:&quot;</span> + next);<br>        <span class="hljs-comment">//匹配类名</span><br>        <span class="hljs-keyword">for</span> (Class clazz : allLoadedClasses) &#123;<br>            <span class="hljs-keyword">if</span>(clazz.getName().equals(next))&#123;<br>                System.out.println(<span class="hljs-string">&quot;找到了类,类加载器为:&quot;</span> + clazz.getClassLoader());<br><br>                <span class="hljs-keyword">new</span> <span class="hljs-title class_">AgentBuilder</span>.Default()<br>                        .disableClassFormatChanges()<br>                        .with(AgentBuilder.RedefinitionStrategy.RETRANSFORMATION)<br>                        .with( <span class="hljs-comment">//new AgentBuilder.Listener.WithErrorsOnly(</span><br>                                <span class="hljs-keyword">new</span> <span class="hljs-title class_">AgentBuilder</span>.Listener.WithTransformationsOnly(<br>                                        AgentBuilder.Listener.StreamWriting.toSystemOut()))<br>                        <span class="hljs-comment">//.type(ElementMatchers.isAnnotatedWith(named(&quot;org.springframework.web.bind.annotation.RestController&quot;)))</span><br>                        .type(ElementMatchers.named(clazz.getName()))<br>                        .transform((builder, type, classLoader, <span class="hljs-keyword">module</span>, protectionDomain) -&gt;<br>                                builder.visit(Advice.to(MyAdvice.class).on(ElementMatchers.any()))<br><span class="hljs-comment">//                                builder .method(ElementMatchers.any())</span><br><span class="hljs-comment">//                                        .intercept(MethodDelegation.to(MyInterceptor.class))</span><br>                        )<br>                        .installOn(inst);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">package</span> com.itheima.jvm.javaagent.demo07;<br><br><span class="hljs-keyword">import</span> net.bytebuddy.asm.Advice;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyAdvice</span> &#123;<br>    <span class="hljs-meta">@Advice</span>.OnMethodEnter<br>    <span class="hljs-keyword">static</span> <span class="hljs-type">long</span> <span class="hljs-title function_">enter</span><span class="hljs-params">(<span class="hljs-meta">@Advice</span>.AllArguments Object[] ary)</span> &#123;<br>        <span class="hljs-keyword">if</span>(ary != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span><span class="hljs-number">0</span> ; i &lt; ary.length ; i++)&#123;<br>                System.out.println(<span class="hljs-string">&quot;Argument: &quot;</span> + i + <span class="hljs-string">&quot; is &quot;</span> + ary[i]);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> System.nanoTime();<br>    &#125;<br><br>    <span class="hljs-meta">@Advice</span>.OnMethodExit<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">exit</span><span class="hljs-params">(<span class="hljs-meta">@Advice</span>.Enter <span class="hljs-type">long</span> value)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;耗时为：&quot;</span> + (System.nanoTime() - value) + <span class="hljs-string">&quot;纳秒&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最后将整个简化版的arthas进行打包，在服务器上进行测试。使用maven-shade-plugin插件可以将所有依赖打入同一个jar包中并指定入口main方法。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-comment">&lt;!--打包成jar包使用--&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>maven-shade-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">executions</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">execution</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">phase</span>&gt;</span>package<span class="hljs-tag">&lt;/<span class="hljs-name">phase</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">goals</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">goal</span>&gt;</span>shade<span class="hljs-tag">&lt;/<span class="hljs-name">goal</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">goals</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">finalName</span>&gt;</span>itheima-attach-agent<span class="hljs-tag">&lt;/<span class="hljs-name">finalName</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">transformers</span>&gt;</span><br>                    <span class="hljs-comment">&lt;!--java -jar 默认启动的主类--&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">transformer</span></span><br><span class="hljs-tag">                            <span class="hljs-attr">implementation</span>=<span class="hljs-string">&quot;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&quot;</span>&gt;</span><br>                        <span class="hljs-tag">&lt;<span class="hljs-name">mainClass</span>&gt;</span>com.itheima.jvm.javaagent.AttachMain<span class="hljs-tag">&lt;/<span class="hljs-name">mainClass</span>&gt;</span><br>                    <span class="hljs-tag">&lt;/<span class="hljs-name">transformer</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">transformers</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">execution</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">executions</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="APM系统的数据采集"><a href="#APM系统的数据采集" class="headerlink" title="APM系统的数据采集"></a>APM系统的数据采集</h4><p>Application performance monitor (APM) 应用程序性能监控系统是采集运行程序的实时数据并使用可视化的方式展示，使用APM可以确保系统可用性，优化服务性能和响应时间，持续改善用户体验。常用的APM系统有Apache Skywalking、Zipkin等。 Skywalking官方网站: <a target="_blank" rel="noopener" href="https://skywalking.apache.org/">https://skywalking.apache.org/</a></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112309827.png" srcset="/img/loading.gif" lazyload alt="image-20241113112309827"></p>
+<p>需求：</p>
+<p>编写一个简化版的APM数据采集程序，具备以下几个功能：</p>
+<p>1、无侵入性获取spring boot应用中，controller层方法的调用时间。</p>
+<p>2、将所有调用时间写入文件中。</p>
+<p>问题：</p>
+<p>Java agent 采用静态加载模式 还是 动态加载模式？</p>
+<p>一般程序启动之后就需要持续地进行信息的采集，所以采用静态加载模式。</p>
+<h6 id="Java-Agent参数的获取"><a href="#Java-Agent参数的获取" class="headerlink" title="Java Agent参数的获取"></a>Java Agent参数的获取</h6><p>在Java Agent中，可以通过如下的方式传递参数：</p>
+<p>java -javaagent:.&#x2F;agent.jar&#x3D;参数 -jar test.jar</p>
+<p>接下来通过premain参数中的agentArgs字段获取：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089457470-64.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>如果有多个参数，可以使用如下方式：</p>
+<p>java -javaagent:.&#x2F;agent.jar&#x3D;param1&#x3D;value1,param2&#x3D;value2 -jar test.jar</p>
+<p>在Java代码中使用字符串解析出对应的key value。</p>
+<p>在Java Agent中如果需要传递参数到Byte Buddy，可以采用如下的方式：</p>
+<p>1、绑定Key Value，Key是一个自定义注解，Value是参数的值。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112328769.png" srcset="/img/loading.gif" lazyload alt="image-20241113112328769"></p>
+<p>2、自定义注解</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112335607.png" srcset="/img/loading.gif" lazyload alt="image-20241113112335607"></p>
+<p>3、通过注解注入</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112342327.png" srcset="/img/loading.gif" lazyload alt="image-20241113112342327"></p>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima.javaagent;<br><br><span class="hljs-keyword">import</span> com.itheima.javaagent.command.ClassCommand;<br><span class="hljs-keyword">import</span> com.itheima.javaagent.command.MemoryCommand;<br><span class="hljs-keyword">import</span> com.itheima.javaagent.command.ThreadCommand;<br><span class="hljs-keyword">import</span> com.itheima.javaagent.enhancer.AgentParam;<br><span class="hljs-keyword">import</span> com.itheima.javaagent.enhancer.MyAdvice;<br><span class="hljs-keyword">import</span> com.itheima.javaagent.enhancer.TimingAdvice;<br><span class="hljs-keyword">import</span> net.bytebuddy.agent.builder.AgentBuilder;<br><span class="hljs-keyword">import</span> net.bytebuddy.asm.Advice;<br><span class="hljs-keyword">import</span> net.bytebuddy.matcher.ElementMatchers;<br><br><span class="hljs-keyword">import</span> java.lang.instrument.Instrumentation;<br><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AgentMain</span> &#123;<br>    <span class="hljs-comment">//premain方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">premain</span><span class="hljs-params">(String agentArgs, Instrumentation inst)</span>&#123;<br>        <span class="hljs-comment">//使用bytebuddy增强类</span><br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">AgentBuilder</span>.Default()<br>                <span class="hljs-comment">//禁止byte buddy处理时修改类名</span><br>                .disableClassFormatChanges()<br>                <span class="hljs-comment">//处理时使用retransform增强</span><br>                .with(AgentBuilder.RedefinitionStrategy.RETRANSFORMATION)<br>                <span class="hljs-comment">//打印出错误日志</span><br>                .with(<span class="hljs-keyword">new</span> <span class="hljs-title class_">AgentBuilder</span>.Listener.WithTransformationsOnly(AgentBuilder.Listener.StreamWriting<br>                        .toSystemOut()))<br>                <span class="hljs-comment">//匹配哪些类</span><br>                .type(ElementMatchers.isAnnotatedWith(ElementMatchers.named(<span class="hljs-string">&quot;org.springframework.web.bind.annotation.RestController&quot;</span>)<br>                        .or(ElementMatchers.named(<span class="hljs-string">&quot;org.springframework.web.bind.annotation.Controller&quot;</span>)))<br>                )<br>                <span class="hljs-comment">//增强，使用MyAdvice通知，对所有方法都进行增强</span><br>                .transform((builder, typeDescription, classLoader, <span class="hljs-keyword">module</span>, protectionDomain) -&gt;<br>                        builder.visit(Advice<br>                                        .withCustomMapping()<br>                                        .bind(AgentParam.class,agentArgs)<br>                                .to(TimingAdvice.class).on(ElementMatchers.any())))<br>                .installOn(inst);<br>    &#125;<br><br>   <br><br>&#125;<br><span class="hljs-keyword">package</span> com.itheima.javaagent.enhancer;<br><br><span class="hljs-keyword">import</span> net.bytebuddy.asm.Advice;<br><span class="hljs-keyword">import</span> org.apache.commons.io.FileUtils;<br><br><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.nio.charset.StandardCharsets;<br><br><span class="hljs-comment">//统计耗时，打印方法名、类名</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TimingAdvice</span> &#123;<br><br>    <span class="hljs-comment">//方法进入时，返回开始时间</span><br>    <span class="hljs-meta">@Advice</span>.OnMethodEnter<br>    <span class="hljs-keyword">static</span> <span class="hljs-type">long</span> <span class="hljs-title function_">enter</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> System.nanoTime();<br>    &#125;<br><br>    <span class="hljs-comment">//方法退出时候，统计方法执行耗时</span><br>    <span class="hljs-meta">@Advice</span>.OnMethodExit<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">exit</span><span class="hljs-params">(<span class="hljs-meta">@Advice</span>.Enter <span class="hljs-type">long</span> value,</span><br><span class="hljs-params">                     <span class="hljs-meta">@Advice</span>.Origin(<span class="hljs-string">&quot;#t&quot;</span>)</span> String className,<br>                     <span class="hljs-meta">@Advice</span>.Origin(<span class="hljs-string">&quot;#m&quot;</span>) String methodName,<br>                     <span class="hljs-meta">@AgentParam(&quot;agent.log&quot;)</span> String fileName)&#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> methodName + <span class="hljs-string">&quot;@&quot;</span> + className + <span class="hljs-string">&quot;耗时为: &quot;</span> + (System.nanoTime() - value) + <span class="hljs-string">&quot;纳秒\n&quot;</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            FileUtils.writeStringToFile(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(fileName),str, StandardCharsets.UTF_8,<span class="hljs-literal">true</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>修改jar包名字，并重新打包：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241113112400785.png" srcset="/img/loading.gif" lazyload alt="image-20241113112400785"></p>
+<p>启动spring boot服务时，添加javaagent的路径,并添加文件名参数:</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089457470-69.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>打印结果：</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/1725089457470-70.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>Arthas这款工具用到了什么Java技术，有没有了解过？</strong></p>
+<p>回答：</p>
+<p>Arthas主要使用了Java Agent技术，这种技术可以让运行中的Java程序执行Agent中编写代码。</p>
+<p>Arthas使用了Agent中的动态加载模式，可以选择让某个特定的Java进程加载Agent并执行其中的监控代码。监控方面主要使用的就是JMX提供的一些监控指标，同时使用字节码增强技术，对某些类和某些方法进行增强，从而监控方法的执行耗时、参数等内容。</p>
+<p><strong>APM系统是如何获取到Java程序运行中的性能数据的？</strong></p>
+<p>回答：</p>
+<p>APM系统比如Skywalking主要使用了Java Agent技术，这种技术可以让运行中的Java程序执行Agent中编写代码。</p>
+<p>Skywalking编写了Java Agent，使用了Agent中的静态加载模式，使用字节码增强技术，对某些类和某些方法进行增强，从而监控方法的执行耗时、参数等内容。比如对Controller层方法增强，获取接口调用的时长信息，对数据库连接增强，获取数据库查询的时长、SQL语句等信息。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/jvm/" class="category-chain-item">jvm</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GraaJvm Agent</div>
+      <div>http://example.com/2024/11/13/java jvm/基础/GraaJvm/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/19/%E5%A4%8D%E4%B9%A0/" title="最近的笔记方向">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">最近的笔记方向</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/13/java%20jvm/%E5%9F%BA%E7%A1%80/Jvm%E8%B0%83%E4%BC%98/" title="jvm调优篇">
+                        <span class="hidden-mobile">jvm调优篇</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://abc.nixgou.cn/","path":"window.location.pathname","meta":["nick"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
