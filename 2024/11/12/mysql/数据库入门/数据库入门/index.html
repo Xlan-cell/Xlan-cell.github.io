@@ -19,23 +19,36 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Jvm调优篇内存调优Gc调优性能调优">
+    <meta name="description" content="数据库配置1.数据管理技术的发展三个阶段 人工管理阶段 文件系统阶段 数据库系统阶段 2.数据库基础用语1.数据库  存储再计算机中数据集合 2.数据库管理系统 DBMS 介于用户和操作系统之间的数据库管理软件 3.数据库系统  由 数据库和数据库管理系统组成 包含硬件 数据库  软件 用户四部分  3.数据模型1.数据模型介绍数据模型是对现实世界数据特征的抽象 组成要素 数据结构 数据与数据的联">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jvm调优篇">
-<meta property="og:url" content="http://example.com/2024/11/13/java%20jvm/%E5%9F%BA%E7%A1%80/Jvm%E8%B0%83%E4%BC%98/index.html">
+<meta property="og:title" content="Mysql 数据库配置">
+<meta property="og:url" content="http://example.com/2024/11/12/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="逆向狗">
-<meta property="og:description" content="Jvm调优篇内存调优Gc调优性能调优">
+<meta property="og:description" content="数据库配置1.数据管理技术的发展三个阶段 人工管理阶段 文件系统阶段 数据库系统阶段 2.数据库基础用语1.数据库  存储再计算机中数据集合 2.数据库管理系统 DBMS 介于用户和操作系统之间的数据库管理软件 3.数据库系统  由 数据库和数据库管理系统组成 包含硬件 数据库  软件 用户四部分  3.数据模型1.数据模型介绍数据模型是对现实世界数据特征的抽象 组成要素 数据结构 数据与数据的联">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-13T12:22:30.000Z">
-<meta property="article:modified_time" content="2024-11-11T06:53:35.296Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241112162113561.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b21a603908f6c3d942938cee338b77cc_720.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/8897b1c354e6ca2674087cae46ebd0ec.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d90a097e9121f387f5dc257148cc09b6_720.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b48a961c6a943a106f6e7a6a66f071ef_720.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241112163905652.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4c47f3cdf76dc970f2dc959db7ee4af0.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/bea725e9f1fe25c2c42f778eeb91dddb_720.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/53a0368f73d46603fa892b1b7e33014d_720.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/834a6f0e6a22718a8eeba6b7183f09ec.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241112164651580.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f021fc2b01c671946da8711bb2683329.jpg">
+<meta property="article:published_time" content="2024-11-12T12:22:30.000Z">
+<meta property="article:modified_time" content="2024-11-13T00:29:19.097Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241112162113561.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Jvm调优篇 - 逆向狗</title>
+  <title>Mysql 数据库配置 - 逆向狗</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Jvm调优篇"></span>
+            <span id="subtitle" data-typed-text="Mysql 数据库配置"></span>
           
         </div>
 
@@ -217,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-13 20:22" pubdate>
-          2024年11月13日 晚上
+        <time datetime="2024-11-12 20:22" pubdate>
+          2024年11月12日 晚上
         </time>
       </span>
     
@@ -229,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14 字
+          953 字
         
       </span>
     
@@ -240,7 +253,7 @@
         
         
         
-          1 分钟
+          8 分钟
         
       </span>
     
@@ -277,12 +290,126 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Jvm调优篇</h1>
+            <h1 id="seo-header">Mysql 数据库配置</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Jvm调优篇"><a href="#Jvm调优篇" class="headerlink" title="Jvm调优篇"></a>Jvm调优篇</h1><h3 id="内存调优"><a href="#内存调优" class="headerlink" title="内存调优"></a>内存调优</h3><h3 id="Gc调优"><a href="#Gc调优" class="headerlink" title="Gc调优"></a>Gc调优</h3><h3 id="性能调优"><a href="#性能调优" class="headerlink" title="性能调优"></a>性能调优</h3>
+                <h1 id="数据库配置"><a href="#数据库配置" class="headerlink" title="数据库配置"></a>数据库配置</h1><h4 id="1-数据管理技术的发展"><a href="#1-数据管理技术的发展" class="headerlink" title="1.数据管理技术的发展"></a>1.数据管理技术的发展</h4><p>三个阶段</p>
+<p>人工管理阶段</p>
+<p>文件系统阶段</p>
+<p>数据库系统阶段</p>
+<h4 id="2-数据库基础用语"><a href="#2-数据库基础用语" class="headerlink" title="2.数据库基础用语"></a>2.数据库基础用语</h4><p>1.数据库</p>
+<p> 存储再计算机中数据集合</p>
+<p>2.数据库管理系统 DBMS</p>
+<p>介于用户和操作系统之间的数据库管理软件</p>
+<p>3.数据库系统 </p>
+<p>由 数据库和数据库管理系统组成 包含硬件 数据库  软件 用户四部分</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241112162113561.png" srcset="/img/loading.gif" lazyload alt="image-20241112162113561"></p>
+<h4 id="3-数据模型"><a href="#3-数据模型" class="headerlink" title="3.数据模型"></a>3.数据模型</h4><h6 id="1-数据模型介绍"><a href="#1-数据模型介绍" class="headerlink" title="1.数据模型介绍"></a>1.数据模型介绍</h6><p>数据模型是对现实世界数据特征的抽象</p>
+<p>组成要素</p>
+<p>数据结构 数据与数据的联系</p>
+<p> 数据操作  对数据的操作</p>
+<p>数据约束  数据与数据的约定和存储规则</p>
+<h6 id="2-数据模型分类"><a href="#2-数据模型分类" class="headerlink" title="2.数据模型分类"></a>2.数据模型分类</h6><p><strong>按照数据结构</strong></p>
+<p>层次模型</p>
+<p>网状模型</p>
+<p><strong>关系模型</strong></p>
+<p>面向对象模型</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b21a603908f6c3d942938cee338b77cc_720.jpg" srcset="/img/loading.gif" lazyload alt="b21a603908f6c3d942938cee338b77cc_720"></p>
+<p>按照应用层次分类</p>
+<p>1.概念数据模型</p>
+<p>2.逻辑数据模型</p>
+<p>3.物理数据模型</p>
+<p>客观对象转为计算机存储数据的过程</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/8897b1c354e6ca2674087cae46ebd0ec.jpg" srcset="/img/loading.gif" lazyload alt="8897b1c354e6ca2674087cae46ebd0ec"></p>
+<h6 id="3-概念数据模型术语"><a href="#3-概念数据模型术语" class="headerlink" title="3.概念数据模型术语"></a>3.概念数据模型术语</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/d90a097e9121f387f5dc257148cc09b6_720.jpg" srcset="/img/loading.gif" lazyload alt="d90a097e9121f387f5dc257148cc09b6_720"></p>
+<h6 id="4-Er图"><a href="#4-Er图" class="headerlink" title="4.Er图"></a>4.Er图</h6><p>er图叫实体-联系图 是一种用图形表示的模型</p>
+<p>绘画只需要抽离出 </p>
+<p>实体 数据表 属性 数据表字段 联系表与表的约束  </p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/b48a961c6a943a106f6e7a6a66f071ef_720.jpg" srcset="/img/loading.gif" lazyload alt="b48a961c6a943a106f6e7a6a66f071ef_720"></p>
+<h4 id="4-关系模型"><a href="#4-关系模型" class="headerlink" title="4.关系模型"></a>4.关系模型</h4><h6 id="关系模型基本概念"><a href="#关系模型基本概念" class="headerlink" title="关系模型基本概念"></a>关系模型基本概念</h6><p>1.关系</p>
+<p>关系模型中的表格称为“关系”，是一个二维表的形式，每个关系由行和列组成。行代表实体，列代表属性。</p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241112163905652.png" srcset="/img/loading.gif" lazyload alt="image-20241112163905652"></p>
+<p>2.属性</p>
+<p>二维表的列称为属性，每个属性都有一个属性名.根据不同的习惯也可以称为字段</p>
+<p>3.元组（Tuple）：</p>
+<p>关系中的每一行称为一个元组，也就是一条记录。每个元组由多个属性值组成，对应一个具体的数据项。</p>
+<p>4.域（Domain）：</p>
+<p>每个属性都有一个取值范围或集合，称为域。域定义了属性可能的取值，例如，年龄属性的域可能是所有正整数。</p>
+<ol start="56">
+<li></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/4c47f3cdf76dc970f2dc959db7ee4af0.jpeg" srcset="/img/loading.gif" lazyload alt="4c47f3cdf76dc970f2dc959db7ee4af0"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/bea725e9f1fe25c2c42f778eeb91dddb_720.jpg" srcset="/img/loading.gif" lazyload alt="bea725e9f1fe25c2c42f778eeb91dddb_720"></p>
+<h6 id="关系模型的完整性约束"><a href="#关系模型的完整性约束" class="headerlink" title="关系模型的完整性约束"></a>关系模型的完整性约束</h6><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/53a0368f73d46603fa892b1b7e33014d_720.jpg" srcset="/img/loading.gif" lazyload alt="53a0368f73d46603fa892b1b7e33014d_720"></p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/834a6f0e6a22718a8eeba6b7183f09ec.jpg" srcset="/img/loading.gif" lazyload alt="834a6f0e6a22718a8eeba6b7183f09ec"></p>
+<p>4</p>
+<p>约束-解决域完整性</p>
+<p>约束所能解决的问题-实体完整性</p>
+<p>外键约束 -参照完整性</p>
+<p>约束</p>
+<h4 id="5-数据库分类"><a href="#5-数据库分类" class="headerlink" title="5.数据库分类"></a>5.数据库分类</h4><p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/image-20241112164651580.png" srcset="/img/loading.gif" lazyload alt="image-20241112164651580"></p>
+<p>补充</p>
+<p>关系型数据库</p>
+<p>microsoft sql server</p>
+<p>ibm db2</p>
+<p>非关系型</p>
+<p>键值</p>
+<p>memcached</p>
+<p>列存储</p>
+<p>hbase</p>
+<p>面向文档</p>
+<p>couchdb</p>
+<h4 id="6-Sql的类别"><a href="#6-Sql的类别" class="headerlink" title="6.Sql的类别"></a>6.Sql的类别</h4><p>数据定义语言</p>
+<p><strong>数据查询语言（DQL - Data Query Language）</strong></p>
+<ul>
+<li><strong>主要语句</strong>：<code>SELECT</code></li>
+<li><strong>功能</strong>：用于从数据库中查询数据。DQL 主要用于数据检索，而不是数据的增删改。通过 <code>SELECT</code> 语句，可以从表中检索特定的行和列，并进行筛选、排序、分组等操作。</li>
+</ul>
+<p><strong>数据定义语言（DDL - Data Definition Language）</strong></p>
+<ul>
+<li><strong>主要语句</strong>：<code>CREATE</code>、<code>ALTER</code>、<code>DROP</code>、<code>TRUNCATE</code></li>
+<li><strong>功能</strong>：<strong>用于定义和修改数据库结构，包括创建、修改或删除数据库、表和视图等对象</strong>。例如，<code>CREATE TABLE</code> 用于创建表，<code>ALTER TABLE</code> 用于修改表结构，<code>DROP TABLE</code> 用于删除表。</li>
+</ul>
+<p><strong>数据操作语言（DML - Data Manipulation Language）</strong></p>
+<ul>
+<li><strong>主要语句</strong>：<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code></li>
+<li><strong>功能</strong>：<strong>用于对表中的数据进行操作。DML 用于插入、更新和删除数据行</strong>。例如，<code>INSERT INTO</code> 用于添加新数据，<code>UPDATE</code> 用于修改现有数据，<code>DELETE</code> 用于删除数据。</li>
+</ul>
+<p><strong>数据控制语言（DCL - Data Control Language）</strong></p>
+<ul>
+<li><strong>主要语句</strong>：<code>GRANT</code>、<code>REVOKE</code></li>
+<li><strong>功能</strong>：<strong>用于管理数据库的访问权限，控制用户对数据库的操作权限。</strong>例如，<code>GRANT</code> 用于赋予用户权限，<code>REVOKE</code> 用于撤销权限。DCL 主要用于数据库的安全控制。</li>
+</ul>
+<h4 id="7-Mysql安装和配置"><a href="#7-Mysql安装和配置" class="headerlink" title="7.Mysql安装和配置"></a>7.Mysql安装和配置</h4><p>1.官网下载 </p>
+<ol start="2">
+<li>解压缩</li>
+</ol>
+<p>3.安装mysql服务 </p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">mysql -<span class="hljs-keyword">install</span> mysql9-<br></code></pre></td></tr></table></figure>
+
+<p><strong>Mysql配置</strong></p>
+<p>1.配置文件 my.ini </p>
+<p><img src="https://raw.githubusercontent.com/Xlan-cell/tupian/master/f021fc2b01c671946da8711bb2683329.jpg" srcset="/img/loading.gif" lazyload alt="f021fc2b01c671946da8711bb2683329"></p>
+<p>2.初始化数据库</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">mysql</span> <span class="hljs-literal">--</span><span class="hljs-comment">initialize</span> <span class="hljs-literal">--</span><span class="hljs-comment">console</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>管理mysql服务</strong></p>
+<p>启动服务</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos"><span class="hljs-built_in">net</span> <span class="hljs-built_in">start</span> mysql80<br></code></pre></td></tr></table></figure>
+
+<p>停止</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-literal">stop</span> <span class="hljs-literal">start</span> mysql80<br></code></pre></td></tr></table></figure>
+
+<p><strong>登录mysql</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">mysql -h host -u usearname -<span class="hljs-selector-tag">p</span> password<br></code></pre></td></tr></table></figure>
+
+<p>退出mysql</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-keyword">exit</span><br></code></pre></td></tr></table></figure>
+
+<p>设置密码</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">user</span> <span class="hljs-string">&#x27;root&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span>identified <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;123456&#x27;</span>;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -300,7 +427,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/jvm/" class="category-chain-item">jvm</a>
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
   
   
 
@@ -320,8 +447,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Jvm调优篇</div>
-      <div>http://example.com/2024/11/13/java jvm/基础/Jvm调优/</div>
+      <div>Mysql 数据库配置</div>
+      <div>http://example.com/2024/11/12/mysql/数据库入门/数据库入门/</div>
     </div>
     <div class="license-meta">
       
@@ -333,7 +460,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月13日</div>
+          <div>2024年11月12日</div>
         </div>
       
       
